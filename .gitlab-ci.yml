@@ -1,4 +1,4 @@
-image: node:9.11.1
+image: node:latest
 
 pages:
   cache:
@@ -8,6 +8,7 @@ pages:
   script:
   - yarn install
   - yarn run build
+  - mv dist public
 
   artifacts:
     paths:
