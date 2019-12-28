@@ -108,19 +108,19 @@ export default {
   computed: {
     spellPowerToDamage: function() {
       return wcf.spellPowerToDamage(
-        this.spellCastTime,
-        this.critRating,
-        this.hitRating
+        parseFloat(this.spellCastTime),
+        parseFloat(this.critRating),
+        parseFloat(this.hitRating)
       );
     },
     spellCritToDamage: function() {
       return wcf.spellCritToDamage(
-        this.rotationFactor,
-        this.spellBaseDamage,
-        this.spellCastTime,
-        this.spellPower,
-        this.critRating,
-        this.hitRating,
+        parseFloat(this.rotationFactor),
+        parseFloat(this.spellBaseDamage),
+        parseFloat(this.spellCastTime),
+        parseFloat(this.spellPower),
+        parseFloat(this.critRating),
+        parseFloat(this.hitRating),
         this.moonFury,
         this.curseOfShadow,
         this.saygesDarkFortune,
@@ -131,11 +131,11 @@ export default {
     },
     spellHitToDamage: function() {
       return wcf.spellHitToDamage(
-        this.rotationFactor,
-        this.spellBaseDamage,
-        this.spellCastTime,
-        this.spellPower,
-        this.critRating,
+        parseFloat(this.rotationFactor),
+        parseFloat(this.spellBaseDamage),
+        parseFloat(this.spellCastTime),
+        parseFloat(this.spellPower),
+        parseFloat(this.critRating),
         this.moonFury,
         this.curseOfShadow,
         this.saygesDarkFortune,
@@ -146,21 +146,21 @@ export default {
     },
     balorSpellPowerToDamage: function() {
       return wcf.balorSpellPowerToDamage(
-        this.spellCoefficient,
-        this.spellCastTime,
-        this.critRating,
-        this.hitRating,
+        parseFloat(this.spellCoefficient),
+        parseFloat(this.spellCastTime),
+        parseFloat(this.critRating),
+        parseFloat(this.hitRating),
         this.curseOfShadow
       );
     },
     balorSpellCritToDamage: function() {
       return wcf.balorSpellCritToDamage(
-        this.spellBaseDamage,
-        this.spellCoefficient,
-        this.spellCastTime,
-        this.spellPower,
-        this.critRating,
-        this.hitRating,
+        parseFloat(this.spellBaseDamage),
+        parseFloat(this.spellCoefficient),
+        parseFloat(this.spellCastTime),
+        parseFloat(this.spellPower),
+        parseFloat(this.critRating),
+        parseFloat(this.hitRating),
         this.moonFury,
         this.curseOfShadow,
         this.saygesDarkFortune,
@@ -171,12 +171,12 @@ export default {
     },
     balorSpellHitToDamage: function() {
       return wcf.balorSpellHitToDamage(
-        this.spellBaseDamage,
-        this.spellCoefficient,
-        this.spellCastTime,
-        this.spellPower,
-        this.critRating,
-        this.hitRating,
+        parseFloat(this.spellBaseDamage),
+        parseFloat(this.spellCoefficient),
+        parseFloat(this.spellCastTime),
+        parseFloat(this.spellPower),
+        parseFloat(this.critRating),
+        parseFloat(this.hitRating),
         this.moonFury,
         this.curseOfShadow,
         this.saygesDarkFortune,
@@ -187,12 +187,12 @@ export default {
     },
     balorSpellCritToSpellPower: function() {
       return wcf.balorSpellCritToSpellPower(
-        this.spellBaseDamage,
-        this.spellCoefficient,
-        this.spellCastTime,
-        this.spellPower,
-        this.critRating,
-        this.hitRating,
+        parseFloat(this.spellBaseDamage),
+        parseFloat(this.spellCoefficient),
+        parseFloat(this.spellCastTime),
+        parseFloat(this.spellPower),
+        parseFloat(this.critRating),
+        parseFloat(this.hitRating),
         this.moonFury,
         this.curseOfShadow,
         this.saygesDarkFortune,
@@ -203,12 +203,12 @@ export default {
     },
     balorSpellHitToSpellPower: function() {
       return wcf.balorSpellHitToSpellPower(
-        this.spellBaseDamage,
-        this.spellCoefficient,
-        this.spellCastTime,
-        this.spellPower,
-        this.critRating,
-        this.hitRating,
+        parseFloat(this.spellBaseDamage),
+        parseFloat(this.spellCoefficient),
+        parseFloat(this.spellCastTime),
+        parseFloat(this.spellPower),
+        parseFloat(this.critRating),
+        parseFloat(this.hitRating),
         this.moonFury,
         this.curseOfShadow,
         this.saygesDarkFortune,
@@ -219,12 +219,12 @@ export default {
     },
     balorSpellHitToSpellPower2: function() {
       return wcf.balorSpellHitToSpellPower2(
-        this.spellBaseDamage,
-        this.spellCoefficient,
-        this.spellCastTime,
-        this.spellPower,
-        this.critRating,
-        this.hitRating,
+        parseFloat(this.spellBaseDamage),
+        parseFloat(this.spellCoefficient),
+        parseFloat(this.spellCastTime),
+        parseFloat(this.spellPower),
+        parseFloat(this.critRating),
+        parseFloat(this.hitRating),
         this.moonFury,
         this.curseOfShadow,
         this.saygesDarkFortune,
@@ -235,12 +235,12 @@ export default {
     },
     balorDPS: function() {
       return wcf.balorDPS(
-        this.spellBaseDamage,
-        this.spellCoefficient,
-        this.spellCastTime,
-        this.spellPower,
-        this.critRating,
-        this.hitRating,
+        parseFloat(this.spellBaseDamage),
+        parseFloat(this.spellCoefficient),
+        parseFloat(this.spellCastTime),
+        parseFloat(this.spellPower),
+        parseFloat(this.critRating),
+        parseFloat(this.hitRating),
         this.moonFury,
         this.curseOfShadow,
         this.saygesDarkFortune,
