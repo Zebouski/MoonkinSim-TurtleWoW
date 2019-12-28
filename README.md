@@ -1,6 +1,6 @@
 # moonkin-calc
 
-[](https://kmmiles.gitlab.io/moonkin-calc/)
+[https://kmmiles.gitlab.io/moonkin-calc/](https://kmmiles.gitlab.io/moonkin-calc/)
 
 ## Project setup
 ```
