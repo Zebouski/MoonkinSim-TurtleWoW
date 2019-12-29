@@ -74,7 +74,6 @@
       <p>Balor Spell Hit To Damage: {{ balorSpellHitToDamage }}</p>
       <p>Balor Spell Crit To Spell Power: {{ balorSpellCritToSpellPower }}</p>
       <p>Balor Spell Hit To Spell Power: {{ balorSpellHitToSpellPower }}</p>
-      <p>Balor Spell Hit To Spell Power2: {{ balorSpellHitToSpellPower2 }}</p>
 
       <p>Balor DPS: {{ balorDPS }}</p>
     </div>
@@ -203,22 +202,6 @@ export default {
     },
     balorSpellHitToSpellPower: function() {
       return wcf.balorSpellHitToSpellPower(
-        parseFloat(this.spellBaseDamage),
-        parseFloat(this.spellCoefficient),
-        parseFloat(this.spellCastTime),
-        parseFloat(this.spellPower),
-        parseFloat(this.critRating),
-        parseFloat(this.hitRating),
-        this.moonFury,
-        this.curseOfShadow,
-        this.saygesDarkFortune,
-        this.tracesOfSilithyst,
-        this.spellVuln,
-        this.stormStrike
-      );
-    },
-    balorSpellHitToSpellPower2: function() {
-      return wcf.balorSpellHitToSpellPower2(
         parseFloat(this.spellBaseDamage),
         parseFloat(this.spellCoefficient),
         parseFloat(this.spellCastTime),

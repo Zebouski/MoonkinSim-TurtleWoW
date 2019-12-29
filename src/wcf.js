@@ -6,7 +6,7 @@ var wcf = {
       : 0.5,
     critMultiplier: process.env.CRITMULTIPLIER
       ? parseFloat(process.env.CRITMULTIPLIER)
-      : 2,
+      : 2.0,
     moonFuryBonus: process.env.MOONFURYBONUS
       ? parseFloat(process.env.MOONFURYBONUS)
       : 1.1,
@@ -142,17 +142,11 @@ var wcf = {
     curseOfShadow
   ) {
     // v1 dc(0.83+H/100)(1+xR/100)/(T-t(0.83+H/100)(R/100))
+    // v2 dc(0.83+H/100)(1+R/100)/(T-t(0.83+H/100)(R/100))
     var d = curseOfShadow ? this.globals.curseOfShadowBonus : 1.0;
-    return (
-      (d *
-        spellCoefficient *
-        (0.83 + hitRating / 100) *
-        (1 + ((this.globals.critMultiplier - 1) * hitRating) / 100)) /
-      (spellCastTime -
-        this.globals.naturesGraceReduction *
-          (0.83 + hitRating / 100) *
-          (critRating / 100))
-    );
+    var x = d * spellCoefficient * (0.83 + hitRating / 100) * (1 + critRating / 100);
+    var y = (spellCastTime - this.globals.naturesGraceReduction * (0.83 + hitRating / 100) * (critRating / 100));
+    return(x / y);
   },
   balorSpellCritToDamage: function(
     spellBaseDamage,
@@ -169,6 +163,7 @@ var wcf = {
     stormStrike
   ) {
     //v1 d(83+H)(mB+cP)(xT-t(0.83+H/100))/(100T-t(0.83+H/100)R)^2
+    //v2 d(83+H)(mB+cP) * (xT+t(0.83+H/100)) / (100T-t(0.83+H/100)R)^2
     var d = curseOfShadow ? this.globals.curseOfShadowBonus : 1.0;
     var m = moonFury ? this.globals.moonFuryBonus : 1.0;
 
@@ -176,7 +171,7 @@ var wcf = {
       (d *
         (83 + hitRating) *
         (m * spellBaseDamage + spellCoefficient * spellPower) *
-        ((wcf.globals.critMultiplier - 1) * spellCastTime -
+        ((this.globals.critMultiplier - 1) * spellCastTime +
           this.globals.naturesGraceReduction * (0.83 + hitRating / 100))) /
       (100 * spellCastTime -
         this.globals.naturesGraceReduction *
@@ -272,33 +267,6 @@ var wcf = {
         (100 ** 2 * spellCastTime)) /
       (100 ** 2 * spellCastTime -
         this.globals.naturesGraceReduction * (83 + hitRating) * critRating)
-    );
-  },
-  balorSpellHitToSpellPower2: function(
-    spellBaseDamage,
-    spellCoefficient,
-    spellCastTime,
-    spellPower,
-    critRating,
-    hitRating,
-    moonFury,
-    curseOfShadow,
-    saygesDarkFortune,
-    tracesOfSilithyst,
-    spellVuln,
-    stormStrike
-  ) {
-    var m = moonFury ? this.globals.moonFuryBonus : 1.0;
-    // ((mB/c+P)(100^2 T)) / ((100^2 T - t(83+H)R)(83+H))
-    return (
-      (((m * spellBaseDamage) / spellCoefficient +
-        spellPower) *
-        (100 ** 2 * spellCastTime)) /
-      ((100 ** 2 * spellCastTime -
-        this.globals.naturesGraceReduction *
-          (83 + hitRating) *
-          critRating) *
-        (83 + hitRating))
     );
   },
   balorDPS: function(
