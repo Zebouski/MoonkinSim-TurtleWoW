@@ -8,7 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "bulma": "^0.8.0",
+    "buefy": "^0.8.8",
     "core-js": "^3.4.3",
     "csvtojson": "^2.0.10",
     "vue": "^2.6.10"

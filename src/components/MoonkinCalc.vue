@@ -1,35 +1,52 @@
 <template>
-  <div class="moonkincalc">
-    <div class="box a">
+<div>
+<section class="hero is-dark">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Moonkin Calculator
+      </h1>
+      <h2 class="subtitle">
+        Calculate things...for moonkin.
+      </h2>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container is-fluid">
+  <div class="tile is-ancestor">
+    <div class="tile is-parent">
+      <article class="tile is-child box">
+      <div class="content">
       <div class="input_fields">
         <label class="input-box">
           <div>Spell Base Damage:</div>
-          <input class="form-styling" type="number" v-model="spellBaseDamage" />
+          <input class="input" type="number" v-model="spellBaseDamage" />
         </label>
         <label class="input-box">
           <div>Spell Cast Time:</div>
-          <input class="form-styling" type="number" v-model="spellCastTime" />
+          <input class="input" type="number" v-model="spellCastTime" />
         </label>
         <label class="input-box">
           <div>Spell Coefficient:</div>
           <input
-            class="form-styling"
+            class="input"
             type="number"
             v-model="spellCoefficient"
           />
         </label>
         <label class="input-box">
           <div>Spell Power:</div>
-          <input class="form-styling" type="number" v-model="spellPower" />
+          <input class="input" type="number" v-model="spellPower" />
         </label>
 
         <label class="input-box">
           <div>Spell Hit:</div>
-          <input class="form-styling" type="number" v-model="spellHit" />
+          <input class="input" type="number" v-model="spellHit" />
         </label>
         <label class="input-box">
           <div>Spell Crit:</div>
-          <input class="form-styling" type="number" v-model="spellCrit" />
+          <input class="input" type="number" v-model="spellCrit" />
         </label>
         <label class="input-box">
           <input type="checkbox" v-model="moonFury" />Moonfury
@@ -55,33 +72,84 @@
           <input type="checkbox" v-model="stormStrike" />Storm Strike
         </label>
       </div>
+      </div>
+      </article>
     </div>
-    <div class="box b">
-      <p>Keftenk Spell Power To Damage: {{ spellPowerToDamage }}</p>
-      <p>Keftenk Spell Crit To Damage: {{ spellCritToDamage }}</p>
-      <p>Keftenk Spell Hit To Damage: {{ spellHitToDamage }}</p>
+    <div class="tile is-parent">
+      <article class="tile is-child box">
+        <p class="subtitle">Classic Balance Druid v1.3</p>
+      <div class="content">
+      <p>Spell Power To Damage: {{ spellPowerToDamage }}</p>
+      <p>Spell Crit To Damage: {{ spellCritToDamage }}</p>
+      <p>Spell Hit To Damage: {{ spellHitToDamage }}</p>
       <p>
-        Keftenk Spell Crit To Spell Power:
+        Spell Crit To Spell Power:
         {{ spellCritToDamage / spellPowerToDamage }}
       </p>
       <p>
-        Keftenk Spell Hit To Spell Power:
+        Spell Hit To Spell Power:
         {{ spellHitToDamage / spellPowerToDamage }}
       </p>
       <p>Spell chance to miss: {{ spellChanceToMiss }}</p>
       <p>Spell chance to crit: {{ spellChanceToCrit }}</p>
       <p>Spell chance to hit (normal): {{ spellChanceToHit }}</p>
-      <hr />
-      <p>Balor Spell Power To Damage: {{ balorSpellPowerToDamage }}</p>
-      <p>Balor Spell Crit To Damage: {{ balorSpellCritToDamage }}</p>
-      <p>Balor Spell Hit To Damage: {{ balorSpellHitToDamage }}</p>
-      <p>Balor Spell Crit To Spell Power: {{ balorSpellCritToSpellPower }}</p>
-      <p>Balor Spell Hit To Spell Power: {{ balorSpellHitToSpellPower }}</p>
-
-      <p>Balor DPS: {{ balorDPS }}</p>
+      </div>
+      </article>
+    </div>
+    <div class="tile is-parent">
+      <article class="tile is-child box">
+      <p class="subtitle">Balor</p>
+      <div class="content">
+      <p>Spell Power To Damage: {{ balorSpellPowerToDamage }}</p>
+      <p>Spell Crit To Damage: {{ balorSpellCritToDamage }}</p>
+      <p>Spell Hit To Damage: {{ balorSpellHitToDamage }}</p>
+      <p>Spell Crit To Spell Power: {{ balorSpellCritToSpellPower }}</p>
+      <p>Spell Hit To Spell Power: {{ balorSpellHitToSpellPower }}</p>
+      <p>DPS: {{ balorDPS }}</p>
+      </div>
+      </article>
     </div>
   </div>
+  </div>
+  </section>
+  <footer class="footer">
+  <div class="content has-text-centered">
+    <p>Discord: Beef Broccoli#5067</p>
+    <p>Based on Keftenk's <a href="https://forum.classicwow.live/topic/726/by-the-great-winds-i-come-classic-balance-druid-theorycraft-spreadsheet-v1-3">Classic Balance Druid spreadsheet</a></p>
+  </div>
+</footer>
+  </div>
 </template>
+
+<style scoped lang="scss">
+
+
+article {
+  //background: #1e1e22;
+  //color: #fff;
+  text-align: center;
+}
+
+/*
+.input {
+  width: 100%;
+  height: 35px;
+  padding-left: 15px;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+*/
+
+.input_fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+  margin: 1rem 0;
+}
+</style>
 
 <script>
 var wcf = require("../wcf.js");
@@ -247,37 +315,3 @@ export default {
   }
 };
 </script>
-
-<style scoped lang="scss">
-.moonkincalc {
-  margin: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  place-items: center;
-}
-
-.form-styling {
-  width: 100%;
-  height: 35px;
-  padding-left: 15px;
-  border: none;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  background: rgba(255, 255, 255, 0.2);
-  color: #fff;
-}
-
-.box {
-  max-width: 90%;
-  margin: auto;
-  background: #1e1e22;
-  color: #fff;
-}
-
-.input_fields {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 1rem;
-  margin: 1rem 0;
-}
-</style>
