@@ -1,6 +1,6 @@
 <template>
 <div>
-<section class="hero is-dark">
+<section class="hero is-light">
   <div class="hero-body">
     <div class="container">
       <h1 class="title">
@@ -12,11 +12,11 @@
     </div>
   </div>
 </section>
-<section class="section">
+<section class="section has-background-grey-darker ">
   <div class="container is-fluid">
   <div class="tile is-ancestor">
     <div class="tile is-parent">
-      <article class="tile is-child box">
+      <article class="tile is-child box has-background-black-ter has-text-white">
       <div class="content">
       <div class="input_fields">
         <label class="input-box">
@@ -76,8 +76,8 @@
       </article>
     </div>
     <div class="tile is-parent">
-      <article class="tile is-child box">
-        <p class="subtitle">Classic Balance Druid v1.3</p>
+      <article class="tile is-child box has-background-black-ter has-text-white">
+        <p class="subtitle has-text-white">Classic Balance Druid v1.3</p>
       <div class="content">
       <p>Spell Power To Damage: {{ spellPowerToDamage }}</p>
       <p>Spell Crit To Damage: {{ spellCritToDamage }}</p>
@@ -97,8 +97,8 @@
       </article>
     </div>
     <div class="tile is-parent">
-      <article class="tile is-child box">
-      <p class="subtitle">Balor</p>
+      <article class="tile is-child box has-background-black-ter has-text-white">
+      <p class="subtitle has-text-white">Balor</p>
       <div class="content">
       <p>Spell Power To Damage: {{ balorSpellPowerToDamage }}</p>
       <p>Spell Crit To Damage: {{ balorSpellCritToDamage }}</p>
