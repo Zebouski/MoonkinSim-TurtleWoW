@@ -11,8 +11,11 @@ export default {
   name: "app",
   components: {
     MoonkinCalc
+  },
+  created() {
+    document.title = "Moonkin Calculator";
   }
-};
+}
 </script>
 
 <style lang="scss">

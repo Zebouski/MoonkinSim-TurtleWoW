@@ -1,6 +1,7 @@
 var wcf = {
   globals: {
     hitCap: process.env.HITCAP ? parseFloat(process.env.HITCAP) : 17,
+    bossResistance: process.env.BOSSRESISTANCE ? parseFloat(process.env.BOSSRESISTANCE) : 75,
     naturesGraceReduction: process.env.NATURESGRACEREDUCTION
       ? parseFloat(process.env.NATURESGRACEREDUCTION)
       : 0.5,
@@ -48,10 +49,10 @@ var wcf = {
     spellPower: process.env.SPELLPOWER
       ? parseFloat(process.env.SPELLPOWER)
       : 684,
-    critRating: process.env.CRITRATING
-      ? parseFloat(process.env.CRITRATING)
+    spellCrit: process.env.SPELLCRIT
+      ? parseFloat(process.env.SPELLCRIT)
       : 26,
-    hitRating: process.env.HITRATING ? parseFloat(process.env.HITRATING) : 2,
+    spellHit: process.env.SPELLHIT ? parseFloat(process.env.SPELLHIT) : 2,
     moonFury: true,
     vengeance: false,
     curseOfShadow: false,
@@ -61,10 +62,24 @@ var wcf = {
     spellVuln: false,
     stormStrike: false
   },
-  spellPowerToDamage: function(spellCastTime, critRating, hitRating) {
+  spellChanceToMiss: function(spellHit) {
+    return(100 - (83 + Math.min(spellHit, (this.globals.hitCap - 1))));
+  },
+  spellChanceToCrit: function(spellCrit, spellHit) {
+    return((1.8 + spellCrit) * ((100 - this.spellChanceToMiss(spellHit)) / 100));
+  },
+  spellChanceToHit: function(spellCrit, spellHit) {
+    return((100 - this.spellChanceToMiss(spellHit)) - this.spellChanceToCrit(spellCrit, spellHit));
+  },
+  /*
+  spellAverageDamage:
+  spellEffectiveCastTime:
+  spellPartialResistLossAverage:
+  */
+  spellPowerToDamage: function(spellCastTime, spellCrit, spellHit) {
     return (
-      ((1 + critRating / 100) * (1 - (this.globals.hitCap - hitRating) / 100)) /
-      (spellCastTime - (this.globals.naturesGraceReduction * critRating) / 100)
+      ((1 + spellCrit / 100) * (1 - (this.globals.hitCap - spellHit) / 100)) /
+      (spellCastTime - (this.globals.naturesGraceReduction * spellCrit) / 100)
     );
   },
   spellCritToDamage: function(
@@ -72,8 +87,8 @@ var wcf = {
     spellBaseDamage,
     spellCastTime,
     spellPower,
-    critRating,
-    hitRating,
+    spellCrit,
+    spellHit,
     moonFury,
     curseOfShadow,
     saygesDarkFortune,
@@ -85,9 +100,9 @@ var wcf = {
       (((spellBaseDamage * (moonFury ? this.globals.moonFuryBonus : 1.0) +
         spellPower * rotationFactor) *
         (1 / 100) *
-        (1 - (this.globals.hitCap - hitRating) / 100)) /
+        (1 - (this.globals.hitCap - spellHit) / 100)) /
         (spellCastTime -
-          (this.globals.naturesGraceReduction * critRating) / 100)) *
+          (this.globals.naturesGraceReduction * spellCrit) / 100)) *
       (curseOfShadow ? this.globals.curseOfShadowBonus : 1.0) *
       (saygesDarkFortune ? this.globals.saygesDarkFortuneBonus : 1.0) *
       (tracesOfSilithyst ? this.globals.tracesOfSilithystBonus : 1.0) *
@@ -100,7 +115,7 @@ var wcf = {
     spellBaseDamage,
     spellCastTime,
     spellPower,
-    critRating,
+    spellCrit,
     moonFury,
     curseOfShadow,
     saygesDarkFortune,
@@ -111,10 +126,10 @@ var wcf = {
     return (
       (((spellBaseDamage * (moonFury ? this.globals.moonFuryBonus : 1.0) +
         spellPower * rotationFactor) *
-        (1 + critRating / 100) *
+        (1 + spellCrit / 100) *
         (1 / 100)) /
         (spellCastTime -
-          (this.globals.naturesGraceReduction * critRating) / 100)) *
+          (this.globals.naturesGraceReduction * spellCrit) / 100)) *
       (curseOfShadow ? this.globals.curseOfShadowBonus : 1.0) *
       (saygesDarkFortune ? this.globals.saygesDarkFortuneBonus : 1.0) *
       (tracesOfSilithyst ? this.globals.tracesOfSilithystBonus : 1.0) *
@@ -127,25 +142,25 @@ var wcf = {
     c = spellCoefficient
     P = spellPower
     x = critMultiplier
-    R = critRating
+    R = spellCrit
     T = spellCastTime
     t = naturesGraceReduction
     d = totalDebuffBonus (e.g. curse of shadows)
     m = totalBaseDamageBonus (e.g. moonfury)
-    H = hitRating
+    H = spellHit
   */
   balorSpellPowerToDamage: function(
     spellCoefficient,
     spellCastTime,
-    critRating,
-    hitRating,
+    spellCrit,
+    spellHit,
     curseOfShadow
   ) {
     // v1 dc(0.83+H/100)(1+xR/100)/(T-t(0.83+H/100)(R/100))
     // v2 dc(0.83+H/100)(1+R/100)/(T-t(0.83+H/100)(R/100))
     var d = curseOfShadow ? this.globals.curseOfShadowBonus : 1.0;
-    var x = d * spellCoefficient * (0.83 + hitRating / 100) * (1 + critRating / 100);
-    var y = (spellCastTime - this.globals.naturesGraceReduction * (0.83 + hitRating / 100) * (critRating / 100));
+    var x = d * spellCoefficient * (0.83 + spellHit / 100) * (1 + spellCrit / 100);
+    var y = (spellCastTime - this.globals.naturesGraceReduction * (0.83 + spellHit / 100) * (spellCrit / 100));
     return(x / y);
   },
   balorSpellCritToDamage: function(
@@ -153,8 +168,8 @@ var wcf = {
     spellCoefficient,
     spellCastTime,
     spellPower,
-    critRating,
-    hitRating,
+    spellCrit,
+    spellHit,
     moonFury,
     curseOfShadow,
     saygesDarkFortune,
@@ -169,14 +184,14 @@ var wcf = {
 
     return (
       (d *
-        (83 + hitRating) *
+        (83 + spellHit) *
         (m * spellBaseDamage + spellCoefficient * spellPower) *
         ((this.globals.critMultiplier - 1) * spellCastTime +
-          this.globals.naturesGraceReduction * (0.83 + hitRating / 100))) /
+          this.globals.naturesGraceReduction * (0.83 + spellHit / 100))) /
       (100 * spellCastTime -
         this.globals.naturesGraceReduction *
-          (0.83 + hitRating / 100) *
-          critRating) **
+          (0.83 + spellHit / 100) *
+          spellCrit) **
         2
     );
   },
@@ -185,8 +200,8 @@ var wcf = {
     spellCoefficient,
     spellCastTime,
     spellPower,
-    critRating,
-    hitRating,
+    spellCrit,
+    spellHit,
     moonFury,
     curseOfShadow,
     saygesDarkFortune,
@@ -201,12 +216,12 @@ var wcf = {
     return (
       (d *
         (m * spellBaseDamage + spellCoefficient * spellPower) *
-        (100 + (this.globals.critMultiplier - 1) * critRating) *
+        (100 + (this.globals.critMultiplier - 1) * spellCrit) *
         (100 ** 2 * spellCastTime)) /
       (100 ** 2 * spellCastTime -
         this.globals.naturesGraceReduction *
-          (83 + hitRating) *
-          critRating) **
+          (83 + spellHit) *
+          spellCrit) **
         2
     );
   },
@@ -215,8 +230,8 @@ var wcf = {
     spellCoefficient,
     spellCastTime,
     spellPower,
-    critRating,
-    hitRating,
+    spellCrit,
+    spellHit,
     moonFury,
     curseOfShadow,
     saygesDarkFortune,
@@ -232,14 +247,14 @@ var wcf = {
       ((((this.globals.critMultiplier - 1) *
         ((m * spellBaseDamage) / spellCoefficient +
           spellPower)) /
-        (100 + (this.globals.critMultiplier - 1) * critRating)) *
+        (100 + (this.globals.critMultiplier - 1) * spellCrit)) *
         (spellCastTime +
-          ((0.83 + hitRating / 100) * this.globals.naturesGraceReduction) /
+          ((0.83 + spellHit / 100) * this.globals.naturesGraceReduction) /
             (this.globals.critMultiplier - 1))) /
       (spellCastTime -
-        ((0.83 + hitRating / 100) *
+        ((0.83 + spellHit / 100) *
           this.globals.naturesGraceReduction *
-          critRating) /
+          spellCrit) /
           100)
     );
   },
@@ -248,8 +263,8 @@ var wcf = {
     spellCoefficient,
     spellCastTime,
     spellPower,
-    critRating,
-    hitRating,
+    spellCrit,
+    spellHit,
     moonFury,
     curseOfShadow,
     saygesDarkFortune,
@@ -263,10 +278,10 @@ var wcf = {
     return (
       ((((m * spellBaseDamage) / spellCoefficient +
         spellPower) /
-        (83 + hitRating)) *
+        (83 + spellHit)) *
         (100 ** 2 * spellCastTime)) /
       (100 ** 2 * spellCastTime -
-        this.globals.naturesGraceReduction * (83 + hitRating) * critRating)
+        this.globals.naturesGraceReduction * (83 + spellHit) * spellCrit)
     );
   },
   balorDPS: function(
@@ -274,8 +289,8 @@ var wcf = {
     spellCoefficient,
     spellCastTime,
     spellPower,
-    critRating,
-    hitRating,
+    spellCrit,
+    spellHit,
     moonFury,
     curseOfShadow,
     saygesDarkFortune,
@@ -289,28 +304,28 @@ var wcf = {
 
     return (
       (d *
-        (0.83 + hitRating / 100) *
+        (0.83 + spellHit / 100) *
         (m * spellBaseDamage + spellCoefficient * spellPower) *
-        (1 + ((wcf.globals.critMultiplier - 1) * critRating) / 100)) /
+        (1 + ((wcf.globals.critMultiplier - 1) * spellCrit) / 100)) /
       (spellCastTime -
         this.globals.naturesGraceReduction *
-          (0.83 + hitRating / 100) *
-          (critRating / 100))
+          (0.83 + spellHit / 100) *
+          (spellCrit / 100))
     );
   },
   test: function( ) {
     var xx = this.spellPowerToDamage(
           this.defaults.spellCastTime,
-          this.defaults.critRating,
-          this.defaults.hitRating);
+          this.defaults.spellCrit,
+          this.defaults.spellHit);
 
     var yy = this.spellCritToDamage(
           this.defaults.rotationFactor,
           this.defaults.spellBaseDamage,
           this.defaults.spellCastTime,
           this.defaults.spellPower,
-          this.defaults.critRating,
-          this.defaults.hitRating,
+          this.defaults.spellCrit,
+          this.defaults.spellHit,
           this.defaults.moonFury,
           this.defaults.curseOfShadow,
           this.defaults.saygesDarkFortune,
@@ -323,7 +338,7 @@ var wcf = {
           this.defaults.spellBaseDamage,
           this.defaults.spellCastTime,
           this.defaults.spellPower,
-          this.defaults.critRating,
+          this.defaults.spellCrit,
           this.defaults.moonFury,
           this.defaults.curseOfShadow,
           this.defaults.saygesDarkFortune,
@@ -336,7 +351,6 @@ var wcf = {
     console.log("spellHitToDamage: " + zz);
     console.log("spellCritToSpellPower: " + yy / xx);
     console.log("spellHitToSpellPower: " +  zz / xx);
-    
   }
 };
 

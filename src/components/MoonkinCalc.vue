@@ -24,12 +24,12 @@
         </label>
 
         <label class="input-box">
-          <div>Hit Rating:</div>
-          <input class="form-styling" type="number" v-model="hitRating" />
+          <div>Spell Hit:</div>
+          <input class="form-styling" type="number" v-model="spellHit" />
         </label>
         <label class="input-box">
-          <div>Crit Rating:</div>
-          <input class="form-styling" type="number" v-model="critRating" />
+          <div>Spell Crit:</div>
+          <input class="form-styling" type="number" v-model="spellCrit" />
         </label>
         <label class="input-box">
           <input type="checkbox" v-model="moonFury" />Moonfury
@@ -68,6 +68,9 @@
         Keftenk Spell Hit To Spell Power:
         {{ spellHitToDamage / spellPowerToDamage }}
       </p>
+      <p>Spell chance to miss: {{ spellChanceToMiss }}</p>
+      <p>Spell chance to crit: {{ spellChanceToCrit }}</p>
+      <p>Spell chance to hit (normal): {{ spellChanceToHit }}</p>
       <hr />
       <p>Balor Spell Power To Damage: {{ balorSpellPowerToDamage }}</p>
       <p>Balor Spell Crit To Damage: {{ balorSpellCritToDamage }}</p>
@@ -92,8 +95,8 @@ export default {
       spellCoefficient: wcf.defaults.spellCoefficient,
       spellCastTime: wcf.defaults.spellCastTime,
       spellPower: wcf.defaults.spellPower,
-      critRating: wcf.defaults.critRating,
-      hitRating: wcf.defaults.hitRating,
+      spellCrit: wcf.defaults.spellCrit,
+      spellHit: wcf.defaults.spellHit,
       vengeance: wcf.defaults.vengeance, // Rank 5: Increases the critical strike damage bonus by 100%
       moonFury: wcf.defaults.moonFury, // Rank 5: Increases the damage done by your Starfire, Moonfire and Wrath spells by 10%.
       curseOfShadow: wcf.defaults.curseOfShadow,
@@ -105,11 +108,20 @@ export default {
     };
   },
   computed: {
+    spellChanceToHit: function() {
+      return wcf.spellChanceToHit(parseFloat(this.spellCrit, this.spellHit), parseFloat(this.spellHit));
+    },
+    spellChanceToMiss: function() {
+      return wcf.spellChanceToMiss(parseFloat(this.spellHit));
+    },
+    spellChanceToCrit: function() {
+      return wcf.spellChanceToCrit(parseFloat(this.spellCrit), parseFloat(this.spellHit));
+    },
     spellPowerToDamage: function() {
       return wcf.spellPowerToDamage(
         parseFloat(this.spellCastTime),
-        parseFloat(this.critRating),
-        parseFloat(this.hitRating)
+        parseFloat(this.spellCrit),
+        parseFloat(this.spellHit)
       );
     },
     spellCritToDamage: function() {
@@ -118,8 +130,8 @@ export default {
         parseFloat(this.spellBaseDamage),
         parseFloat(this.spellCastTime),
         parseFloat(this.spellPower),
-        parseFloat(this.critRating),
-        parseFloat(this.hitRating),
+        parseFloat(this.spellCrit),
+        parseFloat(this.spellHit),
         this.moonFury,
         this.curseOfShadow,
         this.saygesDarkFortune,
@@ -134,7 +146,7 @@ export default {
         parseFloat(this.spellBaseDamage),
         parseFloat(this.spellCastTime),
         parseFloat(this.spellPower),
-        parseFloat(this.critRating),
+        parseFloat(this.spellCrit),
         this.moonFury,
         this.curseOfShadow,
         this.saygesDarkFortune,
@@ -147,8 +159,8 @@ export default {
       return wcf.balorSpellPowerToDamage(
         parseFloat(this.spellCoefficient),
         parseFloat(this.spellCastTime),
-        parseFloat(this.critRating),
-        parseFloat(this.hitRating),
+        parseFloat(this.spellCrit),
+        parseFloat(this.spellHit),
         this.curseOfShadow
       );
     },
@@ -158,8 +170,8 @@ export default {
         parseFloat(this.spellCoefficient),
         parseFloat(this.spellCastTime),
         parseFloat(this.spellPower),
-        parseFloat(this.critRating),
-        parseFloat(this.hitRating),
+        parseFloat(this.spellCrit),
+        parseFloat(this.spellHit),
         this.moonFury,
         this.curseOfShadow,
         this.saygesDarkFortune,
@@ -174,8 +186,8 @@ export default {
         parseFloat(this.spellCoefficient),
         parseFloat(this.spellCastTime),
         parseFloat(this.spellPower),
-        parseFloat(this.critRating),
-        parseFloat(this.hitRating),
+        parseFloat(this.spellCrit),
+        parseFloat(this.spellHit),
         this.moonFury,
         this.curseOfShadow,
         this.saygesDarkFortune,
@@ -190,8 +202,8 @@ export default {
         parseFloat(this.spellCoefficient),
         parseFloat(this.spellCastTime),
         parseFloat(this.spellPower),
-        parseFloat(this.critRating),
-        parseFloat(this.hitRating),
+        parseFloat(this.spellCrit),
+        parseFloat(this.spellHit),
         this.moonFury,
         this.curseOfShadow,
         this.saygesDarkFortune,
@@ -206,8 +218,8 @@ export default {
         parseFloat(this.spellCoefficient),
         parseFloat(this.spellCastTime),
         parseFloat(this.spellPower),
-        parseFloat(this.critRating),
-        parseFloat(this.hitRating),
+        parseFloat(this.spellCrit),
+        parseFloat(this.spellHit),
         this.moonFury,
         this.curseOfShadow,
         this.saygesDarkFortune,
@@ -222,8 +234,8 @@ export default {
         parseFloat(this.spellCoefficient),
         parseFloat(this.spellCastTime),
         parseFloat(this.spellPower),
-        parseFloat(this.critRating),
-        parseFloat(this.hitRating),
+        parseFloat(this.spellCrit),
+        parseFloat(this.spellHit),
         this.moonFury,
         this.curseOfShadow,
         this.saygesDarkFortune,
