@@ -323,6 +323,7 @@ export default {
         parseFloat(this.moonFuryPoints),
         this.naturesGrace,
         this.curseOfShadow,
+        this.powerInfusion,
         this.saygesDarkFortune,
         this.tracesOfSilithyst,
         this.spellVuln,
@@ -339,6 +340,7 @@ export default {
         parseFloat(this.moonFuryPoints),
         this.naturesGrace,
         this.curseOfShadow,
+        this.powerInfusion,
         this.saygesDarkFortune,
         this.tracesOfSilithyst,
         this.spellVuln,
@@ -352,7 +354,12 @@ export default {
         parseFloat(this.spellCrit),
         parseFloat(this.spellHit),
         this.naturesGrace,
-        this.curseOfShadow
+        this.curseOfShadow,
+        this.powerInfusion,
+        this.saygesDarkFortune,
+        this.tracesOfSilithyst,
+        this.spellVuln,
+        this.stormStrike
       );
     },
     balorSpellCritToDamage: function() {
@@ -366,6 +373,7 @@ export default {
         parseFloat(this.moonFuryPoints),
         this.naturesGrace,
         this.curseOfShadow,
+        this.powerInfusion,
         this.saygesDarkFortune,
         this.tracesOfSilithyst,
         this.spellVuln,
@@ -383,6 +391,7 @@ export default {
         parseFloat(this.moonFuryPoints),
         this.naturesGrace,
         this.curseOfShadow,
+        this.powerInfusion,
         this.saygesDarkFortune,
         this.tracesOfSilithyst,
         this.spellVuln,
@@ -398,12 +407,7 @@ export default {
         parseFloat(this.spellCrit),
         parseFloat(this.spellHit),
         parseFloat(this.moonFury),
-        this.naturesGrace,
-        this.curseOfShadow,
-        this.saygesDarkFortune,
-        this.tracesOfSilithyst,
-        this.spellVuln,
-        this.stormStrike
+        this.naturesGrace
       );
     },
     balorSpellHitToSpellPower: function() {
@@ -415,12 +419,7 @@ export default {
         parseFloat(this.spellCrit),
         parseFloat(this.spellHit),
         parseFloat(this.moonFuryPoints),
-        this.naturesGrace,
-        this.curseOfShadow,
-        this.saygesDarkFortune,
-        this.tracesOfSilithyst,
-        this.spellVuln,
-        this.stormStrike
+        this.naturesGrace
       );
     },
     balorDPS: function() {
@@ -434,6 +433,7 @@ export default {
         parseFloat(this.moonFuryPoints),
         this.naturesGrace,
         this.curseOfShadow,
+        this.powerInfusion,
         this.saygesDarkFortune,
         this.tracesOfSilithyst,
         this.spellVuln,
