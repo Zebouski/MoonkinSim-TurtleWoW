@@ -75,8 +75,16 @@
                     />
                   </label>
                   <label class="input-box">
+                    <input type="checkbox" v-model="naturesGrace" />Nature's
+                    Grace
+                  </label>
+                  <label class="input-box">
                     <input type="checkbox" v-model="curseOfShadow" />Curse of
                     Shadow
+                  </label>
+                  <label class="input-box">
+                    <input type="checkbox" v-model="powerInfusion" />Power
+                    Infusion
                   </label>
                   <label class="input-box">
                     <input type="checkbox" v-model="saygesDarkFortune" />Sayge's
@@ -212,8 +220,9 @@ export default {
       spellPower: wcf.defaults.spellPower,
       spellCrit: wcf.defaults.spellCrit,
       spellHit: wcf.defaults.spellHit,
-      vengeancePoints: wcf.defaults.vengeancePoints, // Rank 5: Increases the critical strike damage bonus by 100%
-      moonFuryPoints: wcf.defaults.moonFuryPoints, // Rank 5: Increases the damage done by your Starfire, Moonfire and Wrath spells by 10%.
+      vengeancePoints: wcf.defaults.vengeancePoints,
+      moonFuryPoints: wcf.defaults.moonFuryPoints,
+      naturesGrace: wcf.defaults.naturesGrace,
       curseOfShadow: wcf.defaults.curseOfShadow,
       powerInfusion: wcf.defaults.powerInfusion,
       saygesDarkFortune: wcf.defaults.saygesDarkFortune,
@@ -246,6 +255,7 @@ export default {
         parseFloat(this.spellHit),
         parseFloat(this.vengeancePoints),
         parseFloat(this.moonFuryPoints),
+        this.naturesGrace,
         this.curseOfShadow,
         this.powerInfusion,
         this.saygesDarkFortune,
@@ -272,14 +282,12 @@ export default {
       return wcf.spellEffectiveCastTime(
         parseFloat(this.spellCastTime),
         parseFloat(this.spellCrit),
-        parseFloat(this.spellHit)
+        parseFloat(this.spellHit),
+        this.naturesGrace
       );
     },
     spellPartialResistLossAverage: function() {
-      return wcf.spellPartialResistLossAverage(
-        parseFloat(this.spellCrit),
-        parseFloat(this.spellHit)
-      );
+      return wcf.spellPartialResistLossAverage();
     },
     spellChanceToMiss: function() {
       return wcf.spellChanceToMiss(parseFloat(this.spellHit));
@@ -300,7 +308,8 @@ export default {
       return wcf.spellPowerToDamage(
         parseFloat(this.spellCastTime),
         parseFloat(this.spellCrit),
-        parseFloat(this.spellHit)
+        parseFloat(this.spellHit),
+        this.naturesGrace
       );
     },
     spellCritToDamage: function() {
@@ -312,6 +321,7 @@ export default {
         parseFloat(this.spellCrit),
         parseFloat(this.spellHit),
         parseFloat(this.moonFuryPoints),
+        this.naturesGrace,
         this.curseOfShadow,
         this.saygesDarkFortune,
         this.tracesOfSilithyst,
@@ -327,6 +337,7 @@ export default {
         parseFloat(this.spellPower),
         parseFloat(this.spellCrit),
         parseFloat(this.moonFuryPoints),
+        this.naturesGrace,
         this.curseOfShadow,
         this.saygesDarkFortune,
         this.tracesOfSilithyst,
@@ -340,6 +351,7 @@ export default {
         parseFloat(this.spellCastTime),
         parseFloat(this.spellCrit),
         parseFloat(this.spellHit),
+        this.naturesGrace,
         this.curseOfShadow
       );
     },
@@ -352,6 +364,7 @@ export default {
         parseFloat(this.spellCrit),
         parseFloat(this.spellHit),
         parseFloat(this.moonFuryPoints),
+        this.naturesGrace,
         this.curseOfShadow,
         this.saygesDarkFortune,
         this.tracesOfSilithyst,
@@ -368,6 +381,7 @@ export default {
         parseFloat(this.spellCrit),
         parseFloat(this.spellHit),
         parseFloat(this.moonFuryPoints),
+        this.naturesGrace,
         this.curseOfShadow,
         this.saygesDarkFortune,
         this.tracesOfSilithyst,
@@ -384,6 +398,7 @@ export default {
         parseFloat(this.spellCrit),
         parseFloat(this.spellHit),
         parseFloat(this.moonFury),
+        this.naturesGrace,
         this.curseOfShadow,
         this.saygesDarkFortune,
         this.tracesOfSilithyst,
@@ -400,6 +415,7 @@ export default {
         parseFloat(this.spellCrit),
         parseFloat(this.spellHit),
         parseFloat(this.moonFuryPoints),
+        this.naturesGrace,
         this.curseOfShadow,
         this.saygesDarkFortune,
         this.tracesOfSilithyst,
@@ -416,6 +432,7 @@ export default {
         parseFloat(this.spellCrit),
         parseFloat(this.spellHit),
         parseFloat(this.moonFuryPoints),
+        this.naturesGrace,
         this.curseOfShadow,
         this.saygesDarkFortune,
         this.tracesOfSilithyst,
