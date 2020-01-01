@@ -60,11 +60,19 @@
                   </label>
                   <label class="input-box">
                     <div>Moonfury points:</div>
-                    <input class="input" type="number" v-model="moonFuryPoints" />
+                    <input
+                      class="input"
+                      type="number"
+                      v-model="moonFuryPoints"
+                    />
                   </label>
                   <label class="input-box">
                     <div>Vengeance points:</div>
-                    <input class="input" type="number" v-model="vengeancePoints" />
+                    <input
+                      class="input"
+                      type="number"
+                      v-model="vengeancePoints"
+                    />
                   </label>
                   <label class="input-box">
                     <input type="checkbox" v-model="curseOfShadow" />Curse of
@@ -105,17 +113,21 @@
                 <p>
                   Spell Hit Weight:
                   {{ spellHitToDamage / spellPowerToDamage }}
-                </p>      
+                </p>
                 <p>DPS: {{ spellDPS }}</p>
                 <p>Spell chance to miss: {{ spellChanceToMiss }}</p>
-                <p>Spell chance to regular hit: {{ spellChanceToRegularHit }}</p>
+                <p>
+                  Spell chance to regular hit: {{ spellChanceToRegularHit }}
+                </p>
                 <p>Spell chance to crit: {{ spellChanceToCrit }}</p>
                 <p>Spell average non-crit: {{ spellAverageNonCrit }}</p>
                 <p>Spell effective cast-time: {{ spellEffectiveCastTime }}</p>
-                <p>Spell partial resist average loss: {{ spellPartialResistLossAverage }}</p>
+                <p>
+                  Spell partial resist average loss:
+                  {{ spellPartialResistLossAverage }}
+                </p>
                 <p>Vengeance Bonus: {{ vengeanceBonus }}</p>
                 <p>Moonfury Bonus: {{ moonFuryBonus }}</p>
-
               </div>
             </article>
           </div>
@@ -237,7 +249,7 @@ export default {
         this.curseOfShadow,
         this.powerInfusion,
         this.saygesDarkFortune,
-        this.tracesOfSilithyst, 
+        this.tracesOfSilithyst,
         this.spellVuln,
         this.stormStrike
       );
