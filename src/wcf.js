@@ -10,12 +10,6 @@
     X natures grace should be on/off
     - critMultiplier should be handled all the same way
   - buffs
-    - most of the bonus damage modifiers are wrong
-      - power infusion has wrong bonus
-      - sayges has wrong bonus
-      - traces of silithyst has wrong bonus
-      - spell vuln has wrong bonus
-      -stormstrike has wrong bonus
     - they're not factored in consistantly across all functions
     - power infusion in particular seems left out on some functions
   - debuffs
@@ -40,24 +34,24 @@ var wcf = {
     critMultiplier: process.env.CRITMULTIPLIER
       ? parseFloat(process.env.CRITMULTIPLIER)
       : 2.0,
-    powerInfusionBonus: process.env.POWERINFUSIONBONUS
-      ? parseFloat(process.env.POWERINFUSIONBONUS)
-      : 1.1, //todo
     curseOfShadowBonus: process.env.CURSEOFSHADOWSBONUS
       ? parseFloat(process.env.CURSEOFSHADOWSBONUS)
       : 1.1,
+    powerInfusionBonus: process.env.POWERINFUSIONBONUS
+      ? parseFloat(process.env.POWERINFUSIONBONUS)
+      : 1.2, 
     saygesDarkFortuneBonus: process.env.SAYGESDARKFORTUNEBONUS
       ? parseFloat(process.env.SAYGESDARKFORTUNEBONUS)
-      : 1.1, //todo
+      : 1.1, 
     tracesOfSilithystBonus: process.env.TRACESOFSILITHYSTBONUS
       ? parseFloat(process.env.TRACESOFSILITHYSTBONUS)
-      : 1.1, //todo
+      : 1.05,
     spellVulnBonus: process.env.TRACESOFSILITHYSTBONUS
       ? parseFloat(process.env.TRACESOFSILITHYSTBONUS)
-      : 1.1, //todo
+      : 1.15,
     stormStrikeBonus: process.env.STORMSTRIKEBONUS
       ? parseFloat(process.env.STORMSTRIKEBONUS)
-      : 1.1
+      : 1.2
   },
   defaults: {
     rotationFactor: process.env.ROTATIONFACTOR
