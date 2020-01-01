@@ -129,7 +129,11 @@ var wcf = {
       (tracesOfSilithyst ? this.globals.tracesOfSilithystBonus : 1.0) *
       (spellVuln ? this.globals.spellVulnBonus : 1.0) *
       (stormStrike ? this.globals.stormStrikeBonus : 1.0) *
-      (1 - this.spellPartialResistLossAverage(spellPenetration, enemySpellResistance))
+      (1 -
+        this.spellPartialResistLossAverage(
+          spellPenetration,
+          enemySpellResistance
+        ))
     );
   },
   spellChanceToMiss: function(spellHit) {
@@ -153,7 +157,7 @@ var wcf = {
   ) {
     return (
       spellBaseDamage * this.moonFuryBonus(moonFuryPoints) +
-      spellPower * spellCoefficient 
+      spellPower * spellCoefficient
     );
   },
   spellEffectiveCastTime: function(
@@ -169,7 +173,10 @@ var wcf = {
         (this.spellChanceToCrit(spellCrit, spellHit) / 100);
     return Math.max(x, this.globals.globalCoolDown);
   },
-  spellPartialResistLossAverage: function(spellPenetration, enemySpellResistance) {
+  spellPartialResistLossAverage: function(
+    spellPenetration,
+    enemySpellResistance
+  ) {
     // =($E$19-$E$20+24)/300*0.75
     //E19 = Boss Resist =MIN($D$19,276)
     //E20 = Boss Resist2 =MIN($D$18,$E$19)
