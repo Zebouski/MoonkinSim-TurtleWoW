@@ -4,8 +4,6 @@
   - probably should make use of spellEffectiveCastTime across all functions
   - talents
     - vengeance isn't factored in consistantly across all functions
-    - critMultiplier should be handled all the same way
-  - resistances
 */
 
 var wcf = {
@@ -318,10 +316,6 @@ var wcf = {
     );
     var x = ((sanc * sctc * vb + sanc * sctrh) / 100 / sect) * d;
     return x;
-
-    //var x = ((sanc * sctc * vb + sanc * sctrh) / 100);
-    //var y = sect * m * (1-sprla);
-    //return(x);
   },
   /*    
     B = spellBaseDamage
@@ -340,30 +334,13 @@ var wcf = {
     spellCastTime,
     spellCrit,
     spellHit,
-    spellPenetration,
-    enemySpellResistance,
     naturesGrace,
-    curseOfShadow,
-    powerInfusion,
-    saygesDarkFortune,
-    tracesOfSilithyst,
-    spellVuln,
-    stormStrike
   ) {
     // v1 dc(0.83+H/100)(1+xR/100)/(T-t(0.83+H/100)(R/100))
     // v2 dc(0.83+H/100)(1+R/100)/(T-t(0.83+H/100)(R/100))
-    var d = this.spellMultiplicativeBonuses(
-      spellPenetration,
-      enemySpellResistance,
-      curseOfShadow,
-      powerInfusion,
-      saygesDarkFortune,
-      tracesOfSilithyst,
-      spellVuln,
-      stormStrike
-    );
+    // [beefbroc] v3 c(0.83+H/100)(1+R/100)/(T-t(0.83+H/100)(R/100))
     var x =
-      d * spellCoefficient * (0.83 + spellHit / 100) * (1 + spellCrit / 100);
+      spellCoefficient * (0.83 + spellHit / 100) * (1 + spellCrit / 100);
     var y =
       spellCastTime -
       this.naturesGraceBonus(naturesGrace) *
@@ -457,58 +434,6 @@ var wcf = {
       (100 ** 2 * spellCastTime -
         this.naturesGraceBonus(naturesGrace) * (83 + spellHit) * spellCrit) **
         2
-    );
-  },
-  balorSpellCritToSpellPower: function(
-    spellBaseDamage,
-    spellCoefficient,
-    spellCastTime,
-    spellPower,
-    spellCrit,
-    spellHit,
-    vengeancePoints,
-    moonFuryPoints,
-    naturesGrace
-  ) {
-    // v1 Crit:Spellpower = x(B/c + P)/(100 + R)   *   (T + t/x)/(T - tR/100)
-    // v2 Crit:Spellpower = x(B/c + P)/(100 +xR)   *   (T + t/x)/(T - tR/100)
-    // v3 Crit:Spellpower = x(mB/c + P)/(100+xR)   *   (T + (0.83+H/100)t/x)/(T-(0.83+H/100)tR/100)
-    return (
-      ((((this.spellCritBonus(vengeancePoints) - 1) *
-        ((this.moonFuryBonus(moonFuryPoints) * spellBaseDamage) /
-          spellCoefficient +
-          spellPower)) /
-        (100 + (this.spellCritBonus(vengeancePoints) - 1) * spellCrit)) *
-        (spellCastTime +
-          ((0.83 + spellHit / 100) * this.naturesGraceBonus(naturesGrace)) /
-            (this.spellCritBonus(vengeancePoints) - 1))) /
-      (spellCastTime -
-        ((0.83 + spellHit / 100) *
-          this.naturesGraceBonus(naturesGrace) *
-          spellCrit) /
-          100)
-    );
-  },
-  balorSpellHitToSpellPower: function(
-    spellBaseDamage,
-    spellCoefficient,
-    spellCastTime,
-    spellPower,
-    spellCrit,
-    spellHit,
-    moonFuryPoints,
-    naturesGrace
-  ) {
-    // v1 Hit:Spellpower = (B/c + P)/(83 + H)
-    // v2 Hit:SpellPower = (mB/c+P)/(83+H) * (100^2 T)/(100^2 T - t(83+H)R)
-    return (
-      ((((this.moonFuryBonus(moonFuryPoints) * spellBaseDamage) /
-        spellCoefficient +
-        spellPower) /
-        (83 + spellHit)) *
-        (100 ** 2 * spellCastTime)) /
-      (100 ** 2 * spellCastTime -
-        this.naturesGraceBonus(naturesGrace) * (83 + spellHit) * spellCrit)
     );
   },
   balorDPS: function(

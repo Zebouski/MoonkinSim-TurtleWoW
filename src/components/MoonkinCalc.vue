@@ -163,8 +163,14 @@
                 <p>Spell Power To Damage: {{ balorSpellPowerToDamage }}</p>
                 <p>Spell Crit To Damage: {{ balorSpellCritToDamage }}</p>
                 <p>Spell Hit To Damage: {{ balorSpellHitToDamage }}</p>
-                <p>Spell Crit Weight: {{ balorSpellCritToSpellPower }}</p>
-                <p>Spell Hit Weight: {{ balorSpellHitToSpellPower }}</p>
+                <p>
+                  Spell Crit Weight:
+                  {{ balorSpellCritToDamage / balorSpellPowerToDamage }}
+                </p>
+                <p>
+                  Spell Hit Weight:
+                  {{ balorSpellHitToDamage / balorSpellPowerToDamage }}
+                </p>
                 <p>DPS: {{ balorDPS }}</p>
               </div>
             </article>
@@ -378,15 +384,7 @@ export default {
         parseFloat(this.spellCastTime),
         parseFloat(this.spellCrit),
         parseFloat(this.spellHit),
-        parseFloat(this.spellPenetration),
-        parseFloat(this.enemySpellResistance),
-        this.naturesGrace,
-        this.curseOfShadow,
-        this.powerInfusion,
-        this.saygesDarkFortune,
-        this.tracesOfSilithyst,
-        this.spellVuln,
-        this.stormStrike
+        this.naturesGrace
       );
     },
     balorSpellCritToDamage: function() {
@@ -429,31 +427,6 @@ export default {
         this.tracesOfSilithyst,
         this.spellVuln,
         this.stormStrike
-      );
-    },
-    balorSpellCritToSpellPower: function() {
-      return wcf.balorSpellCritToSpellPower(
-        parseFloat(this.spellBaseDamage),
-        parseFloat(this.spellCoefficient),
-        parseFloat(this.spellCastTime),
-        parseFloat(this.spellPower),
-        parseFloat(this.spellCrit),
-        parseFloat(this.spellHit),
-        parseFloat(this.vengeancePoints),
-        parseFloat(this.moonFuryPoints),
-        this.naturesGrace
-      );
-    },
-    balorSpellHitToSpellPower: function() {
-      return wcf.balorSpellHitToSpellPower(
-        parseFloat(this.spellBaseDamage),
-        parseFloat(this.spellCoefficient),
-        parseFloat(this.spellCastTime),
-        parseFloat(this.spellPower),
-        parseFloat(this.spellCrit),
-        parseFloat(this.spellHit),
-        parseFloat(this.moonFuryPoints),
-        this.naturesGrace
       );
     },
     balorDPS: function() {
