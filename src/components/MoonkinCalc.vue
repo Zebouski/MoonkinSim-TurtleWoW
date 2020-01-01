@@ -188,8 +188,7 @@
           Based on Keftenk's
           <a
             href="https://forum.classicwow.live/topic/726/by-the-great-winds-i-come-classic-balance-druid-theorycraft-spreadsheet-v1-3"
-            >Classic Balance Druid spreadsheet</a
-          >
+            >Classic Balance Druid spreadsheet</a> and math by Balor.
         </p>
       </div>
     </footer>
