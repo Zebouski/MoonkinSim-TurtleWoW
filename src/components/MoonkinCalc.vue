@@ -124,7 +124,7 @@
             <article
               class="tile is-child box has-background-black-ter has-text-white"
             >
-              <p class="subtitle has-text-white">Classic Balance Druid v1.3</p>
+              <p class="subtitle has-text-white"></p>
               <div class="content">
                 <p>Spell Power To Damage: {{ spellPowerToDamage }}</p>
                 <p>Spell Crit To Damage: {{ spellCritToDamage }}</p>
@@ -151,27 +151,6 @@
                 </p>
                 <p>Spell Crit Bonus: {{ spellCritBonus }}</p>
                 <p>Moonfury Bonus: {{ moonFuryBonus }}</p>
-              </div>
-            </article>
-          </div>
-          <div class="tile is-parent">
-            <article
-              class="tile is-child box has-background-black-ter has-text-white"
-            >
-              <p class="subtitle has-text-white">Balor</p>
-              <div class="content">
-                <p>Spell Power To Damage: {{ balorSpellPowerToDamage }}</p>
-                <p>Spell Crit To Damage: {{ balorSpellCritToDamage }}</p>
-                <p>Spell Hit To Damage: {{ balorSpellHitToDamage }}</p>
-                <p>
-                  Spell Crit Weight:
-                  {{ balorSpellCritToDamage / balorSpellPowerToDamage }}
-                </p>
-                <p>
-                  Spell Hit Weight:
-                  {{ balorSpellHitToDamage / balorSpellPowerToDamage }}
-                </p>
-                <p>DPS: {{ balorDPS }}</p>
               </div>
             </article>
           </div>
@@ -333,6 +312,7 @@ export default {
     },
     spellPowerToDamage: function() {
       return wcf.spellPowerToDamage(
+        parseFloat(this.spellCoefficient),
         parseFloat(this.spellCastTime),
         parseFloat(this.spellCrit),
         parseFloat(this.spellHit),
@@ -349,6 +329,7 @@ export default {
         parseFloat(this.spellHit),
         parseFloat(this.spellPenetration),
         parseFloat(this.enemySpellResistance),
+        parseFloat(this.vengeancePoints),
         parseFloat(this.moonFuryPoints),
         this.naturesGrace,
         this.curseOfShadow,
@@ -361,76 +342,6 @@ export default {
     },
     spellHitToDamage: function() {
       return wcf.spellHitToDamage(
-        parseFloat(this.spellBaseDamage),
-        parseFloat(this.spellCoefficient),
-        parseFloat(this.spellCastTime),
-        parseFloat(this.spellPower),
-        parseFloat(this.spellCrit),
-        parseFloat(this.spellPenetration),
-        parseFloat(this.enemySpellResistance),
-        parseFloat(this.moonFuryPoints),
-        this.naturesGrace,
-        this.curseOfShadow,
-        this.powerInfusion,
-        this.saygesDarkFortune,
-        this.tracesOfSilithyst,
-        this.spellVuln,
-        this.stormStrike
-      );
-    },
-    balorSpellPowerToDamage: function() {
-      return wcf.balorSpellPowerToDamage(
-        parseFloat(this.spellCoefficient),
-        parseFloat(this.spellCastTime),
-        parseFloat(this.spellCrit),
-        parseFloat(this.spellHit),
-        this.naturesGrace
-      );
-    },
-    balorSpellCritToDamage: function() {
-      return wcf.balorSpellCritToDamage(
-        parseFloat(this.spellBaseDamage),
-        parseFloat(this.spellCoefficient),
-        parseFloat(this.spellCastTime),
-        parseFloat(this.spellPower),
-        parseFloat(this.spellCrit),
-        parseFloat(this.spellHit),
-        parseFloat(this.spellPenetration),
-        parseFloat(this.enemySpellResistance),
-        parseFloat(this.vengeancePoints),
-        parseFloat(this.moonFuryPoints),
-        this.naturesGrace,
-        this.curseOfShadow,
-        this.powerInfusion,
-        this.saygesDarkFortune,
-        this.tracesOfSilithyst,
-        this.spellVuln,
-        this.stormStrike
-      );
-    },
-    balorSpellHitToDamage: function() {
-      return wcf.balorSpellHitToDamage(
-        parseFloat(this.spellBaseDamage),
-        parseFloat(this.spellCoefficient),
-        parseFloat(this.spellCastTime),
-        parseFloat(this.spellPower),
-        parseFloat(this.spellCrit),
-        parseFloat(this.spellHit),
-        parseFloat(this.spellPenetration),
-        parseFloat(this.enemySpellResistance),
-        parseFloat(this.vengeancePoints),
-        parseFloat(this.moonFuryPoints),
-        this.naturesGrace,
-        this.curseOfShadow,
-        this.powerInfusion,
-        this.saygesDarkFortune,
-        this.tracesOfSilithyst,
-        this.spellVuln,
-        this.stormStrike
-      );
-    },
-    balorDPS: function() {
-      return wcf.balorDPS(
         parseFloat(this.spellBaseDamage),
         parseFloat(this.spellCoefficient),
         parseFloat(this.spellCastTime),

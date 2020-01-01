@@ -2,8 +2,6 @@
   - replace any hardcoded values
     - what is 83?
   - probably should make use of spellEffectiveCastTime across all functions
-  - talents
-    - vengeance isn't factored in consistantly across all functions
 */
 
 var wcf = {
@@ -185,90 +183,6 @@ var wcf = {
     var br2 = Math.min(spellPenetration, br1);
     return ((br1 - br2 + 24) / 300) * 0.75;
   },
-  spellPowerToDamage: function(
-    spellCastTime,
-    spellCrit,
-    spellHit,
-    naturesGrace
-  ) {
-    return (
-      ((1 + spellCrit / 100) * (1 - (this.globals.hitCap - spellHit) / 100)) /
-      (spellCastTime - (this.naturesGraceBonus(naturesGrace) * spellCrit) / 100)
-    );
-  },
-  spellCritToDamage: function(
-    spellBaseDamage,
-    spellCoefficient,
-    spellCastTime,
-    spellPower,
-    spellCrit,
-    spellHit,
-    spellPenetration,
-    enemySpellResistance,
-    moonFuryPoints,
-    naturesGrace,
-    curseOfShadow,
-    powerInfusion,
-    saygesDarkFortune,
-    tracesOfSilithyst,
-    spellVuln,
-    stormStrike
-  ) {
-    return (
-      (((spellBaseDamage * this.moonFuryBonus(moonFuryPoints) +
-        spellPower * spellCoefficient) *
-        (1 / 100) *
-        (1 - (this.globals.hitCap - spellHit) / 100)) /
-        (spellCastTime -
-          (this.naturesGraceBonus(naturesGrace) * spellCrit) / 100)) *
-      this.spellMultiplicativeBonuses(
-        spellPenetration,
-        enemySpellResistance,
-        curseOfShadow,
-        powerInfusion,
-        saygesDarkFortune,
-        tracesOfSilithyst,
-        spellVuln,
-        stormStrike
-      )
-    );
-  },
-  spellHitToDamage: function(
-    spellBaseDamage,
-    spellCoefficient,
-    spellCastTime,
-    spellPower,
-    spellCrit,
-    spellPenetration,
-    enemySpellResistance,
-    moonFuryPoints,
-    naturesGrace,
-    curseOfShadow,
-    powerInfusion,
-    saygesDarkFortune,
-    tracesOfSilithyst,
-    spellVuln,
-    stormStrike
-  ) {
-    return (
-      (((spellBaseDamage * this.moonFuryBonus(moonFuryPoints) +
-        spellPower * spellCoefficient) *
-        (1 + spellCrit / 100) *
-        (1 / 100)) /
-        (spellCastTime -
-          (this.naturesGraceBonus(naturesGrace) * spellCrit) / 100)) *
-      this.spellMultiplicativeBonuses(
-        spellPenetration,
-        enemySpellResistance,
-        curseOfShadow,
-        powerInfusion,
-        saygesDarkFortune,
-        tracesOfSilithyst,
-        spellVuln,
-        stormStrike
-      )
-    );
-  },
   spellDPS: function(
     spellBaseDamage,
     spellCoefficient,
@@ -329,7 +243,7 @@ var wcf = {
     m = totalBaseDamageBonus (e.g. moonfury)
     H = spellHit
   */
-  balorSpellPowerToDamage: function(
+  spellPowerToDamage: function(
     spellCoefficient,
     spellCastTime,
     spellCrit,
@@ -347,7 +261,7 @@ var wcf = {
         (spellCrit / 100);
     return x / y;
   },
-  balorSpellCritToDamage: function(
+  spellCritToDamage: function(
     spellBaseDamage,
     spellCoefficient,
     spellCastTime,
@@ -393,7 +307,7 @@ var wcf = {
         2
     );
   },
-  balorSpellHitToDamage: function(
+  spellHitToDamage: function(
     spellBaseDamage,
     spellCoefficient,
     spellCastTime,
@@ -433,48 +347,6 @@ var wcf = {
       (100 ** 2 * spellCastTime -
         this.naturesGraceBonus(naturesGrace) * (83 + spellHit) * spellCrit) **
         2
-    );
-  },
-  balorDPS: function(
-    spellBaseDamage,
-    spellCoefficient,
-    spellCastTime,
-    spellPower,
-    spellCrit,
-    spellHit,
-    spellPenetration,
-    enemySpellResistance,
-    vengeancePoints,
-    moonFuryPoints,
-    naturesGrace,
-    curseOfShadow,
-    powerInfusion,
-    saygesDarkFortune,
-    tracesOfSilithyst,
-    spellVuln,
-    stormStrike
-  ) {
-    // v1 DPS = d(0.83 + H/100)(mB +cP)(1 + xR/100) / (T - t(0.83+H/100)(R/100))
-    var d = this.spellMultiplicativeBonuses(
-      spellPenetration,
-      enemySpellResistance,
-      curseOfShadow,
-      powerInfusion,
-      saygesDarkFortune,
-      tracesOfSilithyst,
-      spellVuln,
-      stormStrike
-    );
-    return (
-      (d *
-        (0.83 + spellHit / 100) *
-        (this.moonFuryBonus(moonFuryPoints) * spellBaseDamage +
-          spellCoefficient * spellPower) *
-        (1 + ((this.spellCritBonus(vengeancePoints) - 1) * (1.8 + spellCrit)) / 100)) /
-      (spellCastTime -
-        this.naturesGraceBonus(naturesGrace) *
-          (0.83 + spellHit / 100) *
-          ((1.8 + spellCrit) / 100))
     );
   }
 };
