@@ -49,14 +49,29 @@
                     <div>Spell Power:</div>
                     <input class="input" type="number" v-model="spellPower" />
                   </label>
-
+                  <label class="input-box">
+                    <div>Spell Crit:</div>
+                    <input class="input" type="number" v-model="spellCrit" />
+                  </label>
                   <label class="input-box">
                     <div>Spell Hit:</div>
                     <input class="input" type="number" v-model="spellHit" />
                   </label>
                   <label class="input-box">
-                    <div>Spell Crit:</div>
-                    <input class="input" type="number" v-model="spellCrit" />
+                    <div>Spell Penetration:</div>
+                    <input
+                      class="input"
+                      type="number"
+                      v-model="spellPenetration"
+                    />
+                  </label>
+                  <label class="input-box">
+                    <div>Enemy Resistance:</div>
+                    <input
+                      class="input"
+                      type="number"
+                      v-model="enemySpellResistance"
+                    />
                   </label>
                   <label class="input-box">
                     <div>Moonfury points:</div>
@@ -220,6 +235,8 @@ export default {
       spellPower: wcf.defaults.spellPower,
       spellCrit: wcf.defaults.spellCrit,
       spellHit: wcf.defaults.spellHit,
+      spellPenetration: wcf.defaults.spellPenetration,
+      enemySpellResistance: wcf.defaults.enemySpellResistance,
       vengeancePoints: wcf.defaults.vengeancePoints,
       moonFuryPoints: wcf.defaults.moonFuryPoints,
       naturesGrace: wcf.defaults.naturesGrace,
@@ -253,6 +270,8 @@ export default {
         parseFloat(this.spellPower),
         parseFloat(this.spellCrit),
         parseFloat(this.spellHit),
+        parseFloat(this.spellPenetration),
+        parseFloat(this.enemySpellResistance),
         parseFloat(this.vengeancePoints),
         parseFloat(this.moonFuryPoints),
         this.naturesGrace,
@@ -287,7 +306,10 @@ export default {
       );
     },
     spellPartialResistLossAverage: function() {
-      return wcf.spellPartialResistLossAverage();
+      return wcf.spellPartialResistLossAverage(
+        parseFloat(this.spellPenetration),
+        parseFloat(this.enemySpellResistance)
+      );
     },
     spellChanceToMiss: function() {
       return wcf.spellChanceToMiss(parseFloat(this.spellHit));
@@ -320,6 +342,8 @@ export default {
         parseFloat(this.spellPower),
         parseFloat(this.spellCrit),
         parseFloat(this.spellHit),
+        parseFloat(this.spellPenetration),
+        parseFloat(this.enemySpellResistance),
         parseFloat(this.moonFuryPoints),
         this.naturesGrace,
         this.curseOfShadow,
@@ -337,6 +361,8 @@ export default {
         parseFloat(this.spellCastTime),
         parseFloat(this.spellPower),
         parseFloat(this.spellCrit),
+        parseFloat(this.spellPenetration),
+        parseFloat(this.enemySpellResistance),
         parseFloat(this.moonFuryPoints),
         this.naturesGrace,
         this.curseOfShadow,
@@ -353,6 +379,8 @@ export default {
         parseFloat(this.spellCastTime),
         parseFloat(this.spellCrit),
         parseFloat(this.spellHit),
+        parseFloat(this.spellPenetration),
+        parseFloat(this.enemySpellResistance),
         this.naturesGrace,
         this.curseOfShadow,
         this.powerInfusion,
@@ -370,6 +398,8 @@ export default {
         parseFloat(this.spellPower),
         parseFloat(this.spellCrit),
         parseFloat(this.spellHit),
+        parseFloat(this.spellPenetration),
+        parseFloat(this.enemySpellResistance),
         parseFloat(this.moonFuryPoints),
         this.naturesGrace,
         this.curseOfShadow,
@@ -388,6 +418,8 @@ export default {
         parseFloat(this.spellPower),
         parseFloat(this.spellCrit),
         parseFloat(this.spellHit),
+        parseFloat(this.spellPenetration),
+        parseFloat(this.enemySpellResistance),
         parseFloat(this.moonFuryPoints),
         this.naturesGrace,
         this.curseOfShadow,
@@ -406,6 +438,8 @@ export default {
         parseFloat(this.spellPower),
         parseFloat(this.spellCrit),
         parseFloat(this.spellHit),
+        parseFloat(this.spellPenetration),
+        parseFloat(this.enemySpellResistance),
         parseFloat(this.moonFury),
         this.naturesGrace
       );
@@ -430,6 +464,8 @@ export default {
         parseFloat(this.spellPower),
         parseFloat(this.spellCrit),
         parseFloat(this.spellHit),
+        parseFloat(this.spellPenetration),
+        parseFloat(this.enemySpellResistance),
         parseFloat(this.moonFuryPoints),
         this.naturesGrace,
         this.curseOfShadow,

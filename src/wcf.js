@@ -22,12 +22,6 @@ var wcf = {
       ? parseFloat(process.env.GLOBALCOOLDOWN)
       : 1.5,
     hitCap: process.env.HITCAP ? parseFloat(process.env.HITCAP) : 17,
-    bossResistance: process.env.BOSSRESISTANCE
-      ? parseFloat(process.env.BOSSRESISTANCE)
-      : 75,
-    spellPenetration: process.env.SPELLPENETRATION
-      ? parseFloat(process.env.SPELLPENETRATION)
-      : 75,
     naturesGraceReduction: process.env.NATURESGRACEREDUCTION
       ? parseFloat(process.env.NATURESGRACEREDUCTION)
       : 0.5,
@@ -71,6 +65,12 @@ var wcf = {
       : 684,
     spellCrit: process.env.SPELLCRIT ? parseFloat(process.env.SPELLCRIT) : 26,
     spellHit: process.env.SPELLHIT ? parseFloat(process.env.SPELLHIT) : 2,
+    enemySpellResistance: process.env.ENEMYSPELLRESISTANCE
+      ? parseFloat(process.env.ENEMYRESISTANCE)
+      : 75,
+    spellPenetration: process.env.SPELLPENETRATION
+      ? parseFloat(process.env.SPELLPENETRATION)
+      : 75,
     moonFuryPoints: process.env.MOONFURYPOINTS
       ? parseFloat(process.env.MOONFURYPOINTS)
       : 5,
@@ -124,6 +124,8 @@ var wcf = {
     return 0;
   },
   spellMultiplicativeBonuses: function(
+    spellPenetration,
+    enemySpellResistance,
     curseOfShadow,
     powerInfusion,
     saygesDarkFortune,
@@ -138,7 +140,7 @@ var wcf = {
       (tracesOfSilithyst ? this.globals.tracesOfSilithystBonus : 1.0) *
       (spellVuln ? this.globals.spellVulnBonus : 1.0) *
       (stormStrike ? this.globals.stormStrikeBonus : 1.0) *
-      (1 - this.spellPartialResistLossAverage())
+      (1 - this.spellPartialResistLossAverage(spellPenetration, enemySpellResistance))
     );
   },
   spellChanceToMiss: function(spellHit) {
@@ -178,15 +180,15 @@ var wcf = {
         (this.spellChanceToCrit(spellCrit, spellHit) / 100);
     return Math.max(x, this.globals.globalCoolDown);
   },
-  spellPartialResistLossAverage: function() {
+  spellPartialResistLossAverage: function(spellPenetration, enemySpellResistance) {
     // =($E$19-$E$20+24)/300*0.75
     //E19 = Boss Resist =MIN($D$19,276)
     //E20 = Boss Resist2 =MIN($D$18,$E$19)
     //D18 = Spell Penetration =Character!$H$38
     //D19 = Boss Resist Input =75
 
-    var br1 = Math.min(this.globals.bossResistance, 276);
-    var br2 = Math.min(this.globals.spellPenetration, br1);
+    var br1 = Math.min(enemySpellResistance, 276);
+    var br2 = Math.min(spellPenetration, br1);
     return ((br1 - br2 + 24) / 300) * 0.75;
   },
   spellPowerToDamage: function(
@@ -207,6 +209,8 @@ var wcf = {
     spellPower,
     spellCrit,
     spellHit,
+    spellPenetration,
+    enemySpellResistance,
     moonFuryPoints,
     naturesGrace,
     curseOfShadow,
@@ -224,6 +228,8 @@ var wcf = {
         (spellCastTime -
           (this.naturesGraceBonus(naturesGrace) * spellCrit) / 100)) *
       this.spellMultiplicativeBonuses(
+        spellPenetration,
+        enemySpellResistance,
         curseOfShadow,
         powerInfusion,
         saygesDarkFortune,
@@ -239,6 +245,8 @@ var wcf = {
     spellCastTime,
     spellPower,
     spellCrit,
+    spellPenetration,
+    enemySpellResistance,
     moonFuryPoints,
     naturesGrace,
     curseOfShadow,
@@ -256,6 +264,8 @@ var wcf = {
         (spellCastTime -
           (this.naturesGraceBonus(naturesGrace) * spellCrit) / 100)) *
       this.spellMultiplicativeBonuses(
+        spellPenetration,
+        enemySpellResistance,
         curseOfShadow,
         powerInfusion,
         saygesDarkFortune,
@@ -272,6 +282,8 @@ var wcf = {
     spellPower,
     spellCrit,
     spellHit,
+    spellPenetration,
+    enemySpellResistance,
     vengeancePoints,
     moonFuryPoints,
     naturesGrace,
@@ -299,6 +311,8 @@ var wcf = {
       naturesGrace
     );
     var d = this.spellMultiplicativeBonuses(
+      spellPenetration,
+      enemySpellResistance,
       curseOfShadow,
       powerInfusion,
       saygesDarkFortune,
@@ -330,6 +344,8 @@ var wcf = {
     spellCastTime,
     spellCrit,
     spellHit,
+    spellPenetration,
+    enemySpellResistance,
     naturesGrace,
     curseOfShadow,
     powerInfusion,
@@ -341,6 +357,8 @@ var wcf = {
     // v1 dc(0.83+H/100)(1+xR/100)/(T-t(0.83+H/100)(R/100))
     // v2 dc(0.83+H/100)(1+R/100)/(T-t(0.83+H/100)(R/100))
     var d = this.spellMultiplicativeBonuses(
+      spellPenetration,
+      enemySpellResistance,
       curseOfShadow,
       powerInfusion,
       saygesDarkFortune,
@@ -364,6 +382,8 @@ var wcf = {
     spellPower,
     spellCrit,
     spellHit,
+    spellPenetration,
+    enemySpellResistance,
     moonFuryPoints,
     naturesGrace,
     curseOfShadow,
@@ -376,6 +396,8 @@ var wcf = {
     //v1 d(83+H)(mB+cP)(xT-t(0.83+H/100))/(100T-t(0.83+H/100)R)^2
     //v2 d(83+H)(mB+cP) * (xT+t(0.83+H/100)) / (100T-t(0.83+H/100)R)^2
     var d = this.spellMultiplicativeBonuses(
+      spellPenetration,
+      enemySpellResistance,
       curseOfShadow,
       powerInfusion,
       saygesDarkFortune,
@@ -405,6 +427,8 @@ var wcf = {
     spellPower,
     spellCrit,
     spellHit,
+    spellPenetration,
+    enemySpellResistance,
     moonFuryPoints,
     naturesGrace,
     curseOfShadow,
@@ -416,6 +440,8 @@ var wcf = {
   ) {
     // v1 d(mB+cP)(100+xR) * (100^2 T)/((100^2 T - t(83+H)R)^2)
     var d = this.spellMultiplicativeBonuses(
+      spellPenetration,
+      enemySpellResistance,
       curseOfShadow,
       powerInfusion,
       saygesDarkFortune,
@@ -493,6 +519,8 @@ var wcf = {
     spellPower,
     spellCrit,
     spellHit,
+    spellPenetration,
+    enemySpellResistance,
     moonFuryPoints,
     naturesGrace,
     curseOfShadow,
@@ -504,6 +532,8 @@ var wcf = {
   ) {
     // v1 DPS = d(0.83 + H/100)(mB +cP)(1 + xR/100) / (T - t(0.83+H/100)(R/100))
     var d = this.spellMultiplicativeBonuses(
+      spellPenetration,
+      enemySpellResistance,
       curseOfShadow,
       powerInfusion,
       saygesDarkFortune,
