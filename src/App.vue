@@ -16,7 +16,5 @@ export default {
     document.title = "Moonkin Calculator";
     //document.body.style.background = "#2e2e33";
   }
-}
+};
 </script>
-
-
