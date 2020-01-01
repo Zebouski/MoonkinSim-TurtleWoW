@@ -334,13 +334,12 @@ var wcf = {
     spellCastTime,
     spellCrit,
     spellHit,
-    naturesGrace,
+    naturesGrace
   ) {
     // v1 dc(0.83+H/100)(1+xR/100)/(T-t(0.83+H/100)(R/100))
     // v2 dc(0.83+H/100)(1+R/100)/(T-t(0.83+H/100)(R/100))
     // [beefbroc] v3 c(0.83+H/100)(1+R/100)/(T-t(0.83+H/100)(R/100))
-    var x =
-      spellCoefficient * (0.83 + spellHit / 100) * (1 + spellCrit / 100);
+    var x = spellCoefficient * (0.83 + spellHit / 100) * (1 + spellCrit / 100);
     var y =
       spellCastTime -
       this.naturesGraceBonus(naturesGrace) *
