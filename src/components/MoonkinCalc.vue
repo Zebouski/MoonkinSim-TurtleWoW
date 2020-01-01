@@ -149,7 +149,7 @@
                   Spell partial resist average loss:
                   {{ spellPartialResistLossAverage }}
                 </p>
-                <p>Vengeance Bonus: {{ vengeanceBonus }}</p>
+                <p>Spell Crit Bonus: {{ spellCritBonus }}</p>
                 <p>Moonfury Bonus: {{ moonFuryBonus }}</p>
               </div>
             </article>
@@ -228,7 +228,6 @@ export default {
   name: "MoonkinCalc",
   data() {
     return {
-      rotationFactor: wcf.defaults.rotationFactor, // TODO: Something to do with starfire vs wrath
       spellBaseDamage: wcf.defaults.spellBaseDamage,
       spellCoefficient: wcf.defaults.spellCoefficient,
       spellCastTime: wcf.defaults.spellCastTime,
@@ -264,8 +263,8 @@ export default {
 
     spellDPS: function() {
       return wcf.spellDPS(
-        parseFloat(this.rotationFactor),
         parseFloat(this.spellBaseDamage),
+        parseFloat(this.spellCoefficient),
         parseFloat(this.spellCastTime),
         parseFloat(this.spellPower),
         parseFloat(this.spellCrit),
@@ -286,13 +285,13 @@ export default {
     moonFuryBonus: function() {
       return wcf.moonFuryBonus(parseFloat(this.moonFuryPoints));
     },
-    vengeanceBonus: function() {
-      return wcf.vengeanceBonus(parseFloat(this.vengeancePoints));
+    spellCritBonus: function() {
+      return wcf.spellCritBonus(parseFloat(this.vengeancePoints));
     },
     spellAverageNonCrit: function() {
       return wcf.spellAverageNonCrit(
-        parseFloat(this.rotationFactor),
         parseFloat(this.spellBaseDamage),
+        parseFloat(this.spellCoefficient),
         parseFloat(this.spellPower),
         parseFloat(this.moonFuryPoints)
       );
@@ -336,8 +335,8 @@ export default {
     },
     spellCritToDamage: function() {
       return wcf.spellCritToDamage(
-        parseFloat(this.rotationFactor),
         parseFloat(this.spellBaseDamage),
+        parseFloat(this.spellCoefficient),
         parseFloat(this.spellCastTime),
         parseFloat(this.spellPower),
         parseFloat(this.spellCrit),
@@ -356,8 +355,8 @@ export default {
     },
     spellHitToDamage: function() {
       return wcf.spellHitToDamage(
-        parseFloat(this.rotationFactor),
         parseFloat(this.spellBaseDamage),
+        parseFloat(this.spellCoefficient),
         parseFloat(this.spellCastTime),
         parseFloat(this.spellPower),
         parseFloat(this.spellCrit),
@@ -400,6 +399,7 @@ export default {
         parseFloat(this.spellHit),
         parseFloat(this.spellPenetration),
         parseFloat(this.enemySpellResistance),
+        parseFloat(this.vengeancePoints),
         parseFloat(this.moonFuryPoints),
         this.naturesGrace,
         this.curseOfShadow,
@@ -420,6 +420,7 @@ export default {
         parseFloat(this.spellHit),
         parseFloat(this.spellPenetration),
         parseFloat(this.enemySpellResistance),
+        parseFloat(this.vengeancePoints),
         parseFloat(this.moonFuryPoints),
         this.naturesGrace,
         this.curseOfShadow,
@@ -438,9 +439,8 @@ export default {
         parseFloat(this.spellPower),
         parseFloat(this.spellCrit),
         parseFloat(this.spellHit),
-        parseFloat(this.spellPenetration),
-        parseFloat(this.enemySpellResistance),
-        parseFloat(this.moonFury),
+        parseFloat(this.vengeancePoints),
+        parseFloat(this.moonFuryPoints),
         this.naturesGrace
       );
     },
@@ -466,6 +466,7 @@ export default {
         parseFloat(this.spellHit),
         parseFloat(this.spellPenetration),
         parseFloat(this.enemySpellResistance),
+        parseFloat(this.vengeancePoints),
         parseFloat(this.moonFuryPoints),
         this.naturesGrace,
         this.curseOfShadow,
