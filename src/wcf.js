@@ -539,7 +539,7 @@ var wcf = {
         (0.83 + spellHit / 100) *
         (this.moonFuryBonus(moonFuryPoints) * spellBaseDamage +
           spellCoefficient * spellPower) *
-        (1 + ((wcf.globals.critMultiplier - 1) * spellCrit) / 100)) /
+        (1 + ((this.spellCritBonus(vengeancePoints) - 1) * spellCrit) / 100)) /
       (spellCastTime -
         this.naturesGraceBonus(naturesGrace) *
           (0.83 + spellHit / 100) *
