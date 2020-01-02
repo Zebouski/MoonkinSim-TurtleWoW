@@ -1,67 +1,29 @@
-/* TODO: Things that are weird or I don't understand yet...
-  - replace any hardcoded values
-    - what is 83?
-  - probably should make use of spellEffectiveCastTime across all functions
-*/
-
 var wcf = {
   globals: {
-    globalCoolDown: process.env.GLOBALCOOLDOWN
-      ? parseFloat(process.env.GLOBALCOOLDOWN)
-      : 1.5,
-    hitCap: process.env.HITCAP ? parseFloat(process.env.HITCAP) : 17,
-    naturesGraceReduction: process.env.NATURESGRACEREDUCTION
-      ? parseFloat(process.env.NATURESGRACEREDUCTION)
-      : 0.5,
-    critMultiplier: process.env.CRITMULTIPLIER
-      ? parseFloat(process.env.CRITMULTIPLIER)
-      : 2.0,
-    curseOfShadowBonus: process.env.CURSEOFSHADOWSBONUS
-      ? parseFloat(process.env.CURSEOFSHADOWSBONUS)
-      : 1.1,
-    powerInfusionBonus: process.env.POWERINFUSIONBONUS
-      ? parseFloat(process.env.POWERINFUSIONBONUS)
-      : 1.2,
-    saygesDarkFortuneBonus: process.env.SAYGESDARKFORTUNEBONUS
-      ? parseFloat(process.env.SAYGESDARKFORTUNEBONUS)
-      : 1.1,
-    tracesOfSilithystBonus: process.env.TRACESOFSILITHYSTBONUS
-      ? parseFloat(process.env.TRACESOFSILITHYSTBONUS)
-      : 1.05,
-    spellVulnBonus: process.env.TRACESOFSILITHYSTBONUS
-      ? parseFloat(process.env.TRACESOFSILITHYSTBONUS)
-      : 1.15,
-    stormStrikeBonus: process.env.STORMSTRIKEBONUS
-      ? parseFloat(process.env.STORMSTRIKEBONUS)
-      : 1.2
+    /* constant values that can't be overridden in the app */
+    globalCoolDown: 1.5,
+    hitCap: 17,
+    spellCastTimeHumanFactor: 0.05,
+    naturesGraceReduction: 0.5,
+    curseOfShadowBonus: 1.1,
+    powerInfusionBonus: 1.2,
+    saygesDarkFortuneBonus: 1.1,
+    tracesOfSilithystBonus: 1.05,
+    spellVulnBonus: 1.15,
+    stormStrikeBonus: 1.2
   },
   defaults: {
-    spellBaseDamage: process.env.SPELLBASEDAMAGE
-      ? parseFloat(process.env.SPELLBASEDAMAGE)
-      : 488.5,
-    spellCoefficient: process.env.SPELLCOEFFICIENT
-      ? parseFloat(process.env.SPELLCOEFFICIENT)
-      : 1.0,
-    spellCastTime: process.env.SPELLCASTTIME
-      ? parseFloat(process.env.SPELLCASTTIME)
-      : 3.0,
-    spellPower: process.env.SPELLPOWER
-      ? parseFloat(process.env.SPELLPOWER)
-      : 684,
-    spellCrit: process.env.SPELLCRIT ? parseFloat(process.env.SPELLCRIT) : 30.785,
-    spellHit: process.env.SPELLHIT ? parseFloat(process.env.SPELLHIT) : 2,
-    enemySpellResistance: process.env.ENEMYSPELLRESISTANCE
-      ? parseFloat(process.env.ENEMYRESISTANCE)
-      : 75,
-    spellPenetration: process.env.SPELLPENETRATION
-      ? parseFloat(process.env.SPELLPENETRATION)
-      : 75,
-    moonFuryPoints: process.env.MOONFURYPOINTS
-      ? parseFloat(process.env.MOONFURYPOINTS)
-      : 5,
-    vengeancePoints: process.env.VENGEANCEPOINTS
-      ? parseFloat(process.env.VENGEANCEPOINTS)
-      : 5,
+    /* default values that can be changed in the app */
+    spellBaseDamage: 488.5,
+    spellCoefficient: 1.0,
+    spellCastTime: 3.0,
+    spellPower: 684,
+    spellCrit: 30.785,
+    spellHit: 2,
+    enemySpellResistance: 75,
+    spellPenetration: 75,
+    moonFuryPoints: 5,
+    vengeancePoints: 5,
     naturesGrace: true,
     curseOfShadow: true,
     powerInfusion: false,
@@ -73,15 +35,15 @@ var wcf = {
   spellCritBonus: function(vengeancePoints) {
     switch (vengeancePoints) {
       case 1:
-        return 1.6;
+        return 1.6; // rank 1: Increases the critical strike damage bonus by 20%
       case 2:
-        return 1.7;
+        return 1.7; // rank 2: Increases the critical strike damage bonus by 40%
       case 3:
-        return 1.8;
+        return 1.8; // rank 3: Increases the critical strike damage bonus by 60%
       case 4:
-        return 1.9;
+        return 1.9; // rank 4: Increases the critical strike damage bonus by 80%
       case 5:
-        return 2;
+        return 2; // rank 5: Increases the critical strike damage bonus by 100%
       default:
         return 1.5;
     }
@@ -132,124 +94,6 @@ var wcf = {
         ))
     );
   },
-  spellChanceToMiss: function(spellHit) {
-    return 100 - (83 + Math.min(spellHit, this.globals.hitCap - 1));
-  },
-  spellChanceToRegularHit: function(spellCrit, spellHit) {
-    return (
-      100 -
-      this.spellChanceToMiss(spellHit) -
-      this.spellChanceToCrit(spellCrit, spellHit)
-    );
-  },
-  spellChanceToCrit: function(spellCrit, spellHit) {
-    return (1.8 + spellCrit) * ((100 - this.spellChanceToMiss(spellHit)) / 100);
-  },
-  spellAverageNonCrit: function(
-    spellBaseDamage,
-    spellCoefficient,
-    spellPower,
-    moonFuryPoints
-  ) {
-    return (
-      spellBaseDamage * this.moonFuryBonus(moonFuryPoints) +
-      spellPower * spellCoefficient
-    );
-  },
-  spellNormalizedCastTime: function(
-    spellCastTime,
-    naturesGrace
-  ) {
-    var x = spellCastTime - this.naturesGraceBonus(naturesGrace);
-    return Math.max(x, this.globals.globalCoolDown);
-  },
-  spellEffectiveCastTime: function(
-    spellCastTime,
-    spellCrit,
-    spellHit,
-    naturesGrace
-  ) {
-    // IF(CharRotation="Wrath",1.5,3-(0.5*($H$13/100)))
-    var x =
-      spellCastTime -
-      this.naturesGraceBonus(naturesGrace) *
-        (this.spellChanceToCrit(spellCrit, spellHit) / 100) + 0.05;
-    return Math.max(x, this.globals.globalCoolDown);
-  },
-  spellPartialResistLossAverage: function(
-    spellPenetration,
-    enemySpellResistance
-  ) {
-    // =($E$19-$E$20+24)/300*0.75
-    //E19 = Boss Resist =MIN($D$19,276)
-    //E20 = Boss Resist2 =MIN($D$18,$E$19)
-    //D18 = Spell Penetration =Character!$H$38
-    //D19 = Boss Resist Input =75
-
-    var br1 = Math.min(enemySpellResistance, 276);
-    var br2 = Math.min(spellPenetration, br1);
-    return ((br1 - br2 + 24) / 300) * 0.75;
-  },
-  spellDPS: function(
-    spellBaseDamage,
-    spellCoefficient,
-    spellCastTime,
-    spellPower,
-    spellCrit,
-    spellHit,
-    spellPenetration,
-    enemySpellResistance,
-    vengeancePoints,
-    moonFuryPoints,
-    naturesGrace,
-    curseOfShadow,
-    powerInfusion,
-    saygesDarkFortune,
-    tracesOfSilithyst,
-    spellVuln,
-    stormStrike
-  ) {
-    // =(($H$9*$H$13*$I$9+$H$9*$H$16)/100) / $I$18*$D$22*$D$23*$D$24*$D$25*$D$26*$D$27*(1-$H$20)
-    var sanc = this.spellAverageNonCrit(
-      spellBaseDamage,
-      spellCoefficient,
-      spellPower,
-      moonFuryPoints
-    );
-    var sctc = this.spellChanceToCrit(spellCrit, spellHit);
-    var vb = this.spellCritBonus(vengeancePoints);
-    var sctrh = this.spellChanceToRegularHit(spellCrit, spellHit);
-    var sect = this.spellEffectiveCastTime(
-      spellCastTime,
-      spellCrit,
-      spellHit,
-      naturesGrace
-    );
-    var d = this.spellMultiplicativeBonuses(
-      spellPenetration,
-      enemySpellResistance,
-      curseOfShadow,
-      powerInfusion,
-      saygesDarkFortune,
-      tracesOfSilithyst,
-      spellVuln,
-      stormStrike
-    );
-    var x = ((sanc * sctc * vb + sanc * sctrh) / 100 / sect) * d;
-    return x;
-  },
-  /*    
-    B = spellBaseDamage
-    c = spellCoefficient
-    P = spellPower
-    x = critMultiplier
-    R = spellCrit
-    T = spellCastTime
-    t = naturesGraceReduction
-    d = totalDebuffBonus (e.g. curse of shadows)
-    m = totalBaseDamageBonus (e.g. moonfury)
-    H = spellHit
-  */
   spellPowerToDamage: function(
     spellCoefficient,
     spellCastTime,
@@ -355,6 +199,99 @@ var wcf = {
         this.naturesGraceBonus(naturesGrace) * (83 + spellHit) * spellCrit) **
         2
     );
+  },
+  spellChanceToMiss: function(spellHit) {
+    return 100 - (83 + Math.min(spellHit, this.globals.hitCap - 1));
+  },
+  spellChanceToRegularHit: function(spellCrit, spellHit) {
+    return (
+      100 -
+      this.spellChanceToMiss(spellHit) -
+      this.spellChanceToCrit(spellCrit, spellHit)
+    );
+  },
+  spellChanceToCrit: function(spellCrit, spellHit) {
+    return (1.8 + spellCrit) * ((100 - this.spellChanceToMiss(spellHit)) / 100);
+  },
+  spellAverageNonCrit: function(
+    spellBaseDamage,
+    spellCoefficient,
+    spellPower,
+    moonFuryPoints
+  ) {
+    return (
+      spellBaseDamage * this.moonFuryBonus(moonFuryPoints) +
+      spellPower * spellCoefficient
+    );
+  },
+  spellEffectiveCastTime: function(
+    spellCastTime,
+    spellCrit,
+    spellHit,
+    naturesGrace
+  ) {
+    var x =
+      spellCastTime -
+      this.naturesGraceBonus(naturesGrace) *
+        (this.spellChanceToCrit(spellCrit, spellHit) / 100) +
+      this.globals.spellCastTimeHumanFactor;
+    return Math.max(x, this.globals.globalCoolDown);
+  },
+  spellPartialResistLossAverage: function(
+    spellPenetration,
+    enemySpellResistance
+  ) {
+    var br1 = Math.min(enemySpellResistance, 276);
+    var br2 = Math.min(spellPenetration, br1);
+    return ((br1 - br2 + 24) / 300) * 0.75;
+  },
+  spellDPS: function(
+    spellBaseDamage,
+    spellCoefficient,
+    spellCastTime,
+    spellPower,
+    spellCrit,
+    spellHit,
+    spellPenetration,
+    enemySpellResistance,
+    vengeancePoints,
+    moonFuryPoints,
+    naturesGrace,
+    curseOfShadow,
+    powerInfusion,
+    saygesDarkFortune,
+    tracesOfSilithyst,
+    spellVuln,
+    stormStrike
+  ) {
+    // =(($H$9*$H$13*$I$9+$H$9*$H$16)/100) / $I$18*$D$22*$D$23*$D$24*$D$25*$D$26*$D$27*(1-$H$20)
+    var sanc = this.spellAverageNonCrit(
+      spellBaseDamage,
+      spellCoefficient,
+      spellPower,
+      moonFuryPoints
+    );
+    var sctc = this.spellChanceToCrit(spellCrit, spellHit);
+    var vb = this.spellCritBonus(vengeancePoints);
+    var sctrh = this.spellChanceToRegularHit(spellCrit, spellHit);
+    var sect = this.spellEffectiveCastTime(
+      spellCastTime,
+      spellCrit,
+      spellHit,
+      naturesGrace
+    );
+    var d = this.spellMultiplicativeBonuses(
+      spellPenetration,
+      enemySpellResistance,
+      curseOfShadow,
+      powerInfusion,
+      saygesDarkFortune,
+      tracesOfSilithyst,
+      spellVuln,
+      stormStrike
+    );
+    var x = ((sanc * sctc * vb + sanc * sctrh) / 100 / sect) * d;
+    return x;
   }
 };
 
