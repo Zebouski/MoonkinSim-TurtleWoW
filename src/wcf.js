@@ -48,7 +48,7 @@ var wcf = {
     spellPower: process.env.SPELLPOWER
       ? parseFloat(process.env.SPELLPOWER)
       : 684,
-    spellCrit: process.env.SPELLCRIT ? parseFloat(process.env.SPELLCRIT) : 26,
+    spellCrit: process.env.SPELLCRIT ? parseFloat(process.env.SPELLCRIT) : 30.785,
     spellHit: process.env.SPELLHIT ? parseFloat(process.env.SPELLHIT) : 2,
     enemySpellResistance: process.env.ENEMYSPELLRESISTANCE
       ? parseFloat(process.env.ENEMYRESISTANCE)
@@ -156,6 +156,13 @@ var wcf = {
       spellPower * spellCoefficient
     );
   },
+  spellNormalizedCastTime: function(
+    spellCastTime,
+    naturesGrace
+  ) {
+    var x = spellCastTime - this.naturesGraceBonus(naturesGrace);
+    return Math.max(x, this.globals.globalCoolDown);
+  },
   spellEffectiveCastTime: function(
     spellCastTime,
     spellCrit,
@@ -166,7 +173,7 @@ var wcf = {
     var x =
       spellCastTime -
       this.naturesGraceBonus(naturesGrace) *
-        (this.spellChanceToCrit(spellCrit, spellHit) / 100);
+        (this.spellChanceToCrit(spellCrit, spellHit) / 100) + 0.05;
     return Math.max(x, this.globals.globalCoolDown);
   },
   spellPartialResistLossAverage: function(
