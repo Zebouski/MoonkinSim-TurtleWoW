@@ -132,10 +132,17 @@
                 <p>
                   Spell Crit Weight:
                   {{ spellCritToDamage / spellPowerToDamage }}
+                  <i>(1 Spell Crit = {{ Number((spellCritToDamage / spellPowerToDamage).toFixed(2)) }} Spell Power)</i>
                 </p>
                 <p>
                   Spell Hit Weight:
                   {{ spellHitToDamage / spellPowerToDamage }}
+                  <i>(1 Spell Hit = {{ Number((spellHitToDamage / spellPowerToDamage).toFixed(2)) }} Spell Power)</i>
+                </p>
+                <p>
+                  Int Weight:
+                  {{ spellCritToDamage / spellPowerToDamage / 60 }}
+                  <i>(1 Spell Power = {{ Number((1 / (spellCritToDamage / spellPowerToDamage / 60)).toFixed(2)) }} Int)</i>
                 </p>
                 <p>DPS: {{ spellDPS }}</p>
                 <p>Spell chance to miss: {{ spellChanceToMiss }}</p>
@@ -183,7 +190,8 @@
     </section>
     <footer class="footer">
       <div class="content has-text-centered">
-        <p>Discord: Beef Broccoli#5067</p>
+        <font-awesome-icon :icon="['fab', 'discord']" /> Beef Broccoli#5067<br/>
+        <font-awesome-icon :icon="['fab', 'gitlab']" /> <a href="https://gitlab.com/kmmiles/moonkin-calc">https://gitlab.com/kmmiles/moonkin-calc</a><br/>
         <p>
           Based on Keftenk's
           <a
@@ -246,7 +254,6 @@ export default {
       })
     },
     */
-
     spellDPS: function() {
       return wcf.spellDPS(
         parseFloat(this.spellBaseDamage),
