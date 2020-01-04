@@ -126,38 +126,81 @@
             >
               <p class="subtitle has-text-white"></p>
               <div class="content">
-                <p>Spell Power To Damage: {{ spellPowerToDamage }}</p>
-                <p>Spell Crit To Damage: {{ spellCritToDamage }}</p>
-                <p>Spell Hit To Damage: {{ spellHitToDamage }}</p>
+                <p>DPS: {{ Number(spellDPS.toFixed(2)) }}</p>
                 <p>
                   Spell Crit Weight:
-                  {{ spellCritToDamage / spellPowerToDamage }}
-                  <i>(1 Spell Crit = {{ Number((spellCritToDamage / spellPowerToDamage).toFixed(2)) }} Spell Power)</i>
+                  {{
+                    Number(spellCritToDamage / spellPowerToDamage).toFixed(2)
+                  }}
+                  <i
+                    >(1 Spell Crit =
+                    {{
+                      Number(
+                        (spellCritToDamage / spellPowerToDamage).toFixed(2)
+                      )
+                    }}
+                    Spell Power)</i
+                  >
                 </p>
                 <p>
                   Spell Hit Weight:
-                  {{ spellHitToDamage / spellPowerToDamage }}
-                  <i>(1 Spell Hit = {{ Number((spellHitToDamage / spellPowerToDamage).toFixed(2)) }} Spell Power)</i>
+                  {{ Number(spellHitToDamage / spellPowerToDamage).toFixed(2) }}
+                  <i
+                    >(1 Spell Hit =
+                    {{
+                      Number((spellHitToDamage / spellPowerToDamage).toFixed(2))
+                    }}
+                    Spell Power)</i
+                  >
                 </p>
                 <p>
                   Int Weight:
-                  {{ spellCritToDamage / spellPowerToDamage / 60 }}
-                  <i>(1 Spell Power = {{ Number((1 / (spellCritToDamage / spellPowerToDamage / 60)).toFixed(2)) }} Int)</i>
+                  {{
+                    Number(spellCritToDamage / spellPowerToDamage / 60).toFixed(
+                      2
+                    )
+                  }}
+                  <i
+                    >({{
+                      Number(
+                        (
+                          1 /
+                          (spellCritToDamage / spellPowerToDamage / 60)
+                        ).toFixed(2)
+                      )
+                    }}
+                    Int = 1 Spell Power)</i
+                  >
                 </p>
-                <p>DPS: {{ spellDPS }}</p>
-                <p>Spell chance to miss: {{ spellChanceToMiss }}</p>
                 <p>
-                  Spell chance to regular hit: {{ spellChanceToRegularHit }}
+                  Spell chance to miss:
+                  {{ Number(spellChanceToMiss).toFixed(2) }}
                 </p>
-                <p>Spell chance to crit: {{ spellChanceToCrit }}</p>
-                <p>Spell average non-crit: {{ spellAverageNonCrit }}</p>
-                <p>Spell effective cast-time: {{ spellEffectiveCastTime }}</p>
+                <p>
+                  Spell chance to regular hit:
+                  {{ Number(spellChanceToRegularHit).toFixed(2) }}
+                </p>
+                <p>
+                  Spell chance to crit:
+                  {{ Number(spellChanceToCrit).toFixed(2) }}
+                </p>
+                <p>
+                  Spell average non-crit:
+                  {{ Number(spellAverageNonCrit).toFixed(2) }}
+                </p>
+                <p>
+                  Spell effective cast-time:
+                  {{ Number(spellEffectiveCastTime).toFixed(2) }}
+                </p>
                 <p>
                   Spell partial resist average loss:
-                  {{ spellPartialResistLossAverage }}
+                  {{ Number(spellPartialResistLossAverage).toFixed(2) }}
                 </p>
                 <p>Spell Crit Bonus: {{ spellCritBonus }}</p>
                 <p>Moonfury Bonus: {{ moonFuryBonus }}</p>
+                <!--<p>Spell Power To Damage: {{ spellPowerToDamage }}</p>
+                <p>Spell Crit To Damage: {{ spellCritToDamage }}</p>
+                <p>Spell Hit To Damage: {{ spellHitToDamage }}</p>-->
               </div>
             </article>
           </div>
@@ -190,8 +233,11 @@
     </section>
     <footer class="footer">
       <div class="content has-text-centered">
-        <font-awesome-icon :icon="['fab', 'discord']" /> Beef Broccoli#5067<br/>
-        <font-awesome-icon :icon="['fab', 'gitlab']" /> <a href="https://gitlab.com/kmmiles/moonkin-calc">https://gitlab.com/kmmiles/moonkin-calc</a><br/>
+        <font-awesome-icon :icon="['fab', 'discord']" /> Beef Broccoli#5067<br />
+        <font-awesome-icon :icon="['fab', 'gitlab']" />
+        <a href="https://gitlab.com/kmmiles/moonkin-calc"
+          >https://gitlab.com/kmmiles/moonkin-calc</a
+        ><br />
         <p>
           Based on Keftenk's
           <a
@@ -255,6 +301,63 @@ export default {
     },
     */
     spellDPS: function() {
+      console.log(
+        "spellPowerToDamage: " +
+          wcf.spellPowerToDamage(
+            parseFloat(this.spellCoefficient),
+            parseFloat(this.spellCastTime),
+            parseFloat(this.spellCrit),
+            parseFloat(this.spellHit),
+            this.naturesGrace
+          )
+      );
+
+      console.log(
+        "spellCritToDamage: " +
+          wcf.spellCritToDamage(
+            parseFloat(this.spellBaseDamage),
+            parseFloat(this.spellCoefficient),
+            parseFloat(this.spellCastTime),
+            parseFloat(this.spellPower),
+            parseFloat(this.spellCrit),
+            parseFloat(this.spellHit),
+            parseFloat(this.spellPenetration),
+            parseFloat(this.enemySpellResistance),
+            parseFloat(this.vengeancePoints),
+            parseFloat(this.moonFuryPoints),
+            this.naturesGrace,
+            this.curseOfShadow,
+            this.powerInfusion,
+            this.saygesDarkFortune,
+            this.tracesOfSilithyst,
+            this.spellVuln,
+            this.stormStrike
+          )
+      );
+
+      console.log(
+        "spellHitToDamage: " +
+          wcf.spellHitToDamage(
+            parseFloat(this.spellBaseDamage),
+            parseFloat(this.spellCoefficient),
+            parseFloat(this.spellCastTime),
+            parseFloat(this.spellPower),
+            parseFloat(this.spellCrit),
+            parseFloat(this.spellHit),
+            parseFloat(this.spellPenetration),
+            parseFloat(this.enemySpellResistance),
+            parseFloat(this.vengeancePoints),
+            parseFloat(this.moonFuryPoints),
+            this.naturesGrace,
+            this.curseOfShadow,
+            this.powerInfusion,
+            this.saygesDarkFortune,
+            this.tracesOfSilithyst,
+            this.spellVuln,
+            this.stormStrike
+          )
+      );
+
       return wcf.spellDPS(
         parseFloat(this.spellBaseDamage),
         parseFloat(this.spellCoefficient),
