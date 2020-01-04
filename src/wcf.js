@@ -1,3 +1,10 @@
+/* wrath has problems
+    - need to factor improved wrath
+    - cast time can't be reduced below GCD
+    - curse of shadow doesn't improve wrath
+    - other resist stuff?
+*/
+
 var wcf = {
   globals: {
     /* constant values that can't be overridden in the app */
@@ -14,6 +21,7 @@ var wcf = {
   },
   defaults: {
     /* default values that can be changed in the app */
+    spellName: "Starfire Rank 6",
     spellBaseDamage: 488.5,
     spellCoefficient: 1.0,
     spellCastTime: 3.0,

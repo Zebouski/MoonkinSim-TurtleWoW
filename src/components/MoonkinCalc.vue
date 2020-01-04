@@ -20,6 +20,26 @@
               class="tile is-child box has-background-black-ter has-text-white"
             >
               <div class="content">
+                <div class="select">
+                  <select v-model="spellName" @change="onChange($event)">
+                    <option>Starfire Rank 1</option>
+                    <option>Starfire Rank 2</option>
+                    <option>Starfire Rank 3</option>
+                    <option>Starfire Rank 4</option>
+                    <option>Starfire Rank 5</option>
+                    <option>Starfire Rank 6</option>
+                    <option>Starfire Rank 7</option>
+                    <option>Wrath Rank 1</option>
+                    <option>Wrath Rank 2</option>
+                    <option>Wrath Rank 3</option>
+                    <option>Wrath Rank 4</option>
+                    <option>Wrath Rank 5</option>
+                    <option>Wrath Rank 6</option>
+                    <option>Wrath Rank 7</option>
+                    <option>Wrath Rank 8</option>
+                  </select>
+                </div>
+
                 <div class="input_fields">
                   <label class="input-box">
                     <div>Spell Base Damage:</div>
@@ -268,6 +288,7 @@ export default {
   name: "MoonkinCalc",
   data() {
     return {
+      spellName: wcf.defaults.spellName,
       spellBaseDamage: wcf.defaults.spellBaseDamage,
       spellCoefficient: wcf.defaults.spellCoefficient,
       spellCastTime: wcf.defaults.spellCastTime,
@@ -286,6 +307,87 @@ export default {
       spellVuln: wcf.defaults.spellVuln,
       stormStrike: wcf.defaults.stormStrike
     };
+  },
+  methods: {
+    onChange(event) {
+      switch (event.target.value) {
+        case "Starfire Rank 1":
+          this.spellBaseDamage = 99.5;
+          this.spellCoefficient = 1.0;
+          this.spellCastTime = 3;
+          break;
+        case "Starfire Rank 2":
+          this.spellBaseDamage = 152.5;
+          this.spellCoefficient = 1.0;
+          this.spellCastTime = 3;
+          break;
+        case "Starfire Rank 3":
+          this.spellBaseDamage = 221.5;
+          this.spellCoefficient = 1.0;
+          this.spellCastTime = 3;
+          break;
+        case "Starfire Rank 4":
+          this.spellBaseDamage = 307.5;
+          this.spellCoefficient = 1.0;
+          this.spellCastTime = 3;
+          break;
+        case "Starfire Rank 5":
+          this.spellBaseDamage = 395.5;
+          this.spellCoefficient = 1.0;
+          this.spellCastTime = 3;
+          break;
+        case "Starfire Rank 6":
+          this.spellBaseDamage = 488.5;
+          this.spellCoefficient = 1.0;
+          this.spellCastTime = 3;
+          break;
+        case "Starfire Rank 7":
+          this.spellBaseDamage = 540.5;
+          this.spellCoefficient = 1.0;
+          this.spellCastTime = 3;
+          break;
+        case "Wrath Rank 1":
+          this.spellBaseDamage = 13.5;
+          this.spellCoefficient = 0.5714;
+          this.spellCastTime = 2;
+          break;
+        case "Wrath Rank 2":
+          this.spellBaseDamage = 27.5;
+          this.spellCoefficient = 0.5714;
+          this.spellCastTime = 2;
+          break;
+        case "Wrath Rank 3":
+          this.spellBaseDamage = 48.5;
+          this.spellCoefficient = 0.5714;
+          this.spellCastTime = 2;
+          break;
+        case "Wrath Rank 4":
+          this.spellBaseDamage = 68.5;
+          this.spellCoefficient = 0.5714;
+          this.spellCastTime = 2;
+          break;
+        case "Wrath Rank 5":
+          this.spellBaseDamage = 108.5;
+          this.spellCoefficient = 0.5714;
+          this.spellCastTime = 2;
+          break;
+        case "Wrath Rank 6":
+          this.spellBaseDamage = 148.5;
+          this.spellCoefficient = 0.5714;
+          this.spellCastTime = 2;
+          break;
+        case "Wrath Rank 7":
+          this.spellBaseDamage = 199.5;
+          this.spellCoefficient = 0.5714;
+          this.spellCastTime = 2;
+          break;
+        case "Wrath Rank 8":
+          this.spellBaseDamage = 250.5;
+          this.spellCoefficient = 0.5714;
+          this.spellCastTime = 2;
+          break;
+      }
+    }
   },
   computed: {
     /*
