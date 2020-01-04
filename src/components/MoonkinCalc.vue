@@ -39,7 +39,6 @@
                     <option>Wrath Rank 8</option>
                   </select>
                 </div>
-
                 <div class="input_fields">
                   <label class="input-box">
                     <div>Spell Base Damage:</div>
@@ -50,7 +49,7 @@
                     />
                   </label>
                   <label class="input-box">
-                    <div>Spell Cast Time:</div>
+                    <div>Spell Base Cast Time:</div>
                     <input
                       class="input"
                       type="number"
@@ -65,6 +64,8 @@
                       v-model="spellCoefficient"
                     />
                   </label>
+                </div>
+                <div class="input_fields">
                   <label class="input-box">
                     <div>Spell Power:</div>
                     <input class="input" type="number" v-model="spellPower" />
@@ -93,6 +94,8 @@
                       v-model="enemySpellResistance"
                     />
                   </label>
+                </div>
+                <div class="input_fields">
                   <label class="input-box">
                     <div>Moonfury points:</div>
                     <input
@@ -107,6 +110,14 @@
                       class="input"
                       type="number"
                       v-model="vengeancePoints"
+                    />
+                  </label>
+                  <label class="input-box">
+                    <div>Improved Wrath points:</div>
+                    <input
+                      class="input"
+                      type="number"
+                      v-model="improvedWrathPoints"
                     />
                   </label>
                   <label class="input-box">
@@ -274,7 +285,7 @@
 <style scoped lang="scss">
 .input_fields {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 1rem;
   margin: 1rem 0;
 }
@@ -289,6 +300,7 @@ export default {
   data() {
     return {
       spellName: wcf.defaults.spellName,
+      spellDamageType: wcf.defaults.spellDamageType,
       spellBaseDamage: wcf.defaults.spellBaseDamage,
       spellCoefficient: wcf.defaults.spellCoefficient,
       spellCastTime: wcf.defaults.spellCastTime,
@@ -299,6 +311,7 @@ export default {
       enemySpellResistance: wcf.defaults.enemySpellResistance,
       vengeancePoints: wcf.defaults.vengeancePoints,
       moonFuryPoints: wcf.defaults.moonFuryPoints,
+      improvedWrathPoints: wcf.defaults.improvedWrathPoints,
       naturesGrace: wcf.defaults.naturesGrace,
       curseOfShadow: wcf.defaults.curseOfShadow,
       powerInfusion: wcf.defaults.powerInfusion,
@@ -312,79 +325,109 @@ export default {
     onChange(event) {
       switch (event.target.value) {
         case "Starfire Rank 1":
+          this.spellDamageType = "Arcane";
           this.spellBaseDamage = 99.5;
           this.spellCoefficient = 1.0;
           this.spellCastTime = 3;
+          this.spellPenetration = 75;
           break;
         case "Starfire Rank 2":
+          this.spellDamageType = "Arcane";
           this.spellBaseDamage = 152.5;
           this.spellCoefficient = 1.0;
           this.spellCastTime = 3;
+          this.spellPenetration = 75;
           break;
         case "Starfire Rank 3":
+          this.spellDamageType = "Arcane";
           this.spellBaseDamage = 221.5;
           this.spellCoefficient = 1.0;
           this.spellCastTime = 3;
+          this.spellPenetration = 75;
           break;
         case "Starfire Rank 4":
+          this.spellDamageType = "Arcane";
           this.spellBaseDamage = 307.5;
           this.spellCoefficient = 1.0;
           this.spellCastTime = 3;
+          this.spellPenetration = 75;
           break;
         case "Starfire Rank 5":
+          this.spellDamageType = "Arcane";
           this.spellBaseDamage = 395.5;
           this.spellCoefficient = 1.0;
           this.spellCastTime = 3;
+          this.spellPenetration = 75;
           break;
         case "Starfire Rank 6":
+          this.spellDamageType = "Arcane";
           this.spellBaseDamage = 488.5;
           this.spellCoefficient = 1.0;
           this.spellCastTime = 3;
+          this.spellPenetration = 75;
           break;
         case "Starfire Rank 7":
+          this.spellDamageType = "Arcane";
           this.spellBaseDamage = 540.5;
           this.spellCoefficient = 1.0;
           this.spellCastTime = 3;
+          this.spellPenetration = 75;
           break;
         case "Wrath Rank 1":
+          this.spellDamageType = "Nature";
           this.spellBaseDamage = 13.5;
           this.spellCoefficient = 0.5714;
           this.spellCastTime = 2;
+          this.spellPenetration = 0;
           break;
         case "Wrath Rank 2":
+          this.spellDamageType = "Nature";
           this.spellBaseDamage = 27.5;
           this.spellCoefficient = 0.5714;
           this.spellCastTime = 2;
+          this.spellPenetration = 0;
           break;
         case "Wrath Rank 3":
+          this.spellDamageType = "Nature";
           this.spellBaseDamage = 48.5;
           this.spellCoefficient = 0.5714;
           this.spellCastTime = 2;
+          this.spellPenetration = 0;
           break;
         case "Wrath Rank 4":
+          this.spellDamageType = "Nature";
           this.spellBaseDamage = 68.5;
           this.spellCoefficient = 0.5714;
           this.spellCastTime = 2;
+          this.spellPenetration = 0;
           break;
         case "Wrath Rank 5":
+          this.spellDamageType = "Nature";
           this.spellBaseDamage = 108.5;
           this.spellCoefficient = 0.5714;
           this.spellCastTime = 2;
+          this.spellPenetration = 0;
           break;
         case "Wrath Rank 6":
+          this.spellDamageType = "Nature";
           this.spellBaseDamage = 148.5;
           this.spellCoefficient = 0.5714;
           this.spellCastTime = 2;
+          this.spellPenetration = 0;
           break;
         case "Wrath Rank 7":
+          this.spellDamageType = "Nature";
           this.spellBaseDamage = 199.5;
           this.spellCoefficient = 0.5714;
           this.spellCastTime = 2;
+          this.spellPenetration = 0;
           break;
         case "Wrath Rank 8":
+          this.spellDamageType = "Nature";
           this.spellBaseDamage = 250.5;
           this.spellCoefficient = 0.5714;
           this.spellCastTime = 2;
+          this.spellPenetration = 0;
           break;
       }
     }
@@ -406,10 +449,12 @@ export default {
       console.log(
         "spellPowerToDamage: " +
           wcf.spellPowerToDamage(
+            this.spellName,
             parseFloat(this.spellCoefficient),
             parseFloat(this.spellCastTime),
             parseFloat(this.spellCrit),
             parseFloat(this.spellHit),
+            parseFloat(this.improvedWrathPoints),
             this.naturesGrace
           )
       );
@@ -417,6 +462,7 @@ export default {
       console.log(
         "spellCritToDamage: " +
           wcf.spellCritToDamage(
+            this.spellName,
             parseFloat(this.spellBaseDamage),
             parseFloat(this.spellCoefficient),
             parseFloat(this.spellCastTime),
@@ -427,6 +473,7 @@ export default {
             parseFloat(this.enemySpellResistance),
             parseFloat(this.vengeancePoints),
             parseFloat(this.moonFuryPoints),
+            parseFloat(this.improvedWrathPoints),
             this.naturesGrace,
             this.curseOfShadow,
             this.powerInfusion,
@@ -440,6 +487,7 @@ export default {
       console.log(
         "spellHitToDamage: " +
           wcf.spellHitToDamage(
+            this.spellName,
             parseFloat(this.spellBaseDamage),
             parseFloat(this.spellCoefficient),
             parseFloat(this.spellCastTime),
@@ -450,6 +498,7 @@ export default {
             parseFloat(this.enemySpellResistance),
             parseFloat(this.vengeancePoints),
             parseFloat(this.moonFuryPoints),
+            parseFloat(this.improvedWrathPoints),
             this.naturesGrace,
             this.curseOfShadow,
             this.powerInfusion,
@@ -461,6 +510,7 @@ export default {
       );
 
       return wcf.spellDPS(
+        this.spellName,
         parseFloat(this.spellBaseDamage),
         parseFloat(this.spellCoefficient),
         parseFloat(this.spellCastTime),
@@ -471,6 +521,7 @@ export default {
         parseFloat(this.enemySpellResistance),
         parseFloat(this.vengeancePoints),
         parseFloat(this.moonFuryPoints),
+        parseFloat(this.improvedWrathPoints),
         this.naturesGrace,
         this.curseOfShadow,
         this.powerInfusion,
@@ -481,13 +532,17 @@ export default {
       );
     },
     moonFuryBonus: function() {
-      return wcf.moonFuryBonus(parseFloat(this.moonFuryPoints));
+      return wcf.moonFuryBonus(this.spellName, parseFloat(this.moonFuryPoints));
     },
     spellCritBonus: function() {
-      return wcf.spellCritBonus(parseFloat(this.vengeancePoints));
+      return wcf.spellCritBonus(
+        this.spellName,
+        parseFloat(this.vengeancePoints)
+      );
     },
     spellAverageNonCrit: function() {
       return wcf.spellAverageNonCrit(
+        this.spellName,
         parseFloat(this.spellBaseDamage),
         parseFloat(this.spellCoefficient),
         parseFloat(this.spellPower),
@@ -496,14 +551,17 @@ export default {
     },
     spellEffectiveCastTime: function() {
       return wcf.spellEffectiveCastTime(
+        this.spellName,
         parseFloat(this.spellCastTime),
         parseFloat(this.spellCrit),
         parseFloat(this.spellHit),
+        parseFloat(this.improvedWrathPoints),
         this.naturesGrace
       );
     },
     spellPartialResistLossAverage: function() {
       return wcf.spellPartialResistLossAverage(
+        this.spellName,
         parseFloat(this.spellPenetration),
         parseFloat(this.enemySpellResistance)
       );
@@ -525,15 +583,18 @@ export default {
     },
     spellPowerToDamage: function() {
       return wcf.spellPowerToDamage(
+        this.spellName,
         parseFloat(this.spellCoefficient),
         parseFloat(this.spellCastTime),
         parseFloat(this.spellCrit),
         parseFloat(this.spellHit),
+        parseFloat(this.improvedWrathPoints),
         this.naturesGrace
       );
     },
     spellCritToDamage: function() {
       return wcf.spellCritToDamage(
+        this.spellName,
         parseFloat(this.spellBaseDamage),
         parseFloat(this.spellCoefficient),
         parseFloat(this.spellCastTime),
@@ -544,6 +605,7 @@ export default {
         parseFloat(this.enemySpellResistance),
         parseFloat(this.vengeancePoints),
         parseFloat(this.moonFuryPoints),
+        parseFloat(this.improvedWrathPoints),
         this.naturesGrace,
         this.curseOfShadow,
         this.powerInfusion,
@@ -555,6 +617,7 @@ export default {
     },
     spellHitToDamage: function() {
       return wcf.spellHitToDamage(
+        this.spellName,
         parseFloat(this.spellBaseDamage),
         parseFloat(this.spellCoefficient),
         parseFloat(this.spellCastTime),
@@ -565,6 +628,7 @@ export default {
         parseFloat(this.enemySpellResistance),
         parseFloat(this.vengeancePoints),
         parseFloat(this.moonFuryPoints),
+        parseFloat(this.improvedWrathPoints),
         this.naturesGrace,
         this.curseOfShadow,
         this.powerInfusion,

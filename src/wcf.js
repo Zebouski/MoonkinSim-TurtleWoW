@@ -1,10 +1,3 @@
-/* wrath has problems
-    - need to factor improved wrath
-    - cast time can't be reduced below GCD
-    - curse of shadow doesn't improve wrath
-    - other resist stuff?
-*/
-
 var wcf = {
   globals: {
     /* constant values that can't be overridden in the app */
@@ -22,6 +15,7 @@ var wcf = {
   defaults: {
     /* default values that can be changed in the app */
     spellName: "Starfire Rank 6",
+    spellDamageType: "Arcane",
     spellBaseDamage: 488.5,
     spellCoefficient: 1.0,
     spellCastTime: 3.0,
@@ -32,6 +26,7 @@ var wcf = {
     spellPenetration: 75,
     moonFuryPoints: 5,
     vengeancePoints: 5,
+    improvedWrathPoints: 5,
     naturesGrace: true,
     curseOfShadow: true,
     powerInfusion: false,
@@ -40,7 +35,10 @@ var wcf = {
     spellVuln: false,
     stormStrike: false
   },
-  spellCritBonus: function(vengeancePoints) {
+  spellShortName: function(spellName) {
+    return spellName.split(" ")[0];
+  },
+  spellCritBonus: function(spellName, vengeancePoints) {
     switch (vengeancePoints) {
       case 1:
         return 1.6; // rank 1: Increases the critical strike damage bonus by 20%
@@ -56,7 +54,8 @@ var wcf = {
         return 1.5;
     }
   },
-  moonFuryBonus: function(moonFuryPoints) {
+  /* Increases the damage done by Starfire, Moonfire, and Wrath */
+  moonFuryBonus: function(spellName, moonFuryPoints) {
     switch (moonFuryPoints) {
       case 1:
         return 1.02; // rank 1: 2% bonus
@@ -72,13 +71,35 @@ var wcf = {
         return 1.0; // rank 0: 0% bonus
     }
   },
-  naturesGraceBonus: function(naturesGrace) {
+  improvedWrathBonus: function(improvedWrathPoints) {
+    switch (improvedWrathPoints) {
+      case 1:
+        return 0.1; // Reduces the cast time of your Wrath spell by 0.1 sec.
+      case 2:
+        return 0.2; // Reduces the cast time of your Wrath spell by 0.2 sec.
+      case 3:
+        return 0.3; // Reduces the cast time of your Wrath spell by 0.3 sec.
+      case 4:
+        return 0.4; // Reduces the cast time of your Wrath spell by 0.4 sec.
+      case 5:
+        return 0.5; // Reduces the cast time of your Wrath spell by 0.5 sec.
+      default:
+        return 0; //
+    }
+  },
+  naturesGraceBonus: function(spellName, improvedWrathPoints, naturesGrace) {
     if (naturesGrace) {
-      return this.globals.naturesGraceReduction;
+      if (this.spellShortName(spellName) == "Wrath")
+        return (
+          this.globals.naturesGraceReduction -
+          this.improvedWrathBonus(improvedWrathPoints)
+        );
+      else return this.globals.naturesGraceReduction;
     }
     return 0;
   },
   spellMultiplicativeBonuses: function(
+    spellName,
     spellPenetration,
     enemySpellResistance,
     curseOfShadow,
@@ -89,7 +110,9 @@ var wcf = {
     stormStrike
   ) {
     return (
-      (curseOfShadow ? this.globals.curseOfShadowBonus : 1.0) *
+      (curseOfShadow && this.spellShortName(spellName) == "Starfire"
+        ? this.globals.curseOfShadowBonus
+        : 1.0) *
       (powerInfusion ? this.globals.powerInfusionBonus : 1.0) *
       (saygesDarkFortune ? this.globals.saygesDarkFortuneBonus : 1.0) *
       (tracesOfSilithyst ? this.globals.tracesOfSilithystBonus : 1.0) *
@@ -97,16 +120,19 @@ var wcf = {
       (stormStrike ? this.globals.stormStrikeBonus : 1.0) *
       (1 -
         this.spellPartialResistLossAverage(
+          spellName,
           spellPenetration,
           enemySpellResistance
         ))
     );
   },
   spellPowerToDamage: function(
+    spellName,
     spellCoefficient,
     spellCastTime,
     spellCrit,
     spellHit,
+    improvedWrathPoints,
     naturesGrace
   ) {
     // v1 dc(0.83+H/100)(1+xR/100)/(T-t(0.83+H/100)(R/100))
@@ -114,13 +140,18 @@ var wcf = {
     // [beefbroc] v3 c(0.83+H/100)(1+R/100)/(T-t(0.83+H/100)(R/100))
     var x = spellCoefficient * (0.83 + spellHit / 100) * (1 + spellCrit / 100);
     var y =
-      spellCastTime -
-      this.naturesGraceBonus(naturesGrace) *
+      this.spellCastTimeModified(
+        spellName,
+        spellCastTime,
+        improvedWrathPoints
+      ) -
+      this.naturesGraceBonus(spellName, improvedWrathPoints, naturesGrace) *
         (0.83 + spellHit / 100) *
         (spellCrit / 100);
     return x / y;
   },
   spellCritToDamage: function(
+    spellName,
     spellBaseDamage,
     spellCoefficient,
     spellCastTime,
@@ -131,6 +162,7 @@ var wcf = {
     enemySpellResistance,
     vengeancePoints,
     moonFuryPoints,
+    improvedWrathPoints,
     naturesGrace,
     curseOfShadow,
     powerInfusion,
@@ -142,6 +174,7 @@ var wcf = {
     //v1 d(83+H)(mB+cP)(xT-t(0.83+H/100))/(100T-t(0.83+H/100)R)^2
     //v2 d(83+H)(mB+cP) * (xT+t(0.83+H/100)) / (100T-t(0.83+H/100)R)^2
     var d = this.spellMultiplicativeBonuses(
+      spellName,
       spellPenetration,
       enemySpellResistance,
       curseOfShadow,
@@ -155,18 +188,30 @@ var wcf = {
     return (
       (d *
         (83 + spellHit) *
-        (this.moonFuryBonus(moonFuryPoints) * spellBaseDamage +
+        (this.moonFuryBonus(spellName, moonFuryPoints) * spellBaseDamage +
           spellCoefficient * spellPower) *
-        ((this.spellCritBonus(vengeancePoints) - 1) * spellCastTime +
-          this.naturesGraceBonus(naturesGrace) * (0.83 + spellHit / 100))) /
-      (100 * spellCastTime -
-        this.naturesGraceBonus(naturesGrace) *
+        ((this.spellCritBonus(spellName, vengeancePoints) - 1) *
+          this.spellCastTimeModified(
+            spellName,
+            spellCastTime,
+            improvedWrathPoints
+          ) +
+          this.naturesGraceBonus(spellName, improvedWrathPoints, naturesGrace) *
+            (0.83 + spellHit / 100))) /
+      (100 *
+        this.spellCastTimeModified(
+          spellName,
+          spellCastTime,
+          improvedWrathPoints
+        ) -
+        this.naturesGraceBonus(spellName, improvedWrathPoints, naturesGrace) *
           (0.83 + spellHit / 100) *
           spellCrit) **
         2
     );
   },
   spellHitToDamage: function(
+    spellName,
     spellBaseDamage,
     spellCoefficient,
     spellCastTime,
@@ -177,6 +222,7 @@ var wcf = {
     enemySpellResistance,
     vengeancePoints,
     moonFuryPoints,
+    improvedWrathPoints,
     naturesGrace,
     curseOfShadow,
     powerInfusion,
@@ -187,6 +233,7 @@ var wcf = {
   ) {
     // v1 d(mB+cP)(100+xR) * (100^2 T)/((100^2 T - t(83+H)R)^2)
     var d = this.spellMultiplicativeBonuses(
+      spellName,
       spellPenetration,
       enemySpellResistance,
       curseOfShadow,
@@ -199,12 +246,25 @@ var wcf = {
 
     return (
       (d *
-        (this.moonFuryBonus(moonFuryPoints) * spellBaseDamage +
+        (this.moonFuryBonus(spellName, moonFuryPoints) * spellBaseDamage +
           spellCoefficient * spellPower) *
-        (100 + (this.spellCritBonus(vengeancePoints) - 1) * spellCrit) *
-        (100 ** 2 * spellCastTime)) /
-      (100 ** 2 * spellCastTime -
-        this.naturesGraceBonus(naturesGrace) * (83 + spellHit) * spellCrit) **
+        (100 +
+          (this.spellCritBonus(spellName, vengeancePoints) - 1) * spellCrit) *
+        (100 ** 2 *
+          this.spellCastTimeModified(
+            spellName,
+            spellCastTime,
+            improvedWrathPoints
+          ))) /
+      (100 ** 2 *
+        this.spellCastTimeModified(
+          spellName,
+          spellCastTime,
+          improvedWrathPoints
+        ) -
+        this.naturesGraceBonus(spellName, improvedWrathPoints, naturesGrace) *
+          (83 + spellHit) *
+          spellCrit) **
         2
     );
   },
@@ -222,30 +282,48 @@ var wcf = {
     return (1.8 + spellCrit) * ((100 - this.spellChanceToMiss(spellHit)) / 100);
   },
   spellAverageNonCrit: function(
+    spellName,
     spellBaseDamage,
     spellCoefficient,
     spellPower,
     moonFuryPoints
   ) {
     return (
-      spellBaseDamage * this.moonFuryBonus(moonFuryPoints) +
+      spellBaseDamage * this.moonFuryBonus(spellName, moonFuryPoints) +
       spellPower * spellCoefficient
     );
   },
+  spellCastTimeModified: function(
+    spellName,
+    spellCastTime,
+    improvedWrathPoints
+  ) {
+    if (this.spellShortName(spellName) == "Wrath") {
+      return spellCastTime - this.improvedWrathBonus(improvedWrathPoints);
+    }
+    return spellCastTime;
+  },
   spellEffectiveCastTime: function(
+    spellName,
     spellCastTime,
     spellCrit,
     spellHit,
+    improvedWrathPoints,
     naturesGrace
   ) {
     var x =
-      spellCastTime -
-      this.naturesGraceBonus(naturesGrace) *
+      this.spellCastTimeModified(
+        spellName,
+        spellCastTime,
+        improvedWrathPoints
+      ) -
+      this.naturesGraceBonus(spellName, improvedWrathPoints, naturesGrace) *
         (this.spellChanceToCrit(spellCrit, spellHit) / 100) +
       this.globals.spellCastTimeHumanFactor;
     return Math.max(x, this.globals.globalCoolDown);
   },
   spellPartialResistLossAverage: function(
+    spellName,
     spellPenetration,
     enemySpellResistance
   ) {
@@ -254,6 +332,7 @@ var wcf = {
     return ((br1 - br2 + 24) / 300) * 0.75;
   },
   spellDPS: function(
+    spellName,
     spellBaseDamage,
     spellCoefficient,
     spellCastTime,
@@ -264,6 +343,7 @@ var wcf = {
     enemySpellResistance,
     vengeancePoints,
     moonFuryPoints,
+    improvedWrathPoints,
     naturesGrace,
     curseOfShadow,
     powerInfusion,
@@ -274,21 +354,25 @@ var wcf = {
   ) {
     // =(($H$9*$H$13*$I$9+$H$9*$H$16)/100) / $I$18*$D$22*$D$23*$D$24*$D$25*$D$26*$D$27*(1-$H$20)
     var sanc = this.spellAverageNonCrit(
+      spellName,
       spellBaseDamage,
       spellCoefficient,
       spellPower,
       moonFuryPoints
     );
     var sctc = this.spellChanceToCrit(spellCrit, spellHit);
-    var vb = this.spellCritBonus(vengeancePoints);
+    var vb = this.spellCritBonus(spellName, vengeancePoints);
     var sctrh = this.spellChanceToRegularHit(spellCrit, spellHit);
     var sect = this.spellEffectiveCastTime(
+      spellName,
       spellCastTime,
       spellCrit,
       spellHit,
+      improvedWrathPoints,
       naturesGrace
     );
     var d = this.spellMultiplicativeBonuses(
+      spellName,
       spellPenetration,
       enemySpellResistance,
       curseOfShadow,
