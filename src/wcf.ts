@@ -1,5 +1,5 @@
-var wcf = {
-  globals: {
+export class Wcf {
+  public static globals = {
     /* constant values that can't be overridden in the app */
     globalCoolDown: 1.5,
     hitCap: 17,
@@ -11,8 +11,9 @@ var wcf = {
     tracesOfSilithystBonus: 1.05,
     spellVulnBonus: 1.15,
     stormStrikeBonus: 1.2
-  },
-  defaults: {
+  };
+
+  public static defaults = {
     /* default values that can be changed in the app */
     spellName: "Starfire Rank 6",
     spellDamageType: "Arcane",
@@ -34,11 +35,13 @@ var wcf = {
     tracesOfSilithyst: false,
     spellVuln: false,
     stormStrike: false
-  },
-  spellShortName: function(spellName) {
+  };
+
+  static spellShortName(spellName: string) {
     return spellName.split(" ")[0];
-  },
-  spellCritBonus: function(spellName, vengeancePoints) {
+  }
+
+  static spellCritBonus(spellName: string, vengeancePoints: number) {
     switch (vengeancePoints) {
       case 1:
         return 1.6; // rank 1: Increases the critical strike damage bonus by 20%
@@ -53,9 +56,10 @@ var wcf = {
       default:
         return 1.5;
     }
-  },
+  }
+
   /* Increases the damage done by Starfire, Moonfire, and Wrath */
-  moonFuryBonus: function(spellName, moonFuryPoints) {
+  static moonFuryBonus(spellName: string, moonFuryPoints: number) {
     switch (moonFuryPoints) {
       case 1:
         return 1.02; // rank 1: 2% bonus
@@ -70,8 +74,9 @@ var wcf = {
       default:
         return 1.0; // rank 0: 0% bonus
     }
-  },
-  improvedWrathBonus: function(improvedWrathPoints) {
+  }
+
+  static improvedWrathBonus(improvedWrathPoints: number) {
     switch (improvedWrathPoints) {
       case 1:
         return 0.1; // Reduces the cast time of your Wrath spell by 0.1 sec.
@@ -86,8 +91,13 @@ var wcf = {
       default:
         return 0; //
     }
-  },
-  naturesGraceBonus: function(spellName, improvedWrathPoints, naturesGrace) {
+  }
+
+  static naturesGraceBonus(
+    spellName: string,
+    improvedWrathPoints: number,
+    naturesGrace: boolean
+  ) {
     if (naturesGrace) {
       if (this.spellShortName(spellName) == "Wrath")
         return (
@@ -97,17 +107,18 @@ var wcf = {
       else return this.globals.naturesGraceReduction;
     }
     return 0;
-  },
-  spellMultiplicativeBonuses: function(
-    spellName,
-    spellPenetration,
-    enemySpellResistance,
-    curseOfShadow,
-    powerInfusion,
-    saygesDarkFortune,
-    tracesOfSilithyst,
-    spellVuln,
-    stormStrike
+  }
+
+  static spellMultiplicativeBonuses(
+    spellName: string,
+    spellPenetration: number,
+    enemySpellResistance: number,
+    curseOfShadow: boolean,
+    powerInfusion: boolean,
+    saygesDarkFortune: boolean,
+    tracesOfSilithyst: boolean,
+    spellVuln: boolean,
+    stormStrike: boolean
   ) {
     return (
       (curseOfShadow && this.spellShortName(spellName) == "Starfire"
@@ -125,15 +136,16 @@ var wcf = {
           enemySpellResistance
         ))
     );
-  },
-  spellPowerToDamage: function(
-    spellName,
-    spellCoefficient,
-    spellCastTime,
-    spellCrit,
-    spellHit,
-    improvedWrathPoints,
-    naturesGrace
+  }
+
+  static spellPowerToDamage(
+    spellName: string,
+    spellCoefficient: number,
+    spellCastTime: number,
+    spellCrit: number,
+    spellHit: number,
+    improvedWrathPoints: number,
+    naturesGrace: boolean
   ) {
     // v1 dc(0.83+H/100)(1+xR/100)/(T-t(0.83+H/100)(R/100))
     // v2 dc(0.83+H/100)(1+R/100)/(T-t(0.83+H/100)(R/100))
@@ -149,27 +161,28 @@ var wcf = {
         (0.83 + spellHit / 100) *
         (spellCrit / 100);
     return x / y;
-  },
-  spellCritToDamage: function(
-    spellName,
-    spellBaseDamage,
-    spellCoefficient,
-    spellCastTime,
-    spellPower,
-    spellCrit,
-    spellHit,
-    spellPenetration,
-    enemySpellResistance,
-    vengeancePoints,
-    moonFuryPoints,
-    improvedWrathPoints,
-    naturesGrace,
-    curseOfShadow,
-    powerInfusion,
-    saygesDarkFortune,
-    tracesOfSilithyst,
-    spellVuln,
-    stormStrike
+  }
+
+  static spellCritToDamage(
+    spellName: string,
+    spellBaseDamage: number,
+    spellCoefficient: number,
+    spellCastTime: number,
+    spellPower: number,
+    spellCrit: number,
+    spellHit: number,
+    spellPenetration: number,
+    enemySpellResistance: number,
+    vengeancePoints: number,
+    moonFuryPoints: number,
+    improvedWrathPoints: number,
+    naturesGrace: boolean,
+    curseOfShadow: boolean,
+    powerInfusion: boolean,
+    saygesDarkFortune: boolean,
+    tracesOfSilithyst: boolean,
+    spellVuln: boolean,
+    stormStrike: boolean
   ) {
     //v1 d(83+H)(mB+cP)(xT-t(0.83+H/100))/(100T-t(0.83+H/100)R)^2
     //v2 d(83+H)(mB+cP) * (xT+t(0.83+H/100)) / (100T-t(0.83+H/100)R)^2
@@ -209,27 +222,28 @@ var wcf = {
           spellCrit) **
         2
     );
-  },
-  spellHitToDamage: function(
-    spellName,
-    spellBaseDamage,
-    spellCoefficient,
-    spellCastTime,
-    spellPower,
-    spellCrit,
-    spellHit,
-    spellPenetration,
-    enemySpellResistance,
-    vengeancePoints,
-    moonFuryPoints,
-    improvedWrathPoints,
-    naturesGrace,
-    curseOfShadow,
-    powerInfusion,
-    saygesDarkFortune,
-    tracesOfSilithyst,
-    spellVuln,
-    stormStrike
+  }
+
+  static spellHitToDamage(
+    spellName: string,
+    spellBaseDamage: number,
+    spellCoefficient: number,
+    spellCastTime: number,
+    spellPower: number,
+    spellCrit: number,
+    spellHit: number,
+    spellPenetration: number,
+    enemySpellResistance: number,
+    vengeancePoints: number,
+    moonFuryPoints: number,
+    improvedWrathPoints: number,
+    naturesGrace: boolean,
+    curseOfShadow: boolean,
+    powerInfusion: boolean,
+    saygesDarkFortune: boolean,
+    tracesOfSilithyst: boolean,
+    spellVuln: boolean,
+    stormStrike: boolean
   ) {
     // v1 d(mB+cP)(100+xR) * (100^2 T)/((100^2 T - t(83+H)R)^2)
     var d = this.spellMultiplicativeBonuses(
@@ -267,49 +281,55 @@ var wcf = {
           spellCrit) **
         2
     );
-  },
-  spellChanceToMiss: function(spellHit) {
+  }
+
+  static spellChanceToMiss(spellHit: number) {
     return 100 - (83 + Math.min(spellHit, this.globals.hitCap - 1));
-  },
-  spellChanceToRegularHit: function(spellCrit, spellHit) {
+  }
+
+  static spellChanceToRegularHit(spellCrit: number, spellHit: number) {
     return (
       100 -
       this.spellChanceToMiss(spellHit) -
       this.spellChanceToCrit(spellCrit, spellHit)
     );
-  },
-  spellChanceToCrit: function(spellCrit, spellHit) {
+  }
+
+  static spellChanceToCrit(spellCrit: number, spellHit: number) {
     return (1.8 + spellCrit) * ((100 - this.spellChanceToMiss(spellHit)) / 100);
-  },
-  spellAverageNonCrit: function(
-    spellName,
-    spellBaseDamage,
-    spellCoefficient,
-    spellPower,
-    moonFuryPoints
+  }
+
+  static spellAverageNonCrit(
+    spellName: string,
+    spellBaseDamage: number,
+    spellCoefficient: number,
+    spellPower: number,
+    moonFuryPoints: number
   ) {
     return (
       spellBaseDamage * this.moonFuryBonus(spellName, moonFuryPoints) +
       spellPower * spellCoefficient
     );
-  },
-  spellCastTimeModified: function(
-    spellName,
-    spellCastTime,
-    improvedWrathPoints
+  }
+
+  static spellCastTimeModified(
+    spellName: string,
+    spellCastTime: number,
+    improvedWrathPoints: number
   ) {
     if (this.spellShortName(spellName) == "Wrath") {
       return spellCastTime - this.improvedWrathBonus(improvedWrathPoints);
     }
     return spellCastTime;
-  },
-  spellEffectiveCastTime: function(
-    spellName,
-    spellCastTime,
-    spellCrit,
-    spellHit,
-    improvedWrathPoints,
-    naturesGrace
+  }
+
+  static spellEffectiveCastTime(
+    spellName: string,
+    spellCastTime: number,
+    spellCrit: number,
+    spellHit: number,
+    improvedWrathPoints: number,
+    naturesGrace: boolean
   ) {
     var x =
       this.spellCastTimeModified(
@@ -320,37 +340,40 @@ var wcf = {
       this.naturesGraceBonus(spellName, improvedWrathPoints, naturesGrace) *
         (this.spellChanceToCrit(spellCrit, spellHit) / 100) +
       this.globals.spellCastTimeHumanFactor;
+
     return Math.max(x, this.globals.globalCoolDown);
-  },
-  spellPartialResistLossAverage: function(
-    spellName,
-    spellPenetration,
-    enemySpellResistance
+  }
+
+  static spellPartialResistLossAverage(
+    spellName: string,
+    spellPenetration: number,
+    enemySpellResistance: number
   ) {
     var br1 = Math.min(enemySpellResistance, 276);
     var br2 = Math.min(spellPenetration, br1);
     return ((br1 - br2 + 24) / 300) * 0.75;
-  },
-  spellDPS: function(
-    spellName,
-    spellBaseDamage,
-    spellCoefficient,
-    spellCastTime,
-    spellPower,
-    spellCrit,
-    spellHit,
-    spellPenetration,
-    enemySpellResistance,
-    vengeancePoints,
-    moonFuryPoints,
-    improvedWrathPoints,
-    naturesGrace,
-    curseOfShadow,
-    powerInfusion,
-    saygesDarkFortune,
-    tracesOfSilithyst,
-    spellVuln,
-    stormStrike
+  }
+
+  static spellDPS(
+    spellName: string,
+    spellBaseDamage: number,
+    spellCoefficient: number,
+    spellCastTime: number,
+    spellPower: number,
+    spellCrit: number,
+    spellHit: number,
+    spellPenetration: number,
+    enemySpellResistance: number,
+    vengeancePoints: number,
+    moonFuryPoints: number,
+    improvedWrathPoints: number,
+    naturesGrace: boolean,
+    curseOfShadow: boolean,
+    powerInfusion: boolean,
+    saygesDarkFortune: boolean,
+    tracesOfSilithyst: boolean,
+    spellVuln: boolean,
+    stormStrike: boolean
   ) {
     // =(($H$9*$H$13*$I$9+$H$9*$H$16)/100) / $I$18*$D$22*$D$23*$D$24*$D$25*$D$26*$D$27*(1-$H$20)
     var sanc = this.spellAverageNonCrit(
@@ -385,6 +408,4 @@ var wcf = {
     var x = ((sanc * sctc * vb + sanc * sctrh) / 100 / sect) * d;
     return x;
   }
-};
-
-module.exports = wcf;
+}
