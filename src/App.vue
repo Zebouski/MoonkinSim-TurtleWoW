@@ -4,17 +4,19 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
 import MoonkinCalc from "./components/MoonkinCalc.vue";
 
-export default {
-  name: "app",
+@Component({
   components: {
     MoonkinCalc
-  },
+  }
+})
+export default class App extends Vue {
   created() {
     document.title = "Moonkin Calculator";
     //document.body.style.background = "#2e2e33";
   }
-};
+}
 </script>
