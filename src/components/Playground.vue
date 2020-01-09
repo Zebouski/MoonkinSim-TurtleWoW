@@ -8,21 +8,29 @@
               class="tile is-child box has-background-black-ter has-text-white"
             >
               <div class="content">
-                <b-tabs position="is-centered" class="block" >
+                <b-tabs position="is-centered" class="block">
                   <b-tab-item label="Character"></b-tab-item>
                   <b-tab-item label="Spell"></b-tab-item>
                   <b-tab-item label="Enemy"></b-tab-item>
                 </b-tabs>
                 <div class="select">
                   <select v-model="spellName">
-                    <option v-for="name in spellNames" :key="name" v-bind:value="name">
+                    <option
+                      v-for="name in spellNames"
+                      :key="name"
+                      v-bind:value="name"
+                    >
                       {{ name }}
                     </option>
                   </select>
                 </div>
                 <div class="select">
                   <select v-model="gearName">
-                    <option v-for="name in gearNames" :key="name" v-bind:value="name">
+                    <option
+                      v-for="name in gearNames"
+                      :key="name"
+                      v-bind:value="name"
+                    >
                       {{ name }}
                     </option>
                   </select>
@@ -67,10 +75,10 @@
 <script>
 import wcf2 from "../wcf2.js";
 
-const myCharacter= new wcf2.Character(60, "Tauren", "Druid", "Male");
+const myCharacter = new wcf2.Character(60, "Tauren", "Druid", "Male");
 const myTarget = new wcf2.Target("Ragnaros");
 const mySpell = new wcf2.Spell("Starfire Rank 1");
-const myCast = new wcf2.Cast(myCharacter, mySpell, myTarget);
+const myCast = new wcf2.SpellCast(myCharacter, mySpell, myTarget);
 
 export default {
   data() {
@@ -84,10 +92,10 @@ export default {
   },
   computed: {
     druidSpell: function() {
-      return(new wcf2.Spell(this.spellName));
+      return new wcf2.Spell(this.spellName);
     },
     headGear: function() {
-      return(new wcf2.Gear(this.gearName));
+      return new wcf2.Gear(this.gearName);
     }
   }
 };

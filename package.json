@@ -15,9 +15,11 @@
     "buefy": "^0.8.8",
     "core-js": "^3.4.3",
     "csvtojson": "^2.0.10",
+    "json-query": "^2.2.2",
     "passport-bnet": "^2.0.0",
     "vue": "^2.6.10",
     "vue-class-component": "^7.0.2",
+    "vue-cli-plugin-yaml": "^1.0.1",
     "vue-property-decorator": "^8.3.0"
   },
   "devDependencies": {
@@ -30,11 +32,11 @@
     "eslint": "^5.16.0",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-vue": "^5.0.0",
+    "node-sass": "^4.12.0",
     "prettier": "^1.19.1",
-    "typescript": "~3.5.3",
-    "vue-template-compiler": "^2.6.10",
     "sass-loader": "^8.0.0",
-    "node-sass": "^4.12.0"
+    "typescript": "~3.5.3",
+    "vue-template-compiler": "^2.6.10"
   },
   "eslintConfig": {
     "root": true,
