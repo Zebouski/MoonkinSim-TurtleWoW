@@ -1,0 +1,166 @@
+---
+- name: Starfire Rank 1
+  baseName: Starfire
+  rank: 1
+  minDmg: 95
+  maxDmg: 115
+  badBaseDmg: 99.5
+  school: arcane
+  castTime: 3.5
+  manaCost: 95
+  level: 20
+  range: 30
+- name: Starfire Rank 2
+  baseName: Starfire
+  rank: 2
+  minDmg: 146
+  maxDmg: 177
+  badBaseDmg: 152.5
+  school: arcane
+  castTime: 3.5
+  manaCost: 135
+  level: 26
+  range: 30
+- name: Starfire Rank 3
+  baseName: Starfire
+  rank: 3
+  minDmg: 212
+  maxDmg: 253
+  badBaseDmg: 221.5
+  school: arcane
+  castTime: 3.5
+  manaCost: 180
+  level: 34
+  range: 30
+- name: Starfire Rank 4
+  baseName: Starfire
+  rank: 4
+  minDmg: 293
+  maxDmg: 348
+  badBaseDmg: 307.5
+  school: arcane
+  castTime: 3.5
+  manaCost: 230
+  level: 42
+  range: 30
+- name: Starfire Rank 5
+  baseName: Starfire
+  rank: 5
+  minDmg: 378
+  maxDmg: 445
+  badBaseDmg: 395.5
+  school: arcane
+  castTime: 3.5
+  manaCost: 275
+  level: 50
+  range: 30
+- name: Starfire Rank 6
+  baseName: Starfire
+  rank: 6
+  minDmg: 451
+  maxDmg: 531
+  badBaseDmg: 488.5
+  school: arcane
+  castTime: 3.5
+  manaCost: 315
+  level: 58
+  range: 30
+- name: Starfire Rank 7
+  baseName: Starfire
+  rank: 7
+  minDmg: 496
+  maxDmg: 584
+  badBaseDmg: 540.5
+  school: arcane
+  castTime: 3.5
+  manaCost: 340
+  level: 60
+  range: 30
+- name: Wrath Rank 1
+  baseName: Wrath
+  rank: 1 
+  minDmg: 13
+  maxDmg: 16
+  badBaseDmg: 13.5 
+  school: nature
+  castTime: 1.5
+  manaCost: 20
+  level: 1
+  range: 30
+- name: Wrath Rank 2
+  baseName: Wrath
+  rank: 2 
+  minDmg: 28
+  maxDmg: 33
+  badBaseDmg: 27.5
+  school: nature
+  castTime: 1.7
+  manaCost: 35
+  level: 6
+  range: 30
+- name: Wrath Rank 3
+  baseName: Wrath
+  rank: 3 
+  minDmg: 48
+  maxDmg: 57
+  badBaseDmg: 48.5
+  school: nature
+  castTime: 2
+  manaCost: 55
+  level: 14
+  range: 30
+- name: Wrath Rank 4
+  baseName: Wrath
+  rank: 4
+  minDmg: 69
+  maxDmg: 79
+  badBaseDmg: 68.5
+  school: nature
+  castTime: 2
+  manaCost: 70
+  level: 22
+  range: 30
+- name: Wrath Rank 5
+  baseName: Wrath
+  rank: 5
+  minDmg: 108
+  maxDmg: 123
+  badBaseDmg: 108.5
+  school: nature
+  castTime: 2
+  manaCost: 100
+  level: 30
+  range: 30
+- name: Wrath Rank 6
+  baseName: Wrath
+  rank: 6
+  minDmg: 148
+  maxDmg: 167
+  badBaseDmg: 148.5
+  school: nature
+  castTime: 2
+  manaCost: 125
+  level: 38
+  range: 30
+- name: Wrath Rank 7
+  baseName: Wrath
+  rank: 7
+  minDmg: 198
+  maxDmg: 221
+  badBaseDmg: 199.5
+  school: nature
+  castTime: 2
+  manaCost: 155
+  level: 46
+  range: 30
+- name: Wrath Rank 8
+  baseName: Wrath
+  rank: 8
+  minDmg: 248
+  maxDmg: 277
+  badBaseDmg: 250.5
+  school: nature
+  castTime: 2
+  manaCost: 180
+  level: 54
+  range: 30
