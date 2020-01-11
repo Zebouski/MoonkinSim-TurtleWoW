@@ -1,29 +1,30 @@
-/* TODO:
-      - Add moonfire
-      - Iron out target spell resist/pen.
-        - Isn't spell pen/resist based on damage school?
-        - Why does it default to 75 resist? Data on ragnaros says he has 15 nature/wrath.
-        - Make sure immunities work
-      - Character attributes.
-        - int, spirit, crit, hit, etc should all be in character class.
-        - they should calculate a base value, then add in from gear, then talents, then buffs
-        - +spell power should be seperate from +spellPower to school. The total derived spell power
-          must take into account the school of the spell being cast.
-        - account for racial bonuses like tauren stamina
-      - Buffs.
-        - Add mark of the wild, flask of supreme power, world buffs, etc.
-        - Add them to a JSON file like spells.
-      - Gear.
-        - Add rudimentary gear selection
-      - UI
-        - Need reasonable way to fit character, talents, gear, buffs, target, etc on
-          one page. Maybe make the input side a tabbed box.
-      - Header/footer
-        - Make them seperate components
-      - Refactoring
-        - Can drop "spell" prefix on children of spell* classes
-*/
-
+/**
+ *   - Add moonfire
+ *   - Iron out target spell resist/pen.
+ *     - Isn't spell pen/resist based on damage school?
+ *     - Why does it default to 75 resist? Data on ragnaros says he has 15 nature/wrath.
+ *     - Make sure immunities work
+ *   - Character attributes.
+ *     - int, spirit, crit, hit, etc should all be in character class.
+ *     - they should calculate a base value, then add in from gear, then talents, then buffs
+ *     - +spell power should be seperate from +spellPower to school. The total derived spell power
+ *       must take into account the school of the spell being cast.
+ *     - account for racial bonuses like tauren stamina
+ *   - Buffs.
+ *     - Add mark of the wild, flask of supreme power, world buffs, etc.
+ *     - Add them to a JSON file like spells.
+ *   - Gear.
+ *     - Add rudimentary gear selection
+ *  - UI
+ *    - Need reasonable way to fit character, talents, gear, buffs, target, etc on
+ *      one page. Maybe make the input side a tabbed box.
+ *  - Header/footer
+ *    - Make them seperate components
+ *  - Refactoring
+ *    - Can drop "spell" prefix on children of spell* classes
+ *    - Calculate values like "naturesGraceBonus" in constructor and save them,
+ *      instead of recalculating every time.
+ */
 import jsonQuery from 'json-query'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const druidSpells = require('./db/spells/druid.yaml')
@@ -66,10 +67,17 @@ interface SpellJSON {
   maxDmg: number
   badBaseDmg: number
   school: string
+  type: string
   castTime: number
+  duration: number
   manaCost: number
   level: number
   range: number
+}
+
+interface CoefficientValues {
+  direct: number
+  dot: number
 }
 
 class Spell {
@@ -92,14 +100,32 @@ class Spell {
     return (this.minDmg + this.maxDmg) / 2
   }
 
-  public get coefficient(): number {
-    const baseCoefficient = this.castTime / 3.5
-    if (this.level < 20) {
-      const subLevelPenalty = 1 - (20 - this.level) * 0.0375
-      const effectiveCoefficient = baseCoefficient * (1 - subLevelPenalty)
-      return effectiveCoefficient
+  public get coefficient(): CoefficientValues {
+    let myCoefficient = { direct: 0, dot: 0 }
+    const subLevelPenalty = 1 - (20 - this.level) * 0.0375
+
+    if (this.spellJSON.type === 'hybrid') {
+      let dotPart = this.duration / 15 / (this.duration / 15 + this.castTime / 3.5)
+      let directPart = 1 - dotPart
+      let baseDotCoefficient = (this.duration / 15) * dotPart
+      let baseDirectCoefficient = (this.castTime / 3.5) * directPart
+
+      if (this.level < 20) {
+        myCoefficient.dot = baseDotCoefficient * (1 - subLevelPenalty)
+        myCoefficient.direct = baseDirectCoefficient * (1 - subLevelPenalty)
+      } else {
+        myCoefficient.dot = baseDotCoefficient
+        myCoefficient.direct = baseDirectCoefficient
+      }
+    } else {
+      const baseCoefficient = this.castTime / 3.5
+      if (this.level < 20) {
+        myCoefficient.direct = baseCoefficient * (1 - subLevelPenalty)
+      } else {
+        myCoefficient.direct = baseCoefficient
+      }
     }
-    return baseCoefficient
+    return myCoefficient
   }
 
   public get baseName(): string {
@@ -126,8 +152,15 @@ class Spell {
     return this.spellJSON.school
   }
 
+  /**
+   * Return cast time, limited to globalCoolDown
+   */
   public get castTime(): number {
-    return this.spellJSON.castTime
+    return this.spellJSON.castTime <= globalCoolDown ? globalCoolDown : this.spellJSON.castTime
+  }
+
+  public get duration(): number {
+    return this.spellJSON.duration
   }
 
   public get manaCost(): number {
@@ -303,10 +336,10 @@ class SpellCast {
     }
   }
 
- /**
-  * Factors in talents that modify base spell cast time.
-  * Doesn't count for procs like natures grace
-  */
+  /**
+   * Factors in talents that modify base spell cast time.
+   * Doesn't count for procs like natures grace
+   */
   public get castTime(): number {
     switch (this.spell.baseName) {
       case 'Wrath':
@@ -314,13 +347,13 @@ class SpellCast {
       case 'Starfire':
         return this.spell.castTime - this.improvedStarfireBonus
       default:
-        return this.spell.castTime
+        return this.spell.castTime <= globalCoolDown ? globalCoolDown : this.spell.castTime
     }
   }
 
- /**
-  * Factors in cast speed procs natures grace and "human factor"
-  */
+  /**
+   * Factors in cast speed procs natures grace and "human factor"
+   */
   public get spellEffectiveCastTime(): number {
     const x = this.castTime - this.naturesGraceBonus * (this.spellChanceToCrit / 100) + spellCastTimeHumanFactor
 
@@ -399,12 +432,14 @@ class SpellCast {
   }
 
   /**
-   * FIXME: dumb. pretty sure can make universal by limiting to GCD
+   * Returns the time that will be reduced from cast time when natures grace procs
+   * Time is limited by the global cooldown.
    */
   public get naturesGraceBonus(): number {
     if (this.character.talents.naturesGraceRank > 0) {
-      if (this.spell.baseName === 'Wrath') {
-        return naturesGraceReduction - this.improvedWrathBonus
+      let x = this.castTime - naturesGraceReduction
+      if (x <= globalCoolDown) {
+        return globalCoolDown - (x + naturesGraceReduction)
       }
       return naturesGraceReduction
     }
@@ -424,7 +459,7 @@ class SpellCast {
   }
 
   public get spellAverageNonCrit(): number {
-    return this.spell.baseDmg * this.moonFuryBonus + this.character.spellPower * this.spell.coefficient
+    return this.spell.baseDmg * this.moonFuryBonus + this.character.spellPower * this.spell.coefficient.direct
   }
 
   public get spellPartialResistLossAverage(): number {
@@ -449,7 +484,8 @@ class SpellCast {
    * c(0.83+H/100)(1+R/100)/(T-t(0.83+H/100)(R/100))
    */
   public get spellPowerToDamage(): number {
-    const x = this.spell.coefficient * (0.83 + this.character.spellHit / 100) * (1 + this.character.spellCrit / 100)
+    const x =
+      this.spell.coefficient.direct * (0.83 + this.character.spellHit / 100) * (1 + this.character.spellCrit / 100)
     const y =
       this.castTime - this.naturesGraceBonus * (0.83 + this.character.spellHit / 100) * (this.character.spellCrit / 100)
     return x / y
@@ -462,7 +498,7 @@ class SpellCast {
     return (
       (this.spellMultiplicativeBonuses *
         (83 + this.character.spellHit) *
-        (this.moonFuryBonus * this.spell.baseDmg + this.spell.coefficient * this.character.spellPower) *
+        (this.moonFuryBonus * this.spell.baseDmg + this.spell.coefficient.direct * this.character.spellPower) *
         ((this.vengeanceBonus - 1) * this.castTime + this.naturesGraceBonus * (0.83 + this.character.spellHit / 100))) /
       (100 * this.castTime -
         this.naturesGraceBonus * (0.83 + this.character.spellHit / 100) * this.character.spellCrit) **
@@ -475,7 +511,7 @@ class SpellCast {
   public get spellHitToDamage(): number {
     return (
       (this.spellMultiplicativeBonuses *
-        (this.moonFuryBonus * this.spell.baseDmg + this.spell.coefficient * this.character.spellPower) *
+        (this.moonFuryBonus * this.spell.baseDmg + this.spell.coefficient.direct * this.character.spellPower) *
         (100 + (this.vengeanceBonus - 1) * this.character.spellCrit) *
         (100 ** 2 * this.castTime)) /
       (100 ** 2 * this.castTime - this.naturesGraceBonus * (83 + this.character.spellHit) * this.character.spellCrit) **

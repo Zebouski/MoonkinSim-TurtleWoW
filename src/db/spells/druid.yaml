@@ -4,7 +4,9 @@
   maxDmg: 115
   badBaseDmg: 99.5
   school: arcane
+  type: direct
   castTime: 3.5
+  duration: 0
   manaCost: 95
   level: 20
   range: 30
@@ -13,7 +15,9 @@
   maxDmg: 177
   badBaseDmg: 152.5
   school: arcane
+  type: direct
   castTime: 3.5
+  duration: 0
   manaCost: 135
   level: 26
   range: 30
@@ -22,7 +26,9 @@
   maxDmg: 253
   badBaseDmg: 221.5
   school: arcane
+  type: direct
   castTime: 3.5
+  duration: 0
   manaCost: 180
   level: 34
   range: 30
@@ -31,7 +37,9 @@
   maxDmg: 348
   badBaseDmg: 307.5
   school: arcane
+  type: direct
   castTime: 3.5
+  duration: 0
   manaCost: 230
   level: 42
   range: 30
@@ -40,7 +48,9 @@
   maxDmg: 445
   badBaseDmg: 395.5
   school: arcane
+  type: direct
   castTime: 3.5
+  duration: 0
   manaCost: 275
   level: 50
   range: 30
@@ -49,7 +59,9 @@
   maxDmg: 531
   badBaseDmg: 488.5
   school: arcane
+  type: direct
   castTime: 3.5
+  duration: 0
   manaCost: 315
   level: 58
   range: 30
@@ -58,7 +70,9 @@
   maxDmg: 584
   badBaseDmg: 540.5
   school: arcane
+  type: direct
   castTime: 3.5
+  duration: 0
   manaCost: 340
   level: 60
   range: 30
@@ -67,7 +81,9 @@
   maxDmg: 16
   badBaseDmg: 13.5 
   school: nature
+  type: direct
   castTime: 1.5
+  duration: 0
   manaCost: 20
   level: 1
   range: 30
@@ -76,7 +92,9 @@
   maxDmg: 33
   badBaseDmg: 27.5
   school: nature
+  type: direct
   castTime: 1.7
+  duration: 0
   manaCost: 35
   level: 6
   range: 30
@@ -85,7 +103,9 @@
   maxDmg: 57
   badBaseDmg: 48.5
   school: nature
+  type: direct
   castTime: 2
+  duration: 0
   manaCost: 55
   level: 14
   range: 30
@@ -94,7 +114,9 @@
   maxDmg: 79
   badBaseDmg: 68.5
   school: nature
+  type: direct
   castTime: 2
+  duration: 0
   manaCost: 70
   level: 22
   range: 30
@@ -103,7 +125,9 @@
   maxDmg: 123
   badBaseDmg: 108.5
   school: nature
+  type: direct
   castTime: 2
+  duration: 0
   manaCost: 100
   level: 30
   range: 30
@@ -112,7 +136,9 @@
   maxDmg: 167
   badBaseDmg: 148.5
   school: nature
+  type: direct
   castTime: 2
+  duration: 0
   manaCost: 125
   level: 38
   range: 30
@@ -121,7 +147,9 @@
   maxDmg: 221
   badBaseDmg: 199.5
   school: nature
+  type: direct
   castTime: 2
+  duration: 0
   manaCost: 155
   level: 46
   range: 30
@@ -130,7 +158,119 @@
   maxDmg: 277
   badBaseDmg: 250.5
   school: nature
+  type: direct
   castTime: 2
+  duration: 0
   manaCost: 180
   level: 54
+  range: 30
+- name: Moonfire Rank 1
+  minDmg: 9
+  maxDmg: 12
+  badBaseDmg: 0
+  school: arcane
+  type: hybrid
+  castTime: 0
+  duration: 9
+  manaCost: 25
+  level: 4
+  range: 30
+- name: Moonfire Rank 2
+  minDmg: 17
+  maxDmg: 21
+  badBaseDmg: 0
+  school: arcane
+  type: hybrid
+  castTime: 0
+  duration: 12
+  manaCost: 50
+  level: 10
+  range: 30
+- name: Moonfire Rank 3
+  minDmg: 30
+  maxDmg: 37
+  badBaseDmg: 0
+  school: arcane
+  type: hybrid
+  castTime: 0
+  duration: 12
+  manaCost: 75
+  level: 16
+  range: 30
+- name: Moonfire Rank 4
+  minDmg: 47
+  maxDmg: 55
+  badBaseDmg: 0
+  school: arcane
+  type: hybrid
+  castTime: 0
+  duration: 12
+  manaCost: 105
+  level: 22
+  range: 30
+- name: Moonfire Rank 5
+  minDmg: 70
+  maxDmg: 82
+  badBaseDmg: 0
+  school: arcane
+  type: hybrid
+  castTime: 0
+  duration: 12
+  manaCost: 150
+  level: 28
+  range: 30
+- name: Moonfire Rank 6
+  minDmg: 91
+  maxDmg: 108
+  badBaseDmg: 0
+  school: arcane
+  type: hybrid
+  castTime: 0
+  duration: 12
+  manaCost: 190
+  level: 34
+  range: 30
+- name: Moonfire Rank 7
+  minDmg: 117
+  maxDmg: 137
+  badBaseDmg: 0
+  school: arcane
+  type: hybrid
+  castTime: 0
+  duration: 12
+  manaCost: 235
+  level: 40
+  range: 30
+- name: Moonfire Rank 8
+  minDmg: 143
+  maxDmg: 168
+  badBaseDmg: 0
+  school: arcane
+  type: hybrid
+  castTime: 0
+  duration: 12
+  manaCost: 280
+  level: 46
+  range: 30
+- name: Moonfire Rank 9
+  minDmg: 172
+  maxDmg: 200
+  badBaseDmg: 0
+  school: arcane
+  type: hybrid
+  castTime: 0
+  duration: 12
+  manaCost: 325
+  level: 52
+  range: 30
+- name: Moonfire Rank 10
+  minDmg: 195
+  maxDmg: 228
+  badBaseDmg: 0
+  school: arcane
+  type: hybrid
+  castTime: 0
+  duration: 12
+  manaCost: 375
+  level: 58
   range: 30
