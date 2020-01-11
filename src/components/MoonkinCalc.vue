@@ -12,21 +12,14 @@
       <div class="container is-fluid">
         <div class="tile is-ancestor">
           <div class="tile is-parent">
-            <article
-              class="tile is-child box has-background-black-ter has-text-white"
-            >
+            <article class="tile is-child box has-background-black-ter has-text-white">
               <div class="content">
                 <div class="input_fields">
                   <label class="input-box">
                     <div>Spell Name:</div>
                     <div class="select">
                       <select v-model="spellName">
-                        <option
-                          v-for="name in spellNames"
-                          :key="name"
-                          v-bind:value="name"
-                          >{{ name }}</option
-                        >
+                        <option v-for="name in spellNames" :key="name" v-bind:value="name">{{ name }}</option>
                       </select>
                     </div>
                   </label>
@@ -49,113 +42,63 @@
                 <div class="input_fields">
                   <label class="input-box">
                     <div>Spell Power:</div>
-                    <input
-                      class="input"
-                      type="number"
-                      v-model.number="spellPower"
-                    />
+                    <input class="input" type="number" v-model.number="spellPower" />
                   </label>
                   <label class="input-box">
                     <div>Spell Crit:</div>
-                    <input
-                      class="input"
-                      type="number"
-                      v-model.number="spellCrit"
-                    />
+                    <input class="input" type="number" v-model.number="spellCrit" />
                   </label>
                   <label class="input-box">
                     <div>Spell Hit:</div>
-                    <input
-                      class="input"
-                      type="number"
-                      v-model.number="spellHit"
-                    />
+                    <input class="input" type="number" v-model.number="spellHit" />
                   </label>
                 </div>
                 <div class="input_fields">
                   <label class="input-box">
                     <div>Moonfury rank:</div>
-                    <input
-                      class="input"
-                      type="number"
-                      v-model.number="moonFuryRank"
-                    />
+                    <input class="input" type="number" v-model.number="moonFuryRank" />
                   </label>
                   <label class="input-box">
                     <div>Vengeance rank:</div>
-                    <input
-                      class="input"
-                      type="number"
-                      v-model.number="vengeanceRank"
-                    />
+                    <input class="input" type="number" v-model.number="vengeanceRank" />
                   </label>
                   <label class="input-box">
                     <div>Improved Wrath rank:</div>
-                    <input
-                      class="input"
-                      type="number"
-                      v-model.number="improvedWrathRank"
-                    />
+                    <input class="input" type="number" v-model.number="improvedWrathRank" />
                   </label>
                   <label class="input-box">
                     <div>Improved Starfire rank:</div>
-                    <input
-                      class="input"
-                      type="number"
-                      v-model.number="improvedStarfireRank"
-                    />
+                    <input class="input" type="number" v-model.number="improvedStarfireRank" />
                   </label>
                   <label class="input-box">
                     <div>Natures Grace rank:</div>
-                    <input
-                      class="input"
-                      type="number"
-                      v-model.number="naturesGraceRank"
-                    />
+                    <input class="input" type="number" v-model.number="naturesGraceRank" />
                   </label>
                 </div>
                 <div class="input_fields">
+                  <label class="input-box"> <input type="checkbox" v-model="curseOfShadow" />Curse of Shadow </label>
+                  <label class="input-box"> <input type="checkbox" v-model="powerInfusion" />Power Infusion </label>
                   <label class="input-box">
-                    <input type="checkbox" v-model="curseOfShadow" />Curse of
-                    Shadow
+                    <input type="checkbox" v-model="saygesDarkFortune" />Sayge's Dark Fortune of Damage
                   </label>
                   <label class="input-box">
-                    <input type="checkbox" v-model="powerInfusion" />Power
-                    Infusion
+                    <input type="checkbox" v-model="tracesOfSilithyst" />Traces of Silithyst
                   </label>
-                  <label class="input-box">
-                    <input type="checkbox" v-model="saygesDarkFortune" />Sayge's
-                    Dark Fortune of Damage
-                  </label>
-                  <label class="input-box">
-                    <input type="checkbox" v-model="tracesOfSilithyst" />Traces
-                    of Silithyst
-                  </label>
-                  <label class="input-box">
-                    <input type="checkbox" v-model="spellVuln" />Spell
-                    Vulnerability
-                  </label>
-                  <label class="input-box">
-                    <input type="checkbox" v-model="stormStrike" />Storm Strike
-                  </label>
+                  <label class="input-box"> <input type="checkbox" v-model="spellVuln" />Spell Vulnerability </label>
+                  <label class="input-box"> <input type="checkbox" v-model="stormStrike" />Storm Strike </label>
                 </div>
               </div>
             </article>
           </div>
           <div class="tile is-parent">
-            <article
-              class="tile is-child box has-background-black-ter has-text-white"
-            >
+            <article class="tile is-child box has-background-black-ter has-text-white">
               <p class="subtitle has-text-white"></p>
               <div class="content">
                 <p>DPS: {{ spellCast.DPS.toFixed(2) }}</p>
                 <p>
                   Spell Crit Weight:
                   {{ spellCast.spellCritWeight.toFixed(2) }}
-                  <i
-                    >(1 Spell Crit =
-                    {{ spellCast.spellCritWeight.toFixed(2) }} Spell Power)</i
-                  >
+                  <i>(1 Spell Crit = {{ spellCast.spellCritWeight.toFixed(2) }} Spell Power)</i>
                 </p>
                 <p>
                   Spell Hit Weight:
@@ -167,37 +110,19 @@
                 </p>
                 <p>
                   Int Weight:
-                  {{
-                    Number(
-                      spellCast.spellCritToDamage /
-                        spellCast.spellPowerToDamage /
-                        60
-                    ).toFixed(2)
-                  }}
+                  {{ Number(spellCast.spellCritToDamage / spellCast.spellPowerToDamage / 60).toFixed(2) }}
                   <i>
-                    ({{
-                      Number(
-                        (
-                          1 /
-                          (spellCast.spellCritToDamage /
-                            spellCast.spellPowerToDamage /
-                            60)
-                        ).toFixed(2)
-                      )
-                    }}
+                    ({{ Number((1 / (spellCast.spellCritToDamage / spellCast.spellPowerToDamage / 60)).toFixed(2)) }}
                     Int = 1 Spell Power)
                   </i>
                 </p>
                 <p>
-                  Spell Base Dmg: {{ spellCast.spell.baseDmg }} ({{
-                    spellCast.spell.minDmg
-                  }}
-                  - {{ spellCast.spell.maxDmg }})
+                  Spell Base Dmg: {{ spellCast.spell.baseDmg }} ({{ spellCast.spell.minDmg }} -
+                  {{ spellCast.spell.maxDmg }})
                 </p>
                 <p>
                   Spell Cast Time: {{ spellCast.castTime }} (Effective:
-                  {{ spellCast.spellEffectiveCastTime.toFixed(2) }}, Base:
-                  {{ spellCast.spell.castTime }})
+                  {{ spellCast.spellEffectiveCastTime.toFixed(2) }}, Base: {{ spellCast.spell.castTime }})
                 </p>
                 <p>Spell Coefficient: {{ spellCast.spell.coefficient }}</p>
                 <p>Spell School: {{ spellCast.spell.school }}</p>
@@ -206,9 +131,7 @@
                 <p>Target Resistance: {{ spellCast.target.spellResistance }}</p>
                 <p>
                   Partial resist average loss:
-                  {{
-                    Number(spellCast.spellPartialResistLossAverage).toFixed(2)
-                  }}
+                  {{ Number(spellCast.spellPartialResistLossAverage).toFixed(2) }}
                 </p>
                 <p>
                   Spell chance to miss / hit / crit:
@@ -231,9 +154,10 @@
         <font-awesome-icon :icon="['fab', 'discord']" />Beef Broccoli#5067
         <br />
         <font-awesome-icon :icon="['fab', 'gitlab']" />
-        <a href="https://gitlab.com/kmmiles/moonkin-calc"
-          >https://gitlab.com/kmmiles/moonkin-calc</a
-        >
+        <a href="https://gitlab.com/kmmiles/moonkin-calc">Source</a>
+        <br />
+        <font-awesome-icon :icon="['fab', 'book']" />
+        <a href="https://gitlab.com/kmmiles/moonkin-calc/docs">Docs</a>
         <br />
         <p>
           Based on Keftenk's
@@ -258,39 +182,39 @@
 </style>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import { default as wcf } from "../wcf";
+import { Component, Vue } from 'vue-property-decorator'
+import { default as wcf } from '../wcf'
 
 @Component
 export default class MoonkinCalc extends Vue {
-  spellNames = wcf.Spell.getSpellNames();
-  targetNames = wcf.Target.getTargetNames();
-  spellName = "Starfire Rank 6";
-  targetName = "Ragnaros";
-  targetSpellResistance = 75;
-  spellPower = 684;
-  spellCrit = 30.785;
-  spellHit = 2;
-  spellPenetration = 75;
-  naturesGraceRank = 1;
-  moonFuryRank = 5;
-  vengeanceRank = 5;
-  improvedWrathRank = 5;
-  improvedStarfireRank = 5;
-  curseOfShadow = true;
-  powerInfusion = false;
-  saygesDarkFortune = false;
-  tracesOfSilithyst = false;
-  spellVuln = false;
-  stormStrike = false;
+  spellNames = wcf.Spell.getSpellNames()
+  targetNames = wcf.Target.getTargetNames()
+  spellName = 'Starfire Rank 6'
+  targetName = 'Ragnaros'
+  targetSpellResistance = 75
+  spellPower = 684
+  spellCrit = 30.785
+  spellHit = 2
+  spellPenetration = 75
+  naturesGraceRank = 1
+  moonFuryRank = 5
+  vengeanceRank = 5
+  improvedWrathRank = 5
+  improvedStarfireRank = 5
+  curseOfShadow = true
+  powerInfusion = false
+  saygesDarkFortune = false
+  tracesOfSilithyst = false
+  spellVuln = false
+  stormStrike = false
 
   get spellCast() {
     return new wcf.SpellCast(
       new wcf.Character(
         60,
-        "Tauren",
-        "Druid",
-        "Male",
+        'Tauren',
+        'Druid',
+        'Male',
         new wcf.Talents(
           this.naturesGraceRank,
           this.moonFuryRank,
@@ -299,18 +223,11 @@ export default class MoonkinCalc extends Vue {
           this.improvedStarfireRank
         ),
         new wcf.Gear(this.spellHit, this.spellCrit, this.spellPower),
-        new wcf.Buffs(
-          this.powerInfusion,
-          this.saygesDarkFortune,
-          this.tracesOfSilithyst
-        )
+        new wcf.Buffs(this.powerInfusion, this.saygesDarkFortune, this.tracesOfSilithyst)
       ),
       new wcf.Spell(this.spellName),
-      new wcf.Target(
-        this.targetName,
-        new wcf.Debuffs(this.curseOfShadow, this.stormStrike, this.spellVuln)
-      )
-    );
+      new wcf.Target(this.targetName, new wcf.Debuffs(this.curseOfShadow, this.stormStrike, this.spellVuln))
+    )
   }
 }
 </script>

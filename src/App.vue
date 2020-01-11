@@ -5,8 +5,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import MoonkinCalc from "./components/MoonkinCalc.vue";
+import { Component, Vue } from 'vue-property-decorator'
+import MoonkinCalc from './components/MoonkinCalc.vue'
 
 @Component({
   components: {
@@ -15,7 +15,7 @@ import MoonkinCalc from "./components/MoonkinCalc.vue";
 })
 export default class App extends Vue {
   created() {
-    document.title = "Moonkin Calculator";
+    document.title = 'Moonkin Calculator'
   }
 }
 </script>
