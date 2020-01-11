@@ -16,110 +16,105 @@
               class="tile is-child box has-background-black-ter has-text-white"
             >
               <div class="content">
-                <div class="select">
-                  <select v-model="spellName" @change="onChange($event)">
-                    <option>Starfire Rank 1</option>
-                    <option>Starfire Rank 2</option>
-                    <option>Starfire Rank 3</option>
-                    <option>Starfire Rank 4</option>
-                    <option>Starfire Rank 5</option>
-                    <option>Starfire Rank 6</option>
-                    <option>Starfire Rank 7</option>
-                    <option>Wrath Rank 1</option>
-                    <option>Wrath Rank 2</option>
-                    <option>Wrath Rank 3</option>
-                    <option>Wrath Rank 4</option>
-                    <option>Wrath Rank 5</option>
-                    <option>Wrath Rank 6</option>
-                    <option>Wrath Rank 7</option>
-                    <option>Wrath Rank 8</option>
-                  </select>
-                </div>
                 <div class="input_fields">
                   <label class="input-box">
-                    <div>Spell Base Damage:</div>
-                    <input
-                      class="input"
-                      type="number"
-                      v-model="spellBaseDamage"
-                    />
+                    <div>Spell Name:</div>
+                    <div class="select">
+                      <select v-model="spellName">
+                        <option
+                          v-for="name in spellNames"
+                          :key="name"
+                          v-bind:value="name"
+                          >{{ name }}</option
+                        >
+                      </select>
+                    </div>
                   </label>
+                  <!--
                   <label class="input-box">
-                    <div>Spell Base Cast Time:</div>
-                    <input
-                      class="input"
-                      type="number"
-                      v-model="spellCastTime"
-                    />
+                    <div>Target:</div>
+                    <div class="select">
+                      <select v-model="targetName">
+                        <option
+                          v-for="name in targetNames"
+                          :key="name"
+                          v-bind:value="name"
+                          >{{ name }}</option
+                        >
+                      </select>
+                    </div>
                   </label>
-                  <label class="input-box">
-                    <div>Spell Coefficient:</div>
-                    <input
-                      class="input"
-                      type="number"
-                      v-model="spellCoefficient"
-                    />
-                  </label>
+                  -->
                 </div>
                 <div class="input_fields">
                   <label class="input-box">
                     <div>Spell Power:</div>
-                    <input class="input" type="number" v-model="spellPower" />
-                  </label>
-                  <label class="input-box">
-                    <div>Spell Crit:</div>
-                    <input class="input" type="number" v-model="spellCrit" />
-                  </label>
-                  <label class="input-box">
-                    <div>Spell Hit:</div>
-                    <input class="input" type="number" v-model="spellHit" />
-                  </label>
-                  <label class="input-box">
-                    <div>Spell Penetration:</div>
                     <input
                       class="input"
                       type="number"
-                      v-model="spellPenetration"
+                      v-model.number="spellPower"
                     />
                   </label>
                   <label class="input-box">
-                    <div>Enemy Resistance:</div>
+                    <div>Spell Crit:</div>
                     <input
                       class="input"
                       type="number"
-                      v-model="enemySpellResistance"
+                      v-model.number="spellCrit"
+                    />
+                  </label>
+                  <label class="input-box">
+                    <div>Spell Hit:</div>
+                    <input
+                      class="input"
+                      type="number"
+                      v-model.number="spellHit"
                     />
                   </label>
                 </div>
                 <div class="input_fields">
                   <label class="input-box">
-                    <div>Moonfury points:</div>
+                    <div>Moonfury rank:</div>
                     <input
                       class="input"
                       type="number"
-                      v-model="moonFuryPoints"
+                      v-model.number="moonFuryRank"
                     />
                   </label>
                   <label class="input-box">
-                    <div>Vengeance points:</div>
+                    <div>Vengeance rank:</div>
                     <input
                       class="input"
                       type="number"
-                      v-model="vengeancePoints"
+                      v-model.number="vengeanceRank"
                     />
                   </label>
                   <label class="input-box">
-                    <div>Improved Wrath points:</div>
+                    <div>Improved Wrath rank:</div>
                     <input
                       class="input"
                       type="number"
-                      v-model="improvedWrathPoints"
+                      v-model.number="improvedWrathRank"
                     />
                   </label>
                   <label class="input-box">
-                    <input type="checkbox" v-model="naturesGrace" />Nature's
-                    Grace
+                    <div>Improved Starfire rank:</div>
+                    <input
+                      class="input"
+                      type="number"
+                      v-model.number="improvedStarfireRank"
+                    />
                   </label>
+                  <label class="input-box">
+                    <div>Natures Grace rank:</div>
+                    <input
+                      class="input"
+                      type="number"
+                      v-model.number="naturesGraceRank"
+                    />
+                  </label>
+                </div>
+                <div class="input_fields">
                   <label class="input-box">
                     <input type="checkbox" v-model="curseOfShadow" />Curse of
                     Shadow
@@ -153,46 +148,40 @@
             >
               <p class="subtitle has-text-white"></p>
               <div class="content">
-                <p>DPS: {{ Number(spellDPS.toFixed(2)) }}</p>
+                <p>DPS: {{ spellCast.DPS.toFixed(2) }}</p>
                 <p>
                   Spell Crit Weight:
-                  {{
-                    Number(spellCritToDamage / spellPowerToDamage).toFixed(2)
-                  }}
-                  <i>
-                    (1 Spell Crit =
-                    {{
-                      Number(
-                        (spellCritToDamage / spellPowerToDamage).toFixed(2)
-                      )
-                    }}
-                    Spell Power)
-                  </i>
+                  {{ spellCast.spellCritWeight.toFixed(2) }}
+                  <i
+                    >(1 Spell Crit =
+                    {{ spellCast.spellCritWeight.toFixed(2) }} Spell Power)</i
+                  >
                 </p>
                 <p>
                   Spell Hit Weight:
-                  {{ Number(spellHitToDamage / spellPowerToDamage).toFixed(2) }}
+                  {{ spellCast.spellHitWeight.toFixed(2) }}
                   <i>
-                    (1 Spell Hit =
-                    {{
-                      Number((spellHitToDamage / spellPowerToDamage).toFixed(2))
-                    }}
+                    (1 Spell Hit = {{ spellCast.spellHitWeight.toFixed(2) }}
                     Spell Power)
                   </i>
                 </p>
                 <p>
                   Int Weight:
                   {{
-                    Number(spellCritToDamage / spellPowerToDamage / 60).toFixed(
-                      2
-                    )
+                    Number(
+                      spellCast.spellCritToDamage /
+                        spellCast.spellPowerToDamage /
+                        60
+                    ).toFixed(2)
                   }}
                   <i>
                     ({{
                       Number(
                         (
                           1 /
-                          (spellCritToDamage / spellPowerToDamage / 60)
+                          (spellCast.spellCritToDamage /
+                            spellCast.spellPowerToDamage /
+                            60)
                         ).toFixed(2)
                       )
                     }}
@@ -200,63 +189,42 @@
                   </i>
                 </p>
                 <p>
-                  Spell chance to miss:
-                  {{ Number(spellChanceToMiss).toFixed(2) }}
+                  Spell Base Dmg: {{ spellCast.spell.baseDmg }} ({{
+                    spellCast.spell.minDmg
+                  }}
+                  - {{ spellCast.spell.maxDmg }})
                 </p>
                 <p>
-                  Spell chance to regular hit:
-                  {{ Number(spellChanceToRegularHit).toFixed(2) }}
+                  Spell Cast Time: {{ spellCast.castTime }} (Effective:
+                  {{ spellCast.spellEffectiveCastTime.toFixed(2) }}, Base:
+                  {{ spellCast.spell.castTime }})
+                </p>
+                <p>Spell Coefficient: {{ spellCast.spell.coefficient }}</p>
+                <p>Spell School: {{ spellCast.spell.school }}</p>
+                <p>Spell Range: {{ spellCast.spell.range }}</p>
+                <p>Spell Penetration: {{ spellCast.spellPenetration }}</p>
+                <p>Target Resistance: {{ spellCast.target.spellResistance }}</p>
+                <p>
+                  Partial resist average loss:
+                  {{
+                    Number(spellCast.spellPartialResistLossAverage).toFixed(2)
+                  }}
                 </p>
                 <p>
-                  Spell chance to crit:
-                  {{ Number(spellChanceToCrit).toFixed(2) }}
+                  Spell chance to miss / hit / crit:
+                  {{ Number(spellCast.spellChanceToMiss).toFixed(2) }} /
+                  {{ Number(spellCast.spellChanceToRegularHit).toFixed(2) }} /
+                  {{ Number(spellCast.spellChanceToCrit).toFixed(2) }}
                 </p>
                 <p>
                   Spell average non-crit:
-                  {{ Number(spellAverageNonCrit).toFixed(2) }}
+                  {{ Number(spellCast.spellAverageNonCrit).toFixed(2) }}
                 </p>
-                <p>
-                  Spell effective cast-time:
-                  {{ Number(spellEffectiveCastTime).toFixed(2) }}
-                </p>
-                <p>
-                  Spell partial resist average loss:
-                  {{ Number(spellPartialResistLossAverage).toFixed(2) }}
-                </p>
-                <p>Spell Crit Bonus: {{ spellCritBonus }}</p>
-                <p>Moonfury Bonus: {{ moonFuryBonus }}</p>
-                <!--<p>Spell Power To Damage: {{ spellPowerToDamage }}</p>
-                <p>Spell Crit To Damage: {{ spellCritToDamage }}</p>
-                <p>Spell Hit To Damage: {{ spellHitToDamage }}</p>-->
               </div>
             </article>
           </div>
         </div>
       </div>
-      <!--
-      <div class="tile is-parent">
-        <article
-          class="tile is-child box has-background-black-ter has-text-white">
-          <p class="subtitle has-text-white">Gear</p>
-          <div class="content">
-            <div class="control">
-              <div class="select">
-                <select :value="gearListHeads">
-                  <option v-for="gearItem in gearListHeads" v-bind:key="gearItem.Name">{{ gearItem.Name }}</option>
-                </select>
-              </div>
-            </div>
-            <div class="control">
-              <div class="select">
-                <select :value="gearListNecks">
-                  <option v-for="gearItem in gearListNecks" v-bind:key="gearItem.Name">{{ gearItem.Name }}</option>
-                </select>
-              </div>
-            </div>
-          </div>
-        </article>
-      </div>
-      -->
     </section>
     <footer class="footer">
       <div class="content has-text-centered">
@@ -280,7 +248,7 @@
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .input_fields {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -291,335 +259,57 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { Wcf as wcf } from "../wcf";
-//import gearJSON from "../../db/Classic_Balance_Druidv1.3.json";
+import { default as wcf } from "../wcf";
 
 @Component
 export default class MoonkinCalc extends Vue {
-  spellName = wcf.defaults.spellName;
-  spellDamageType = wcf.defaults.spellDamageType;
-  spellBaseDamage = wcf.defaults.spellBaseDamage;
-  spellCoefficient = wcf.defaults.spellCoefficient;
-  spellCastTime = wcf.defaults.spellCastTime;
-  spellPower = wcf.defaults.spellPower;
-  spellCrit = wcf.defaults.spellCrit;
-  spellHit = wcf.defaults.spellHit;
-  spellPenetration = wcf.defaults.spellPenetration;
-  enemySpellResistance = wcf.defaults.enemySpellResistance;
-  vengeancePoints = wcf.defaults.vengeancePoints;
-  moonFuryPoints = wcf.defaults.moonFuryPoints;
-  improvedWrathPoints = wcf.defaults.improvedWrathPoints;
-  naturesGrace = wcf.defaults.naturesGrace;
-  curseOfShadow = wcf.defaults.curseOfShadow;
-  powerInfusion = wcf.defaults.powerInfusion;
-  saygesDarkFortune = wcf.defaults.saygesDarkFortune;
-  tracesOfSilithyst = wcf.defaults.tracesOfSilithyst;
-  spellVuln = wcf.defaults.spellVuln;
-  stormStrike = wcf.defaults.stormStrike;
+  spellNames = wcf.Spell.getSpellNames();
+  targetNames = wcf.Target.getTargetNames();
+  spellName = "Starfire Rank 6";
+  targetName = "Ragnaros";
+  targetSpellResistance = 75;
+  spellPower = 684;
+  spellCrit = 30.785;
+  spellHit = 2;
+  spellPenetration = 75;
+  naturesGraceRank = 1;
+  moonFuryRank = 5;
+  vengeanceRank = 5;
+  improvedWrathRank = 5;
+  improvedStarfireRank = 5;
+  curseOfShadow = true;
+  powerInfusion = false;
+  saygesDarkFortune = false;
+  tracesOfSilithyst = false;
+  spellVuln = false;
+  stormStrike = false;
 
-  onChange(event: { target: HTMLInputElement }) {
-    switch (event.target.value) {
-      case "Starfire Rank 1":
-        this.spellDamageType = "Arcane";
-        this.spellBaseDamage = 99.5;
-        this.spellCoefficient = 1.0;
-        this.spellCastTime = 3;
-        this.spellPenetration = 75;
-        break;
-      case "Starfire Rank 2":
-        this.spellDamageType = "Arcane";
-        this.spellBaseDamage = 152.5;
-        this.spellCoefficient = 1.0;
-        this.spellCastTime = 3;
-        this.spellPenetration = 75;
-        break;
-      case "Starfire Rank 3":
-        this.spellDamageType = "Arcane";
-        this.spellBaseDamage = 221.5;
-        this.spellCoefficient = 1.0;
-        this.spellCastTime = 3;
-        this.spellPenetration = 75;
-        break;
-      case "Starfire Rank 4":
-        this.spellDamageType = "Arcane";
-        this.spellBaseDamage = 307.5;
-        this.spellCoefficient = 1.0;
-        this.spellCastTime = 3;
-        this.spellPenetration = 75;
-        break;
-      case "Starfire Rank 5":
-        this.spellDamageType = "Arcane";
-        this.spellBaseDamage = 395.5;
-        this.spellCoefficient = 1.0;
-        this.spellCastTime = 3;
-        this.spellPenetration = 75;
-        break;
-      case "Starfire Rank 6":
-        this.spellDamageType = "Arcane";
-        this.spellBaseDamage = 488.5;
-        this.spellCoefficient = 1.0;
-        this.spellCastTime = 3;
-        this.spellPenetration = 75;
-        break;
-      case "Starfire Rank 7":
-        this.spellDamageType = "Arcane";
-        this.spellBaseDamage = 540.5;
-        this.spellCoefficient = 1.0;
-        this.spellCastTime = 3;
-        this.spellPenetration = 75;
-        break;
-      case "Wrath Rank 1":
-        this.spellDamageType = "Nature";
-        this.spellBaseDamage = 13.5;
-        this.spellCoefficient = 0.5714;
-        this.spellCastTime = 2;
-        this.spellPenetration = 0;
-        break;
-      case "Wrath Rank 2":
-        this.spellDamageType = "Nature";
-        this.spellBaseDamage = 27.5;
-        this.spellCoefficient = 0.5714;
-        this.spellCastTime = 2;
-        this.spellPenetration = 0;
-        break;
-      case "Wrath Rank 3":
-        this.spellDamageType = "Nature";
-        this.spellBaseDamage = 48.5;
-        this.spellCoefficient = 0.5714;
-        this.spellCastTime = 2;
-        this.spellPenetration = 0;
-        break;
-      case "Wrath Rank 4":
-        this.spellDamageType = "Nature";
-        this.spellBaseDamage = 68.5;
-        this.spellCoefficient = 0.5714;
-        this.spellCastTime = 2;
-        this.spellPenetration = 0;
-        break;
-      case "Wrath Rank 5":
-        this.spellDamageType = "Nature";
-        this.spellBaseDamage = 108.5;
-        this.spellCoefficient = 0.5714;
-        this.spellCastTime = 2;
-        this.spellPenetration = 0;
-        break;
-      case "Wrath Rank 6":
-        this.spellDamageType = "Nature";
-        this.spellBaseDamage = 148.5;
-        this.spellCoefficient = 0.5714;
-        this.spellCastTime = 2;
-        this.spellPenetration = 0;
-        break;
-      case "Wrath Rank 7":
-        this.spellDamageType = "Nature";
-        this.spellBaseDamage = 199.5;
-        this.spellCoefficient = 0.5714;
-        this.spellCastTime = 2;
-        this.spellPenetration = 0;
-        break;
-      case "Wrath Rank 8":
-        this.spellDamageType = "Nature";
-        this.spellBaseDamage = 250.5;
-        this.spellCoefficient = 0.5714;
-        this.spellCastTime = 2;
-        this.spellPenetration = 0;
-        break;
-    }
-  }
-
-  get spellPartialResistLossAverage() {
-    return wcf.spellPartialResistLossAverage(
-      this.spellName,
-      this.spellPenetration,
-      this.enemySpellResistance
-    );
-  }
-
-  get spellChanceToMiss() {
-    return wcf.spellChanceToMiss(this.spellHit);
-  }
-
-  get spellChanceToRegularHit() {
-    return wcf.spellChanceToRegularHit(this.spellCrit, this.spellHit);
-  }
-
-  get spellChanceToCrit() {
-    return wcf.spellChanceToCrit(this.spellCrit, this.spellHit);
-  }
-
-  get spellPowerToDamage() {
-    return wcf.spellPowerToDamage(
-      this.spellName,
-      this.spellCoefficient,
-      this.spellCastTime,
-      this.spellCrit,
-      this.spellHit,
-      this.improvedWrathPoints,
-      this.naturesGrace
-    );
-  }
-
-  get spellCritToDamage() {
-    return wcf.spellCritToDamage(
-      this.spellName,
-      this.spellBaseDamage,
-      this.spellCoefficient,
-      this.spellCastTime,
-      this.spellPower,
-      this.spellCrit,
-      this.spellHit,
-      this.spellPenetration,
-      this.enemySpellResistance,
-      this.vengeancePoints,
-      this.moonFuryPoints,
-      this.improvedWrathPoints,
-      this.naturesGrace,
-      this.curseOfShadow,
-      this.powerInfusion,
-      this.saygesDarkFortune,
-      this.tracesOfSilithyst,
-      this.spellVuln,
-      this.stormStrike
-    );
-  }
-
-  get spellHitToDamage() {
-    return wcf.spellHitToDamage(
-      this.spellName,
-      this.spellBaseDamage,
-      this.spellCoefficient,
-      this.spellCastTime,
-      this.spellPower,
-      this.spellCrit,
-      this.spellHit,
-      this.spellPenetration,
-      this.enemySpellResistance,
-      this.vengeancePoints,
-      this.moonFuryPoints,
-      this.improvedWrathPoints,
-      this.naturesGrace,
-      this.curseOfShadow,
-      this.powerInfusion,
-      this.saygesDarkFortune,
-      this.tracesOfSilithyst,
-      this.spellVuln,
-      this.stormStrike
-    );
-  }
-
-  get spellEffectiveCastTime() {
-    return wcf.spellEffectiveCastTime(
-      this.spellName,
-      this.spellCastTime,
-      this.spellCrit,
-      this.spellHit,
-      this.improvedWrathPoints,
-      this.naturesGrace
-    );
-  }
-
-  get spellAverageNonCrit() {
-    return wcf.spellAverageNonCrit(
-      this.spellName,
-      this.spellBaseDamage,
-      this.spellCoefficient,
-      this.spellPower,
-      this.moonFuryPoints
-    );
-  }
-
-  get spellCritBonus() {
-    return wcf.spellCritBonus(this.spellName, this.vengeancePoints);
-  }
-
-  get moonFuryBonus() {
-    return wcf.moonFuryBonus(this.spellName, this.moonFuryPoints);
-  }
-
-  get spellDPS() {
-    console.log(
-      "spellPowerToDamage: " +
-        wcf.spellPowerToDamage(
-          this.spellName,
-          this.spellCoefficient,
-          this.spellCastTime,
-          this.spellCrit,
-          this.spellHit,
-          this.improvedWrathPoints,
-          this.naturesGrace
-        )
-    );
-
-    console.log(
-      "spellCritToDamage: " +
-        wcf.spellCritToDamage(
-          this.spellName,
-          this.spellBaseDamage,
-          this.spellCoefficient,
-          this.spellCastTime,
-          this.spellPower,
-          this.spellCrit,
-          this.spellHit,
-          this.spellPenetration,
-          this.enemySpellResistance,
-          this.vengeancePoints,
-          this.moonFuryPoints,
-          this.improvedWrathPoints,
-          this.naturesGrace,
-          this.curseOfShadow,
+  get spellCast() {
+    return new wcf.SpellCast(
+      new wcf.Character(
+        60,
+        "Tauren",
+        "Druid",
+        "Male",
+        new wcf.Talents(
+          this.naturesGraceRank,
+          this.moonFuryRank,
+          this.vengeanceRank,
+          this.improvedWrathRank,
+          this.improvedStarfireRank
+        ),
+        new wcf.Gear(this.spellHit, this.spellCrit, this.spellPower),
+        new wcf.Buffs(
           this.powerInfusion,
           this.saygesDarkFortune,
-          this.tracesOfSilithyst,
-          this.spellVuln,
-          this.stormStrike
+          this.tracesOfSilithyst
         )
-    );
-
-    console.log(
-      "spellHitToDamage: " +
-        wcf.spellHitToDamage(
-          this.spellName,
-          this.spellBaseDamage,
-          this.spellCoefficient,
-          this.spellCastTime,
-          this.spellPower,
-          this.spellCrit,
-          this.spellHit,
-          this.spellPenetration,
-          this.enemySpellResistance,
-          this.vengeancePoints,
-          this.moonFuryPoints,
-          this.improvedWrathPoints,
-          this.naturesGrace,
-          this.curseOfShadow,
-          this.powerInfusion,
-          this.saygesDarkFortune,
-          this.tracesOfSilithyst,
-          this.spellVuln,
-          this.stormStrike
-        )
-    );
-
-    return wcf.spellDPS(
-      this.spellName,
-      this.spellBaseDamage,
-      this.spellCoefficient,
-      this.spellCastTime,
-      this.spellPower,
-      this.spellCrit,
-      this.spellHit,
-      this.spellPenetration,
-      this.enemySpellResistance,
-      this.vengeancePoints,
-      this.moonFuryPoints,
-      this.improvedWrathPoints,
-      this.naturesGrace,
-      this.curseOfShadow,
-      this.powerInfusion,
-      this.saygesDarkFortune,
-      this.tracesOfSilithyst,
-      this.spellVuln,
-      this.stormStrike
+      ),
+      new wcf.Spell(this.spellName),
+      new wcf.Target(
+        this.targetName,
+        new wcf.Debuffs(this.curseOfShadow, this.stormStrike, this.spellVuln)
+      )
     );
   }
 }

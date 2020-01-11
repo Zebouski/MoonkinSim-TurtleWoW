@@ -1,66 +1,317 @@
-export class Wcf {
-  public static globals = {
-    /* constant values that can't be overridden in the app */
-    globalCoolDown: 1.5,
-    hitCap: 17,
-    spellCastTimeHumanFactor: 0.05,
-    naturesGraceReduction: 0.5,
-    curseOfShadowBonus: 1.1,
-    powerInfusionBonus: 1.2,
-    saygesDarkFortuneBonus: 1.1,
-    tracesOfSilithystBonus: 1.05,
-    spellVulnBonus: 1.15,
-    stormStrikeBonus: 1.2
-  };
+/* TODO: 
+      - Add moonfire
+      - Iron out target spell resist/pen.
+        - Isn't spell pen/resist based on damage school?
+        - Why does it default to 75 resist? Data on ragnaros says he has 15 nature/wrath.
+        - Make sure immunities work
+      - Character attributes.
+        - int, spirit, crit, hit, etc should all be in character class.
+        - they should calculate a base value, then add in from gear, then talents, then buffs
+        - +spell power should be seperate from +spellPower to school. The total derived spell power
+          must take into account the school of the spell being cast.
+        - account for racial bonuses like tauren stamina
+      - Buffs.
+        - Add mark of the wild, flask of supreme power, world buffs, etc.
+        - Add them to a JSON file like spells. 
+      - Gear.
+        - Add rudimentary gear selection
+      - UI
+        - Need reasonable way to fit character, talents, gear, buffs, target, etc on
+          one page. Maybe make the input side a tabbed box.
+      - Header/footer
+        - Make them seperate components
+      - Refactoring
+        - Can drop "spell" prefix on children of spell* classes
+*/
 
-  public static defaults = {
-    /* default values that can be changed in the app */
-    spellName: "Starfire Rank 6",
-    spellDamageType: "Arcane",
-    spellBaseDamage: 488.5,
-    spellCoefficient: 1.0,
-    spellCastTime: 3.0,
-    spellPower: 684,
-    spellCrit: 30.785,
-    spellHit: 2,
-    enemySpellResistance: 75,
-    spellPenetration: 75,
-    moonFuryPoints: 5,
-    vengeancePoints: 5,
-    improvedWrathPoints: 5,
-    naturesGrace: true,
-    curseOfShadow: true,
-    powerInfusion: false,
-    saygesDarkFortune: false,
-    tracesOfSilithyst: false,
-    spellVuln: false,
-    stormStrike: false
-  };
+var jsonQuery = require("json-query");
+var druidSpells = require("./db/spells/druid.yaml");
+var bosses = require("./db/targets/bosses.yaml");
 
-  static spellShortName(spellName: string) {
-    return spellName.split(" ")[0];
+/* constants */
+const useBadBaseDmg = false;
+const globalCoolDown = 1.5;
+const hitCap = 17;
+const spellCastTimeHumanFactor = 0.05;
+const naturesGraceReduction = 0.5;
+const curseOfShadowBonus = 1.1;
+const powerInfusionBonus = 1.2;
+const saygesDarkFortuneBonus = 1.1;
+const tracesOfSilithystBonus = 1.05;
+const spellVulnBonus = 1.15;
+const stormStrikeBonus = 1;
+
+interface TargetJSON {
+  name: string;
+  level: number;
+  class: string;
+  faction: string;
+  health: number;
+  minDmg: number;
+  maxDmg: number;
+  attackSpeed: number;
+  armor: number;
+  fireResist: number;
+  natureResist: number;
+  frostResist: number;
+  shadowResist: number;
+  arcaneResist: number;
+}
+
+interface SpellJSON {
+  name: string; // "{name} Rank {rank}"
+  minDmg: number;
+  maxDmg: number;
+  badBaseDmg: number;
+  school: string;
+  castTime: number;
+  manaCost: number;
+  level: number;
+  range: number;
+}
+
+class Spell {
+  name: string;
+  spellJSON: SpellJSON;
+  constructor(name: string) {
+    this.name = name;
+    this.spellJSON = jsonQuery(`[name=${name}]`, { data: druidSpells }).value;
+  }
+  static getSpellNames() {
+    return jsonQuery(".name", { data: druidSpells }).value;
+  }
+  get baseDmg() {
+    if (useBadBaseDmg) {
+      return this.spellJSON.badBaseDmg;
+    }
+    return (this.minDmg + this.maxDmg) / 2;
+  }
+  get coefficient() {
+    let baseCoefficient = this.castTime / 3.5;
+    if (this.level < 20) {
+      let subLevelPenalty = 1 - (20 - this.level) * 0.0375;
+      let effectiveCoefficient = baseCoefficient * (1 - subLevelPenalty);
+      return effectiveCoefficient;
+    }
+    return baseCoefficient;
+  }
+  get baseName() {
+    return this.spellJSON.name.split(" ")[0];
+  }
+  get rank() {
+    return this.spellJSON.name.split(" ")[2];
+  }
+  get minDmg() {
+    return this.spellJSON.minDmg;
+  }
+  get maxDmg() {
+    return this.spellJSON.maxDmg;
+  }
+  get badBaseDmg() {
+    return this.spellJSON.badBaseDmg;
+  }
+  get school() {
+    return this.spellJSON.school;
+  }
+  get castTime() {
+    return this.spellJSON.castTime;
+  }
+  get manaCost() {
+    return this.spellJSON.manaCost;
+  }
+  get level() {
+    return this.spellJSON.level;
+  }
+  get range() {
+    return this.spellJSON.range;
+  }
+}
+
+class Character {
+  level: number;
+  race: string;
+  className: string;
+  gender: string;
+  talents: Talents;
+  gear: Gear;
+  buffs: Buffs;
+  constructor(
+    level: number,
+    race: string,
+    className: string,
+    gender: string,
+    talents: Talents,
+    gear: Gear,
+    buffs: Buffs
+  ) {
+    this.level = level;
+    this.race = race.toUpperCase();
+    this.gender = gender.toUpperCase();
+    this.className = className.toUpperCase();
+    this.talents = talents;
+    this.gear = gear;
+    this.buffs = buffs;
   }
 
-  static spellCritBonus(spellName: string, vengeancePoints: number) {
-    switch (vengeancePoints) {
-      case 1:
-        return 1.6; // rank 1: Increases the critical strike damage bonus by 20%
-      case 2:
-        return 1.7; // rank 2: Increases the critical strike damage bonus by 40%
-      case 3:
-        return 1.8; // rank 3: Increases the critical strike damage bonus by 60%
-      case 4:
-        return 1.9; // rank 4: Increases the critical strike damage bonus by 80%
-      case 5:
-        return 2; // rank 5: Increases the critical strike damage bonus by 100%
+  get faction() {
+    switch (this.race) {
+      case "TAUREN":
+      case "ORC":
+      case "UNDEAD":
+      case "TROLL":
+        return "Horde";
+    }
+    return "Alliance";
+  }
+
+  // fixme: gear + buffs
+  get spellPower() {
+    return this.gear.spellPower;
+  }
+
+  // fixme: gear + intellect + buffs
+  get spellCrit() {
+    return this.gear.spellCrit;
+  }
+
+  // fixme: gear + buffs
+  get spellHit() {
+    return this.gear.spellHit;
+  }
+}
+
+class Target {
+  name: string;
+  targetJSON: TargetJSON;
+  debuffs: Debuffs;
+  constructor(name: string, debuffs: Debuffs) {
+    this.name = name;
+    this.debuffs = debuffs;
+    this.targetJSON = jsonQuery(`[name=${name}]`, { data: bosses }).value;
+  }
+  static getTargetNames() {
+    return jsonQuery(".name", { data: bosses }).value;
+  }
+
+  /* TODO: hardcoding for now to match spreadsheet. */
+  get spellResistance() {
+    return 75;
+  }
+}
+
+/* TODO: WIP. Just a stub for now to move things along */
+class Debuffs {
+  curseOfShadow: boolean;
+  stormStrike: boolean;
+  spellVuln: boolean;
+  constructor(
+    curseOfShadow: boolean,
+    stormStrike: boolean,
+    spellVuln: boolean
+  ) {
+    this.curseOfShadow = curseOfShadow;
+    this.stormStrike = stormStrike;
+    this.spellVuln = spellVuln;
+  }
+}
+
+/* TODO: WIP. Just a stub for now to move things along */
+class Buffs {
+  powerInfusion: boolean;
+  saygesDarkFortune: boolean;
+  tracesOfSilithyst: boolean;
+  constructor(
+    powerInfusion: boolean,
+    saygesDarkFortune: boolean,
+    tracesOfSilithyst: boolean
+  ) {
+    this.powerInfusion = powerInfusion;
+    this.saygesDarkFortune = saygesDarkFortune;
+    this.tracesOfSilithyst = tracesOfSilithyst;
+  }
+}
+
+/* TODO: WIP. Just a stub for now to move things along */
+class Talents {
+  naturesGraceRank: number;
+  moonFuryRank: number;
+  vengeanceRank: number;
+  improvedWrathRank: number;
+  improvedStarfireRank: number;
+
+  constructor(
+    naturesGraceRank: number,
+    moonFuryRank: number,
+    vengeanceRank: number,
+    improvedWrathRank: number,
+    improvedStarfireRank: number
+  ) {
+    this.naturesGraceRank = naturesGraceRank;
+    this.moonFuryRank = moonFuryRank;
+    this.vengeanceRank = vengeanceRank;
+    this.improvedWrathRank = improvedWrathRank;
+    this.improvedStarfireRank = improvedStarfireRank;
+  }
+}
+
+/* TODO: WIP. Just a stub for now to move things along */
+class Gear {
+  spellHit: number;
+  spellCrit: number;
+  spellPower: number;
+
+  constructor(spellHit: number, spellCrit: number, spellPower: number) {
+    this.spellHit = spellHit;
+    this.spellCrit = spellCrit;
+    this.spellPower = spellPower;
+  }
+}
+
+class SpellCast {
+  character: Character;
+  spell: Spell;
+  target: Target;
+  constructor(character: Character, spell: Spell, target: Target) {
+    this.character = character;
+    this.spell = spell;
+    this.target = target;
+  }
+
+  get spellPenetration() {
+    switch (this.spell.school) {
+      case "arcane":
+      case "shadow":
+        return this.target.debuffs.curseOfShadow ? 75 : 0;
       default:
-        return 1.5;
+        return 0;
     }
   }
 
+  /* Factors in talents that modify base spell cast time. Doesn't count for procs like natures grace */
+  get castTime() {
+    switch (this.spell.baseName) {
+      case "Wrath":
+        return this.spell.castTime - this.improvedWrathBonus;
+      case "Starfire":
+        return this.spell.castTime - this.improvedStarfireBonus;
+      default:
+        return this.spell.castTime;
+    }
+  }
+
+  /* Factors in cast speed procs natures grace and "human factor" */
+  get spellEffectiveCastTime() {
+    var x =
+      this.castTime -
+      this.naturesGraceBonus * (this.spellChanceToCrit / 100) +
+      spellCastTimeHumanFactor;
+
+    return Math.max(x, globalCoolDown);
+  }
+
   /* Increases the damage done by Starfire, Moonfire, and Wrath */
-  static moonFuryBonus(spellName: string, moonFuryPoints: number) {
-    switch (moonFuryPoints) {
+  get moonFuryBonus() {
+    switch (this.character.talents.moonFuryRank) {
       case 1:
         return 1.02; // rank 1: 2% bonus
       case 2:
@@ -76,8 +327,8 @@ export class Wcf {
     }
   }
 
-  static improvedWrathBonus(improvedWrathPoints: number) {
-    switch (improvedWrathPoints) {
+  get improvedWrathBonus() {
+    switch (this.character.talents.improvedWrathRank) {
       case 1:
         return 0.1; // Reduces the cast time of your Wrath spell by 0.1 sec.
       case 2:
@@ -89,323 +340,178 @@ export class Wcf {
       case 5:
         return 0.5; // Reduces the cast time of your Wrath spell by 0.5 sec.
       default:
-        return 0; //
+        return 0;
     }
   }
 
-  static naturesGraceBonus(
-    spellName: string,
-    improvedWrathPoints: number,
-    naturesGrace: boolean
-  ) {
-    if (naturesGrace) {
-      if (this.spellShortName(spellName) == "Wrath")
-        return (
-          this.globals.naturesGraceReduction -
-          this.improvedWrathBonus(improvedWrathPoints)
-        );
-      else return this.globals.naturesGraceReduction;
+  get improvedStarfireBonus() {
+    switch (this.character.talents.improvedStarfireRank) {
+      case 1:
+        return 0.1; // Reduces the cast time of your Starfire spell by 0.1 sec.
+      case 2:
+        return 0.2; // Reduces the cast time of your Starfire spell by 0.2 sec.
+      case 3:
+        return 0.3; // Reduces the cast time of your Starfire spell by 0.3 sec.
+      case 4:
+        return 0.4; // Reduces the cast time of your Starfire spell by 0.4 sec.
+      case 5:
+        return 0.5; // Reduces the cast time of your Starfire spell by 0.5 sec.
+      default:
+        return 0;
+    }
+  }
+
+  get vengeanceBonus() {
+    switch (this.character.talents.vengeanceRank) {
+      case 1:
+        return 1.6; // rank 1: Increases the critical strike damage bonus by 20%
+      case 2:
+        return 1.7; // rank 2: Increases the critical strike damage bonus by 40%
+      case 3:
+        return 1.8; // rank 3: Increases the critical strike damage bonus by 60%
+      case 4:
+        return 1.9; // rank 4: Increases the critical strike damage bonus by 80%
+      case 5:
+        return 2; // rank 5: Increases the critical strike damage bonus by 100%
+      default:
+        return 1.5;
+    }
+  }
+
+  /* FIXME: dumb. pretty sure can make universal by limiting to GCD */
+  get naturesGraceBonus() {
+    if (this.character.talents.naturesGraceRank > 0) {
+      if (this.spell.baseName == "Wrath") {
+        return naturesGraceReduction - this.improvedWrathBonus;
+      } else {
+        return naturesGraceReduction;
+      }
     }
     return 0;
   }
 
-  static spellMultiplicativeBonuses(
-    spellName: string,
-    spellPenetration: number,
-    enemySpellResistance: number,
-    curseOfShadow: boolean,
-    powerInfusion: boolean,
-    saygesDarkFortune: boolean,
-    tracesOfSilithyst: boolean,
-    spellVuln: boolean,
-    stormStrike: boolean
-  ) {
+  get spellChanceToMiss() {
+    return 100 - (83 + Math.min(this.character.spellHit, hitCap - 1));
+  }
+
+  get spellChanceToCrit() {
     return (
-      (curseOfShadow && this.spellShortName(spellName) == "Starfire"
-        ? this.globals.curseOfShadowBonus
-        : 1.0) *
-      (powerInfusion ? this.globals.powerInfusionBonus : 1.0) *
-      (saygesDarkFortune ? this.globals.saygesDarkFortuneBonus : 1.0) *
-      (tracesOfSilithyst ? this.globals.tracesOfSilithystBonus : 1.0) *
-      (spellVuln ? this.globals.spellVulnBonus : 1.0) *
-      (stormStrike ? this.globals.stormStrikeBonus : 1.0) *
-      (1 -
-        this.spellPartialResistLossAverage(
-          spellName,
-          spellPenetration,
-          enemySpellResistance
-        ))
+      (1.8 + this.character.spellCrit) * ((100 - this.spellChanceToMiss) / 100)
     );
   }
 
-  static spellPowerToDamage(
-    spellName: string,
-    spellCoefficient: number,
-    spellCastTime: number,
-    spellCrit: number,
-    spellHit: number,
-    improvedWrathPoints: number,
-    naturesGrace: boolean
-  ) {
-    // v1 dc(0.83+H/100)(1+xR/100)/(T-t(0.83+H/100)(R/100))
-    // v2 dc(0.83+H/100)(1+R/100)/(T-t(0.83+H/100)(R/100))
-    // [beefbroc] v3 c(0.83+H/100)(1+R/100)/(T-t(0.83+H/100)(R/100))
-    var x = spellCoefficient * (0.83 + spellHit / 100) * (1 + spellCrit / 100);
-    var y =
-      this.spellCastTimeModified(
-        spellName,
-        spellCastTime,
-        improvedWrathPoints
-      ) -
-      this.naturesGraceBonus(spellName, improvedWrathPoints, naturesGrace) *
-        (0.83 + spellHit / 100) *
-        (spellCrit / 100);
-    return x / y;
+  get spellChanceToRegularHit() {
+    return 100 - this.spellChanceToMiss - this.spellChanceToCrit;
   }
 
-  static spellCritToDamage(
-    spellName: string,
-    spellBaseDamage: number,
-    spellCoefficient: number,
-    spellCastTime: number,
-    spellPower: number,
-    spellCrit: number,
-    spellHit: number,
-    spellPenetration: number,
-    enemySpellResistance: number,
-    vengeancePoints: number,
-    moonFuryPoints: number,
-    improvedWrathPoints: number,
-    naturesGrace: boolean,
-    curseOfShadow: boolean,
-    powerInfusion: boolean,
-    saygesDarkFortune: boolean,
-    tracesOfSilithyst: boolean,
-    spellVuln: boolean,
-    stormStrike: boolean
-  ) {
-    //v1 d(83+H)(mB+cP)(xT-t(0.83+H/100))/(100T-t(0.83+H/100)R)^2
-    //v2 d(83+H)(mB+cP) * (xT+t(0.83+H/100)) / (100T-t(0.83+H/100)R)^2
-    var d = this.spellMultiplicativeBonuses(
-      spellName,
-      spellPenetration,
-      enemySpellResistance,
-      curseOfShadow,
-      powerInfusion,
-      saygesDarkFortune,
-      tracesOfSilithyst,
-      spellVuln,
-      stormStrike
-    );
-
+  get spellAverageNonCrit() {
     return (
-      (d *
-        (83 + spellHit) *
-        (this.moonFuryBonus(spellName, moonFuryPoints) * spellBaseDamage +
-          spellCoefficient * spellPower) *
-        ((this.spellCritBonus(spellName, vengeancePoints) - 1) *
-          this.spellCastTimeModified(
-            spellName,
-            spellCastTime,
-            improvedWrathPoints
-          ) +
-          this.naturesGraceBonus(spellName, improvedWrathPoints, naturesGrace) *
-            (0.83 + spellHit / 100))) /
-      (100 *
-        this.spellCastTimeModified(
-          spellName,
-          spellCastTime,
-          improvedWrathPoints
-        ) -
-        this.naturesGraceBonus(spellName, improvedWrathPoints, naturesGrace) *
-          (0.83 + spellHit / 100) *
-          spellCrit) **
-        2
+      this.spell.baseDmg * this.moonFuryBonus +
+      this.character.spellPower * this.spell.coefficient
     );
   }
 
-  static spellHitToDamage(
-    spellName: string,
-    spellBaseDamage: number,
-    spellCoefficient: number,
-    spellCastTime: number,
-    spellPower: number,
-    spellCrit: number,
-    spellHit: number,
-    spellPenetration: number,
-    enemySpellResistance: number,
-    vengeancePoints: number,
-    moonFuryPoints: number,
-    improvedWrathPoints: number,
-    naturesGrace: boolean,
-    curseOfShadow: boolean,
-    powerInfusion: boolean,
-    saygesDarkFortune: boolean,
-    tracesOfSilithyst: boolean,
-    spellVuln: boolean,
-    stormStrike: boolean
-  ) {
-    // v1 d(mB+cP)(100+xR) * (100^2 T)/((100^2 T - t(83+H)R)^2)
-    var d = this.spellMultiplicativeBonuses(
-      spellName,
-      spellPenetration,
-      enemySpellResistance,
-      curseOfShadow,
-      powerInfusion,
-      saygesDarkFortune,
-      tracesOfSilithyst,
-      spellVuln,
-      stormStrike
-    );
-
-    return (
-      (d *
-        (this.moonFuryBonus(spellName, moonFuryPoints) * spellBaseDamage +
-          spellCoefficient * spellPower) *
-        (100 +
-          (this.spellCritBonus(spellName, vengeancePoints) - 1) * spellCrit) *
-        (100 ** 2 *
-          this.spellCastTimeModified(
-            spellName,
-            spellCastTime,
-            improvedWrathPoints
-          ))) /
-      (100 ** 2 *
-        this.spellCastTimeModified(
-          spellName,
-          spellCastTime,
-          improvedWrathPoints
-        ) -
-        this.naturesGraceBonus(spellName, improvedWrathPoints, naturesGrace) *
-          (83 + spellHit) *
-          spellCrit) **
-        2
-    );
-  }
-
-  static spellChanceToMiss(spellHit: number) {
-    return 100 - (83 + Math.min(spellHit, this.globals.hitCap - 1));
-  }
-
-  static spellChanceToRegularHit(spellCrit: number, spellHit: number) {
-    return (
-      100 -
-      this.spellChanceToMiss(spellHit) -
-      this.spellChanceToCrit(spellCrit, spellHit)
-    );
-  }
-
-  static spellChanceToCrit(spellCrit: number, spellHit: number) {
-    return (1.8 + spellCrit) * ((100 - this.spellChanceToMiss(spellHit)) / 100);
-  }
-
-  static spellAverageNonCrit(
-    spellName: string,
-    spellBaseDamage: number,
-    spellCoefficient: number,
-    spellPower: number,
-    moonFuryPoints: number
-  ) {
-    return (
-      spellBaseDamage * this.moonFuryBonus(spellName, moonFuryPoints) +
-      spellPower * spellCoefficient
-    );
-  }
-
-  static spellCastTimeModified(
-    spellName: string,
-    spellCastTime: number,
-    improvedWrathPoints: number
-  ) {
-    if (this.spellShortName(spellName) == "Wrath") {
-      return spellCastTime - this.improvedWrathBonus(improvedWrathPoints);
-    }
-    return spellCastTime;
-  }
-
-  static spellEffectiveCastTime(
-    spellName: string,
-    spellCastTime: number,
-    spellCrit: number,
-    spellHit: number,
-    improvedWrathPoints: number,
-    naturesGrace: boolean
-  ) {
-    var x =
-      this.spellCastTimeModified(
-        spellName,
-        spellCastTime,
-        improvedWrathPoints
-      ) -
-      this.naturesGraceBonus(spellName, improvedWrathPoints, naturesGrace) *
-        (this.spellChanceToCrit(spellCrit, spellHit) / 100) +
-      this.globals.spellCastTimeHumanFactor;
-
-    return Math.max(x, this.globals.globalCoolDown);
-  }
-
-  static spellPartialResistLossAverage(
-    spellName: string,
-    spellPenetration: number,
-    enemySpellResistance: number
-  ) {
-    var br1 = Math.min(enemySpellResistance, 276);
-    var br2 = Math.min(spellPenetration, br1);
+  get spellPartialResistLossAverage() {
+    var br1 = Math.min(this.target.spellResistance, 276);
+    var br2 = Math.min(this.spellPenetration, br1);
     return ((br1 - br2 + 24) / 300) * 0.75;
   }
 
-  static spellDPS(
-    spellName: string,
-    spellBaseDamage: number,
-    spellCoefficient: number,
-    spellCastTime: number,
-    spellPower: number,
-    spellCrit: number,
-    spellHit: number,
-    spellPenetration: number,
-    enemySpellResistance: number,
-    vengeancePoints: number,
-    moonFuryPoints: number,
-    improvedWrathPoints: number,
-    naturesGrace: boolean,
-    curseOfShadow: boolean,
-    powerInfusion: boolean,
-    saygesDarkFortune: boolean,
-    tracesOfSilithyst: boolean,
-    spellVuln: boolean,
-    stormStrike: boolean
-  ) {
+  get spellMultiplicativeBonuses() {
+    return (
+      (this.target.debuffs.curseOfShadow &&
+      this.spell.school.toUpperCase() === "ARCANE"
+        ? curseOfShadowBonus
+        : 1.0) *
+      (this.character.buffs.powerInfusion ? powerInfusionBonus : 1.0) *
+      (this.character.buffs.saygesDarkFortune ? saygesDarkFortuneBonus : 1.0) *
+      (this.character.buffs.tracesOfSilithyst ? tracesOfSilithystBonus : 1.0) *
+      (this.target.debuffs.spellVuln ? spellVulnBonus : 1.0) *
+      (this.target.debuffs.stormStrike ? stormStrikeBonus : 1.0) *
+      (1 - this.spellPartialResistLossAverage)
+    );
+  }
+
+  get spellPowerToDamage() {
+    // v1 dc(0.83+H/100)(1+xR/100)/(T-t(0.83+H/100)(R/100))
+    // v2 dc(0.83+H/100)(1+R/100)/(T-t(0.83+H/100)(R/100))
+    // [beefbroc] v3 c(0.83+H/100)(1+R/100)/(T-t(0.83+H/100)(R/100))
+    var x =
+      this.spell.coefficient *
+      (0.83 + this.character.spellHit / 100) *
+      (1 + this.character.spellCrit / 100);
+    var y =
+      this.castTime -
+      this.naturesGraceBonus *
+        (0.83 + this.character.spellHit / 100) *
+        (this.character.spellCrit / 100);
+    return x / y;
+  }
+
+  get spellCritToDamage() {
+    //v1 d(83+H)(mB+cP)(xT-t(0.83+H/100))/(100T-t(0.83+H/100)R)^2
+    //v2 d(83+H)(mB+cP) * (xT+t(0.83+H/100)) / (100T-t(0.83+H/100)R)^2
+    return (
+      (this.spellMultiplicativeBonuses *
+        (83 + this.character.spellHit) *
+        (this.moonFuryBonus * this.spell.baseDmg +
+          this.spell.coefficient * this.character.spellPower) *
+        ((this.vengeanceBonus - 1) * this.castTime +
+          this.naturesGraceBonus * (0.83 + this.character.spellHit / 100))) /
+      (100 * this.castTime -
+        this.naturesGraceBonus *
+          (0.83 + this.character.spellHit / 100) *
+          this.character.spellCrit) **
+        2
+    );
+  }
+
+  get spellHitToDamage() {
+    // v1 d(mB+cP)(100+xR) * (100^2 T)/((100^2 T - t(83+H)R)^2)
+    return (
+      (this.spellMultiplicativeBonuses *
+        (this.moonFuryBonus * this.spell.baseDmg +
+          this.spell.coefficient * this.character.spellPower) *
+        (100 + (this.vengeanceBonus - 1) * this.character.spellCrit) *
+        (100 ** 2 * this.castTime)) /
+      (100 ** 2 * this.castTime -
+        this.naturesGraceBonus *
+          (83 + this.character.spellHit) *
+          this.character.spellCrit) **
+        2
+    );
+  }
+
+  get DPS() {
     // =(($H$9*$H$13*$I$9+$H$9*$H$16)/100) / $I$18*$D$22*$D$23*$D$24*$D$25*$D$26*$D$27*(1-$H$20)
-    var sanc = this.spellAverageNonCrit(
-      spellName,
-      spellBaseDamage,
-      spellCoefficient,
-      spellPower,
-      moonFuryPoints
-    );
-    var sctc = this.spellChanceToCrit(spellCrit, spellHit);
-    var vb = this.spellCritBonus(spellName, vengeancePoints);
-    var sctrh = this.spellChanceToRegularHit(spellCrit, spellHit);
-    var sect = this.spellEffectiveCastTime(
-      spellName,
-      spellCastTime,
-      spellCrit,
-      spellHit,
-      improvedWrathPoints,
-      naturesGrace
-    );
-    var d = this.spellMultiplicativeBonuses(
-      spellName,
-      spellPenetration,
-      enemySpellResistance,
-      curseOfShadow,
-      powerInfusion,
-      saygesDarkFortune,
-      tracesOfSilithyst,
-      spellVuln,
-      stormStrike
-    );
-    var x = ((sanc * sctc * vb + sanc * sctrh) / 100 / sect) * d;
+    var x =
+      ((this.spellAverageNonCrit *
+        this.spellChanceToCrit *
+        this.vengeanceBonus +
+        this.spellAverageNonCrit * this.spellChanceToRegularHit) /
+        100 /
+        this.spellEffectiveCastTime) *
+      this.spellMultiplicativeBonuses;
+
     return x;
   }
+
+  get spellCritWeight() {
+    return this.spellCritToDamage / this.spellPowerToDamage;
+  }
+
+  get spellHitWeight() {
+    return this.spellHitToDamage / this.spellPowerToDamage;
+  }
 }
+
+export default {
+  Talents,
+  Character,
+  Buffs,
+  Gear,
+  Target,
+  Debuffs,
+  Spell,
+  SpellCast
+};
