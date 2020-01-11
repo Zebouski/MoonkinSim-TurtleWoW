@@ -303,8 +303,10 @@ class SpellCast {
     }
   }
 
-  /* Factors in talents that modify base spell cast time.
-      Doesn't count for procs like natures grace */
+ /**
+  * Factors in talents that modify base spell cast time.
+  * Doesn't count for procs like natures grace
+  */
   public get castTime(): number {
     switch (this.spell.baseName) {
       case 'Wrath':
@@ -316,14 +318,18 @@ class SpellCast {
     }
   }
 
-  /* Factors in cast speed procs natures grace and "human factor" */
+ /**
+  * Factors in cast speed procs natures grace and "human factor"
+  */
   public get spellEffectiveCastTime(): number {
     const x = this.castTime - this.naturesGraceBonus * (this.spellChanceToCrit / 100) + spellCastTimeHumanFactor
 
     return Math.max(x, globalCoolDown)
   }
 
-  /* Increases the damage done by Starfire, Moonfire, and Wrath */
+  /**
+   * Increases the damage done by Starfire, Moonfire, and Wrath
+   */
   public get moonFuryBonus(): number {
     switch (this.character.talents.moonFuryRank) {
       case 1:
@@ -392,7 +398,9 @@ class SpellCast {
     }
   }
 
-  /* FIXME: dumb. pretty sure can make universal by limiting to GCD */
+  /**
+   * FIXME: dumb. pretty sure can make universal by limiting to GCD
+   */
   public get naturesGraceBonus(): number {
     if (this.character.talents.naturesGraceRank > 0) {
       if (this.spell.baseName === 'Wrath') {
@@ -437,19 +445,20 @@ class SpellCast {
     )
   }
 
+  /**
+   * c(0.83+H/100)(1+R/100)/(T-t(0.83+H/100)(R/100))
+   */
   public get spellPowerToDamage(): number {
-    // v1 dc(0.83+H/100)(1+xR/100)/(T-t(0.83+H/100)(R/100))
-    // v2 dc(0.83+H/100)(1+R/100)/(T-t(0.83+H/100)(R/100))
-    // [beefbroc] v3 c(0.83+H/100)(1+R/100)/(T-t(0.83+H/100)(R/100))
     const x = this.spell.coefficient * (0.83 + this.character.spellHit / 100) * (1 + this.character.spellCrit / 100)
     const y =
       this.castTime - this.naturesGraceBonus * (0.83 + this.character.spellHit / 100) * (this.character.spellCrit / 100)
     return x / y
   }
 
+  /**
+   * v2 d(83+H)(mB+cP) * (xT+t(0.83+H/100)) / (100T-t(0.83+H/100)R)^2
+   */
   public get spellCritToDamage(): number {
-    // v1 d(83+H)(mB+cP)(xT-t(0.83+H/100))/(100T-t(0.83+H/100)R)^2
-    // v2 d(83+H)(mB+cP) * (xT+t(0.83+H/100)) / (100T-t(0.83+H/100)R)^2
     return (
       (this.spellMultiplicativeBonuses *
         (83 + this.character.spellHit) *
@@ -461,8 +470,9 @@ class SpellCast {
     )
   }
 
+  /** d(mB+cP)(100+xR) * (100^2 T)/((100^2 T - t(83+H)R)^2)
+   */
   public get spellHitToDamage(): number {
-    // v1 d(mB+cP)(100+xR) * (100^2 T)/((100^2 T - t(83+H)R)^2)
     return (
       (this.spellMultiplicativeBonuses *
         (this.moonFuryBonus * this.spell.baseDmg + this.spell.coefficient * this.character.spellPower) *
