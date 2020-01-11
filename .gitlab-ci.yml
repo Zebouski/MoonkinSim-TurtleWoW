@@ -8,6 +8,7 @@ pages:
   script:
   - yarn install
   - yarn run build
+  - yarn run docs
   - mv dist public
 
   artifacts:

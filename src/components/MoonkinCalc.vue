@@ -154,10 +154,8 @@
         <font-awesome-icon :icon="['fab', 'discord']" />Beef Broccoli#5067
         <br />
         <font-awesome-icon :icon="['fab', 'gitlab']" />
-        <a href="https://gitlab.com/kmmiles/moonkin-calc">Source</a>
-        <br />
-        <font-awesome-icon :icon="['fab', 'book']" />
-        <a href="https://gitlab.com/kmmiles/moonkin-calc/docs">Docs</a>
+        <a href="https://gitlab.com/kmmiles/moonkin-calc">Source / </a>
+        <a href="https://kmmiles.gitlab.io/moonkin-calc/docs">Docs</a>
         <br />
         <p>
           Based on Keftenk's
