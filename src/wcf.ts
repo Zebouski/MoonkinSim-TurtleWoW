@@ -1,5 +1,6 @@
 /**
- *   - Add moonfire
+ *   X Add moonfire
+ *      - Formulas need to support hybrid spells
  *   - Iron out target spell resist/pen.
  *     - Isn't spell pen/resist based on damage school?
  *     - Why does it default to 75 resist? Data on ragnaros says he has 15 nature/wrath.
@@ -18,8 +19,8 @@
  *  - UI
  *    - Need reasonable way to fit character, talents, gear, buffs, target, etc on
  *      one page. Maybe make the input side a tabbed box.
- *  - Header/footer
- *    - Make them seperate components
+ *  X Header/footer
+ *    X Make them seperate components
  *  - Refactoring
  *    - Can drop "spell" prefix on children of spell* classes
  *    - Calculate values like "naturesGraceBonus" in constructor and save them,
@@ -44,6 +45,11 @@ const tracesOfSilithystBonus = 1.05
 const spellVulnBonus = 1.15
 const stormStrikeBonus = 1
 
+/**
+ * Object format of targets stored in db/targets.
+ * Targets are stored as YAML, but converted to
+ * JSON at build time.
+ */
 interface TargetJSON {
   name: string
   level: number
@@ -61,11 +67,15 @@ interface TargetJSON {
   arcaneResist: number
 }
 
+/**
+ * Object format of spells stored in db/spells.
+ * Spells are stored as YAML, but converted to
+ * JSON at build time.
+ */
 interface SpellJSON {
   name: string // "{name} Rank {rank}"
   minDmg: number
   maxDmg: number
-  badBaseDmg: number
   school: string
   type: string
   castTime: number
@@ -75,11 +85,18 @@ interface SpellJSON {
   range: number
 }
 
+/**
+ * Stores coefficient values
+ */
 interface CoefficientValues {
   direct: number
   dot: number
 }
 
+/**
+ * Base spell attributes. Fields are calculated only if they don't require outside
+ * information, like character or target.
+ */
 class Spell {
   public name: string
   public spellJSON: SpellJSON
@@ -89,17 +106,23 @@ class Spell {
     this.spellJSON = jsonQuery(`[name=${name}]`, { data: druidSpells }).value
   }
 
+  /**
+   * Return array of spell names.
+   */
   public static getSpellNames(): JSON {
     return jsonQuery('.name', { data: druidSpells }).value
   }
 
+  /**
+   * Return spell base damage (minDmg + maxDmg) / 2.
+   */
   public get baseDmg(): number {
-    if (useBadBaseDmg) {
-      return this.spellJSON.badBaseDmg
-    }
     return (this.minDmg + this.maxDmg) / 2
   }
 
+  /**
+   * Return direct and dot coefficients. Supports direct and hybrid spells.
+   */
   public get coefficient(): CoefficientValues {
     let myCoefficient = { direct: 0, dot: 0 }
     const subLevelPenalty = 1 - (20 - this.level) * 0.0375
@@ -128,26 +151,37 @@ class Spell {
     return myCoefficient
   }
 
+  /**
+   * Return base (short) name, parsed from name.
+   */
   public get baseName(): string {
     return this.spellJSON.name.split(' ')[0]
   }
 
+  /**
+   * Return spell rank, parsed from name.
+   */
   public get rank(): string {
     return this.spellJSON.name.split(' ')[2]
   }
 
+  /**
+   * Return spell minimum damage, unmodified.
+   */
   public get minDmg(): number {
     return this.spellJSON.minDmg
   }
 
+  /**
+   * Return spell max damage, unmodified.
+   */
   public get maxDmg(): number {
     return this.spellJSON.maxDmg
   }
 
-  public get badBaseDmg(): number {
-    return this.spellJSON.badBaseDmg
-  }
-
+  /**
+   * Return spell school, unmodified.
+   */
   public get school(): string {
     return this.spellJSON.school
   }
@@ -159,23 +193,38 @@ class Spell {
     return this.spellJSON.castTime <= globalCoolDown ? globalCoolDown : this.spellJSON.castTime
   }
 
+  /**
+   * Return duration, unmodified.
+   */
   public get duration(): number {
     return this.spellJSON.duration
   }
 
+  /**
+   * Return mana cost, unmodified.
+   */
   public get manaCost(): number {
     return this.spellJSON.manaCost
   }
 
+  /**
+   * Return spell level, unmodified.
+   */
   public get level(): number {
     return this.spellJSON.level
   }
 
+  /**
+   * Return spell range, unmodified.
+   */
   public get range(): number {
     return this.spellJSON.range
   }
 }
 
+/**
+ * Stores character attributes, Talents, Gear, and Buffs
+ */
 class Character {
   public level: number
   public race: string
@@ -203,6 +252,9 @@ class Character {
     this.buffs = buffs
   }
 
+  /**
+   * TODO: Return faction name based on race
+   */
   public get faction(): string {
     switch (this.race) {
       case 'TAUREN':
@@ -215,17 +267,24 @@ class Character {
     }
   }
 
-  // fixme: gear + buffs
+  /**
+   * TODO: Return total spell power (gear + talents + buffs)
+   * In the future each spell school should also have a function
+   */
   public get spellPower(): number {
     return this.gear.spellPower
   }
 
-  // fixme: gear + intellect + buffs
+  /**
+   * TODO: Return total spell crit rating (gear + (int / 60) + talents + buffs)
+   */
   public get spellCrit(): number {
     return this.gear.spellCrit
   }
 
-  // fixme: gear + buffs
+  /**
+   * TODO: Return total spell hit rating (gear + talents + buffs)
+   */
   public get spellHit(): number {
     return this.gear.spellHit
   }
@@ -242,18 +301,26 @@ class Target {
     this.targetJSON = jsonQuery(`[name=${name}]`, { data: bosses }).value
   }
 
+  /**
+   * Return array of target names.
+   */
   public static getTargetNames(): JSON {
     return jsonQuery('.name', { data: bosses }).value
   }
 
-  /* TODO: hardcoding for now to match spreadsheet. */
+  /**
+   * TODO: WIP. Returning static 75 like all spreadsheets do.
+   * It should be based on Target attributes.
+   */
   // eslint-disable-next-line class-methods-use-this
   public get spellResistance(): number {
     return 75
   }
 }
 
-/* TODO: WIP. Just a stub for now to move things along */
+/**
+ * TODO: WIP. Debuffs currently applied to Target.
+ */
 class Debuffs {
   public curseOfShadow: boolean
   public stormStrike: boolean
@@ -266,7 +333,9 @@ class Debuffs {
   }
 }
 
-/* TODO: WIP. Just a stub for now to move things along */
+/**
+ * TODO: WIP. Buffs currently applied to Character.
+ */
 class Buffs {
   public powerInfusion: boolean
   public saygesDarkFortune: boolean
@@ -279,7 +348,10 @@ class Buffs {
   }
 }
 
-/* TODO: WIP. Just a stub for now to move things along */
+/**
+ * TODO: WIP. Stores talent selections. Talent bonus calculations will
+ * probably move here.
+ */
 class Talents {
   public naturesGraceRank: number
   public moonFuryRank: number
@@ -302,7 +374,9 @@ class Talents {
   }
 }
 
-/* TODO: WIP. Just a stub for now to move things along */
+/**
+ * TODO: WIP. Stores gear selections, getters return attribute bonuses
+ */
 class Gear {
   public spellHit: number
   public spellCrit: number
@@ -315,6 +389,9 @@ class Gear {
   }
 }
 
+/**
+ * A Spell cast by Character at Target.
+ */
 class SpellCast {
   public character: Character
   public spell: Spell
@@ -326,6 +403,9 @@ class SpellCast {
     this.target = target
   }
 
+  /**
+   * Mitigates spell resist of SpellCast. Needs work.
+   */
   public get spellPenetration(): number {
     switch (this.spell.school) {
       case 'arcane':
@@ -361,7 +441,7 @@ class SpellCast {
   }
 
   /**
-   * Increases the damage done by Starfire, Moonfire, and Wrath
+   * Increases the damage done by Starfire, Moonfire, and Wrath by 2/4/6/8/10%
    */
   public get moonFuryBonus(): number {
     switch (this.character.talents.moonFuryRank) {
@@ -380,6 +460,9 @@ class SpellCast {
     }
   }
 
+  /**
+   * Reduces the cast of your Wrath spell by 0.1/0.2/0.3/0.4/0.5 sec
+   */
   public get improvedWrathBonus(): number {
     switch (this.character.talents.improvedWrathRank) {
       case 1:
@@ -397,6 +480,9 @@ class SpellCast {
     }
   }
 
+  /**
+   * Reduces the cast of your Starfire spell by 0.1/0.2/0.3/0.4/0.5 sec
+   */
   public get improvedStarfireBonus(): number {
     switch (this.character.talents.improvedStarfireRank) {
       case 1:
@@ -414,6 +500,9 @@ class SpellCast {
     }
   }
 
+  /**
+   * Increases the critical strike damage bonus by 20%/40%/80%/100%
+   */
   public get vengeanceBonus(): number {
     switch (this.character.talents.vengeanceRank) {
       case 1:
@@ -446,28 +535,52 @@ class SpellCast {
     return 0
   }
 
+  /**
+   * Chance of missing a spell
+   *
+   */
   public get spellChanceToMiss(): number {
     return 100 - (83 + Math.min(this.character.spellHit, hitCap - 1))
   }
 
+  /**
+   * Chance of critting with a spell
+   *
+   */
   public get spellChanceToCrit(): number {
     return (1.8 + this.character.spellCrit) * ((100 - this.spellChanceToMiss) / 100)
   }
 
+  /**
+   * Chance of landing a regular hit i.e. not a miss and not a crit
+   *
+   */
   public get spellChanceToRegularHit(): number {
     return 100 - this.spellChanceToMiss - this.spellChanceToCrit
   }
 
+  /**
+   * Average damage of a non-crit spell
+   *
+   */
   public get spellAverageNonCrit(): number {
     return this.spell.baseDmg * this.moonFuryBonus + this.character.spellPower * this.spell.coefficient.direct
   }
 
+  /**
+   * Average loss to spell resists
+   *
+   */
   public get spellPartialResistLossAverage(): number {
     const br1 = Math.min(this.target.spellResistance, 276)
     const br2 = Math.min(this.spellPenetration, br1)
     return ((br1 - br2 + 24) / 300) * 0.75
   }
 
+  /**
+   * All multiplicative bonuses combined, including spell resists
+   *
+   */
   public get spellMultiplicativeBonuses(): number {
     return (
       (this.target.debuffs.curseOfShadow && this.spell.school.toUpperCase() === 'ARCANE' ? curseOfShadowBonus : 1.0) *
@@ -481,6 +594,8 @@ class SpellCast {
   }
 
   /**
+   * Used for calculating both spell crit and hit weight
+   *
    * c(0.83+H/100)(1+R/100)/(T-t(0.83+H/100)(R/100))
    */
   public get spellPowerToDamage(): number {
@@ -492,6 +607,8 @@ class SpellCast {
   }
 
   /**
+   * Used for calculating spell crit weight
+   *
    * v2 d(83+H)(mB+cP) * (xT+t(0.83+H/100)) / (100T-t(0.83+H/100)R)^2
    */
   public get spellCritToDamage(): number {
@@ -506,7 +623,11 @@ class SpellCast {
     )
   }
 
-  /** d(mB+cP)(100+xR) * (100^2 T)/((100^2 T - t(83+H)R)^2)
+  /**
+   * Used for calculating spell hit weight
+   *
+   * d(mB+cP)(100+xR) * (100^2 T)/((100^2 T - t(83+H)R)^2)
+   *
    */
   public get spellHitToDamage(): number {
     return (
@@ -519,6 +640,9 @@ class SpellCast {
     )
   }
 
+  /**
+   * DPS of spamming Spell. Currently only supports direct damage spells.
+   */
   public get DPS(): number {
     // =(($H$9*$H$13*$I$9+$H$9*$H$16)/100) / $I$18*$D$22*$D$23*$D$24*$D$25*$D$26*$D$27*(1-$H$20)
     const x =
@@ -531,10 +655,16 @@ class SpellCast {
     return x
   }
 
+  /**
+   * spell crit weight i.e. the amount of spell power 1 point of crit worth.
+   */
   public get spellCritWeight(): number {
     return this.spellCritToDamage / this.spellPowerToDamage
   }
 
+  /**
+   * spell hit weight i.e. the amount of spell power 1 point of crit worth.
+   */
   public get spellHitWeight(): number {
     return this.spellHitToDamage / this.spellPowerToDamage
   }

@@ -2,7 +2,6 @@
 - name: Starfire Rank 1
   minDmg: 95
   maxDmg: 115
-  badBaseDmg: 99.5
   school: arcane
   type: direct
   castTime: 3.5
@@ -13,7 +12,6 @@
 - name: Starfire Rank 2
   minDmg: 146
   maxDmg: 177
-  badBaseDmg: 152.5
   school: arcane
   type: direct
   castTime: 3.5
@@ -24,7 +22,6 @@
 - name: Starfire Rank 3
   minDmg: 212
   maxDmg: 253
-  badBaseDmg: 221.5
   school: arcane
   type: direct
   castTime: 3.5
@@ -35,7 +32,6 @@
 - name: Starfire Rank 4
   minDmg: 293
   maxDmg: 348
-  badBaseDmg: 307.5
   school: arcane
   type: direct
   castTime: 3.5
@@ -46,7 +42,6 @@
 - name: Starfire Rank 5
   minDmg: 378
   maxDmg: 445
-  badBaseDmg: 395.5
   school: arcane
   type: direct
   castTime: 3.5
@@ -57,7 +52,6 @@
 - name: Starfire Rank 6
   minDmg: 451
   maxDmg: 531
-  badBaseDmg: 488.5
   school: arcane
   type: direct
   castTime: 3.5
@@ -68,7 +62,6 @@
 - name: Starfire Rank 7
   minDmg: 496
   maxDmg: 584
-  badBaseDmg: 540.5
   school: arcane
   type: direct
   castTime: 3.5
@@ -79,7 +72,6 @@
 - name: Wrath Rank 1
   minDmg: 13
   maxDmg: 16
-  badBaseDmg: 13.5 
   school: nature
   type: direct
   castTime: 1.5
@@ -90,7 +82,6 @@
 - name: Wrath Rank 2
   minDmg: 28
   maxDmg: 33
-  badBaseDmg: 27.5
   school: nature
   type: direct
   castTime: 1.7
@@ -101,7 +92,6 @@
 - name: Wrath Rank 3
   minDmg: 48
   maxDmg: 57
-  badBaseDmg: 48.5
   school: nature
   type: direct
   castTime: 2
@@ -112,7 +102,6 @@
 - name: Wrath Rank 4
   minDmg: 69
   maxDmg: 79
-  badBaseDmg: 68.5
   school: nature
   type: direct
   castTime: 2
@@ -123,7 +112,6 @@
 - name: Wrath Rank 5
   minDmg: 108
   maxDmg: 123
-  badBaseDmg: 108.5
   school: nature
   type: direct
   castTime: 2
@@ -134,7 +122,6 @@
 - name: Wrath Rank 6
   minDmg: 148
   maxDmg: 167
-  badBaseDmg: 148.5
   school: nature
   type: direct
   castTime: 2
@@ -145,7 +132,6 @@
 - name: Wrath Rank 7
   minDmg: 198
   maxDmg: 221
-  badBaseDmg: 199.5
   school: nature
   type: direct
   castTime: 2
@@ -156,7 +142,6 @@
 - name: Wrath Rank 8
   minDmg: 248
   maxDmg: 277
-  badBaseDmg: 250.5
   school: nature
   type: direct
   castTime: 2
@@ -167,7 +152,6 @@
 - name: Moonfire Rank 1
   minDmg: 9
   maxDmg: 12
-  badBaseDmg: 0
   school: arcane
   type: hybrid
   castTime: 0
@@ -178,7 +162,6 @@
 - name: Moonfire Rank 2
   minDmg: 17
   maxDmg: 21
-  badBaseDmg: 0
   school: arcane
   type: hybrid
   castTime: 0
@@ -189,7 +172,6 @@
 - name: Moonfire Rank 3
   minDmg: 30
   maxDmg: 37
-  badBaseDmg: 0
   school: arcane
   type: hybrid
   castTime: 0
@@ -200,7 +182,6 @@
 - name: Moonfire Rank 4
   minDmg: 47
   maxDmg: 55
-  badBaseDmg: 0
   school: arcane
   type: hybrid
   castTime: 0
@@ -211,7 +192,6 @@
 - name: Moonfire Rank 5
   minDmg: 70
   maxDmg: 82
-  badBaseDmg: 0
   school: arcane
   type: hybrid
   castTime: 0
@@ -222,7 +202,6 @@
 - name: Moonfire Rank 6
   minDmg: 91
   maxDmg: 108
-  badBaseDmg: 0
   school: arcane
   type: hybrid
   castTime: 0
@@ -233,7 +212,6 @@
 - name: Moonfire Rank 7
   minDmg: 117
   maxDmg: 137
-  badBaseDmg: 0
   school: arcane
   type: hybrid
   castTime: 0
@@ -244,7 +222,6 @@
 - name: Moonfire Rank 8
   minDmg: 143
   maxDmg: 168
-  badBaseDmg: 0
   school: arcane
   type: hybrid
   castTime: 0
@@ -255,7 +232,6 @@
 - name: Moonfire Rank 9
   minDmg: 172
   maxDmg: 200
-  badBaseDmg: 0
   school: arcane
   type: hybrid
   castTime: 0
@@ -266,7 +242,6 @@
 - name: Moonfire Rank 10
   minDmg: 195
   maxDmg: 228
-  badBaseDmg: 0
   school: arcane
   type: hybrid
   castTime: 0

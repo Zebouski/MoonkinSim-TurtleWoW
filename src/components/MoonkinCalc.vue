@@ -1,13 +1,5 @@
 <template>
   <div>
-    <section class="hero is-light">
-      <div class="hero-body">
-        <div class="container">
-          <h1 class="title">Moonkin Calculator</h1>
-          <h2 class="subtitle">Calculate things...for moonkin.</h2>
-        </div>
-      </div>
-    </section>
     <section class="section has-background-grey-darker">
       <div class="container is-fluid">
         <div class="tile is-ancestor">
@@ -149,24 +141,6 @@
         </div>
       </div>
     </section>
-    <footer class="footer">
-      <div class="content has-text-centered">
-        <font-awesome-icon :icon="['fab', 'discord']" />Beef Broccoli#5067
-        <br />
-        <font-awesome-icon :icon="['fab', 'gitlab']" />
-        <a href="https://gitlab.com/kmmiles/moonkin-calc">Source / </a>
-        <a href="https://kmmiles.gitlab.io/moonkin-calc/docs">Docs</a>
-        <br />
-        <p>
-          Based on Keftenk's
-          <a
-            href="https://forum.classicwow.live/topic/726/by-the-great-winds-i-come-classic-balance-druid-theorycraft-spreadsheet-v1-3"
-            >Classic Balance Druid spreadsheet</a
-          >
-          and math by Balor.
-        </p>
-      </div>
-    </footer>
   </div>
 </template>
 
