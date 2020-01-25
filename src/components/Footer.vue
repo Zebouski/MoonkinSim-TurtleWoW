@@ -1,10 +1,13 @@
 <template>
   <footer class="footer">
     <div class="content has-text-centered">
-      <font-awesome-icon :icon="['fab', 'discord']" />Beef Broccoli#5067
+      <font-awesome-icon :icon="['fab', 'discord']" /> Beef Broccoli#5067
       <br />
-      <font-awesome-icon :icon="['fab', 'gitlab']" />
-      <a href="https://gitlab.com/kmmiles/moonkin-calc">Source /</a>
+      <font-awesome-icon :icon="['fas', 'file-pdf']" />&nbsp;
+      <a href="https://kmmiles.gitlab.io/moonkin-calc/whitepaper/SpellDamage.pdf">Whitepaper / </a>
+      <font-awesome-icon :icon="['fab', 'gitlab']" />&nbsp;
+      <a href="https://gitlab.com/kmmiles/moonkin-calc">Source / </a>
+      <font-awesome-icon :icon="['fas', 'book']" />&nbsp;
       <a href="https://kmmiles.gitlab.io/moonkin-calc/docs">Docs</a>
       <br />
       <p>

@@ -9,6 +9,7 @@ pages:
   - yarn install
   - yarn run build
   - yarn run docs
+  - cp -R whitepaper dist/
   - mv dist public
 
   artifacts:
