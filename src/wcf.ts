@@ -121,34 +121,39 @@ class Spell {
   }
 
   /**
-   * Return direct and dot coefficients. Supports direct and hybrid spells.
+   * Return spell coefficients. There are three types of spells, each with their
+   * own coefficient formulas: direct, dot, and hybrid.
+   *
+   * Source: https://classicwow.live/guides/670/ozgar-s-downranking-guide-tool
    */
   public get coefficient(): CoefficientValues {
-    let myCoefficient = { direct: 0, dot: 0 }
-    const subLevelPenalty = 1 - (20 - this.level) * 0.0375
+    const baseCoefficient = this.castTime / 3.5
+    const baseDotCoefficient = this.duration / 15
+    const baseHybridCoefficient = baseDotCoefficient / (baseDotCoefficient + baseCoefficient)
+    const spellLevelPenalty = this.level < 20 ? 1 - (20 - this.level) * 0.0375 : 0
 
-    if (this.spellJSON.type === 'hybrid') {
-      let dotPart = this.duration / 15 / (this.duration / 15 + this.castTime / 3.5)
-      let directPart = 1 - dotPart
-      let baseDotCoefficient = (this.duration / 15) * dotPart
-      let baseDirectCoefficient = (this.castTime / 3.5) * directPart
-
-      if (this.level < 20) {
-        myCoefficient.dot = baseDotCoefficient * (1 - subLevelPenalty)
-        myCoefficient.direct = baseDirectCoefficient * (1 - subLevelPenalty)
-      } else {
-        myCoefficient.dot = baseDotCoefficient
-        myCoefficient.direct = baseDirectCoefficient
-      }
-    } else {
-      const baseCoefficient = this.castTime / 3.5
-      if (this.level < 20) {
-        myCoefficient.direct = baseCoefficient * (1 - subLevelPenalty)
-      } else {
-        myCoefficient.direct = baseCoefficient
-      }
+    switch (this.spellJSON.type) {
+      case 'direct':
+        return {
+          direct: baseCoefficient * (1 - spellLevelPenalty),
+          dot: 0
+        }
+      case 'dot':
+        return {
+          direct: 0,
+          dot: baseDotCoefficient * (1 - spellLevelPenalty)
+        }
+      case 'hybrid':
+        return {
+          direct: baseCoefficient * (1 - baseHybridCoefficient) * (1 - spellLevelPenalty),
+          dot: baseDotCoefficient * baseHybridCoefficient * (1 - spellLevelPenalty)
+        }
+      default:
+        return {
+          direct: 0,
+          dot: 0
+        }
     }
-    return myCoefficient
   }
 
   /**
