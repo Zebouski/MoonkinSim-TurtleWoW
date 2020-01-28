@@ -1,5 +1,8 @@
 image: node:latest
 
+variables:
+  production: "true"
+
 pages:
   cache:
     paths:
