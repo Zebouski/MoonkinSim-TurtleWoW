@@ -12,7 +12,6 @@ pages:
   - yarn install
   - yarn run build
   - yarn run docs
-  - mv public/* dist/
   - cp -R whitepaper dist/
   - rm -rf public
   - mv dist public
