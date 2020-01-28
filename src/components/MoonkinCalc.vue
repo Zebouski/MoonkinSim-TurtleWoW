@@ -5,26 +5,26 @@
         <div class="level-item has-text-centered">
           <div>
             <p class="heading has-text-white">DPS</p>
-            <p class="title has-text-white">{{ spellCast.DPS.toFixed(1) }}</p>
+            <p class="title has-text-white is-size-5-mobile">{{ spellCast.DPS.toFixed(1) }}</p>
           </div>
         </div>
         <div class="level-item has-text-centered">
           <div>
             <p class="heading has-text-white">Spell Crit Weight</p>
-            <p class="title has-text-white">{{ spellCast.spellCritWeight.toFixed(1) }}</p>
+            <p class="title has-text-white is-size-5-mobile">{{ spellCast.spellCritWeight.toFixed(1) }}</p>
             <p></p>
           </div>
         </div>
         <div class="level-item has-text-centered">
           <div>
             <p class="heading has-text-white">Spell Hit Weight</p>
-            <p class="title has-text-white">{{ spellCast.spellHitWeight.toFixed(1) }}</p>
+            <p class="title has-text-white is-size-5-mobile">{{ spellCast.spellHitWeight.toFixed(1) }}</p>
           </div>
         </div>
         <div class="level-item has-text-centered">
           <div>
             <p class="heading has-text-white">Int Weight</p>
-            <p class="title has-text-white">
+            <p class="title has-text-white is-size-5-mobile">
               {{ Number(spellCast.spellCritToDamage / spellCast.spellPowerToDamage / 60).toFixed(1) }}
             </p>
           </div>
