@@ -19,8 +19,5 @@ import Footer from './components/Footer.vue'
   }
 })
 export default class App extends Vue {
-  created() {
-    document.title = 'Moonkin Calculator'
-  }
 }
 </script>

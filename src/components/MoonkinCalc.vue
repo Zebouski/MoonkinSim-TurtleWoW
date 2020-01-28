@@ -186,8 +186,7 @@
                       >
                     </p>
                     <p class="is-size-7-mobile">
-                      Cast Time: {{ spellCast.castTime }} (Effective: {{ spellCast.spellEffectiveCastTime.toFixed(3) }},
-                      Base: {{ spellCast.spell.castTime }})
+                      Cast Time: {{ spellCast.castTime }} (Effective: {{ spellCast.spellEffectiveCastTime.toFixed(3) }})
                     </p>
                     <p class="is-size-7-mobile">Coefficient (dot): {{ spellCast.spell.coefficient.dot.toFixed(3) }}</p>
                     <p class="is-size-7-mobile">
