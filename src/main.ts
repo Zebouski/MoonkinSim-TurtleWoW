@@ -3,6 +3,7 @@ import App from './App.vue'
 
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
+import './styles/custom.scss'
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'

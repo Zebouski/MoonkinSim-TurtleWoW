@@ -1,14 +1,14 @@
 <template>
-  <footer class="footer">
-    <div class="content has-text-centered">
+  <footer class="footer has-background-black-ter">
+    <div class="content has-text-centered has-text-white">
       <font-awesome-icon :icon="['fab', 'discord']" /> Beef Broccoli#5067
       <br />
       <font-awesome-icon :icon="['fas', 'file-pdf']" />&nbsp;
-      <a href="https://kmmiles.gitlab.io/moonkin-calc/whitepaper/SpellDamage.pdf">Whitepaper / </a>
+      <a href="https://kmmiles.gitlab.io/moonkin-calc/whitepaper/SpellDamage.pdf">Whitepaper</a>&nbsp;
       <font-awesome-icon :icon="['fab', 'gitlab']" />&nbsp;
-      <a href="https://gitlab.com/kmmiles/moonkin-calc">Source / </a>
+      <a href="https://gitlab.com/kmmiles/moonkin-calc">Source</a>&nbsp;
       <font-awesome-icon :icon="['fas', 'book']" />&nbsp;
-      <a href="https://kmmiles.gitlab.io/moonkin-calc/docs">Docs</a>
+      <a href="https://kmmiles.gitlab.io/moonkin-calc/docs">Docs</a>&nbsp;
       <br />
       <p>
         Based on Keftenk's

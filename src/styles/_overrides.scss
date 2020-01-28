@@ -1,0 +1,39 @@
+/*
+.box {
+    border: solid 1px rgba(221,221,221,0.15);
+    border-radius: 0px;
+}
+.tile {
+    border-radius: 0px;
+}
+*/
+
+a:hover {
+    text-decoration: underline;
+}
+
+.input {
+    border: 0px;
+    background-color: $grey-dark;
+    color: #fff;
+}
+
+.input checkbox {
+    border: 0px;
+    background-color: $grey-dark;
+    color: #fff;
+}
+
+.select select {
+    border: 0px;
+    background-color: $grey-dark;
+    color: #fff;
+}
+
+.b-checkbox.checkbox .control-label:hover {
+    color: white;
+}
+
+.b-checkbox.checkbox:hover {
+    color: white;
+}

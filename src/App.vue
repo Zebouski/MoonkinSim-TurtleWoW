@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <Header />
     <MoonkinCalc />
     <Footer />
   </div>

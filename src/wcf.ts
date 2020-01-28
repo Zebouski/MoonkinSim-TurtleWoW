@@ -127,15 +127,15 @@ class Spell {
    * Source: https://classicwow.live/guides/670/ozgar-s-downranking-guide-tool
    */
   public get coefficient(): CoefficientValues {
-    const baseCoefficient = this.castTime / 3.5
+    const baseDirectCoefficient = this.castTime / 3.5
     const baseDotCoefficient = this.duration / 15
-    const baseHybridCoefficient = baseDotCoefficient / (baseDotCoefficient + baseCoefficient)
+    const baseHybridCoefficient = baseDotCoefficient / (baseDirectCoefficient + baseDotCoefficient)
     const spellLevelPenalty = this.level < 20 ? 1 - (20 - this.level) * 0.0375 : 0
 
-    switch (this.spellJSON.type) {
+    switch (this.type) {
       case 'direct':
         return {
-          direct: baseCoefficient * (1 - spellLevelPenalty),
+          direct: baseDirectCoefficient * (1 - spellLevelPenalty),
           dot: 0
         }
       case 'dot':
@@ -145,7 +145,7 @@ class Spell {
         }
       case 'hybrid':
         return {
-          direct: baseCoefficient * (1 - baseHybridCoefficient) * (1 - spellLevelPenalty),
+          direct: baseDirectCoefficient * (1 - baseHybridCoefficient) * (1 - spellLevelPenalty),
           dot: baseDotCoefficient * baseHybridCoefficient * (1 - spellLevelPenalty)
         }
       default:
@@ -161,6 +161,13 @@ class Spell {
    */
   public get baseName(): string {
     return this.spellJSON.name.split(' ')[0]
+  }
+
+  /**
+   * Return spell type (direct, dot or hybrid)
+   */
+  public get type(): string {
+    return this.spellJSON.type.toLowerCase()
   }
 
   /**
@@ -568,7 +575,7 @@ class SpellCast {
    * Average damage of a non-crit spell
    *
    */
-  public get spellAverageNonCrit(): number {
+  public get spellAverageDmgNonCrit(): number {
     return this.spell.baseDmg * this.moonFuryBonus + this.character.spellPower * this.spell.coefficient.direct
   }
 
@@ -620,7 +627,7 @@ class SpellCast {
     return (
       (this.spellMultiplicativeBonuses *
         (83 + this.character.spellHit) *
-        (this.moonFuryBonus * this.spell.baseDmg + this.spell.coefficient.direct * this.character.spellPower) *
+        this.spellAverageDmgNonCrit *
         ((this.vengeanceBonus - 1) * this.castTime + this.naturesGraceBonus * (0.83 + this.character.spellHit / 100))) /
       (100 * this.castTime -
         this.naturesGraceBonus * (0.83 + this.character.spellHit / 100) * this.character.spellCrit) **
@@ -637,7 +644,7 @@ class SpellCast {
   public get spellHitToDamage(): number {
     return (
       (this.spellMultiplicativeBonuses *
-        (this.moonFuryBonus * this.spell.baseDmg + this.spell.coefficient.direct * this.character.spellPower) *
+        this.spellAverageDmgNonCrit *
         (100 + (this.vengeanceBonus - 1) * this.character.spellCrit) *
         (100 ** 2 * this.castTime)) /
       (100 ** 2 * this.castTime - this.naturesGraceBonus * (83 + this.character.spellHit) * this.character.spellCrit) **
@@ -650,14 +657,13 @@ class SpellCast {
    */
   public get DPS(): number {
     // =(($H$9*$H$13*$I$9+$H$9*$H$16)/100) / $I$18*$D$22*$D$23*$D$24*$D$25*$D$26*$D$27*(1-$H$20)
-    const x =
-      ((this.spellAverageNonCrit * this.spellChanceToCrit * this.vengeanceBonus +
-        this.spellAverageNonCrit * this.spellChanceToRegularHit) /
+    return (
+      ((this.spellAverageDmgNonCrit * this.spellChanceToCrit * this.vengeanceBonus +
+        this.spellAverageDmgNonCrit * this.spellChanceToRegularHit) /
         100 /
         this.spellEffectiveCastTime) *
       this.spellMultiplicativeBonuses
-
-    return x
+    )
   }
 
   /**
