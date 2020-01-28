@@ -37,6 +37,7 @@ const useBadBaseDmg = false
 const globalCoolDown = 1.5
 const hitCap = 17
 const spellCastTimeHumanFactor = 0.05
+const spellBaseCritMultiplier = 1.5
 const naturesGraceReduction = 0.5
 const curseOfShadowBonus = 1.1
 const powerInfusionBonus = 1.2
@@ -513,22 +514,22 @@ class SpellCast {
   }
 
   /**
-   * Increases the critical strike damage bonus by 20%/40%/80%/100%
+   * Increases the critical strike damage bonus of your Starfire, Moonfire, and Wrath spells by x%.
    */
   public get vengeanceBonus(): number {
     switch (this.character.talents.vengeanceRank) {
       case 1:
-        return 1.6 // rank 1: Increases the critical strike damage bonus by 20%
+        return 0.1 // rank 1: Increases the critical strike damage bonus by 20%
       case 2:
-        return 1.7 // rank 2: Increases the critical strike damage bonus by 40%
+        return 0.2 // rank 2: Increases the critical strike damage bonus by 40%
       case 3:
-        return 1.8 // rank 3: Increases the critical strike damage bonus by 60%
+        return 0.3 // rank 3: Increases the critical strike damage bonus by 60%
       case 4:
-        return 1.9 // rank 4: Increases the critical strike damage bonus by 80%
+        return 0.4 // rank 4: Increases the critical strike damage bonus by 80%
       case 5:
-        return 2 // rank 5: Increases the critical strike damage bonus by 100%
+        return 0.5 // rank 5: Increases the critical strike damage bonus by 100%
       default:
-        return 1.5
+        return 0.0
     }
   }
 
@@ -537,14 +538,26 @@ class SpellCast {
    * Time is limited by the global cooldown.
    */
   public get naturesGraceBonus(): number {
-    if (this.character.talents.naturesGraceRank > 0) {
-      let x = this.castTime - naturesGraceReduction
-      if (x <= globalCoolDown) {
-        return globalCoolDown - (x + naturesGraceReduction)
-      }
-      return naturesGraceReduction
+    if (this.character.talents.naturesGraceRank === 0) return 0
+    return this.castTime - naturesGraceReduction <= globalCoolDown
+      ? globalCoolDown - this.castTime
+      : naturesGraceReduction
+  }
+
+  /**
+   * Additional damage added by a crit
+   */
+  public get spellCritMultiplier(): number {
+    switch (this.spell.baseName) {
+      case 'Wrath':
+        return spellBaseCritMultiplier + this.vengeanceBonus
+      case 'Starfire':
+        return spellBaseCritMultiplier + this.vengeanceBonus
+      case 'Moonfire':
+        return spellBaseCritMultiplier + this.vengeanceBonus
+      default:
+        return spellBaseCritMultiplier
     }
-    return 0
   }
 
   /**
@@ -628,7 +641,8 @@ class SpellCast {
       (this.spellMultiplicativeBonuses *
         (83 + this.character.spellHit) *
         this.spellAverageDmgNonCrit *
-        ((this.vengeanceBonus - 1) * this.castTime + this.naturesGraceBonus * (0.83 + this.character.spellHit / 100))) /
+        ((this.spellCritMultiplier - 1) * this.castTime +
+          this.naturesGraceBonus * (0.83 + this.character.spellHit / 100))) /
       (100 * this.castTime -
         this.naturesGraceBonus * (0.83 + this.character.spellHit / 100) * this.character.spellCrit) **
         2
@@ -645,7 +659,7 @@ class SpellCast {
     return (
       (this.spellMultiplicativeBonuses *
         this.spellAverageDmgNonCrit *
-        (100 + (this.vengeanceBonus - 1) * this.character.spellCrit) *
+        (100 + (this.spellCritMultiplier - 1) * this.character.spellCrit) *
         (100 ** 2 * this.castTime)) /
       (100 ** 2 * this.castTime - this.naturesGraceBonus * (83 + this.character.spellHit) * this.character.spellCrit) **
         2
@@ -658,7 +672,7 @@ class SpellCast {
   public get DPS(): number {
     // =(($H$9*$H$13*$I$9+$H$9*$H$16)/100) / $I$18*$D$22*$D$23*$D$24*$D$25*$D$26*$D$27*(1-$H$20)
     return (
-      ((this.spellAverageDmgNonCrit * this.spellChanceToCrit * this.vengeanceBonus +
+      ((this.spellAverageDmgNonCrit * this.spellChanceToCrit * this.spellCritMultiplier +
         this.spellAverageDmgNonCrit * this.spellChanceToRegularHit) /
         100 /
         this.spellEffectiveCastTime) *

@@ -129,7 +129,7 @@
                         Spell Vulnerability
                       </b-checkbox>
                     </div>
-                    
+
                     <div class="field">
                       <b-checkbox class="is-size-7-mobile" v-model="stormStrike">
                         Storm Strike
