@@ -30,6 +30,11 @@ a:hover {
     color: #fff;
 }
 
+.select select option {
+    background-color: $grey-dark;
+    color: #fff;
+}
+
 .b-checkbox.checkbox .control-label:hover {
     color: white;
 }
