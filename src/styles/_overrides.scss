@@ -1,19 +1,60 @@
-/*
-.box {
-    border: solid 1px rgba(221,221,221,0.15);
-    border-radius: 0px;
+body, button, input, select, textarea {
+    font-family: $family-monospace;
 }
-.tile {
-    border-radius: 0px;
+.field:not(:last-child) {
+   margin-bottom: 1.5em; 
 }
-*/
 
+.box, .footer, .section {
+        border: solid 1px $grey-dark;
+        border-radius: 0px;
+}
+
+.b-tabs .tabs {
+   margin-bottom: 1.5rem; 
+}
+
+.footer, .section {
+    border-left: none;
+    border-right: none;
+}
+
+.content p:not(:last-child) {
+   // margin-bottom: 0em; 
+}
 a:hover {
     text-decoration: underline;
+    color: #fff;
+}
+
+a {
+    color: #fff;
+}
+
+.field.is-floating-label .label:before {
+    background-color: $grey-dark;
+}
+
+.label {
+    color: #fff;
+}
+
+.tabs a {
+    color: #fff;
+    border-bottom-color: $grey-dark;
+}
+
+.tabs a:hover {
+    color: #fff;
+    border-bottom-color: $grey-light;
+}
+
+.tabs ul {
+    color: #fff;
+    border-bottom-color: $grey-dark;
 }
 
 .input {
-    border: 0px;
     background-color: $grey-dark;
     color: #fff;
 }
@@ -24,8 +65,12 @@ a:hover {
     color: #fff;
 }
 
+.input, .taginput .taginput-container.is-focusable, .textarea, .select select {
+    border-color: $grey;
+}
+
 .select select {
-    border: 0px;
+    //border: 0px;
     background-color: $grey-dark;
     color: #fff;
 }

@@ -35,7 +35,7 @@ const bosses = require('./db/targets/bosses.yaml')
 /* constants */
 const useBadBaseDmg = false
 const globalCoolDown = 1.5
-const hitCap = 17
+const spellHitCap = 16
 const spellCastTimeHumanFactor = 0.05
 const spellBaseCritMultiplier = 1.5
 const naturesGraceReduction = 0.5
@@ -565,7 +565,7 @@ class SpellCast {
    *
    */
   public get spellChanceToMiss(): number {
-    return 100 - (83 + Math.min(this.character.spellHit, hitCap - 1))
+    return 100 - (83 + Math.min(this.character.spellHit, spellHitCap))
   }
 
   /**
@@ -699,7 +699,7 @@ class SpellCast {
    * spell hit weight i.e. the amount of spell power 1 point of crit worth.
    */
   public get spellHitWeight(): number {
-    return this.spellHitToDamage / this.spellPowerToDamage
+    return this.character.spellHit < spellHitCap ? this.spellHitToDamage / this.spellPowerToDamage : 0
   }
 }
 

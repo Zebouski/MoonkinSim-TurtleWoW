@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="section has-background-black-ter">
+    <section id="header" class="section has-background-black-ter">
       <nav class="level is-mobile">
         <div class="level-item has-text-centered">
           <div>
@@ -10,14 +10,14 @@
         </div>
         <div class="level-item has-text-centered">
           <div>
-            <p class="heading has-text-white">Spell Crit Weight</p>
+            <p class="heading has-text-white">Crit Weight</p>
             <p class="title has-text-white is-size-5-mobile">{{ spellCast.spellCritWeight.toFixed(1) }}</p>
             <p></p>
           </div>
         </div>
         <div class="level-item has-text-centered">
           <div>
-            <p class="heading has-text-white">Spell Hit Weight</p>
+            <p class="heading has-text-white">Hit Weight</p>
             <p class="title has-text-white is-size-5-mobile">{{ spellCast.spellHitWeight.toFixed(1) }}</p>
           </div>
         </div>
@@ -36,108 +36,104 @@
         <div class="tile is-ancestor">
           <div class="tile is-parent">
             <article class="tile is-child box has-background-black-ter has-text-white">
-              <div class="content">
-                <div class="input_fields">
-                  <label class="input-box">
-                    <div class="is-size-7-mobile">Spell Name:</div>
-                    <div class="select is-size-7-mobile">
-                      <select v-model="spellName">
-                        <option v-for="name in spellNames" :key="name" v-bind:value="name">{{ name }}</option>
-                      </select>
-                    </div>
-                  </label>
-                  <!--
-                  <label class="input-box">
-                    <div>Target:</div>
-                    <div class="select">
-                      <select v-model="targetName">
-                        <option
-                          v-for="name in targetNames"
-                          :key="name"
-                          v-bind:value="name"
-                          >{{ name }}</option
-                        >
-                      </select>
-                    </div>
-                  </label>
-                  -->
-                </div>
-                <div class="input_fields">
-                  <label class="input-box">
-                    <div class="is-size-7-mobile">Spell Power:</div>
-                    <input class="input is-size-7-mobile" type="number" v-model.number="spellPower" />
-                  </label>
-                  <label class="input-box">
-                    <div class="is-size-7-mobile">Spell Crit:</div>
-                    <input class="input is-size-7-mobile" type="number" v-model.number="spellCrit" />
-                  </label>
-                  <label class="input-box">
-                    <div class="is-size-7-mobile">Spell Hit:</div>
-                    <input class="input is-size-7-mobile" type="number" v-model.number="spellHit" />
-                  </label>
-                </div>
-                <div class="input_fields">
-                  <label class="input-box">
-                    <div class="is-size-7-mobile">Moonfury rank:</div>
-                    <input class="input is-size-7-mobile" type="number" v-model.number="moonFuryRank" />
-                  </label>
-                  <label class="input-box">
-                    <div class="is-size-7-mobile">Vengeance rank:</div>
-                    <input class="input is-size-7-mobile" type="number" v-model.number="vengeanceRank" />
-                  </label>
-                  <label class="input-box">
-                    <div class="is-size-7-mobile">Improved Wrath rank:</div>
-                    <input class="input is-size-7-mobile" type="number" v-model.number="improvedWrathRank" />
-                  </label>
-                  <label class="input-box">
-                    <div class="is-size-7-mobile">Improved Starfire rank:</div>
-                    <input class="input is-size-7-mobile" type="number" v-model.number="improvedStarfireRank" />
-                  </label>
-                  <label class="input-box">
-                    <div class="is-size-7-mobile">Natures Grace rank:</div>
-                    <input class="input is-size-7-mobile" type="number" v-model.number="naturesGraceRank" />
-                  </label>
-                </div>
-                <div class="columns is-mobile">
-                  <div class="column">
-                    <div class="field">
-                      <b-checkbox class="is-size-7-mobile" v-model="curseOfShadow">
-                        Curse of Shadow
-                      </b-checkbox>
-                    </div>
-                    <div class="field">
-                      <b-checkbox class="is-size-7-mobile" v-model="powerInfusion">
-                        Power Infusion
-                      </b-checkbox>
-                    </div>
-                  </div>
-                  <div class="column">
-                    <div class="field">
-                      <b-checkbox class="is-size-7-mobile" v-model="saygesDarkFortune">
-                        Sayge's Dark Fortune
-                      </b-checkbox>
-                    </div>
-                    <div class="field">
-                      <b-checkbox class="is-size-7-mobile" v-model="tracesOfSilithyst">
-                        Traces of Silithyst
-                      </b-checkbox>
-                    </div>
-                  </div>
-                  <div class="column">
-                    <div class="field">
-                      <b-checkbox class="is-size-7-mobile" v-model="spellVuln">
-                        Spell Vulnerability
-                      </b-checkbox>
-                    </div>
+              <b-tabs class="block">
+                <b-tab-item label="General">
+                  <div class="content">
+                    <div class="columns is-mobile">
+                      <div class="column">
+                        <b-field label="Spell Name" label-position="on-border">
+                          <b-select class="is-size-7-mobile" v-model="spellName">
+                            <option
+                                v-for="name in spellNames"
+                                :key="name"
+                                v-bind:value="name">
+                                {{ name }}
+                            </option>
+                          </b-select>
+                        </b-field>
 
-                    <div class="field">
-                      <b-checkbox class="is-size-7-mobile" v-model="stormStrike">
-                        Storm Strike
-                      </b-checkbox>
+                        <b-field label="Spell Crit" label-position="on-border">
+                          <input class="input is-size-7-mobile" type="number" v-model.number="spellCrit" />
+                        </b-field>
+                      </div>
+                      <div class="column">
+                        <b-field label="Spell Power" label-position="on-border">
+                          <input class="input is-size-7-mobile" type="number" v-model.number="spellPower" />
+                        </b-field>
+                        <b-field label="Spell Hit" label-position="on-border">
+                          <input class="input is-size-7-mobile" type="number" v-model.number="spellHit" />
+                        </b-field>
+                      </div>
+                    </div>
+                    <div class="columns is-mobile">
+                      <div class="column">
+                        <div class="field">
+                          <b-checkbox class="is-size-7-mobile" v-model="curseOfShadow">
+                            Curse of Shadow
+                          </b-checkbox>
+                        </div>
+                        <div class="field">
+                          <b-checkbox class="is-size-7-mobile" v-model="powerInfusion">
+                            Power Infusion
+                          </b-checkbox>
+                        </div>
+                        <div class="field">
+                          <b-checkbox class="is-size-7-mobile" v-model="saygesDarkFortune">
+                            Sayge's Dark Fortune
+                          </b-checkbox>
+                        </div>
+                      </div>
+                      <div class="column">
+                        <div class="field">
+                          <b-checkbox class="is-size-7-mobile" v-model="tracesOfSilithyst">
+                            Traces of Silithyst
+                          </b-checkbox>
+                        </div>
+                        <div class="field">
+                          <b-checkbox class="is-size-7-mobile" v-model="spellVuln">
+                            Spell Vulnerability
+                          </b-checkbox>
+                        </div>
+
+                        <div class="field">
+                          <b-checkbox class="is-size-7-mobile" v-model="stormStrike">
+                            Storm Strike
+                          </b-checkbox>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                </b-tab-item>
+                <b-tab-item label="Talents">
+                  <div class="content">
+                    <div class="columns is-mobile">
+                      <div class="column">
+
+                        <b-field label="Moonfury" label-position="on-border">
+                          <input class="input is-size-7-mobile" type="number" v-model.number="moonFuryRank" />
+                        </b-field>
+
+                        <b-field label="Vengeance" label-position="on-border">
+                          <input class="input is-size-7-mobile" type="number" v-model.number="vengeanceRank" />
+                        </b-field>
+
+                        <b-field label="Improved Wrath" label-position="on-border">
+                          <input class="input is-size-7-mobile" type="number" v-model.number="improvedWrathRank" />
+                        </b-field>
+                      </div>
+                      <div class="column">
+                        <b-field label="Improved Starfire" label-position="on-border">
+                          <input class="input is-size-7-mobile" type="number" v-model.number="improvedStarfireRank" />
+                        </b-field>
+                        <b-field label="Natures Grace" label-position="on-border">
+                          <input class="input is-size-7-mobile" type="number" v-model.number="naturesGraceRank" />
+                        </b-field>
+                      </div>
+                    </div>
+                  </div>
+                  
+                </b-tab-item>
+              </b-tabs>
             </article>
           </div>
           <div class="tile is-parent">
@@ -219,7 +215,7 @@
 <style scoped>
 .input_fields {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-gap: 1rem;
   margin: 1rem 0;
 }
