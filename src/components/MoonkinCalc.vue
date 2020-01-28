@@ -166,10 +166,11 @@
                       Coefficient (direct): {{ spellCast.spell.coefficient.direct.toFixed(3) }}
                     </p>
                     <p class="is-size-7-mobile">
-                      Average Dmg (Non-crit):
+                      Average Dmg:
                       {{ Number(spellCast.spellAverageDmgNonCrit).toFixed(3) }}
                     </p>
                     <p class="is-size-7-mobile">Chance to miss: {{ Number(spellCast.spellChanceToMiss).toFixed(3) }}</p>
+                    <p class="is-size-7-mobile">School: {{ spellCast.spell.school }}</p>
                     <p class="is-size-7-mobile">Range: {{ spellCast.spell.range }}</p>
                     <p class="is-size-7-mobile">Target Resistance: {{ spellCast.target.spellResistance }}</p>
                   </div>
@@ -193,8 +194,12 @@
                       Base: {{ spellCast.spell.castTime }})
                     </p>
                     <p class="is-size-7-mobile">Coefficient (dot): {{ spellCast.spell.coefficient.dot.toFixed(3) }}</p>
-                    <p class="is-size-7-mobile">School: {{ spellCast.spell.school }}</p>
+                    <p class="is-size-7-mobile">
+                      Average Crit:
+                      {{ Number(spellCast.spellAverageDmgCrit).toFixed(3) }}
+                    </p>
                     <p class="is-size-7-mobile">Chance to crit: {{ Number(spellCast.spellChanceToCrit).toFixed(3) }}</p>
+                    <p class="is-size-7-mobile">Mana cost: {{ spellCast.spell.manaCost }}</p>
                     <p class="is-size-7-mobile">Spell Penetration: {{ spellCast.spellPenetration }}</p>
                     <p class="is-size-7-mobile">
                       Partial resist average loss:

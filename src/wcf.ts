@@ -585,11 +585,19 @@ class SpellCast {
   }
 
   /**
-   * Average damage of a non-crit spell
+   * Average damage of spell, if it doesn't crit
    *
    */
   public get spellAverageDmgNonCrit(): number {
     return this.spell.baseDmg * this.moonFuryBonus + this.character.spellPower * this.spell.coefficient.direct
+  }
+
+  /**
+   * Average damage of spell, if it crits
+   *
+   */
+  public get spellAverageDmgCrit(): number {
+    return this.spellAverageDmgNonCrit * this.spellCritMultiplier
   }
 
   /**
@@ -672,7 +680,7 @@ class SpellCast {
   public get DPS(): number {
     // =(($H$9*$H$13*$I$9+$H$9*$H$16)/100) / $I$18*$D$22*$D$23*$D$24*$D$25*$D$26*$D$27*(1-$H$20)
     return (
-      ((this.spellAverageDmgNonCrit * this.spellChanceToCrit * this.spellCritMultiplier +
+      ((this.spellAverageDmgCrit * this.spellChanceToCrit +
         this.spellAverageDmgNonCrit * this.spellChanceToRegularHit) /
         100 /
         this.spellEffectiveCastTime) *
