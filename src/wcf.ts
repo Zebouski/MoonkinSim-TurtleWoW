@@ -45,7 +45,7 @@ const powerInfusionBonus = 1.2
 const saygesDarkFortuneBonus = 1.1
 const tracesOfSilithystBonus = 1.05
 const spellVulnBonus = 1.15
-const stormStrikeBonus = 1
+const stormStrikeBonus = 1.2
 
 /**
  * Object format of targets stored in db/targets.
@@ -586,11 +586,27 @@ class SpellCast {
   }
 
   /**
+   * Average base damage of spell, if it doesn't crit
+   *
+   */
+  public get spellAverageBaseDmgNonCrit(): number {
+    return this.spell.baseDmg * this.moonFuryBonus + this.character.spellPower * this.spell.coefficient.direct
+  }
+
+  /**
    * Average damage of spell, if it doesn't crit
    *
    */
   public get spellAverageDmgNonCrit(): number {
-    return this.spell.baseDmg * this.moonFuryBonus + this.character.spellPower * this.spell.coefficient.direct
+    return this.spellAverageBaseDmgNonCrit * this.spellMultiplicativeBonuses
+  }
+
+  /**
+   * Average base damage of spell, if it crits
+   *
+   */
+  public get spellAverageBaseDmgCrit(): number {
+    return this.spellAverageBaseDmgNonCrit * this.spellCritMultiplier
   }
 
   /**
@@ -598,7 +614,7 @@ class SpellCast {
    *
    */
   public get spellAverageDmgCrit(): number {
-    return this.spellAverageDmgNonCrit * this.spellCritMultiplier
+    return this.spellAverageBaseDmgCrit * this.spellMultiplicativeBonuses
   }
 
   /**
@@ -622,7 +638,7 @@ class SpellCast {
       (this.character.buffs.saygesDarkFortune ? saygesDarkFortuneBonus : 1.0) *
       (this.character.buffs.tracesOfSilithyst ? tracesOfSilithystBonus : 1.0) *
       (this.target.debuffs.spellVuln ? spellVulnBonus : 1.0) *
-      (this.target.debuffs.stormStrike ? stormStrikeBonus : 1.0) *
+      (this.target.debuffs.stormStrike && this.spell.school.toUpperCase() === 'NATURE' ? stormStrikeBonus : 1.0) *
       (1 - this.spellPartialResistLossAverage)
     )
   }
@@ -649,7 +665,7 @@ class SpellCast {
     return (
       (this.spellMultiplicativeBonuses *
         (83 + this.character.spellHit) *
-        this.spellAverageDmgNonCrit *
+        this.spellAverageBaseDmgNonCrit *
         ((this.spellCritMultiplier - 1) * this.castTime +
           this.naturesGraceBonus * (0.83 + this.character.spellHit / 100))) /
       (100 * this.castTime -
@@ -667,7 +683,7 @@ class SpellCast {
   public get spellHitToDamage(): number {
     return (
       (this.spellMultiplicativeBonuses *
-        this.spellAverageDmgNonCrit *
+        this.spellAverageBaseDmgNonCrit *
         (100 + (this.spellCritMultiplier - 1) * this.character.spellCrit) *
         (100 ** 2 * this.castTime)) /
       (100 ** 2 * this.castTime - this.naturesGraceBonus * (83 + this.character.spellHit) * this.character.spellCrit) **
@@ -681,8 +697,8 @@ class SpellCast {
   public get DPS(): number {
     // =(($H$9*$H$13*$I$9+$H$9*$H$16)/100) / $I$18*$D$22*$D$23*$D$24*$D$25*$D$26*$D$27*(1-$H$20)
     return (
-      ((this.spellAverageDmgCrit * this.spellChanceToCrit +
-        this.spellAverageDmgNonCrit * this.spellChanceToRegularHit) /
+      ((this.spellAverageBaseDmgCrit * this.spellChanceToCrit +
+        this.spellAverageBaseDmgNonCrit * this.spellChanceToRegularHit) /
         100 /
         this.spellEffectiveCastTime) *
       this.spellMultiplicativeBonuses

@@ -162,6 +162,10 @@
                       Coefficient (direct): {{ spellCast.spell.coefficient.direct.toFixed(3) }}
                     </p>
                     <p class="is-size-7-mobile">
+                      Average Base Dmg:
+                      {{ Number(spellCast.spellAverageBaseDmgNonCrit).toFixed(3) }}
+                    </p>
+                    <p class="is-size-7-mobile">
                       Average Dmg:
                       {{ Number(spellCast.spellAverageDmgNonCrit).toFixed(3) }}
                     </p>
@@ -187,6 +191,10 @@
                       Cast Time: {{ spellCast.castTime }} (Effective: {{ spellCast.spellEffectiveCastTime.toFixed(3) }})
                     </p>
                     <p class="is-size-7-mobile">Coefficient (dot): {{ spellCast.spell.coefficient.dot.toFixed(3) }}</p>
+                    <p class="is-size-7-mobile">
+                      Average Base Crit:
+                      {{ Number(spellCast.spellAverageBaseDmgCrit).toFixed(3) }}
+                    </p>
                     <p class="is-size-7-mobile">
                       Average Crit:
                       {{ Number(spellCast.spellAverageDmgCrit).toFixed(3) }}
