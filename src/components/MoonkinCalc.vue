@@ -25,7 +25,7 @@
           <div>
             <p class="heading has-text-white">Int Weight</p>
             <p class="title has-text-white is-size-5-mobile">
-              {{ Number(spellCast.spellCritToDamage / spellCast.spellPowerToDamage / 60).toFixed(1) }}
+              {{ spellCast.intWeight.toFixed(1) }}
             </p>
           </div>
         </div>
@@ -179,9 +179,7 @@
                     </p>
                     <p class="is-size-7-mobile">
                       <i
-                        >{{
-                          Number((1 / (spellCast.spellCritToDamage / spellCast.spellPowerToDamage / 60)).toFixed(3))
-                        }}
+                        >{{ spellCast.intWeight.toFixed(3) }}
                         Int = 1 Spell Power</i
                       >
                     </p>

@@ -690,17 +690,24 @@ class SpellCast {
   }
 
   /**
-   * spell crit weight i.e. the amount of spell power 1 point of crit worth.
+   * spell crit weight i.e. the amount of spell power 1 point of crit is worth.
    */
   public get spellCritWeight(): number {
     return this.character.spellCrit < spellCritCap ? this.spellCritToDamage / this.spellPowerToDamage : 0
   }
 
   /**
-   * spell hit weight i.e. the amount of spell power 1 point of crit worth.
+   * spell hit weight i.e. the amount of spell power 1 point of hit is worth.
    */
   public get spellHitWeight(): number {
     return this.character.spellHit < spellHitCap ? this.spellHitToDamage / this.spellPowerToDamage : 0
+  }
+
+  /**
+   * int weight i.e. the amount of spell power 1 point of int is worth
+   */
+  public get intWeight(): number {
+    return this.spellCritWeight ? this.spellCritWeight / 60 : 0
   }
 }
 
