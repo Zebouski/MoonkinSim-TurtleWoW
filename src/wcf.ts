@@ -131,8 +131,10 @@ class Spell {
   public get coefficient(): CoefficientValues {
     const baseDirectCoefficient = this.castTime / 3.5
     const baseDotCoefficient = this.duration / 15
-    const baseHybridCoefficient = baseDotCoefficient / (baseDirectCoefficient + baseDotCoefficient)
-    const spellLevelPenalty = this.level < 20 ? 1 - (20 - this.level) * 0.0375 : 0
+    const baseHybridCoefficient =
+      baseDotCoefficient / (baseDirectCoefficient + baseDotCoefficient)
+    const spellLevelPenalty =
+      this.level < 20 ? 1 - (20 - this.level) * 0.0375 : 0
 
     switch (this.type) {
       case 'direct':
@@ -147,8 +149,12 @@ class Spell {
         }
       case 'hybrid':
         return {
-          direct: baseDirectCoefficient * (1 - baseHybridCoefficient) * (1 - spellLevelPenalty),
-          dot: baseDotCoefficient * baseHybridCoefficient * (1 - spellLevelPenalty)
+          direct:
+            baseDirectCoefficient *
+            (1 - baseHybridCoefficient) *
+            (1 - spellLevelPenalty),
+          dot:
+            baseDotCoefficient * baseHybridCoefficient * (1 - spellLevelPenalty)
         }
       default:
         return {
@@ -204,7 +210,9 @@ class Spell {
    * Return cast time, limited to globalCoolDown
    */
   public get castTime(): number {
-    return this.spellJSON.castTime <= globalCoolDown ? globalCoolDown : this.spellJSON.castTime
+    return this.spellJSON.castTime <= globalCoolDown
+      ? globalCoolDown
+      : this.spellJSON.castTime
   }
 
   /**
@@ -340,7 +348,11 @@ class Debuffs {
   public stormStrike: boolean
   public spellVuln: boolean
 
-  public constructor(curseOfShadow: boolean, stormStrike: boolean, spellVuln: boolean) {
+  public constructor(
+    curseOfShadow: boolean,
+    stormStrike: boolean,
+    spellVuln: boolean
+  ) {
     this.curseOfShadow = curseOfShadow
     this.stormStrike = stormStrike
     this.spellVuln = spellVuln
@@ -355,7 +367,11 @@ class Buffs {
   public saygesDarkFortune: boolean
   public tracesOfSilithyst: boolean
 
-  public constructor(powerInfusion: boolean, saygesDarkFortune: boolean, tracesOfSilithyst: boolean) {
+  public constructor(
+    powerInfusion: boolean,
+    saygesDarkFortune: boolean,
+    tracesOfSilithyst: boolean
+  ) {
     this.powerInfusion = powerInfusion
     this.saygesDarkFortune = saygesDarkFortune
     this.tracesOfSilithyst = tracesOfSilithyst
@@ -441,7 +457,9 @@ class SpellCast {
       case 'Starfire':
         return this.spell.castTime - this.improvedStarfireBonus
       default:
-        return this.spell.castTime <= globalCoolDown ? globalCoolDown : this.spell.castTime
+        return this.spell.castTime <= globalCoolDown
+          ? globalCoolDown
+          : this.spell.castTime
     }
   }
 
@@ -449,9 +467,12 @@ class SpellCast {
    * Factors in cast speed procs natures grace and "human factor"
    */
   public get spellEffectiveCastTime(): number {
-    const x = this.castTime - this.naturesGraceBonus * (this.spellChanceToCrit / 100) + spellCastTimeHumanFactor
-
-    return Math.max(x, globalCoolDown)
+    return Math.max(
+      globalCoolDown,
+      this.castTime -
+        this.naturesGraceBonus * (this.spellChanceToCrit / 100) +
+        spellCastTimeHumanFactor
+    )
   }
 
   /**
@@ -574,7 +595,9 @@ class SpellCast {
    *
    */
   public get spellChanceToCrit(): number {
-    return (1.8 + this.character.spellCrit) * ((100 - this.spellChanceToMiss) / 100)
+    return (
+      (1.8 + this.character.spellCrit) * ((100 - this.spellChanceToMiss) / 100)
+    )
   }
 
   /**
@@ -590,7 +613,10 @@ class SpellCast {
    *
    */
   public get spellAverageBaseDmgNonCrit(): number {
-    return this.spell.baseDmg * this.moonFuryBonus + this.character.spellPower * this.spell.coefficient.direct
+    return (
+      this.spell.baseDmg * this.moonFuryBonus +
+      this.character.spellPower * this.spell.coefficient.direct
+    )
   }
 
   /**
@@ -633,12 +659,18 @@ class SpellCast {
    */
   public get spellMultiplicativeBonuses(): number {
     return (
-      (this.target.debuffs.curseOfShadow && this.spell.school.toUpperCase() === 'ARCANE' ? curseOfShadowBonus : 1.0) *
+      (this.target.debuffs.curseOfShadow &&
+      this.spell.school.toUpperCase() === 'ARCANE'
+        ? curseOfShadowBonus
+        : 1.0) *
       (this.character.buffs.powerInfusion ? powerInfusionBonus : 1.0) *
       (this.character.buffs.saygesDarkFortune ? saygesDarkFortuneBonus : 1.0) *
       (this.character.buffs.tracesOfSilithyst ? tracesOfSilithystBonus : 1.0) *
       (this.target.debuffs.spellVuln ? spellVulnBonus : 1.0) *
-      (this.target.debuffs.stormStrike && this.spell.school.toUpperCase() === 'NATURE' ? stormStrikeBonus : 1.0) *
+      (this.target.debuffs.stormStrike &&
+      this.spell.school.toUpperCase() === 'NATURE'
+        ? stormStrikeBonus
+        : 1.0) *
       (1 - this.spellPartialResistLossAverage)
     )
   }
@@ -650,9 +682,14 @@ class SpellCast {
    */
   public get spellPowerToDamage(): number {
     const x =
-      this.spell.coefficient.direct * (0.83 + this.character.spellHit / 100) * (1 + this.character.spellCrit / 100)
+      this.spell.coefficient.direct *
+      (0.83 + this.character.spellHit / 100) *
+      (1 + this.character.spellCrit / 100)
     const y =
-      this.castTime - this.naturesGraceBonus * (0.83 + this.character.spellHit / 100) * (this.character.spellCrit / 100)
+      this.castTime -
+      this.naturesGraceBonus *
+        (0.83 + this.character.spellHit / 100) *
+        (this.character.spellCrit / 100)
     return x / y
   }
 
@@ -669,7 +706,9 @@ class SpellCast {
         ((this.spellCritMultiplier - 1) * this.castTime +
           this.naturesGraceBonus * (0.83 + this.character.spellHit / 100))) /
       (100 * this.castTime -
-        this.naturesGraceBonus * (0.83 + this.character.spellHit / 100) * this.character.spellCrit) **
+        this.naturesGraceBonus *
+          (0.83 + this.character.spellHit / 100) *
+          this.character.spellCrit) **
         2
     )
   }
@@ -686,7 +725,10 @@ class SpellCast {
         this.spellAverageBaseDmgNonCrit *
         (100 + (this.spellCritMultiplier - 1) * this.character.spellCrit) *
         (100 ** 2 * this.castTime)) /
-      (100 ** 2 * this.castTime - this.naturesGraceBonus * (83 + this.character.spellHit) * this.character.spellCrit) **
+      (100 ** 2 * this.castTime -
+        this.naturesGraceBonus *
+          (83 + this.character.spellHit) *
+          this.character.spellCrit) **
         2
     )
   }
@@ -709,14 +751,18 @@ class SpellCast {
    * spell crit weight i.e. the amount of spell power 1 point of crit is worth.
    */
   public get spellCritWeight(): number {
-    return this.character.spellCrit < spellCritCap ? this.spellCritToDamage / this.spellPowerToDamage : 0
+    return this.character.spellCrit < spellCritCap
+      ? this.spellCritToDamage / this.spellPowerToDamage
+      : 0
   }
 
   /**
    * spell hit weight i.e. the amount of spell power 1 point of hit is worth.
    */
   public get spellHitWeight(): number {
-    return this.character.spellHit < spellHitCap ? this.spellHitToDamage / this.spellPowerToDamage : 0
+    return this.character.spellHit < spellHitCap
+      ? this.spellHitToDamage / this.spellPowerToDamage
+      : 0
   }
 
   /**

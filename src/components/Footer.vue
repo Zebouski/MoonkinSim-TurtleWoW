@@ -4,8 +4,10 @@
       <font-awesome-icon :icon="['fab', 'discord']" /> Beef Broccoli#5067
       <br />
       <font-awesome-icon :icon="['fas', 'file-pdf']" />&nbsp;
-      <a href="https://kmmiles.gitlab.io/moonkin-calc/whitepaper/SpellDamage.pdf">Whitepaper</a>&nbsp;
-      <font-awesome-icon :icon="['fab', 'gitlab']" />&nbsp;
+      <a
+        href="https://kmmiles.gitlab.io/moonkin-calc/whitepaper/SpellDamage.pdf"
+        >Whitepaper</a
+      >&nbsp; <font-awesome-icon :icon="['fab', 'gitlab']" />&nbsp;
       <a href="https://gitlab.com/kmmiles/moonkin-calc">Source</a>&nbsp;
       <font-awesome-icon :icon="['fas', 'book']" />&nbsp;
       <a href="https://kmmiles.gitlab.io/moonkin-calc/docs">Docs</a>&nbsp;

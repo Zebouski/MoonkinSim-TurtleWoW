@@ -5,20 +5,26 @@
         <div class="level-item has-text-centered">
           <div>
             <p class="heading has-text-white">DPS</p>
-            <p class="title has-text-white is-size-5-mobile">{{ spellCast.DPS.toFixed(1) }}</p>
+            <p class="title has-text-white is-size-5-mobile">
+              {{ spellCast.DPS.toFixed(1) }}
+            </p>
           </div>
         </div>
         <div class="level-item has-text-centered">
           <div>
             <p class="heading has-text-white">Crit Weight</p>
-            <p class="title has-text-white is-size-5-mobile">{{ spellCast.spellCritWeight.toFixed(1) }}</p>
+            <p class="title has-text-white is-size-5-mobile">
+              {{ spellCast.spellCritWeight.toFixed(1) }}
+            </p>
             <p></p>
           </div>
         </div>
         <div class="level-item has-text-centered">
           <div>
             <p class="heading has-text-white">Hit Weight</p>
-            <p class="title has-text-white is-size-5-mobile">{{ spellCast.spellHitWeight.toFixed(1) }}</p>
+            <p class="title has-text-white is-size-5-mobile">
+              {{ spellCast.spellHitWeight.toFixed(1) }}
+            </p>
           </div>
         </div>
         <div class="level-item has-text-centered">
@@ -35,68 +41,104 @@
       <div class="container is-fluid">
         <div class="tile is-ancestor">
           <div class="tile is-parent">
-            <article class="tile is-child box has-background-black-ter has-text-white">
+            <article
+              class="tile is-child box has-background-black-ter has-text-white"
+            >
               <b-tabs class="block">
                 <b-tab-item label="General">
                   <div class="content">
                     <div class="columns is-mobile">
                       <div class="column">
                         <b-field label="Spell Name" label-position="on-border">
-                          <b-select class="is-size-7-mobile" v-model="spellName">
+                          <b-select
+                            class="is-size-7-mobile"
+                            v-model="spellName"
+                          >
                             <option
-                                v-for="name in spellNames"
-                                :key="name"
-                                v-bind:value="name">
-                                {{ name }}
+                              v-for="name in spellNames"
+                              :key="name"
+                              v-bind:value="name"
+                            >
+                              {{ name }}
                             </option>
                           </b-select>
                         </b-field>
 
                         <b-field label="Spell Crit" label-position="on-border">
-                          <input class="input is-size-7-mobile" type="number" v-model.number="spellCrit" />
+                          <input
+                            class="input is-size-7-mobile"
+                            type="number"
+                            v-model.number="spellCrit"
+                          />
                         </b-field>
                       </div>
                       <div class="column">
                         <b-field label="Spell Power" label-position="on-border">
-                          <input class="input is-size-7-mobile" type="number" v-model.number="spellPower" />
+                          <input
+                            class="input is-size-7-mobile"
+                            type="number"
+                            v-model.number="spellPower"
+                          />
                         </b-field>
                         <b-field label="Spell Hit" label-position="on-border">
-                          <input class="input is-size-7-mobile" type="number" v-model.number="spellHit" />
+                          <input
+                            class="input is-size-7-mobile"
+                            type="number"
+                            v-model.number="spellHit"
+                          />
                         </b-field>
                       </div>
                     </div>
                     <div class="columns is-mobile">
                       <div class="column">
                         <div class="field">
-                          <b-checkbox class="is-size-7-mobile" v-model="curseOfShadow">
+                          <b-checkbox
+                            class="is-size-7-mobile"
+                            v-model="curseOfShadow"
+                          >
                             Curse of Shadow
                           </b-checkbox>
                         </div>
                         <div class="field">
-                          <b-checkbox class="is-size-7-mobile" v-model="powerInfusion">
+                          <b-checkbox
+                            class="is-size-7-mobile"
+                            v-model="powerInfusion"
+                          >
                             Power Infusion
                           </b-checkbox>
                         </div>
                         <div class="field">
-                          <b-checkbox class="is-size-7-mobile" v-model="saygesDarkFortune">
+                          <b-checkbox
+                            class="is-size-7-mobile"
+                            v-model="saygesDarkFortune"
+                          >
                             Sayge's Dark Fortune
                           </b-checkbox>
                         </div>
                       </div>
                       <div class="column">
                         <div class="field">
-                          <b-checkbox class="is-size-7-mobile" v-model="tracesOfSilithyst">
+                          <b-checkbox
+                            class="is-size-7-mobile"
+                            v-model="tracesOfSilithyst"
+                          >
                             Traces of Silithyst
                           </b-checkbox>
                         </div>
                         <div class="field">
-                          <b-checkbox class="is-size-7-mobile" v-model="spellVuln">
+                          <b-checkbox
+                            class="is-size-7-mobile"
+                            v-model="spellVuln"
+                          >
                             Spell Vulnerability
                           </b-checkbox>
                         </div>
 
                         <div class="field">
-                          <b-checkbox class="is-size-7-mobile" v-model="stormStrike">
+                          <b-checkbox
+                            class="is-size-7-mobile"
+                            v-model="stormStrike"
+                          >
                             Storm Strike
                           </b-checkbox>
                         </div>
@@ -108,36 +150,65 @@
                   <div class="content">
                     <div class="columns is-mobile">
                       <div class="column">
-
                         <b-field label="Moonfury" label-position="on-border">
-                          <input class="input is-size-7-mobile" type="number" v-model.number="moonFuryRank" />
+                          <input
+                            class="input is-size-7-mobile"
+                            type="number"
+                            v-model.number="moonFuryRank"
+                          />
                         </b-field>
 
                         <b-field label="Vengeance" label-position="on-border">
-                          <input class="input is-size-7-mobile" type="number" v-model.number="vengeanceRank" />
+                          <input
+                            class="input is-size-7-mobile"
+                            type="number"
+                            v-model.number="vengeanceRank"
+                          />
                         </b-field>
 
-                        <b-field label="Improved Wrath" label-position="on-border">
-                          <input class="input is-size-7-mobile" type="number" v-model.number="improvedWrathRank" />
+                        <b-field
+                          label="Improved Wrath"
+                          label-position="on-border"
+                        >
+                          <input
+                            class="input is-size-7-mobile"
+                            type="number"
+                            v-model.number="improvedWrathRank"
+                          />
                         </b-field>
                       </div>
                       <div class="column">
-                        <b-field label="Improved Starfire" label-position="on-border">
-                          <input class="input is-size-7-mobile" type="number" v-model.number="improvedStarfireRank" />
+                        <b-field
+                          label="Improved Starfire"
+                          label-position="on-border"
+                        >
+                          <input
+                            class="input is-size-7-mobile"
+                            type="number"
+                            v-model.number="improvedStarfireRank"
+                          />
                         </b-field>
-                        <b-field label="Natures Grace" label-position="on-border">
-                          <input class="input is-size-7-mobile" type="number" v-model.number="naturesGraceRank" />
+                        <b-field
+                          label="Natures Grace"
+                          label-position="on-border"
+                        >
+                          <input
+                            class="input is-size-7-mobile"
+                            type="number"
+                            v-model.number="naturesGraceRank"
+                          />
                         </b-field>
                       </div>
                     </div>
                   </div>
-                  
                 </b-tab-item>
               </b-tabs>
             </article>
           </div>
           <div class="tile is-parent">
-            <article class="tile is-child box has-background-black-ter has-text-white">
+            <article
+              class="tile is-child box has-background-black-ter has-text-white"
+            >
               <p class="subtitle has-text-white"></p>
               <div class="content">
                 <div class="columns is-mobile">
@@ -152,45 +223,76 @@
                     </p>
                     <p class="is-size-7-mobile">
                       Int Weight:
-                      {{ Number(spellCast.spellCritToDamage / spellCast.spellPowerToDamage / 60).toFixed(3) }}
+                      {{
+                        Number(
+                          spellCast.spellCritToDamage /
+                            spellCast.spellPowerToDamage /
+                            60
+                        ).toFixed(3)
+                      }}
                     </p>
                     <p class="is-size-7-mobile">
-                      Base Dmg: {{ spellCast.spell.baseDmg }} ({{ spellCast.spell.minDmg }} -
-                      {{ spellCast.spell.maxDmg }})
+                      Base Dmg: {{ spellCast.spell.baseDmg }} ({{
+                        spellCast.spell.minDmg
+                      }}
+                      - {{ spellCast.spell.maxDmg }})
                     </p>
                     <p class="is-size-7-mobile">
-                      Coefficient (direct): {{ spellCast.spell.coefficient.direct.toFixed(3) }}
+                      Coefficient (direct):
+                      {{ spellCast.spell.coefficient.direct.toFixed(3) }}
                     </p>
                     <p class="is-size-7-mobile">
                       Average Base Dmg:
-                      {{ Number(spellCast.spellAverageBaseDmgNonCrit).toFixed(3) }}
+                      {{
+                        Number(spellCast.spellAverageBaseDmgNonCrit).toFixed(3)
+                      }}
                     </p>
                     <p class="is-size-7-mobile">
                       Average Dmg:
                       {{ Number(spellCast.spellAverageDmgNonCrit).toFixed(3) }}
                     </p>
-                    <p class="is-size-7-mobile">Chance to miss: {{ Number(spellCast.spellChanceToMiss).toFixed(3) }}</p>
-                    <p class="is-size-7-mobile">School: {{ spellCast.spell.school }}</p>
-                    <p class="is-size-7-mobile">Range: {{ spellCast.spell.range }}</p>
-                    <p class="is-size-7-mobile">Target Resistance: {{ spellCast.target.spellResistance }}</p>
+                    <p class="is-size-7-mobile">
+                      Chance to miss:
+                      {{ Number(spellCast.spellChanceToMiss).toFixed(3) }}
+                    </p>
+                    <p class="is-size-7-mobile">
+                      School: {{ spellCast.spell.school }}
+                    </p>
+                    <p class="is-size-7-mobile">
+                      Range: {{ spellCast.spell.range }}
+                    </p>
+                    <p class="is-size-7-mobile">
+                      Target Resistance: {{ spellCast.target.spellResistance }}
+                    </p>
                   </div>
                   <div class="column">
                     <p class="is-size-7-mobile">
-                      <i>1 Spell Crit = {{ spellCast.spellCritWeight.toFixed(3) }} Spell Power</i>
-                    </p>
-                    <p class="is-size-7-mobile">
-                      <i>1 Spell Hit = {{ spellCast.spellHitWeight.toFixed(3) }} Spell Power</i>
-                    </p>
-                    <p class="is-size-7-mobile">
                       <i
-                        >{{ spellCast.intWeight.toFixed(3) }}
-                        Int = 1 Spell Power</i
+                        >1 Spell Crit =
+                        {{ spellCast.spellCritWeight.toFixed(3) }} Spell
+                        Power</i
                       >
                     </p>
                     <p class="is-size-7-mobile">
-                      Cast Time: {{ spellCast.castTime }} (Effective: {{ spellCast.spellEffectiveCastTime.toFixed(3) }})
+                      <i
+                        >1 Spell Hit =
+                        {{ spellCast.spellHitWeight.toFixed(3) }} Spell Power</i
+                      >
                     </p>
-                    <p class="is-size-7-mobile">Coefficient (dot): {{ spellCast.spell.coefficient.dot.toFixed(3) }}</p>
+                    <p class="is-size-7-mobile">
+                      <i
+                        >{{ spellCast.intWeight.toFixed(3) }} Int = 1 Spell
+                        Power</i
+                      >
+                    </p>
+                    <p class="is-size-7-mobile">
+                      Cast Time: {{ spellCast.castTime }} (Effective:
+                      {{ spellCast.spellEffectiveCastTime.toFixed(3) }})
+                    </p>
+                    <p class="is-size-7-mobile">
+                      Coefficient (dot):
+                      {{ spellCast.spell.coefficient.dot.toFixed(3) }}
+                    </p>
                     <p class="is-size-7-mobile">
                       Average Base Crit:
                       {{ Number(spellCast.spellAverageBaseDmgCrit).toFixed(3) }}
@@ -199,12 +301,23 @@
                       Average Crit:
                       {{ Number(spellCast.spellAverageDmgCrit).toFixed(3) }}
                     </p>
-                    <p class="is-size-7-mobile">Chance to crit: {{ Number(spellCast.spellChanceToCrit).toFixed(3) }}</p>
-                    <p class="is-size-7-mobile">Mana cost: {{ spellCast.spell.manaCost }}</p>
-                    <p class="is-size-7-mobile">Spell Penetration: {{ spellCast.spellPenetration }}</p>
+                    <p class="is-size-7-mobile">
+                      Chance to crit:
+                      {{ Number(spellCast.spellChanceToCrit).toFixed(3) }}
+                    </p>
+                    <p class="is-size-7-mobile">
+                      Mana cost: {{ spellCast.spell.manaCost }}
+                    </p>
+                    <p class="is-size-7-mobile">
+                      Spell Penetration: {{ spellCast.spellPenetration }}
+                    </p>
                     <p class="is-size-7-mobile">
                       Partial resist average loss:
-                      {{ Number(spellCast.spellPartialResistLossAverage).toFixed(3) }}
+                      {{
+                        Number(spellCast.spellPartialResistLossAverage).toFixed(
+                          3
+                        )
+                      }}
                     </p>
                   </div>
                 </div>
@@ -268,10 +381,17 @@ export default class MoonkinCalc extends Vue {
           this.improvedStarfireRank
         ),
         new wcf.Gear(this.spellHit, this.spellCrit, this.spellPower),
-        new wcf.Buffs(this.powerInfusion, this.saygesDarkFortune, this.tracesOfSilithyst)
+        new wcf.Buffs(
+          this.powerInfusion,
+          this.saygesDarkFortune,
+          this.tracesOfSilithyst
+        )
       ),
       new wcf.Spell(this.spellName),
-      new wcf.Target(this.targetName, new wcf.Debuffs(this.curseOfShadow, this.stormStrike, this.spellVuln))
+      new wcf.Target(
+        this.targetName,
+        new wcf.Debuffs(this.curseOfShadow, this.stormStrike, this.spellVuln)
+      )
     )
   }
 }
