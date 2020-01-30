@@ -341,12 +341,12 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { default as wcf } from '../wcf'
+import { default as wow } from '../wow'
 
 @Component
 export default class MoonkinCalc extends Vue {
-  spellNames = wcf.Spell.getSpellNames()
-  targetNames = wcf.Target.getTargetNames()
+  spellNames = wow.Spell.getSpellNames()
+  targetNames = wow.Target.getTargetNames()
   spellName = 'Starfire Rank 6'
   targetName = 'Ragnaros'
   targetSpellResistance = 75
@@ -367,30 +367,30 @@ export default class MoonkinCalc extends Vue {
   stormStrike = false
 
   get spellCast() {
-    return new wcf.SpellCast(
-      new wcf.Character(
+    return new wow.SpellCast(
+      new wow.Character(
         60,
         'Tauren',
         'Druid',
         'Male',
-        new wcf.Talents(
+        new wow.Talents(
           this.naturesGraceRank,
           this.moonFuryRank,
           this.vengeanceRank,
           this.improvedWrathRank,
           this.improvedStarfireRank
         ),
-        new wcf.Gear(this.spellHit, this.spellCrit, this.spellPower),
-        new wcf.Buffs(
+        new wow.Gear(this.spellHit, this.spellCrit, this.spellPower),
+        new wow.Buffs(
           this.powerInfusion,
           this.saygesDarkFortune,
           this.tracesOfSilithyst
         )
       ),
-      new wcf.Spell(this.spellName),
-      new wcf.Target(
+      new wow.Spell(this.spellName),
+      new wow.Target(
         this.targetName,
-        new wcf.Debuffs(this.curseOfShadow, this.stormStrike, this.spellVuln)
+        new wow.Debuffs(this.curseOfShadow, this.stormStrike, this.spellVuln)
       )
     )
   }
