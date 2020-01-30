@@ -9,40 +9,40 @@ const xml2js = require('xml2js')
 const util = require('util')
 
 interface WowHeadResult {
-  $: Object,
-  name: Array<string>,
-  level: Array<string>,
-  quality: Array<Object>,
-  class: Array<Object>,
-  subclass: Array<Object>,
-  icon: Array<any>,
-  inventorySlot: Array<Object>,
-  htmlTooltip: Array<String>,
-  json: Array<String>,
-  jsonEquip: Array<String>,
+  $: Object
+  name: Array<string>
+  level: Array<string>
+  quality: Array<Object>
+  class: Array<Object>
+  subclass: Array<Object>
+  icon: Array<any>
+  inventorySlot: Array<Object>
+  htmlTooltip: Array<String>
+  json: Array<String>
+  jsonEquip: Array<String>
   link: Array<String>
 }
 
 interface ItemOld {
-  'Equipment Type': string,
-  Slot: string,
-  Name: string,
-  Phase: string,
-  Location: string,
-  Boss: string,
-  Stamina: string,
-  Intellect: string,
-  Spirit: string,
-  'Spell Damage': string,
-  'Spell Critical %': string,
-  'Spell Hit %': string,
-  MP5: string,
-  'Spell Penetration': string,
-  Score: string,
-  field16: string,
-  Alliance: string,
-  Horde: string,
-  Starfire: string,
+  'Equipment Type': string
+  Slot: string
+  Name: string
+  Phase: string
+  Location: string
+  Boss: string
+  Stamina: string
+  Intellect: string
+  Spirit: string
+  'Spell Damage': string
+  'Spell Critical %': string
+  'Spell Hit %': string
+  MP5: string
+  'Spell Penetration': string
+  Score: string
+  field16: string
+  Alliance: string
+  Horde: string
+  Starfire: string
   Wrath: string
 }
 
@@ -80,7 +80,7 @@ class GearItem {
   }
 
   public isEnchant() {
-    return (this.itemName.indexOf('Enchant ', 0) !== -1) ? true : false
+    return this.itemName.indexOf('Enchant ', 0) !== -1 ? true : false
   }
 
   public set wowHeadItem(wowHeadItem: any) {
@@ -147,7 +147,9 @@ class GearItem {
   }
 
   public get itemIconName(): string {
-    return((this._wowHeadItem === null || this.isEnchant()) ? 'spell_holy_greaterheal' : this._wowHeadItem.icon[0]._.toLowerCase())
+    return this._wowHeadItem === null || this.isEnchant()
+      ? 'spell_holy_greaterheal'
+      : this._wowHeadItem.icon[0]._.toLowerCase()
   }
 
   public get itemPhase(): number {
@@ -167,7 +169,9 @@ class GearItem {
   }
 
   public get itemIntellect(): number {
-    return this.itemOld.Intellect !== '' ? parseInt(this.itemOld.Intellect, 10) : 0
+    return this.itemOld.Intellect !== ''
+      ? parseInt(this.itemOld.Intellect, 10)
+      : 0
   }
 
   public get itemSpirit(): number {
@@ -175,33 +179,51 @@ class GearItem {
   }
 
   public get itemSpellCrit(): number {
-    return this.itemOld['Spell Critical %'] !== '' ? parseInt(this.itemOld['Spell Critical %'], 10) : 0
+    return this.itemOld['Spell Critical %'] !== ''
+      ? parseInt(this.itemOld['Spell Critical %'], 10)
+      : 0
   }
 
   public get itemSpellHit(): number {
-    return this.itemOld['Spell Hit %'] !== '' ? parseInt(this.itemOld['Spell Hit %'], 10) : 0
+    return this.itemOld['Spell Hit %'] !== ''
+      ? parseInt(this.itemOld['Spell Hit %'], 10)
+      : 0
   }
 
   public get itemSpellPen(): number {
-    return this.itemOld['Spell Penetration'] !== '' ? parseInt(this.itemOld['Spell Penetration'], 10) : 0
+    return this.itemOld['Spell Penetration'] !== ''
+      ? parseInt(this.itemOld['Spell Penetration'], 10)
+      : 0
   }
 
   public get itemSpellDmg(): number {
-    if (this.itemOld['Spell Damage'] !== '' && this.itemOld.Wrath === 'Yes' && this.itemOld.Starfire === 'Yes') {
+    if (
+      this.itemOld['Spell Damage'] !== '' &&
+      this.itemOld.Wrath === 'Yes' &&
+      this.itemOld.Starfire === 'Yes'
+    ) {
       return parseInt(this.itemOld['Spell Damage'], 10)
     }
     return 0
   }
 
   public get itemSpellDmgArcane(): number {
-    if (this.itemOld['Spell Damage'] !== '' && this.itemOld.Wrath === 'No' && this.itemOld.Starfire === 'Yes') {
+    if (
+      this.itemOld['Spell Damage'] !== '' &&
+      this.itemOld.Wrath === 'No' &&
+      this.itemOld.Starfire === 'Yes'
+    ) {
       return parseInt(this.itemOld['Spell Damage'], 10)
     }
     return 0
   }
 
   public get itemSpellDmgNature(): number {
-    if (this.itemOld['Spell Damage'] !== '' && this.itemOld.Wrath === 'Yes' && this.itemOld.Starfire === 'No') {
+    if (
+      this.itemOld['Spell Damage'] !== '' &&
+      this.itemOld.Wrath === 'Yes' &&
+      this.itemOld.Starfire === 'No'
+    ) {
       return parseInt(this.itemOld['Spell Damage'], 10)
     }
     return 0
@@ -251,7 +273,7 @@ class GearItem {
   }
 }
 
-const start = async function () {
+const start = async function() {
   console.warn('Parsing CSV: ' + csvFilePath)
   const jsonArray = await csv().fromFile(csvFilePath)
   let myArray = []
@@ -272,7 +294,8 @@ const start = async function () {
     }
     myArray.push(gearItem.newItem)
   }
-  console.log(myArray)
+  //console.log(myArray)
+  console.log(JSON.stringify(myArray, null, 1))
   console.warn('Complete.')
 }
 
