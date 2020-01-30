@@ -1,0 +1,42 @@
+Equipment Type,Slot,Name,Phase,Location,Boss,Stamina,Intellect,Spirit,Spell Damage,Spell Critical %,Spell Hit %,MP5,Spell Penetration,Score,,Alliance,Horde,Starfire,Wrath
+Head,Head,Adventurer's Bandana of Nature's Wrath,1,World Drop,,,,,40,,,,,40.00,,Yes,Yes,No,Yes
+Weapon,Dagger,Dire Nail of Arcane Wrath,1,Sunken Temple,Shade of Eranikus,,,,17,,,,,17.00,,Yes,Yes,Yes,No
+Weapon,Dagger,Dire Nail of Nature's Wrath,1,Sunken Temple,Shade of Eranikus,,,,17,,,,,17.00,,Yes,Yes,No,Yes
+Weapon,Staff,Amethyst War Staff,4,Silithus,Azure Templar,6,9,,34,,,,,35.60,,Yes,Yes,Yes,Yes
+Weapon,1H Mace,Aurastone Hammer,1,Molten Core,Garr,10,10,,25,,,5,,26.78,,Yes,Yes,Yes,Yes
+Weapon,1H Mace,Blesswind Hammer of Arcane Wrath,1,World Drop,,,,,14,,,,,14.00,,Yes,Yes,Yes,No
+Weapon,1H Mace,Blesswind Hammer of Nature's Wrath,1,World Drop,,,,,14,,,,,14.00,,Yes,Yes,No,Yes
+Off-Hand,Off-Hand,Astral Orb of Arcane Wrath,1,World Drop,,,,,21,,,,,21.00,,Yes,Yes,Yes,No
+Off-Hand,Off-Hand,Blackwood's Thigh,6,Scholomance (Scourge Invasion),Lord Blackwood,12,13,,9,,,,,11.31,,Yes,Yes,Yes,Yes
+Idol,Idol,Idol of the Moon,6,World Drop,,,,,,,,,,0.00,,Yes,Yes,Yes,Yes
+Head Enchant,Enchant,Arcanum of Focus,1,,,,,,8,,,,,8.00,,Yes,Yes,Yes,Yes
+Neck,Neck,Amulet of the Dawn,6,Eastern Plaguelands,Quest: Epic Armaments of Battle,13,13,,15,,,,,17.31,,Yes,Yes,Yes,Yes
+Neck,Neck,Amulet of Vek'nilash,5,Temple of Ahn'Qiraj,Emperor Vek'nilash,9,5,,27,1,,,,38.55,,Yes,Yes,Yes,Yes
+Shoulders,Shoulders,Abyssal Cloth Amice of Sorcery,4,Silithus,Baron Kazum,13,13,,15,,1,,,36.11,,Yes,Yes,Yes,Yes
+Chest,Chest,Alanna's Embrace,1,Scholomance,Ras Frostwhisper,20,20,20,20,,,,,23.55,,Yes,Yes,Yes,Yes
+Chest Enchant,Enchant,Enchant Chest - Greater Stats,1,,,4,4,4,,,,,,0.71,,Yes,Yes,Yes,Yes
+Back,Back,Adventurer's Cape of Arcane Wrath,1,World Drop,,,,,21,,,,,21.00,,Yes,Yes,Yes,No
+Back Enchant,Enchant,Enchant Cloak - Subtlety,5,,,,,,,,,,,0.00,,Yes,Yes,Yes,Yes
+Wrists,Wrists,Abyssal Cloth Wristbands of Sorcery,4,Silithus,High Marshal Whirlaxis,11,11,,14,,,,,15.95,,Yes,Yes,Yes,Yes
+Wrists,Wrists,Abyssal Leather Bracers of Sorcery,4,Silithus,Prince Skaldrenox,11,11,,14,,,,,15.95,,Yes,Yes,Yes,Yes
+Wrist Enchant,Enchant,Enchant Bracer - Greater Intellect,1,,,,7,,,,,,,1.24,,Yes,Yes,Yes,Yes
+Hands,Hands,Abyssal Cloth Handwraps of Sorcery,4,Silithus,Crimson Templar,11,10,,12,,,,,13.78,,Yes,Yes,Yes,Yes
+Hands,Hands,Abyssal Leather Gloves of Sorcery,4,Silithus,Earthen Templar,11,10,,13,,,,,14.78,,Yes,Yes,Yes,Yes
+Hands Enchant,Enchant,Enchant Gloves - Healing Power,5,,,,,,,,,,,0.00,,Yes,Yes,Yes,Yes
+Waist,Waist,Abyssal Cloth Sash of Sorcery,4,Silithus,The Duke of Cynders,11,11,,13,,,,,14.95,,Yes,Yes,Yes,Yes
+Waist,Waist,Abyssal Leather Belt of Sorcery,4,Silithus,The Duke of Fathoms,11,11,,13,,,,,14.95,,Yes,Yes,Yes,Yes
+Legs,Legs,Abyssal Cloth Pants of Sorcery,4,Silithus,The Duke of Zephyrs,15,15,,18,1,,,,31.33,,Yes,Yes,Yes,Yes
+Legs,Legs,Adventurer's Legguards of Arcane Wrath,1,World Drop,,,,,41,,,,,41.00,,Yes,Yes,Yes,No
+Legs Enchant,Enchant,Arcanum of Focus,1,,,,,,8,,,,,8.00,,Yes,Yes,Yes,Yes
+Feet,Feet,Abyssal Cloth Slippers of Sorcery,4,Silithus,Azure Templar,11,10,,12,,,,,13.78,,Yes,Yes,Yes,Yes
+Feet,Feet,Abyssal Leather Boots of Sorcery,4,Silithus,Hoary Templar,10,10,,13,,,,,14.78,,Yes,Yes,Yes,Yes
+Feet Enchant,Enchant,Enchant Boots - Minor Speed,1,,,,,,,,,,,0.00,,Yes,Yes,Yes,Yes
+Finger,Finger,Advisor's Ring,3,Ashenvale,Kelm Hargunth,8,,,14,,,4,,14.00,,Yes,Yes,Yes,Yes
+Finger,Finger,Band of the Unicorn,1,World Drop,,,,,13,,,,,13.00,,Yes,Yes,Yes,Yes
+Finger,Finger,Songstone of Ironforge,1,Blackrock Depths,Quest: The Princess's Surprise,,7,4,18,,,,,19.24,,Yes,No,Yes,Yes
+Finger,Finger,Zanzil's Band,4,Zul'Gurub,High Priest Venoxis,,13,,,,1,4,,21.11,,Yes,Yes,Yes,Yes
+Finger,Finger,Wrath of Cenarius (Starfire),5,Silithus,Quest: Champion's Battlegear,,,,22,,,,,22.00,,Yes,Yes,Yes,No
+Finger,Finger,Wrath of Cenarius (Wrath),5,Silithus,Quest: Champion's Battlegear,,,,44,,,,,44.00,,Yes,Yes,No,Yes
+Trinket,Trinket,Briarwood Reed,1,Blackrock Spire,Jed Runewatcher,,,,29,,,,,29.00,,Yes,Yes,Yes,Yes
+Trinket,Trinket,Burst of Knowledge,1,Blackrock Depths,Ambassador Flamelash,,,,12,,,,,12.00,,Yes,Yes,Yes,Yes
+Trinket,Trinket,Draconic Infused Emblem,5,Blackrock Spire,General Drakkisath,,,,,,,,,0.00,,Yes,Yes,Yes,Yes
