@@ -1,4 +1,9 @@
 /**
+ *   - Theorycrafting unknowns
+ *      - What are the resistance values of bosses? This could be determined
+ *        by scraping data from WCL and running it through resistances formulas
+ *      - Do spell casters have a spell crit suppression like melee, if so, how does it work?
+ *      - Do spell casters have a base spell crit chance? What is it, and how can be confirmed?
  *   X Add moonfire
  *      - Formulas need to support hybrid spells
  *   - Iron out target spell resist/pen.
@@ -33,7 +38,6 @@ const druidSpells = require('./db/spells/druid.yaml')
 const bosses = require('./db/targets/bosses.yaml')
 
 /* constants */
-const useBadBaseDmg = false
 const globalCoolDown = 1.5
 const spellHitCap = 16
 const spellCritCap = 100
@@ -46,6 +50,9 @@ const saygesDarkFortuneBonus = 1.1
 const tracesOfSilithystBonus = 1.05
 const spellVulnBonus = 1.15
 const stormStrikeBonus = 1.2
+
+// spellBaseChanceToHit = 83
+// spellHitCap = 100 - spellBaseChanceToHit - 1
 
 /**
  * Object format of targets stored in db/targets.
@@ -136,18 +143,18 @@ class Spell {
     const spellLevelPenalty =
       this.level < 20 ? 1 - (20 - this.level) * 0.0375 : 0
 
-    switch (this.type) {
-      case 'direct':
+    switch (this.type.toUpperCase()) {
+      case 'DIRECT':
         return {
           direct: baseDirectCoefficient * (1 - spellLevelPenalty),
           dot: 0
         }
-      case 'dot':
+      case 'DOT':
         return {
           direct: 0,
           dot: baseDotCoefficient * (1 - spellLevelPenalty)
         }
-      case 'hybrid':
+      case 'HYBRID':
         return {
           direct:
             baseDirectCoefficient *
@@ -278,7 +285,7 @@ class Character {
    * TODO: Return faction name based on race
    */
   public get faction(): string {
-    switch (this.race) {
+    switch (this.race.toUpperCase()) {
       case 'TAUREN':
       case 'ORC':
       case 'UNDEAD':
@@ -437,9 +444,9 @@ class SpellCast {
    * Mitigates spell resist of SpellCast. Needs work.
    */
   public get spellPenetration(): number {
-    switch (this.spell.school) {
-      case 'arcane':
-      case 'shadow':
+    switch (this.spell.school.toUpperCase()) {
+      case 'ARCANE':
+      case 'SHADOW':
         return this.target.debuffs.curseOfShadow ? 75 : 0
       default:
         return 0
@@ -451,10 +458,10 @@ class SpellCast {
    * Doesn't count for procs like natures grace
    */
   public get castTime(): number {
-    switch (this.spell.baseName) {
-      case 'Wrath':
+    switch (this.spell.baseName.toUpperCase()) {
+      case 'WRATH':
         return this.spell.castTime - this.improvedWrathBonus
-      case 'Starfire':
+      case 'STARFIRE':
         return this.spell.castTime - this.improvedStarfireBonus
       default:
         return this.spell.castTime <= globalCoolDown
@@ -464,7 +471,7 @@ class SpellCast {
   }
 
   /**
-   * Factors in cast speed procs natures grace and "human factor"
+   * Factors in cast speed, procs like natures grace, and "human factor"
    */
   public get spellEffectiveCastTime(): number {
     return Math.max(
@@ -570,12 +577,12 @@ class SpellCast {
    * Additional damage added by a crit
    */
   public get spellCritMultiplier(): number {
-    switch (this.spell.baseName) {
-      case 'Wrath':
+    switch (this.spell.baseName.toUpperCase()) {
+      case 'WRATH':
         return spellBaseCritMultiplier + this.vengeanceBonus
-      case 'Starfire':
+      case 'STARFIRE':
         return spellBaseCritMultiplier + this.vengeanceBonus
-      case 'Moonfire':
+      case 'MOONFIRE':
         return spellBaseCritMultiplier + this.vengeanceBonus
       default:
         return spellBaseCritMultiplier
