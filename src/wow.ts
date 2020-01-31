@@ -575,7 +575,7 @@ class SpellCast {
   }
 
   /**
-   * Additional damage added by a crit
+   * Damage of a crit is damage * spellCritMultiplier
    */
   public get spellCritMultiplier(): number {
     switch (this.spell.baseName.toUpperCase()) {
@@ -588,6 +588,12 @@ class SpellCast {
       default:
         return spellBaseCritMultiplier
     }
+  }
+  /**
+   * The bonus multiplier of a crit, not counting the base
+   */
+  public get spellCritBonusMultiplier(): number {
+    return this.spellCritMultiplier - 1
   }
 
   /**
@@ -690,33 +696,34 @@ class SpellCast {
   }
 
   /**
-   * Used for calculating both spell crit and hit weight
    *
-   * c(0.83+H/100)(1+R/100)/(T-t(0.83+H/100)(R/100))
+   * dc(0.83+H/100)(1+xR/100)/(T-t(0.83+H/100)(R/100))
    */
   public get spellPowerToDamage(): number {
     const x =
+      this.spellMultiplicativeBonuses *
       this.spell.coefficient.direct *
       (0.83 + this.character.spellHit / 100) *
-      (1 + this.character.spellCrit / 100)
+      (1 + ((this.spellCritMultiplier - 1) * this.character.spellCrit) / 100)
     const y =
       this.castTime -
       this.naturesGraceBonus *
         (0.83 + this.character.spellHit / 100) *
         (this.character.spellCrit / 100)
+
     return x / y
   }
 
   /**
-   * Used for calculating spell crit weight
    *
-   * v2 d(83+H)(mB+cP) * (xT+t(0.83+H/100)) / (100T-t(0.83+H/100)R)^2
+   * d(83+H)(mB+cP) * (xT+t(0.83+H/100)) / (100T-t(0.83+H/100)R)^2
    */
   public get spellCritToDamage(): number {
     return (
       (this.spellMultiplicativeBonuses *
         (83 + this.character.spellHit) *
-        this.spellAverageBaseDmgNonCrit *
+        (this.moonFuryBonus * this.spell.baseDmg +
+          this.spell.coefficient.direct * this.character.spellPower) *
         ((this.spellCritMultiplier - 1) * this.castTime +
           this.naturesGraceBonus * (0.83 + this.character.spellHit / 100))) /
       (100 * this.castTime -
@@ -728,15 +735,14 @@ class SpellCast {
   }
 
   /**
-   * Used for calculating spell hit weight
    *
-   * d(mB+cP)(100+xR) * (100^2 T)/((100^2 T - t(83+H)R)^2)
-   *
+   * v1 d(mB+cP)(100+xR) * (100^2 T)/((100^2 T - t(83+H)R)^2)
    */
   public get spellHitToDamage(): number {
     return (
       (this.spellMultiplicativeBonuses *
-        this.spellAverageBaseDmgNonCrit *
+        (this.moonFuryBonus * this.spell.baseDmg +
+          this.spell.coefficient.direct * this.character.spellPower) *
         (100 + (this.spellCritMultiplier - 1) * this.character.spellCrit) *
         (100 ** 2 * this.castTime)) /
       (100 ** 2 * this.castTime -
@@ -744,20 +750,6 @@ class SpellCast {
           (83 + this.character.spellHit) *
           this.character.spellCrit) **
         2
-    )
-  }
-
-  /**
-   * DPS of spamming Spell. Currently only supports direct damage spells.
-   */
-  public get DPS(): number {
-    // =(($H$9*$H$13*$I$9+$H$9*$H$16)/100) / $I$18*$D$22*$D$23*$D$24*$D$25*$D$26*$D$27*(1-$H$20)
-    return (
-      ((this.spellAverageBaseDmgCrit * this.spellChanceToCrit +
-        this.spellAverageBaseDmgNonCrit * this.spellChanceToRegularHit) /
-        100 /
-        this.spellEffectiveCastTime) *
-      this.spellMultiplicativeBonuses
     )
   }
 
@@ -784,6 +776,28 @@ class SpellCast {
    */
   public get intWeight(): number {
     return this.spellCritWeight ? this.spellCritWeight / 60 : 0
+  }
+
+  /**
+   *
+   * DPS of spamming Spell. Currently only supports direct damage spells.
+   *
+   * d(0.83 + H/100)(mB +cP)(1 + xR/100) / (T - t(0.83+H/100)(R/100))
+   *
+   */
+  public get DPS(): number {
+    return (
+      (this.spellMultiplicativeBonuses *
+        (0.83 + this.character.spellHit / 100) *
+        (this.moonFuryBonus * this.spell.baseDmg +
+          this.spell.coefficient.direct * this.character.spellPower) *
+        (1 +
+          ((this.spellCritMultiplier - 1) * this.character.spellCrit) / 100)) /
+      (this.castTime -
+        this.naturesGraceBonus *
+          (0.83 + this.character.spellHit / 100) *
+          (this.character.spellCrit / 100))
+    )
   }
 }
 
