@@ -752,13 +752,47 @@ class SpellCast {
         2
     )
   }
-
+  
+  // v3 Crit:Spellpower = x(mB/c + P)/(100+xR)   *   (T + (0.83+H/100)t/x)/(T-(0.83+H/100)tR/100)
+  public get spellCritToSpellPower(): number {
+    return (
+      ((((this.spellCritMultiplier - 1) *
+        ((this.moonFuryBonus * this.spell.baseDmg) /
+          this.spell.coefficient.direct +
+          this.character.spellPower)) /
+        (100 + (this.spellCritMultiplier - 1) * this.character.spellCrit)) *
+        (this.castTime +
+          ((0.83 + this.character.spellHit / 100) * this.naturesGraceBonus) /
+            (this.spellCritMultiplier - 1))) /
+      (this.castTime -
+        ((0.83 + this.character.spellHit / 100) *
+          this.naturesGraceBonus *
+          this.character.spellCrit) /
+          100)
+    )
+  }
+  // v1 Hit:Spellpower = (B/c + P)/(83 + H)
+  // v2 Hit:SpellPower = (mB/c+P)/(83+H) * (100^2 T)/(100^2 T - t(83+H)R)
+  public get spellHitToSpellPower(): number {
+    return (
+      ((((this.moonFuryBonus * this.spell.baseDmg) /
+        this.spell.coefficient.direct +
+        this.character.spellPower) /
+        (83 + this.character.spellHit)) *
+        (100 ** 2 * this.castTime)) /
+      (100 ** 2 * this.castTime -
+        this.naturesGraceBonus *
+          (83 + this.character.spellHit) *
+          this.character.spellCrit)
+    )
+  }
+  
   /**
    * spell crit weight i.e. the amount of spell power 1 point of crit is worth.
    */
   public get spellCritWeight(): number {
     return this.character.spellCrit < spellCritCap
-      ? this.spellCritToDamage / this.spellPowerToDamage
+      ? this.spellCritToSpellPower
       : 0
   }
 
@@ -766,9 +800,7 @@ class SpellCast {
    * spell hit weight i.e. the amount of spell power 1 point of hit is worth.
    */
   public get spellHitWeight(): number {
-    return this.character.spellHit < spellHitCap
-      ? this.spellHitToDamage / this.spellPowerToDamage
-      : 0
+    return this.character.spellHit < spellHitCap ? this.spellHitToSpellPower : 0
   }
 
   /**
