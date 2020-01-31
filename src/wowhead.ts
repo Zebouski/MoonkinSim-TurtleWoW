@@ -15,5 +15,5 @@ export class WowHead {
       return null
     }
   }
-  */
 }
+  */

@@ -611,9 +611,7 @@ class SpellCast {
    *
    */
   public get spellChanceToCrit(): number {
-    return (
-      (this.character.spellCrit) * (this.spellChanceToHit / 99)
-    )
+    return this.character.spellCrit * (this.spellChanceToHit / 99)
   }
 
   /**
