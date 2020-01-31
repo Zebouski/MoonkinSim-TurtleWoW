@@ -722,18 +722,14 @@ class SpellCast {
    */
 
   public get spellPowerToDamage(): number {
-    const x =
-      this.spellMultiplicativeBonuses *
-      this.spell.coefficient.direct *
-      (this.spellChanceToHit / 100) *
-      (1 + (this.spellCritBonusMultiplier * this.character.spellCrit) / 100)
-    const y =
-      this.castTime -
-      this.naturesGraceBonus *
+    return (
+      (this.spellMultiplicativeBonuses *
+        this.spell.coefficient.direct *
         (this.spellChanceToHit / 100) *
-        (this.character.spellCrit / 100)
-
-    return x / y
+        (1 +
+          (this.spellCritBonusMultiplier * this.character.spellCrit) / 100)) /
+      this.effectiveCastTime
+    )
   }
 
   /**
@@ -748,11 +744,7 @@ class SpellCast {
           this.spell.coefficient.direct * this.character.spellPower) *
         (this.spellCritBonusMultiplier * this.castTime +
           this.naturesGraceBonus * (this.spellChanceToHit / 100))) /
-      (100 * this.castTime -
-        this.naturesGraceBonus *
-          (this.spellChanceToHit / 100) *
-          this.character.spellCrit) **
-        2
+      (100 * this.effectiveCastTime) ** 2
     )
   }
 
@@ -767,11 +759,7 @@ class SpellCast {
           this.spell.coefficient.direct * this.character.spellPower) *
         (100 + this.spellCritBonusMultiplier * this.character.spellCrit) *
         (100 ** 2 * this.castTime)) /
-      (100 ** 2 * this.castTime -
-        this.naturesGraceBonus *
-          this.spellChanceToHit *
-          this.character.spellCrit) **
-        2
+      (100 ** 2 * this.effectiveCastTime) ** 2
     )
   }
 
@@ -786,11 +774,7 @@ class SpellCast {
         (this.castTime +
           ((this.spellChanceToHit / 100) * this.naturesGraceBonus) /
             this.spellCritBonusMultiplier)) /
-      (this.castTime -
-        ((this.spellChanceToHit / 100) *
-          this.naturesGraceBonus *
-          this.character.spellCrit) /
-          100)
+      this.effectiveCastTime
     )
   }
   /*
@@ -804,10 +788,7 @@ class SpellCast {
         this.character.spellPower) /
         this.spellChanceToHit) *
         (100 ** 2 * this.castTime)) /
-      (100 ** 2 * this.castTime -
-        this.naturesGraceBonus *
-          this.spellChanceToHit *
-          this.character.spellCrit)
+      (100 ** 2 * this.effectiveCastTime)
     )
   }
 
