@@ -41,6 +41,7 @@ const bosses = require('./db/targets/bosses.yaml')
 const globalCoolDown = 1.5
 const spellHitCap = 16
 const spellCritCap = 100
+const spellBaseChanceToCrit = 1.8 // TODO: Citation needed
 const spellCastTimeHumanFactor = 0.05
 const spellBaseCritMultiplier = 1.5
 const naturesGraceReduction = 0.5
@@ -305,10 +306,10 @@ class Character {
   }
 
   /**
-   * TODO: Return total spell crit rating (gear + (int / 60) + talents + buffs)
+   * TODO: Return total spell crit rating (base + gear + (int / 60) + talents + buffs)
    */
   public get spellCrit(): number {
-    return Math.min(this.gear.spellCrit, spellCritCap)
+    return Math.min(spellBaseChanceToCrit + this.gear.spellCrit, spellCritCap)
   }
 
   /**
@@ -590,11 +591,19 @@ class SpellCast {
   }
 
   /**
+   * Chance of hitting with a spell
+   *
+   */
+  public get spellChanceToHit(): number {
+    return 83 + this.character.spellHit
+  }
+
+  /**
    * Chance of missing a spell
    *
    */
   public get spellChanceToMiss(): number {
-    return 100 - (83 + this.character.spellHit)
+    return 100 - this.spellChanceToHit
   }
 
   /**
@@ -603,7 +612,7 @@ class SpellCast {
    */
   public get spellChanceToCrit(): number {
     return (
-      (1.8 + this.character.spellCrit) * ((100 - this.spellChanceToMiss) / 100)
+      (this.character.spellCrit) * (this.spellChanceToHit / 99)
     )
   }
 
@@ -612,7 +621,7 @@ class SpellCast {
    *
    */
   public get spellChanceToRegularHit(): number {
-    return 100 - this.spellChanceToMiss - this.spellChanceToCrit
+    return this.spellChanceToHit - this.spellChanceToCrit
   }
 
   /**

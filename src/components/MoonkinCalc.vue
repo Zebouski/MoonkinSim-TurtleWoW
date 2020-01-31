@@ -351,7 +351,7 @@ export default class MoonkinCalc extends Vue {
   targetName = 'Ragnaros'
   targetSpellResistance = 75
   spellPower = 684
-  spellCrit = 30.785
+  spellCrit = 30
   spellHit = 2
   spellPenetration = 75
   naturesGraceRank = 1

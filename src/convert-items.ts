@@ -294,9 +294,8 @@ const start = async function() {
     }
     myArray.push(gearItem.newItem)
   }
-  //console.log(myArray)
   console.log(JSON.stringify(myArray, null, 1))
   console.warn('Complete.')
 }
 
-start()
+void start()
