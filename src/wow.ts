@@ -472,17 +472,18 @@ class SpellCast {
   }
 
   /**
-   * Factors in cast speed, procs like natures grace, and "human factor"
+   * Factors in cast speed, procs like natures grace, hit, crit and "human factor" (which might actually be latency?)
    */
-  public get spellEffectiveCastTime(): number {
+  public get effectiveCastTime(): number {
     return Math.max(
       globalCoolDown,
       this.castTime -
-        this.naturesGraceBonus * (this.spellChanceToCrit / 100) +
+        this.naturesGraceBonus *
+          (this.spellChanceToHit / 100) *
+          (this.spellChanceToCrit / 100) +
         spellCastTimeHumanFactor
     )
   }
-
   /**
    * Increases the damage done by Starfire, Moonfire, and Wrath by 2/4/6/8/10%
    */
@@ -694,25 +695,60 @@ class SpellCast {
       (1 - this.spellPartialResistLossAverage)
     )
   }
+  /**
+   * spell crit weight i.e. the amount of spell power 1 point of crit is worth.
+   */
+  public get spellCritWeight(): number {
+    return this.character.spellCrit < spellCritCap
+      ? this.spellCritToSpellPower
+      : 0
+  }
+
+  /**
+   * spell hit weight i.e. the amount of spell power 1 point of hit is worth.
+   */
+  public get spellHitWeight(): number {
+    return this.character.spellHit < spellHitCap ? this.spellHitToSpellPower : 0
+  }
+
+  /**
+   * int weight i.e. the amount of spell power 1 point of int is worth
+   */
+  public get intWeight(): number {
+    return this.spellCritWeight ? this.spellCritWeight / 60 : 0
+  }
+
+  public get spellPowerToDamage(): number {
+    const x =
+      this.spellMultiplicativeBonuses *
+      this.spell.coefficient.direct *
+      (0.83 + this.character.spellHit / 100) *
+      (1 + ((this.spellCritMultiplier - 1) * this.character.spellCrit) / 100)
+    const y =
+      this.castTime -
+      this.naturesGraceBonus *
+        (0.83 + this.character.spellHit / 100) *
+        (this.character.spellCrit / 100)
+
+    return x / y
+  }
 
   /**
    *
    * dc(0.83+H/100)(1+xR/100)/(T-t(0.83+H/100)(R/100))
    */
+
+  /*
   public get spellPowerToDamage(): number {
     const x =
       this.spellMultiplicativeBonuses *
       this.spell.coefficient.direct *
       (this.spellChanceToHit / 100) *
       (1 + (this.spellCritBonusMultiplier * this.character.spellCrit) / 100)
-    const y =
-      this.castTime -
-      this.naturesGraceBonus *
-        (this.spellChanceToHit / 100) *
-        (this.character.spellCrit / 100)
 
-    return x / y
+    return x / this.effectiveCastTime
   }
+  */
 
   /**
    *
@@ -749,6 +785,8 @@ class SpellCast {
     )
   }
 
+  /*
+
   // v3 Crit:Spellpower = x(mB/c + P)/(100+xR)   *   (T + (0.83+H/100)t/x)/(T-(0.83+H/100)tR/100)
   public get spellCritToSpellPower(): number {
     return (
@@ -764,12 +802,33 @@ class SpellCast {
           100)
     )
   }
+*/
+
+  // v3 Crit:Spellpower = x(mB/c + P)/(100+xR)   *   (T + (0.83+H/100)t/x)/(T-(0.83+H/100)tR/100)
+  public get spellCritToSpellPower(): number {
+    return (
+      ((((this.spellCritMultiplier - 1) *
+        ((this.moonFuryBonus * this.spell.baseDmg) /
+          this.spell.coefficient.direct +
+          this.character.spellPower)) /
+        (100 + (this.spellCritMultiplier - 1) * this.character.spellCrit)) *
+        (this.castTime +
+          ((0.83 + this.character.spellHit / 100) * this.naturesGraceBonus) /
+            (this.spellCritMultiplier - 1))) /
+      (this.castTime -
+        ((0.83 + this.character.spellHit / 100) *
+          this.naturesGraceBonus *
+          this.character.spellCrit) /
+          100)
+    )
+  }
+
+  /*
   // v1 Hit:Spellpower = (B/c + P)/(83 + H)
   // v2 Hit:SpellPower = (mB/c+P)/(83+H) * (100^2 T)/(100^2 T - t(83+H)R)
   public get spellHitToSpellPower(): number {
     return (
-      ((this.spellAverageBaseDmgNonCrit /
-        this.spellChanceToHit) *
+      ((this.spellAverageBaseDmgNonCrit / this.spellChanceToHit) *
         (100 ** 2 * this.castTime)) /
       (100 ** 2 * this.castTime -
         this.naturesGraceBonus *
@@ -777,28 +836,22 @@ class SpellCast {
           this.character.spellCrit)
     )
   }
+  */
 
-  /**
-   * spell crit weight i.e. the amount of spell power 1 point of crit is worth.
-   */
-  public get spellCritWeight(): number {
-    return this.character.spellCrit < spellCritCap
-      ? this.spellCritToSpellPower
-      : 0
-  }
-
-  /**
-   * spell hit weight i.e. the amount of spell power 1 point of hit is worth.
-   */
-  public get spellHitWeight(): number {
-    return this.character.spellHit < spellHitCap ? this.spellHitToSpellPower : 0
-  }
-
-  /**
-   * int weight i.e. the amount of spell power 1 point of int is worth
-   */
-  public get intWeight(): number {
-    return this.spellCritWeight ? this.spellCritWeight / 60 : 0
+  // v1 Hit:Spellpower = (B/c + P)/(83 + H)
+  // v2 Hit:SpellPower = (mB/c+P)/(83+H) * (100^2 T)/(100^2 T - t(83+H)R)
+  public get spellHitToSpellPower(): number {
+    return (
+      ((((this.moonFuryBonus * this.spell.baseDmg) /
+        this.spell.coefficient.direct +
+        this.character.spellPower) /
+        (83 + this.character.spellHit)) *
+        (100 ** 2 * this.castTime)) /
+      (100 ** 2 * this.castTime -
+        this.naturesGraceBonus *
+          (83 + this.character.spellHit) *
+          this.character.spellCrit)
+    )
   }
 
   /**
@@ -809,6 +862,7 @@ class SpellCast {
    *
    */
 
+  /*
   public get DPS(): number {
     return (
       (this.spellAverageDmgNonCrit *
@@ -818,6 +872,21 @@ class SpellCast {
       (this.castTime -
         this.naturesGraceBonus *
           (this.spellChanceToHit / 100) *
+          (this.character.spellCrit / 100))
+    )
+  }
+*/
+  public get DPS(): number {
+    return (
+      (this.spellMultiplicativeBonuses *
+        (0.83 + this.character.spellHit / 100) *
+        (this.moonFuryBonus * this.spell.baseDmg +
+          this.spell.coefficient.direct * this.character.spellPower) *
+        (1 +
+          ((this.spellCritMultiplier - 1) * this.character.spellCrit) / 100)) /
+      (this.castTime -
+        this.naturesGraceBonus *
+          (0.83 + this.character.spellHit / 100) *
           (this.character.spellCrit / 100))
     )
   }

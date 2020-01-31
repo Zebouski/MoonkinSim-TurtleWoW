@@ -31,7 +31,7 @@
           <div>
             <p class="heading has-text-white">Int Weight</p>
             <p class="title has-text-white is-size-5-mobile">
-              {{ spellCast.intWeight.toFixed(1) }}
+              {{ spellCast.intWeight.toFixed(2) }}
             </p>
           </div>
         </div>
@@ -287,7 +287,7 @@
                     </p>
                     <p class="is-size-7-mobile">
                       Cast Time: {{ spellCast.castTime }} (Effective:
-                      {{ spellCast.spellEffectiveCastTime.toFixed(3) }})
+                      {{ spellCast.effectiveCastTime.toFixed(3) }})
                     </p>
                     <p class="is-size-7-mobile">
                       Coefficient (dot):
@@ -319,6 +319,22 @@
                         )
                       }}
                     </p>
+                    <!--
+                    <p class="is-size-7-mobile">
+                      hit weight:
+                      {{
+                        spellCast.spellHitToDamage /
+                          spellCast.spellPowerToDamage
+                      }}
+                    </p>
+                    <p class="is-size-7-mobile">
+                      crit weight:
+                      {{
+                        spellCast.spellCritToDamage /
+                          spellCast.spellPowerToDamage
+                      }}
+                    </p>
+                    -->
                   </div>
                 </div>
               </div>
