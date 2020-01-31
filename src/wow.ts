@@ -478,9 +478,7 @@ class SpellCast {
     return Math.max(
       globalCoolDown,
       this.castTime -
-        this.naturesGraceBonus *
-          (this.spellChanceToHit / 100) *
-          (this.spellChanceToCrit / 100) +
+        this.naturesGraceBonus * (this.spellChanceToCrit / 100) +
         spellCastTimeHumanFactor
     )
   }
@@ -618,7 +616,7 @@ class SpellCast {
    *
    */
   public get spellChanceToCrit(): number {
-    return this.character.spellCrit * (this.spellChanceToHit / 99)
+    return this.character.spellCrit * (this.spellChanceToHit / 100)
   }
 
   /**
@@ -718,16 +716,21 @@ class SpellCast {
     return this.spellCritWeight ? this.spellCritWeight / 60 : 0
   }
 
+  /**
+   *
+   * dc(0.83+H/100)(1+xR/100)/(T-t(0.83+H/100)(R/100))
+   */
+
   public get spellPowerToDamage(): number {
     const x =
       this.spellMultiplicativeBonuses *
       this.spell.coefficient.direct *
-      (0.83 + this.character.spellHit / 100) *
-      (1 + ((this.spellCritMultiplier - 1) * this.character.spellCrit) / 100)
+      (this.spellChanceToHit / 100) *
+      (1 + (this.spellCritBonusMultiplier * this.character.spellCrit) / 100)
     const y =
       this.castTime -
       this.naturesGraceBonus *
-        (0.83 + this.character.spellHit / 100) *
+        (this.spellChanceToHit / 100) *
         (this.character.spellCrit / 100)
 
     return x / y
@@ -735,29 +738,14 @@ class SpellCast {
 
   /**
    *
-   * dc(0.83+H/100)(1+xR/100)/(T-t(0.83+H/100)(R/100))
-   */
-
-  /*
-  public get spellPowerToDamage(): number {
-    const x =
-      this.spellMultiplicativeBonuses *
-      this.spell.coefficient.direct *
-      (this.spellChanceToHit / 100) *
-      (1 + (this.spellCritBonusMultiplier * this.character.spellCrit) / 100)
-
-    return x / this.effectiveCastTime
-  }
-  */
-
-  /**
-   *
    * d(83+H)(mB+cP) * (xT+t(0.83+H/100)) / (100T-t(0.83+H/100)R)^2
    */
   public get spellCritToDamage(): number {
     return (
-      (this.spellAverageDmgNonCrit *
+      (this.spellMultiplicativeBonuses *
         this.spellChanceToHit *
+        (this.moonFuryBonus * this.spell.baseDmg +
+          this.spell.coefficient.direct * this.character.spellPower) *
         (this.spellCritBonusMultiplier * this.castTime +
           this.naturesGraceBonus * (this.spellChanceToHit / 100))) /
       (100 * this.castTime -
@@ -774,7 +762,9 @@ class SpellCast {
    */
   public get spellHitToDamage(): number {
     return (
-      (this.spellAverageDmgNonCrit *
+      (this.spellMultiplicativeBonuses *
+        (this.moonFuryBonus * this.spell.baseDmg +
+          this.spell.coefficient.direct * this.character.spellPower) *
         (100 + this.spellCritBonusMultiplier * this.character.spellCrit) *
         (100 ** 2 * this.castTime)) /
       (100 ** 2 * this.castTime -
@@ -785,12 +775,13 @@ class SpellCast {
     )
   }
 
-  /*
-
   // v3 Crit:Spellpower = x(mB/c + P)/(100+xR)   *   (T + (0.83+H/100)t/x)/(T-(0.83+H/100)tR/100)
   public get spellCritToSpellPower(): number {
     return (
-      ((this.spellAverageBaseDmgNonCrit /
+      (((this.spellCritBonusMultiplier *
+        ((this.moonFuryBonus * this.spell.baseDmg) /
+          this.spell.coefficient.direct +
+          this.character.spellPower)) /
         (100 + this.spellCritBonusMultiplier * this.character.spellCrit)) *
         (this.castTime +
           ((this.spellChanceToHit / 100) * this.naturesGraceBonus) /
@@ -802,10 +793,99 @@ class SpellCast {
           100)
     )
   }
-*/
+  /*
+  // v1 Hit:Spellpower = (B/c + P)/(83 + H)
+  // v2 Hit:SpellPower = (mB/c+P)/(83+H) * (100^2 T)/(100^2 T - t(83+H)R)
+  */
+  public get spellHitToSpellPower(): number {
+    return (
+      ((((this.moonFuryBonus * this.spell.baseDmg) /
+        this.spell.coefficient.direct +
+        this.character.spellPower) /
+        this.spellChanceToHit) *
+        (100 ** 2 * this.castTime)) /
+      (100 ** 2 * this.castTime -
+        this.naturesGraceBonus *
+          this.spellChanceToHit *
+          this.character.spellCrit)
+    )
+  }
 
-  // v3 Crit:Spellpower = x(mB/c + P)/(100+xR)   *   (T + (0.83+H/100)t/x)/(T-(0.83+H/100)tR/100)
-  public get spellCritToSpellPower(): number {
+  /**
+   *
+   * DPS of spamming Spell. Currently only supports direct damage spells.
+   *
+   * d(0.83 + H/100)(mB +cP)(1 + xR/100) / (T - t(0.83+H/100)(R/100))
+   *
+   */
+  public get DPS(): number {
+    return (
+      (this.spellMultiplicativeBonuses *
+        (this.spellChanceToHit / 100) *
+        this.spellAverageBaseDmgNonCrit *
+        (1 +
+          (this.spellCritBonusMultiplier * this.character.spellCrit) / 100)) /
+      this.effectiveCastTime
+    )
+  }
+  /************************************************/
+  public get kefDPS(): number {
+    // =(($H$9*$H$13*$I$9+$H$9*$H$16)/100) / $I$18*$D$22*$D$23*$D$24*$D$25*$D$26*$D$27*(1-$H$20)
+    return (
+      ((this.spellAverageBaseDmgCrit * this.spellChanceToCrit +
+        this.spellAverageBaseDmgNonCrit * this.spellChanceToRegularHit) /
+        100 /
+        this.effectiveCastTime) *
+      this.spellMultiplicativeBonuses
+    )
+  }
+  public get OGspellPowerToDamage(): number {
+    const x =
+      this.spellMultiplicativeBonuses *
+      this.spell.coefficient.direct *
+      (0.83 + this.character.spellHit / 100) *
+      (1 + ((this.spellCritMultiplier - 1) * this.character.spellCrit) / 100)
+    const y =
+      this.castTime -
+      this.naturesGraceBonus *
+        (0.83 + this.character.spellHit / 100) *
+        (this.character.spellCrit / 100)
+
+    return x / y
+  }
+
+  public get OGspellCritToDamage(): number {
+    return (
+      (this.spellMultiplicativeBonuses *
+        (83 + this.character.spellHit) *
+        (this.moonFuryBonus * this.spell.baseDmg +
+          this.spell.coefficient.direct * this.character.spellPower) *
+        ((this.spellCritMultiplier - 1) * this.castTime +
+          this.naturesGraceBonus * (0.83 + this.character.spellHit / 100))) /
+      (100 * this.castTime -
+        this.naturesGraceBonus *
+          (0.83 + this.character.spellHit / 100) *
+          this.character.spellCrit) **
+        2
+    )
+  }
+
+  public get OGspellHitToDamage(): number {
+    return (
+      (this.spellMultiplicativeBonuses *
+        (this.moonFuryBonus * this.spell.baseDmg +
+          this.spell.coefficient.direct * this.character.spellPower) *
+        (100 + (this.spellCritMultiplier - 1) * this.character.spellCrit) *
+        (100 ** 2 * this.castTime)) /
+      (100 ** 2 * this.castTime -
+        this.naturesGraceBonus *
+          (83 + this.character.spellHit) *
+          this.character.spellCrit) **
+        2
+    )
+  }
+
+  public get OGspellCritToSpellPower(): number {
     return (
       ((((this.spellCritMultiplier - 1) *
         ((this.moonFuryBonus * this.spell.baseDmg) /
@@ -823,24 +903,7 @@ class SpellCast {
     )
   }
 
-  /*
-  // v1 Hit:Spellpower = (B/c + P)/(83 + H)
-  // v2 Hit:SpellPower = (mB/c+P)/(83+H) * (100^2 T)/(100^2 T - t(83+H)R)
-  public get spellHitToSpellPower(): number {
-    return (
-      ((this.spellAverageBaseDmgNonCrit / this.spellChanceToHit) *
-        (100 ** 2 * this.castTime)) /
-      (100 ** 2 * this.castTime -
-        this.naturesGraceBonus *
-          this.spellChanceToHit *
-          this.character.spellCrit)
-    )
-  }
-  */
-
-  // v1 Hit:Spellpower = (B/c + P)/(83 + H)
-  // v2 Hit:SpellPower = (mB/c+P)/(83+H) * (100^2 T)/(100^2 T - t(83+H)R)
-  public get spellHitToSpellPower(): number {
+  public get OGspellHitToSpellPower(): number {
     return (
       ((((this.moonFuryBonus * this.spell.baseDmg) /
         this.spell.coefficient.direct +
@@ -854,29 +917,7 @@ class SpellCast {
     )
   }
 
-  /**
-   *
-   * DPS of spamming Spell. Currently only supports direct damage spells.
-   *
-   * d(0.83 + H/100)(mB +cP)(1 + xR/100) / (T - t(0.83+H/100)(R/100))
-   *
-   */
-
-  /*
-  public get DPS(): number {
-    return (
-      (this.spellAverageDmgNonCrit *
-        (this.spellChanceToHit / 100) *
-        (1 +
-          (this.spellCritBonusMultiplier * this.character.spellCrit) / 100)) /
-      (this.castTime -
-        this.naturesGraceBonus *
-          (this.spellChanceToHit / 100) *
-          (this.character.spellCrit / 100))
-    )
-  }
-*/
-  public get DPS(): number {
+  public get OGDPS(): number {
     return (
       (this.spellMultiplicativeBonuses *
         (0.83 + this.character.spellHit / 100) *

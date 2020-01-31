@@ -319,14 +319,36 @@
                         )
                       }}
                     </p>
-                    <!--
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+          <div class="tile is-parent" v-bind:class="{ 'is-hidden': !DEBUG }">
+            <article
+              class="tile is-child box has-background-black-ter has-text-white"
+            >
+              <p class="subtitle has-text-white"></p>
+              <div class="content">
+                <div class="columns is-mobile">
+                  <div class="column">
                     <p class="is-size-7-mobile">
-                      hit weight:
-                      {{
-                        spellCast.spellHitToDamage /
-                          spellCast.spellPowerToDamage
-                      }}
+                      spellPowerToDamage: {{ spellCast.spellPowerToDamage }}
                     </p>
+                    <p class="is-size-7-mobile">
+                      spellCritToDamage: {{ spellCast.spellCritToDamage }}
+                    </p>
+                    <p class="is-size-7-mobile">
+                      spellHitToDamage: {{ spellCast.spellHitToDamage }}
+                    </p>
+                    <p class="is-size-7-mobile">
+                      spellCritToSpellPower:
+                      {{ spellCast.spellCritToSpellPower }}
+                    </p>
+                    <p class="is-size-7-mobile">
+                      spellHitToSpellPower: {{ spellCast.spellHitToSpellPower }}
+                    </p>
+                    <p class="is-size-7-mobile">DPS: {{ spellCast.DPS }}</p>
                     <p class="is-size-7-mobile">
                       crit weight:
                       {{
@@ -334,7 +356,36 @@
                           spellCast.spellPowerToDamage
                       }}
                     </p>
-                    -->
+                    <p class="is-size-7-mobile">
+                      hit weight:
+                      {{
+                        spellCast.spellHitToDamage /
+                          spellCast.spellPowerToDamage
+                      }}
+                    </p>
+                  </div>
+                  <div class="column">
+                    <p class="is-size-7-mobile">
+                      OGspellPowerToDamage: {{ spellCast.OGspellPowerToDamage }}
+                    </p>
+                    <p class="is-size-7-mobile">
+                      OGspellCritToDamage: {{ spellCast.OGspellCritToDamage }}
+                    </p>
+                    <p class="is-size-7-mobile">
+                      OGspellHitToDamage: {{ spellCast.OGspellHitToDamage }}
+                    </p>
+                    <p class="is-size-7-mobile">
+                      OGspellCritToSpellPower:
+                      {{ spellCast.OGspellCritToSpellPower }}
+                    </p>
+                    <p class="is-size-7-mobile">
+                      OGspellHitToSpellPower:
+                      {{ spellCast.OGspellHitToSpellPower }}
+                    </p>
+                    <p class="is-size-7-mobile">OGDPS: {{ spellCast.OGDPS }}</p>
+                    <p class="is-size-7-mobile">
+                      kefDPS: {{ spellCast.kefDPS }}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -361,6 +412,7 @@ import { default as wow } from '../wow'
 
 @Component
 export default class MoonkinCalc extends Vue {
+  DEBUG = false
   spellNames = wow.Spell.getSpellNames()
   targetNames = wow.Target.getTargetNames()
   spellName = 'Starfire Rank 6'
