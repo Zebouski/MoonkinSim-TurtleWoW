@@ -71,6 +71,16 @@
                             v-model.number="spellCrit"
                           />
                         </b-field>
+                        <b-field
+                          label="Target Resistance"
+                          label-position="on-border"
+                        >
+                          <input
+                            class="input is-size-7-mobile"
+                            type="number"
+                            v-model.number="targetSpellResistance"
+                          />
+                        </b-field>
                       </div>
                       <div class="column">
                         <b-field label="Spell Power" label-position="on-border">
@@ -223,13 +233,7 @@
                     </p>
                     <p class="is-size-7-mobile">
                       Int Weight:
-                      {{
-                        Number(
-                          spellCast.spellCritToDamage /
-                            spellCast.spellPowerToDamage /
-                            60
-                        ).toFixed(3)
-                      }}
+                      {{ Number(spellCast.intWeight).toFixed(3) }}
                     </p>
                     <p class="is-size-7-mobile">
                       Base Dmg: {{ spellCast.spell.baseDmg }} ({{
@@ -239,21 +243,23 @@
                     </p>
                     <p class="is-size-7-mobile">
                       Coefficient (direct):
-                      {{ spellCast.spell.coefficient.direct.toFixed(3) }}
+                      {{ spellCast.spell.coefficient.direct.toFixed(4) * 100 }}%
                     </p>
                     <p class="is-size-7-mobile">
-                      Average Base Dmg:
-                      {{
-                        Number(spellCast.spellAverageBaseDmgNonCrit).toFixed(3)
-                      }}
+                      Dmg:
+                      {{ Number(spellCast.dmg).toFixed(3) }}
                     </p>
                     <p class="is-size-7-mobile">
-                      Average Dmg:
-                      {{ Number(spellCast.spellAverageDmgNonCrit).toFixed(3) }}
+                      Dmg Over Time:
+                      {{ Number(spellCast.dotDmg).toFixed(3) }}
                     </p>
                     <p class="is-size-7-mobile">
                       Chance to miss:
-                      {{ Number(spellCast.spellChanceToMiss).toFixed(3) }}
+                      {{
+                        Number(spellCast.character.spellChanceToMiss).toFixed(
+                          0
+                        )
+                      }}%
                     </p>
                     <p class="is-size-7-mobile">
                       School: {{ spellCast.spell.school }}
@@ -291,19 +297,23 @@
                     </p>
                     <p class="is-size-7-mobile">
                       Coefficient (dot):
-                      {{ spellCast.spell.coefficient.dot.toFixed(3) }}
+                      {{ spellCast.spell.coefficient.dot.toFixed(4) * 100 }}%
                     </p>
                     <p class="is-size-7-mobile">
-                      Average Base Crit:
-                      {{ Number(spellCast.spellAverageBaseDmgCrit).toFixed(3) }}
+                      Dmg (Crit):
+                      {{ Number(spellCast.dmgCrit).toFixed(3) }}
                     </p>
                     <p class="is-size-7-mobile">
-                      Average Crit:
-                      {{ Number(spellCast.spellAverageDmgCrit).toFixed(3) }}
+                      Dmg Over Time(Per Tick):
+                      {{ Number(spellCast.dotDmgPerTick).toFixed(3) }}
                     </p>
                     <p class="is-size-7-mobile">
                       Chance to crit:
-                      {{ Number(spellCast.spellChanceToCrit).toFixed(3) }}
+                      {{
+                        Number(spellCast.character.spellChanceToCrit).toFixed(
+                          3
+                        )
+                      }}%
                     </p>
                     <p class="is-size-7-mobile">
                       Mana cost: {{ spellCast.spell.manaCost }}
@@ -312,12 +322,10 @@
                       Spell Penetration: {{ spellCast.spellPenetration }}
                     </p>
                     <p class="is-size-7-mobile">
-                      Partial resist average loss:
+                      Partial resist penalty:
                       {{
-                        Number(spellCast.spellPartialResistLossAverage).toFixed(
-                          3
-                        )
-                      }}
+                        Number(spellCast.partialResistPenalty).toFixed(3) * 100
+                      }}%
                     </p>
                   </div>
                 </div>
@@ -386,6 +394,10 @@
                     <p class="is-size-7-mobile">
                       kefDPS: {{ spellCast.kefDPS }}
                     </p>
+                    <p class="is-size-7-mobile">ffDPS: {{ spellCast.ffDPS }}</p>
+                    <p class="is-size-7-mobile">
+                      ffDPSLoss: {{ spellCast.ffDPSLoss }}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -435,7 +447,7 @@ export default class MoonkinCalc extends Vue {
   stormStrike = false
 
   get spellCast() {
-    return new wow.SpellCast(
+    return new wow.Cast(
       new wow.Character(
         60,
         'Tauren',
@@ -458,6 +470,7 @@ export default class MoonkinCalc extends Vue {
       new wow.Spell(this.spellName),
       new wow.Target(
         this.targetName,
+        this.targetSpellResistance,
         new wow.Debuffs(this.curseOfShadow, this.stormStrike, this.spellVuln)
       )
     )

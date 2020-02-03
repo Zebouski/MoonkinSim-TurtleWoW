@@ -5,7 +5,7 @@
   school: arcane
   type: direct
   castTime: 3.5
-  duration: 0
+  dotDuration: 0
   manaCost: 95
   level: 20
   range: 30
@@ -15,7 +15,7 @@
   school: arcane
   type: direct
   castTime: 3.5
-  duration: 0
+  dotDuration: 0
   manaCost: 135
   level: 26
   range: 30
@@ -25,7 +25,7 @@
   school: arcane
   type: direct
   castTime: 3.5
-  duration: 0
+  dotDuration: 0
   manaCost: 180
   level: 34
   range: 30
@@ -35,7 +35,7 @@
   school: arcane
   type: direct
   castTime: 3.5
-  duration: 0
+  dotDuration: 0
   manaCost: 230
   level: 42
   range: 30
@@ -45,7 +45,7 @@
   school: arcane
   type: direct
   castTime: 3.5
-  duration: 0
+  dotDuration: 0
   manaCost: 275
   level: 50
   range: 30
@@ -55,7 +55,7 @@
   school: arcane
   type: direct
   castTime: 3.5
-  duration: 0
+  dotDuration: 0
   manaCost: 315
   level: 58
   range: 30
@@ -65,7 +65,7 @@
   school: arcane
   type: direct
   castTime: 3.5
-  duration: 0
+  dotDuration: 0
   manaCost: 340
   level: 60
   range: 30
@@ -75,7 +75,7 @@
   school: nature
   type: direct
   castTime: 1.5
-  duration: 0
+  dotDuration: 0
   manaCost: 20
   level: 1
   range: 30
@@ -85,7 +85,7 @@
   school: nature
   type: direct
   castTime: 1.7
-  duration: 0
+  dotDuration: 0
   manaCost: 35
   level: 6
   range: 30
@@ -95,7 +95,7 @@
   school: nature
   type: direct
   castTime: 2
-  duration: 0
+  dotDuration: 0
   manaCost: 55
   level: 14
   range: 30
@@ -105,7 +105,7 @@
   school: nature
   type: direct
   castTime: 2
-  duration: 0
+  dotDuration: 0
   manaCost: 70
   level: 22
   range: 30
@@ -115,7 +115,7 @@
   school: nature
   type: direct
   castTime: 2
-  duration: 0
+  dotDuration: 0
   manaCost: 100
   level: 30
   range: 30
@@ -125,7 +125,7 @@
   school: nature
   type: direct
   castTime: 2
-  duration: 0
+  dotDuration: 0
   manaCost: 125
   level: 38
   range: 30
@@ -135,7 +135,7 @@
   school: nature
   type: direct
   castTime: 2
-  duration: 0
+  dotDuration: 0
   manaCost: 155
   level: 46
   range: 30
@@ -145,7 +145,7 @@
   school: nature
   type: direct
   castTime: 2
-  duration: 0
+  dotDuration: 0
   manaCost: 180
   level: 54
   range: 30
@@ -155,7 +155,9 @@
   school: arcane
   type: hybrid
   castTime: 0
-  duration: 9
+  dotDmg: 12
+  dotDuration: 9
+  dotTick: 3
   manaCost: 25
   level: 4
   range: 30
@@ -165,7 +167,9 @@
   school: arcane
   type: hybrid
   castTime: 0
-  duration: 12
+  dotDuration: 12
+  dotDmg: 32
+  dotTick: 3
   manaCost: 50
   level: 10
   range: 30
@@ -175,7 +179,9 @@
   school: arcane
   type: hybrid
   castTime: 0
-  duration: 12
+  dotDuration: 12
+  dotDmg: 52
+  dotTick: 3
   manaCost: 75
   level: 16
   range: 30
@@ -185,7 +191,9 @@
   school: arcane
   type: hybrid
   castTime: 0
-  duration: 12
+  dotDuration: 12
+  dotDmg: 80
+  dotTick: 3
   manaCost: 105
   level: 22
   range: 30
@@ -195,7 +203,9 @@
   school: arcane
   type: hybrid
   castTime: 0
-  duration: 12
+  dotDuration: 12
+  dotDmg: 124
+  dotTick: 3
   manaCost: 150
   level: 28
   range: 30
@@ -205,7 +215,9 @@
   school: arcane
   type: hybrid
   castTime: 0
-  duration: 12
+  dotDuration: 12
+  dotDmg: 164
+  dotTick: 3
   manaCost: 190
   level: 34
   range: 30
@@ -215,7 +227,9 @@
   school: arcane
   type: hybrid
   castTime: 0
-  duration: 12
+  dotDuration: 12
+  dotDmg: 212
+  dotTick: 3
   manaCost: 235
   level: 40
   range: 30
@@ -225,7 +239,9 @@
   school: arcane
   type: hybrid
   castTime: 0
-  duration: 12
+  dotDuration: 12
+  dotDmg: 264
+  dotTick: 3
   manaCost: 280
   level: 46
   range: 30
@@ -235,7 +251,9 @@
   school: arcane
   type: hybrid
   castTime: 0
-  duration: 12
+  dotDuration: 12
+  dotDmg: 320
+  dotTick: 3
   manaCost: 325
   level: 52
   range: 30
@@ -245,7 +263,74 @@
   school: arcane
   type: hybrid
   castTime: 0
-  duration: 12
+  dotDuration: 12
+  dotDmg: 384
+  dotTick: 3
   manaCost: 375
   level: 58
   range: 30
+- name: Insect Swarm Rank 1
+  school: nature
+  minDmg: 0
+  maxDmg: 0
+  type: dot
+  castTime: 0
+  dotDmg: 66
+  dotDuration: 12
+  dotTick: 2
+  manaCost: 45
+  level: 20
+  range: 30 
+  secondary: cth-2
+- name: Insect Swarm Rank 2
+  school: nature
+  minDmg: 0
+  maxDmg: 0
+  type: dot
+  castTime: 0
+  dotDmg: 138
+  dotDuration: 12
+  dotTick: 3
+  manaCost: 85
+  level: 30
+  range: 30 
+  secondary: cth-2
+- name: Insect Swarm Rank 3
+  school: nature
+  minDmg: 0
+  maxDmg: 0
+  type: dot
+  castTime: 0
+  dotDuration: 12
+  dotDmg: 174
+  dotTick: 2
+  manaCost: 100
+  level: 40
+  range: 30 
+  secondary: cth-2
+- name: Insect Swarm Rank 4
+  school: nature
+  minDmg: 0
+  maxDmg: 0
+  type: dot
+  castTime: 0
+  dotDuration: 12
+  dotDmg: 264
+  dotTick: 3
+  manaCost: 140
+  level: 50
+  range: 30 
+  secondary: cth-2
+- name: Insect Swarm Rank 5
+  school: nature
+  minDmg: 0
+  maxDmg: 0
+  type: dot
+  castTime: 0
+  dotDuration: 12
+  dotDmg: 324
+  dotTick: 2
+  manaCost: 160
+  level: 60
+  range: 30 
+  secondary: cth-2
