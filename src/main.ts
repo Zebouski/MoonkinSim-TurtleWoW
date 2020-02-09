@@ -8,7 +8,7 @@ import './styles/custom.scss'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faGitlab, faDiscord } from '@fortawesome/free-brands-svg-icons'
-import { faFilePdf, faBook } from '@fortawesome/free-solid-svg-icons'
+import { faFilePdf, faBook, faBug } from '@fortawesome/free-solid-svg-icons'
 
 Vue.config.productionTip = false
 
@@ -19,6 +19,7 @@ library.add(faGitlab)
 library.add(faDiscord)
 library.add(faBook)
 library.add(faFilePdf)
+library.add(faBug)
 
 new Vue({
   render: h => h(App)

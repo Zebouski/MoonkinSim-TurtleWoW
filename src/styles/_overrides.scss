@@ -5,18 +5,35 @@ body, button, input, select, textarea {
    margin-bottom: 1.5em; 
 }
 
-.box, .footer, .section {
-        border: solid 1px $grey-dark;
-        border-radius: 0px;
+.box, .footer {
+    border: solid 1px $grey-dark;
+    border-radius: 0px;
+}
+
+#header {
+    border: solid 1px $grey-dark;
+    border-radius: 0px;
+    border-left: none;
+    border-right: none;
+}
+
+.footer, .section {
+    border-left: none;
+    border-right: none;
 }
 
 .b-tabs .tabs {
    margin-bottom: 1.5rem; 
 }
 
-.footer, .section {
-    border-left: none;
-    border-right: none;
+
+.table {
+    background-color: $black-ter;
+    color: $white;
+}
+
+.b-tabs .tab-content {
+   padding: 0; 
 }
 
 .content p:not(:last-child) {
@@ -56,6 +73,11 @@ a {
 
 .input {
     background-color: $grey-dark;
+    color: #fff;
+}
+
+pre {
+    background-color: $black-ter;
     color: #fff;
 }
 

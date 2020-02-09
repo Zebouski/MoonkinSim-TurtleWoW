@@ -5,9 +5,9 @@
   school: arcane
   type: direct
   castTime: 3.5
-  dotDuration: 0
+  duration: 0
   manaCost: 95
-  level: 20
+  reqLvl: 20
   range: 30
 - name: Starfire Rank 2
   minDmg: 146
@@ -15,9 +15,9 @@
   school: arcane
   type: direct
   castTime: 3.5
-  dotDuration: 0
+  duration: 0
   manaCost: 135
-  level: 26
+  reqLvl: 26
   range: 30
 - name: Starfire Rank 3
   minDmg: 212
@@ -25,9 +25,9 @@
   school: arcane
   type: direct
   castTime: 3.5
-  dotDuration: 0
+  duration: 0
   manaCost: 180
-  level: 34
+  reqLvl: 34
   range: 30
 - name: Starfire Rank 4
   minDmg: 293
@@ -35,9 +35,9 @@
   school: arcane
   type: direct
   castTime: 3.5
-  dotDuration: 0
+  duration: 0
   manaCost: 230
-  level: 42
+  reqLvl: 42
   range: 30
 - name: Starfire Rank 5
   minDmg: 378
@@ -45,9 +45,9 @@
   school: arcane
   type: direct
   castTime: 3.5
-  dotDuration: 0
+  duration: 0
   manaCost: 275
-  level: 50
+  reqLvl: 50
   range: 30
 - name: Starfire Rank 6
   minDmg: 451
@@ -55,9 +55,9 @@
   school: arcane
   type: direct
   castTime: 3.5
-  dotDuration: 0
+  duration: 0
   manaCost: 315
-  level: 58
+  reqLvl: 58
   range: 30
 - name: Starfire Rank 7
   minDmg: 496
@@ -65,9 +65,9 @@
   school: arcane
   type: direct
   castTime: 3.5
-  dotDuration: 0
+  duration: 0
   manaCost: 340
-  level: 60
+  reqLvl: 60
   range: 30
 - name: Wrath Rank 1
   minDmg: 13
@@ -75,9 +75,9 @@
   school: nature
   type: direct
   castTime: 1.5
-  dotDuration: 0
+  duration: 0
   manaCost: 20
-  level: 1
+  reqLvl: 1
   range: 30
 - name: Wrath Rank 2
   minDmg: 28
@@ -85,9 +85,9 @@
   school: nature
   type: direct
   castTime: 1.7
-  dotDuration: 0
+  duration: 0
   manaCost: 35
-  level: 6
+  reqLvl: 6
   range: 30
 - name: Wrath Rank 3
   minDmg: 48
@@ -95,9 +95,9 @@
   school: nature
   type: direct
   castTime: 2
-  dotDuration: 0
+  duration: 0
   manaCost: 55
-  level: 14
+  reqLvl: 14
   range: 30
 - name: Wrath Rank 4
   minDmg: 69
@@ -105,9 +105,9 @@
   school: nature
   type: direct
   castTime: 2
-  dotDuration: 0
+  duration: 0
   manaCost: 70
-  level: 22
+  reqLvl: 22
   range: 30
 - name: Wrath Rank 5
   minDmg: 108
@@ -115,9 +115,9 @@
   school: nature
   type: direct
   castTime: 2
-  dotDuration: 0
+  duration: 0
   manaCost: 100
-  level: 30
+  reqLvl: 30
   range: 30
 - name: Wrath Rank 6
   minDmg: 148
@@ -125,9 +125,9 @@
   school: nature
   type: direct
   castTime: 2
-  dotDuration: 0
+  duration: 0
   manaCost: 125
-  level: 38
+  reqLvl: 38
   range: 30
 - name: Wrath Rank 7
   minDmg: 198
@@ -135,9 +135,9 @@
   school: nature
   type: direct
   castTime: 2
-  dotDuration: 0
+  duration: 0
   manaCost: 155
-  level: 46
+  reqLvl: 46
   range: 30
 - name: Wrath Rank 8
   minDmg: 248
@@ -145,9 +145,9 @@
   school: nature
   type: direct
   castTime: 2
-  dotDuration: 0
+  duration: 0
   manaCost: 180
-  level: 54
+  reqLvl: 54
   range: 30
 - name: Moonfire Rank 1
   minDmg: 9
@@ -155,11 +155,11 @@
   school: arcane
   type: hybrid
   castTime: 0
-  dotDmg: 12
-  dotDuration: 9
-  dotTick: 3
+  tickDmg: 4
+  tickRate: 3
+  duration: 9
   manaCost: 25
-  level: 4
+  reqLvl: 4
   range: 30
 - name: Moonfire Rank 2
   minDmg: 17
@@ -167,11 +167,11 @@
   school: arcane
   type: hybrid
   castTime: 0
-  dotDuration: 12
-  dotDmg: 32
-  dotTick: 3
+  duration: 12
+  tickDmg: 8
+  tickRate: 3
   manaCost: 50
-  level: 10
+  reqLvl: 10
   range: 30
 - name: Moonfire Rank 3
   minDmg: 30
@@ -179,11 +179,11 @@
   school: arcane
   type: hybrid
   castTime: 0
-  dotDuration: 12
-  dotDmg: 52
-  dotTick: 3
+  duration: 12
+  tickDmg: 13
+  tickRate: 3
   manaCost: 75
-  level: 16
+  reqLvl: 16
   range: 30
 - name: Moonfire Rank 4
   minDmg: 47
@@ -191,11 +191,11 @@
   school: arcane
   type: hybrid
   castTime: 0
-  dotDuration: 12
-  dotDmg: 80
-  dotTick: 3
+  duration: 12
+  tickDmg: 20
+  tickRate: 3
   manaCost: 105
-  level: 22
+  reqLvl: 22
   range: 30
 - name: Moonfire Rank 5
   minDmg: 70
@@ -203,11 +203,11 @@
   school: arcane
   type: hybrid
   castTime: 0
-  dotDuration: 12
-  dotDmg: 124
-  dotTick: 3
+  duration: 12
+  tickDmg: 31
+  tickRate: 3
   manaCost: 150
-  level: 28
+  reqLvl: 28
   range: 30
 - name: Moonfire Rank 6
   minDmg: 91
@@ -215,11 +215,11 @@
   school: arcane
   type: hybrid
   castTime: 0
-  dotDuration: 12
-  dotDmg: 164
-  dotTick: 3
+  duration: 12
+  tickDmg: 41
+  tickRate: 3
   manaCost: 190
-  level: 34
+  reqLvl: 34
   range: 30
 - name: Moonfire Rank 7
   minDmg: 117
@@ -227,11 +227,11 @@
   school: arcane
   type: hybrid
   castTime: 0
-  dotDuration: 12
-  dotDmg: 212
-  dotTick: 3
+  duration: 12
+  tickDmg: 53
+  tickRate: 3
   manaCost: 235
-  level: 40
+  reqLvl: 40
   range: 30
 - name: Moonfire Rank 8
   minDmg: 143
@@ -239,11 +239,11 @@
   school: arcane
   type: hybrid
   castTime: 0
-  dotDuration: 12
-  dotDmg: 264
-  dotTick: 3
+  duration: 12
+  tickDmg: 66
+  tickRate: 3
   manaCost: 280
-  level: 46
+  reqLvl: 46
   range: 30
 - name: Moonfire Rank 9
   minDmg: 172
@@ -251,11 +251,11 @@
   school: arcane
   type: hybrid
   castTime: 0
-  dotDuration: 12
-  dotDmg: 320
-  dotTick: 3
+  duration: 12
+  tickDmg: 80
+  tickRate: 3
   manaCost: 325
-  level: 52
+  reqLvl: 52
   range: 30
 - name: Moonfire Rank 10
   minDmg: 195
@@ -263,74 +263,97 @@
   school: arcane
   type: hybrid
   castTime: 0
-  dotDuration: 12
-  dotDmg: 384
-  dotTick: 3
+  duration: 12
+  tickDmg: 96
+  tickRate: 3
   manaCost: 375
-  level: 58
+  reqLvl: 58
   range: 30
 - name: Insect Swarm Rank 1
   school: nature
-  minDmg: 0
-  maxDmg: 0
-  type: dot
+  type: periodic
   castTime: 0
-  dotDmg: 66
-  dotDuration: 12
-  dotTick: 2
+  tickDmg: 11
+  tickRate: 2
+  duration: 12
   manaCost: 45
-  level: 20
+  reqLvl: 20
   range: 30 
   secondary: cth-2
 - name: Insect Swarm Rank 2
   school: nature
-  minDmg: 0
-  maxDmg: 0
-  type: dot
+  type: periodic
   castTime: 0
-  dotDmg: 138
-  dotDuration: 12
-  dotTick: 3
+  tickDmg: 23
+  duration: 12
+  tickRate: 3
   manaCost: 85
-  level: 30
+  reqLvl: 30
   range: 30 
   secondary: cth-2
 - name: Insect Swarm Rank 3
   school: nature
-  minDmg: 0
-  maxDmg: 0
-  type: dot
+  type: periodic
   castTime: 0
-  dotDuration: 12
-  dotDmg: 174
-  dotTick: 2
+  duration: 12
+  tickDmg: 29
+  tickRate: 2
   manaCost: 100
-  level: 40
+  reqLvl: 40
   range: 30 
   secondary: cth-2
 - name: Insect Swarm Rank 4
   school: nature
-  minDmg: 0
-  maxDmg: 0
-  type: dot
+  type: periodic
   castTime: 0
-  dotDuration: 12
-  dotDmg: 264
-  dotTick: 3
+  duration: 12
+  tickDmg: 44
+  tickRate: 3
   manaCost: 140
-  level: 50
+  reqLvl: 50
   range: 30 
   secondary: cth-2
 - name: Insect Swarm Rank 5
   school: nature
-  minDmg: 0
-  maxDmg: 0
-  type: dot
+  type: periodic
   castTime: 0
-  dotDuration: 12
-  dotDmg: 324
-  dotTick: 2
+  duration: 12
+  tickDmg: 54
+  tickRate: 2
   manaCost: 160
-  level: 60
+  reqLvl: 60
   range: 30 
   secondary: cth-2
+- name: Hurricane Rank 1
+  school: nature
+  type: periodic
+  castTime: 0
+  duration: 10
+  tickDmg: 72
+  tickRate: 1
+  manaCost: 880
+  reqLvl: 40
+  range: 30
+  secondary: haste-25
+- name: Hurricane Rank 2
+  school: nature
+  type: periodic
+  castTime: 0
+  duration: 10
+  tickDmg: 102
+  tickRate: 1
+  manaCost: 1180
+  reqLvl: 50
+  range: 30
+  secondary: haste-25
+- name: Hurricane Rank 3
+  school: nature
+  type: periodic
+  castTime: 0
+  duration: 10
+  tickDmg: 134
+  tickRate: 1
+  manaCost: 1495
+  reqLvl: 60
+  range: 30
+  secondary: haste-25

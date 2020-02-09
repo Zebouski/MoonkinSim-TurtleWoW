@@ -3,5 +3,5 @@
  */
 export default interface SpellCoefficient {
   direct: number
-  dot: number
+  periodic: number
 }

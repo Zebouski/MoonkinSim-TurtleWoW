@@ -48,12 +48,98 @@ export default class Character {
     }
   }
 
+  public get isHorde(): boolean {
+    return this.faction.toUpperCase() === 'HORDE'
+  }
+
+  public get isAlliance(): boolean {
+    return this.faction.toUpperCase() === 'ALLIANCE'
+  }
+
+  public get isTauren(): boolean {
+    return this.race.toUpperCase() === 'TAUREN'
+  }
+
+  public get isNightElf(): boolean {
+    return this.race.toUpperCase() === 'NIGHTELF'
+  }
+
   /**
-   * TODO: Return total spell power (gear + talents + buffs)
-   * In the future each spell school should also have a function
+   * TODO: https://classicwow.live/guides/46/basic-stats-sheet
    */
-  public get spellPower(): number {
-    return this.gear.spellPower
+
+  public get baseIntellect(): number {
+    return (this.isNightElf ? 100 : 95) + this.gear.intellect
+  }
+
+  public get intellect(): number {
+    return (
+      (this.baseIntellect +
+        this.buffs.arcaneBrillianceBonus +
+        this.buffs.improvedGiftOfTheWildAttributeBonus +
+        this.buffs.songflowerSerenadeAttributeBonus +
+        this.buffs.cerebralCortexCompoundBonus +
+        this.buffs.runnTumTuberSurpriseBonus) *
+      (this.isAlliance ? this.buffs.blessingOfKingsBonus : 1)
+    )
+  }
+
+  public get baseSpirit(): number {
+    return (this.isNightElf ? 100 : 95) + this.gear.spirit
+  }
+
+  public get enduranceRacialBonus(): number {
+    return this.isTauren ? 1.05 : 1
+  }
+
+  public get baseStamina(): number {
+    switch (this.race.toUpperCase()) {
+      case 'TAUREN':
+        return 72
+      case 'NIGHTELF':
+        return 69
+      default:
+        return 0
+    }
+  }
+
+  public get nativeHealth(): number {
+    return 1483
+  }
+
+  public get baseHealth(): number {
+    switch (this.race.toUpperCase()) {
+      case 'TAUREN':
+        return this.nativeHealth + 10 * this.baseStamina
+      case 'NIGHTELF':
+        return this.nativeHealth + 10 * this.baseStamina
+      default:
+        return 0
+    }
+  }
+
+  public get nativeMana(): number {
+    return 1244
+  }
+
+  public get spellDamage(): number {
+    return this.gear.spellDamage
+  }
+
+  public get arcaneDamage(): number {
+    return this.gear.arcaneDamage + this.gear.spellDamage
+  }
+
+  public get natureDamage(): number {
+    return this.gear.natureDamage + this.gear.spellDamage
+  }
+
+  public get spellCritFromIntellect(): number {
+    return this.intellect / 60
+  }
+
+  public get baseSpellCrit(): number {
+    return constants.baseSpellChanceToCrit + this.spellCritFromIntellect + this.gear.spellCrit
   }
 
   /**
@@ -61,8 +147,12 @@ export default class Character {
    */
   public get spellCrit(): number {
     return Math.min(
-      constants.spellBaseChanceToCrit + this.gear.spellCrit,
-      constants.spellCritCap
+      constants.spellCritCap,
+      this.baseSpellCrit +
+        this.buffs.rallyingCryOfTheDragonSlayerSpellCritBonus +
+        this.buffs.moonkinAuraBonus +
+        this.buffs.slipkiksSavvyBonus +
+        this.buffs.songflowerSerenadeSpellCritBonus
     )
   }
 
@@ -103,5 +193,25 @@ export default class Character {
    */
   public get spellChanceToNormal(): number {
     return this.spellChanceToHit - this.spellChanceToCrit
+  }
+
+  toJSON() {
+    const proto = Object.getPrototypeOf(this)
+    const jsonObj: any = Object.assign({}, this)
+
+    Object.entries(Object.getOwnPropertyDescriptors(proto))
+      .filter(([key, descriptor]) => typeof descriptor.get === 'function')
+      .map(([key, descriptor]) => {
+        if (descriptor && key[0] !== '_') {
+          try {
+            const val = (this as any)[key]
+            jsonObj[key] = val
+          } catch (error) {
+            console.error(`Error calling getter ${key}`, error)
+          }
+        }
+      })
+
+    return jsonObj
   }
 }

@@ -266,8 +266,8 @@
     current-script-polyfill "^1.0.0"
     debug "^4.1.1"
     default-gateway "^5.0.5"
-    dotenv "^8.2.0"
-    dotenv-expand "^5.1.0"
+    periodicenv "^8.2.0"
+    periodicenv-expand "^5.1.0"
     file-loader "^4.2.0"
     fs-extra "^7.0.1"
     globby "^9.2.0"
@@ -2032,19 +2032,19 @@ domutils@^1.5.1, domutils@^1.7.0:
     dom-serializer "0"
     domelementtype "1"
 
-dot-prop@^4.1.1:
+periodic-prop@^4.1.1:
   version "4.2.0"
-  resolved "https://registry.yarnpkg.com/dot-prop/-/dot-prop-4.2.0.tgz#1f19e0c2e1aa0e32797c49799f2837ac6af69c57"
+  resolved "https://registry.yarnpkg.com/periodic-prop/-/periodic-prop-4.2.0.tgz#1f19e0c2e1aa0e32797c49799f2837ac6af69c57"
   dependencies:
     is-obj "^1.0.0"
 
-dotenv-expand@^5.1.0:
+periodicenv-expand@^5.1.0:
   version "5.1.0"
-  resolved "https://registry.yarnpkg.com/dotenv-expand/-/dotenv-expand-5.1.0.tgz#3fbaf020bfd794884072ea26b1e9791d45a629f0"
+  resolved "https://registry.yarnpkg.com/periodicenv-expand/-/periodicenv-expand-5.1.0.tgz#3fbaf020bfd794884072ea26b1e9791d45a629f0"
 
-dotenv@^8.2.0:
+periodicenv@^8.2.0:
   version "8.2.0"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.2.0.tgz#97e619259ada750eea3e4ea3e26bceea5424b16a"
+  resolved "https://registry.yarnpkg.com/periodicenv/-/periodicenv-8.2.0.tgz#97e619259ada750eea3e4ea3e26bceea5424b16a"
 
 duplexer@^0.1.1:
   version "0.1.1"
@@ -5096,7 +5096,7 @@ postcss-selector-parser@^3.0.0:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/postcss-selector-parser/-/postcss-selector-parser-3.1.1.tgz#4f875f4afb0c96573d5cf4d74011aee250a7e865"
   dependencies:
-    dot-prop "^4.1.1"
+    periodic-prop "^4.1.1"
     indexes-of "^1.0.1"
     uniq "^1.0.1"
 

@@ -169,9 +169,7 @@ class GearItem {
   }
 
   public get itemIntellect(): number {
-    return this.itemOld.Intellect !== ''
-      ? parseInt(this.itemOld.Intellect, 10)
-      : 0
+    return this.itemOld.Intellect !== '' ? parseInt(this.itemOld.Intellect, 10) : 0
   }
 
   public get itemSpirit(): number {
@@ -179,51 +177,33 @@ class GearItem {
   }
 
   public get itemSpellCrit(): number {
-    return this.itemOld['Spell Critical %'] !== ''
-      ? parseInt(this.itemOld['Spell Critical %'], 10)
-      : 0
+    return this.itemOld['Spell Critical %'] !== '' ? parseInt(this.itemOld['Spell Critical %'], 10) : 0
   }
 
   public get itemSpellHit(): number {
-    return this.itemOld['Spell Hit %'] !== ''
-      ? parseInt(this.itemOld['Spell Hit %'], 10)
-      : 0
+    return this.itemOld['Spell Hit %'] !== '' ? parseInt(this.itemOld['Spell Hit %'], 10) : 0
   }
 
   public get itemSpellPen(): number {
-    return this.itemOld['Spell Penetration'] !== ''
-      ? parseInt(this.itemOld['Spell Penetration'], 10)
-      : 0
+    return this.itemOld['Spell Penetration'] !== '' ? parseInt(this.itemOld['Spell Penetration'], 10) : 0
   }
 
   public get itemSpellDmg(): number {
-    if (
-      this.itemOld['Spell Damage'] !== '' &&
-      this.itemOld.Wrath === 'Yes' &&
-      this.itemOld.Starfire === 'Yes'
-    ) {
+    if (this.itemOld['Spell Damage'] !== '' && this.itemOld.Wrath === 'Yes' && this.itemOld.Starfire === 'Yes') {
       return parseInt(this.itemOld['Spell Damage'], 10)
     }
     return 0
   }
 
   public get itemSpellDmgArcane(): number {
-    if (
-      this.itemOld['Spell Damage'] !== '' &&
-      this.itemOld.Wrath === 'No' &&
-      this.itemOld.Starfire === 'Yes'
-    ) {
+    if (this.itemOld['Spell Damage'] !== '' && this.itemOld.Wrath === 'No' && this.itemOld.Starfire === 'Yes') {
       return parseInt(this.itemOld['Spell Damage'], 10)
     }
     return 0
   }
 
   public get itemSpellDmgNature(): number {
-    if (
-      this.itemOld['Spell Damage'] !== '' &&
-      this.itemOld.Wrath === 'Yes' &&
-      this.itemOld.Starfire === 'No'
-    ) {
+    if (this.itemOld['Spell Damage'] !== '' && this.itemOld.Wrath === 'Yes' && this.itemOld.Starfire === 'No') {
       return parseInt(this.itemOld['Spell Damage'], 10)
     }
     return 0

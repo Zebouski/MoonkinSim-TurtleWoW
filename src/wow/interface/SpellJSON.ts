@@ -5,16 +5,16 @@
  */
 export default interface SpellJSON {
   name: string // "{name} Rank {rank}"
-  minDmg: number
-  maxDmg: number
-  dotDmg: number
-  dotDuration: number
-  dotTick: number
+  type: string // direct, periodic or hybrid
+  reqLvl: number
+  castTime: number // 0 = instant
   school: string
-  type: string
-  castTime: number
-  manaCost: number
-  level: number
   range: number
-  secondary: string
+  manaCost: number
+  minDmg?: number // direct and hybrid spells only
+  maxDmg?: number // direct and hybrid spells only
+  tickDmg?: number // periodic and hybrid spells only
+  tickRate?: number // periodic and hybrid spells only
+  duration?: number // periodic and hybrid spells only
+  secondary?: string // spells with secondary effects (TODO: the actual affects don't do anything)
 }

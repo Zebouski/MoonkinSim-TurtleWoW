@@ -2,29 +2,47 @@
  * TODO: WIP. Stores talent selections. Talent bonus calculations will
  * probably move here.
  */
-
-import constants from '../constants'
-
 export default class Talents {
   public naturesGraceRank: number
   public moonFuryRank: number
   public vengeanceRank: number
   public improvedWrathRank: number
   public improvedStarfireRank: number
+  public improvedMoonfireRank: number
 
   public constructor(
     naturesGraceRank: number,
     moonFuryRank: number,
     vengeanceRank: number,
     improvedWrathRank: number,
-    improvedStarfireRank: number
+    improvedStarfireRank: number,
+    improvedMoonfireRank: number
   ) {
     this.naturesGraceRank = naturesGraceRank
     this.moonFuryRank = moonFuryRank
     this.vengeanceRank = vengeanceRank
     this.improvedWrathRank = improvedWrathRank
     this.improvedStarfireRank = improvedStarfireRank
+    this.improvedMoonfireRank = improvedMoonfireRank
   }
+
+  public get improvedMoonfireBonus(): number {
+    switch (this.improvedMoonfireRank) {
+      case 1:
+        return 1.02 // rank 1: 2% bonus
+      case 2:
+        return 1.04 // rank 2: 4% bonus
+      case 3:
+        return 1.06 // rank 3: 6% bonus
+      case 4:
+        return 1.08 // rank 4: 8% bonus
+      case 5:
+        return 1.1 // rank 5: 10% bonus
+      default:
+        return 1.0 // rank 0: 0% bonus
+    }
+  }
+
   /**
    * Increases the damage done by Starfire, Moonfire, and Wrath by 2/4/6/8/10%
    */
@@ -109,7 +127,26 @@ export default class Talents {
    * Returns natures grace reduction, if the talent is learned
    */
   public get naturesGraceBonus(): number {
-    if (this.naturesGraceRank === 0) return 0
-    return constants.naturesGraceReduction
+    return this.naturesGraceRank === 1 ? 0.5 : 0
+  }
+
+  toJSON() {
+    const proto = Object.getPrototypeOf(this)
+    const jsonObj: any = Object.assign({}, this)
+
+    Object.entries(Object.getOwnPropertyDescriptors(proto))
+      .filter(([key, descriptor]) => typeof descriptor.get === 'function')
+      .map(([key, descriptor]) => {
+        if (descriptor && key[0] !== '_') {
+          try {
+            const val = (this as any)[key]
+            jsonObj[key] = val
+          } catch (error) {
+            console.error(`Error calling getter ${key}`, error)
+          }
+        }
+      })
+
+    return jsonObj
   }
 }
