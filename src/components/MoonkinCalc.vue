@@ -350,7 +350,7 @@
 
                         <p class="is-size-7-mobile">
                           Chance To Crit:
-                          {{ Number(spellCast.character.spellChanceToCrit).toFixed(3) }}%
+                          {{ Number(spellCast.spellChanceToCrit).toFixed(3) }}%
                         </p>
                         <p class="is-size-7-mobile">Mana Cost: {{ spellCast.spell.manaCost }}</p>
                         <p class="is-size-7-mobile">Spell Penetration: {{ spellCast.spellPenetration }}</p>

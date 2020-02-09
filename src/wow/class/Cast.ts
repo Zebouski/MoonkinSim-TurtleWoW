@@ -104,7 +104,9 @@ export default class Cast {
     myObj.base.totalText = `${myObj.base.total.toFixed(0)} over ${this.spell.duration} sec`
 
     myObj.actual.tick =
-      this.spell.tickDmg > 0 ? myObj.base.tick + ((this.spell.coefficient.periodic / this.spell.ticks) * this.effectiveSpellDamage) : 0
+      this.spell.tickDmg > 0
+        ? myObj.base.tick + (this.spell.coefficient.periodic / this.spell.ticks) * this.effectiveSpellDamage
+        : 0
     myObj.actual.total = this.spell.tickDmg > 0 ? myObj.actual.tick * (this.spell.duration / this.spell.tickRate) : 0
     myObj.actual.tickText = `${myObj.actual.tick.toFixed(0)} every ${this.spell.tickRate} sec`
     myObj.actual.totalText = `${myObj.actual.total.toFixed(0)} over ${this.spell.duration} sec`
@@ -125,11 +127,7 @@ export default class Cast {
     myObj.effective = {} as CastDmgValues
 
     let _dps = (normalDmg: number, critDmg: number) => {
-      return (
-        (normalDmg * this.character.spellChanceToNormal + critDmg * this.character.spellChanceToCrit) /
-        100 /
-        this.effectiveCastTime
-      )
+      return (normalDmg * this.spellChanceToNormal + critDmg * this.spellChanceToCrit) / 100 / this.effectiveCastTime
     }
 
     myObj.base.min = _dps(this.normalDmg.base.min, this.critDmg.base.min)
@@ -178,8 +176,13 @@ export default class Cast {
       : 1.0
   }
 
+
   public get improvedMoonfireBonus(): number {
     return this.spell.isMoonfire ? this.character.talents.improvedMoonfireBonus : 1.0
+  }
+
+  public get improvedMoonfireSpellCritBonus(): number {
+    return (this.improvedMoonfireBonus - 1) * 100
   }
 
   public get curseOfShadowDamageBonus(): number {
@@ -289,10 +292,40 @@ export default class Cast {
   public get effectiveCastTime(): number {
     return Math.max(
       constants.globalCoolDown,
-      this.castTime -
-        this.castTimeReductionOnCrit * (this.character.spellChanceToCrit / 100) +
-        constants.castTimePenalty
+      this.castTime - this.castTimeReductionOnCrit * (this.spellChanceToCrit / 100) + constants.castTimePenalty
     )
+  }
+
+  /**
+   * Chance of hitting with a spell
+   *
+   */
+  public get spellChanceToHit(): number {
+    return 83 + this.character.spellHit
+  }
+
+  /**
+   * Chance of missing a spell
+   *
+   */
+  public get spellChanceToMiss(): number {
+    return 100 - this.spellChanceToHit
+  }
+
+  /**
+   * Chance of critting with a spell
+   *
+   */
+  public get spellChanceToCrit(): number {
+    return (this.character.spellCrit + this.improvedMoonfireSpellCritBonus) * (this.spellChanceToHit / 100)
+  }
+
+  /**
+   * Chance of landing a Normal hit i.e. not a miss and not a crit
+   *
+   */
+  public get spellChanceToNormal(): number {
+    return this.spellChanceToHit - this.spellChanceToCrit
   }
 
   public get spellCritMultiplier(): number {
@@ -344,7 +377,7 @@ export default class Cast {
     return (
       (this.effectiveDmgMultiplier *
         this.spell.coefficient.direct *
-        (this.character.spellChanceToHit / 100) *
+        (this.spellChanceToHit / 100) *
         (1 + (this.spellCritBonusMultiplier * this.character.spellCrit) / 100)) /
       this.effectiveCastTime
     )
@@ -357,9 +390,9 @@ export default class Cast {
   public get spellCritToDamage(): number {
     return (
       (this.normalDmg.effective.avg *
-        this.character.spellChanceToHit *
+        this.spellChanceToHit *
         (this.spellCritBonusMultiplier * this.castTime +
-          this.castTimeReductionOnCrit * (this.character.spellChanceToHit / 100))) /
+          this.castTimeReductionOnCrit * (this.spellChanceToHit / 100))) /
       (100 * this.effectiveCastTime) ** 2
     )
   }
@@ -383,7 +416,7 @@ export default class Cast {
       (((this.spellCritBonusMultiplier * this.normalDmg.actual.avg) /
         (100 + this.spellCritBonusMultiplier * this.character.spellCrit)) *
         (this.castTime +
-          ((this.character.spellChanceToHit / 100) * this.castTimeReductionOnCrit) / this.spellCritBonusMultiplier)) /
+          ((this.spellChanceToHit / 100) * this.castTimeReductionOnCrit) / this.spellCritBonusMultiplier)) /
       this.effectiveCastTime
     )
   }
@@ -393,7 +426,7 @@ export default class Cast {
   */
   public get spellHitToSpellDamage(): number {
     return (
-      ((this.normalDmg.actual.avg / this.character.spellChanceToHit) * (100 ** 2 * this.castTime)) /
+      ((this.normalDmg.actual.avg / this.spellChanceToHit) * (100 ** 2 * this.castTime)) /
       (100 ** 2 * this.effectiveCastTime)
     )
   }
@@ -406,19 +439,32 @@ export default class Cast {
   public get ffDPS(): number {
     const ffDuration = 40
     return (
-      (ffDuration * this.dps.effective.avg) /
-      (ffDuration + (constants.globalCoolDown * 100) / this.character.spellChanceToHit)
+      (ffDuration * this.dps.effective.avg) / (ffDuration + (constants.globalCoolDown * 100) / this.spellChanceToHit)
     )
   }
   public get ffDPSLoss(): number {
     return this.dps.effective.avg - this.ffDPS
   }
+
+  public get mfDPS(): number {
+    const mfDuration = 12
+    return (
+      (mfDuration * this.dps.effective.avg) / (mfDuration + (constants.globalCoolDown * 100) / this.spellChanceToHit)
+    )
+  }
+  public get mfDPSLoss(): number {
+    return this.dps.effective.avg - this.mfDPS
+  }
+
+  public get testRotationDPS(): number {
+   // (starfireDPS - mfDPSLoss) + (moonfireDirectDPS / moonfireDotDuration) + moonfireDotDPS
+   return (488 - 62) + (289 / 12) + 71
+  }
   /************************************************/
   public get kefDPS(): number {
     // =(($H$9*$H$13*$I$9+$H$9*$H$16)/100) / $I$18*$D$22*$D$23*$D$24*$D$25*$D$26*$D$27*(1-$H$20)
     return (
-      ((this.normalDmg.actual.avg * this.character.spellChanceToNormal +
-        this.critDmg.actual.avg * this.character.spellChanceToCrit) /
+      ((this.normalDmg.actual.avg * this.spellChanceToNormal + this.critDmg.actual.avg * this.spellChanceToCrit) /
         100 /
         this.effectiveCastTime) *
       this.effectiveDmgMultiplier

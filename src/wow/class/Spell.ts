@@ -38,21 +38,21 @@ export default class Spell {
    * Spell is Starfire
    */
   public get isStarfire(): boolean {
-    return this.baseName.toUpperCase() === 'STARFIRE' ? true : false
+    return this.baseName.toUpperCase() === 'STARFIRE'
   }
 
   /**
    * Spell is Warth
    */
   public get isWrath(): boolean {
-    return this.baseName.toUpperCase() === 'WRATH' ? true : false
+    return this.baseName.toUpperCase() === 'WRATH'
   }
 
   /**
    * Spell is Moonfire
    */
   public get isMoonfire(): boolean {
-    return this.baseName.toUpperCase() === 'MOONFIRE' ? true : false
+    return this.baseName.toUpperCase() === 'MOONFIRE'
   }
 
   /**
@@ -148,7 +148,7 @@ export default class Spell {
   }
 
   public get ticks(): number {
-    return (this.duration > 0 && this.tickRate > 0) ? this.duration / this.tickRate : 0
+    return this.duration > 0 && this.tickRate > 0 ? this.duration / this.tickRate : 0
   }
 
   public get duration(): number {

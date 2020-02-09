@@ -163,38 +163,6 @@ export default class Character {
     return Math.min(this.gear.spellHit, constants.spellHitCap)
   }
 
-  /**
-   * Chance of hitting with a spell
-   *
-   */
-  public get spellChanceToHit(): number {
-    return 83 + this.spellHit
-  }
-
-  /**
-   * Chance of missing a spell
-   *
-   */
-  public get spellChanceToMiss(): number {
-    return 100 - this.spellChanceToHit
-  }
-
-  /**
-   * Chance of critting with a spell
-   *
-   */
-  public get spellChanceToCrit(): number {
-    return this.spellCrit * (this.spellChanceToHit / 100)
-  }
-
-  /**
-   * Chance of landing a Normal hit i.e. not a miss and not a crit
-   *
-   */
-  public get spellChanceToNormal(): number {
-    return this.spellChanceToHit - this.spellChanceToCrit
-  }
-
   toJSON() {
     const proto = Object.getPrototypeOf(this)
     const jsonObj: any = Object.assign({}, this)
