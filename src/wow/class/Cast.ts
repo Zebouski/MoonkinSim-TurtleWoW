@@ -176,7 +176,6 @@ export default class Cast {
       : 1.0
   }
 
-
   public get improvedMoonfireBonus(): number {
     return this.spell.isMoonfire ? this.character.talents.improvedMoonfireBonus : 1.0
   }
@@ -457,8 +456,8 @@ export default class Cast {
   }
 
   public get testRotationDPS(): number {
-   // (starfireDPS - mfDPSLoss) + (moonfireDirectDPS / moonfireDotDuration) + moonfireDotDPS
-   return (488 - 62) + (289 / 12) + 71
+    // (starfireDPS - mfDPSLoss) + (moonfireDirectDPS / moonfireDotDuration) + moonfireDotDPS
+    return 488 - 62 + 289 / 12 + 71
   }
   /************************************************/
   public get kefDPS(): number {
