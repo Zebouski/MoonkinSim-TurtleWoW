@@ -332,7 +332,7 @@
                           <i>1 Spell Hit = {{ spellCast.spellHitWeight.toFixed(3) }} Spell Damage</i>
                         </p>
                         <p class="is-size-7-mobile">
-                          <i>{{ spellCast.intWeight.toFixed(3) }} Int = 1 Spell Damage</i>
+                          <i>{{ (1 / spellCast.intWeight).toFixed(0) }} Int = 1 Spell Damage</i>
                         </p>
                         <p class="is-size-7-mobile">
                           Faerie Fire Upkeep: -{{ spellCast.ffDPSLoss.toFixed(0) }}
