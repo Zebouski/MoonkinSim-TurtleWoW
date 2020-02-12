@@ -67,13 +67,10 @@
                   </div>
                   <div class="column is-narrow">
                     <b-field label="Phase" label-position="on-border">
-                      <b-select class="is-size-7-mobile" v-model="phase">
-                        <option name="1">1</option>
-                        <option name="2">2</option>
-                        <option name="3">3</option>
-                        <option name="4">4</option>
-                        <option name="5">5</option>
-                        <option name="6">6</option>
+                      <b-select class="is-size-7-mobile" v-model="phase" @input="phaseChange">
+                        <option v-for="phase in phases" :key="phase" v-bind:value="phase">
+                          {{ phase }}
+                        </option>
                       </b-select>
                     </b-field>
                   </div>
@@ -243,6 +240,11 @@
                             Traces of Silithyst
                           </b-checkbox>
                         </div>
+                        <div class="field">
+                          <b-checkbox class="is-size-7-mobile" v-model="burningAdrenaline">
+                            Burning Adrenaline
+                          </b-checkbox>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -299,14 +301,18 @@
                         </p>
                         <p class="is-size-7-mobile">
                           DPS:
-                          {{ spellCast.dps.effective.text }}
+                          {{
+                            spellCast.dps.effective.avg !== 0
+                              ? spellCast.dps.effective.text
+                              : spellCast.periodicDPS.effective.text
+                          }}
                         </p>
                         <p class="is-size-7-mobile">Intellect: {{ spellCast.character.intellect }}</p>
                         <p class="is-size-7-mobile">Spell Hit: {{ spellCast.character.spellHit }}</p>
                         <p class="is-size-7-mobile">Arcane Damage: {{ spellCast.character.arcaneDamage }}</p>
                         <p class="is-size-7-mobile">
                           Chance To Miss:
-                          {{ Number(spellCast.character.spellChanceToMiss).toFixed(0) }}%
+                          {{ Number(spellCast.chanceToMiss).toFixed(0) }}%
                         </p>
                         <p class="is-size-7-mobile">
                           Cast Time:
@@ -350,7 +356,7 @@
 
                         <p class="is-size-7-mobile">
                           Chance To Crit:
-                          {{ Number(spellCast.spellChanceToCrit).toFixed(3) }}%
+                          {{ Number(spellCast.chanceToCrit).toFixed(3) }}%
                         </p>
                         <p class="is-size-7-mobile">Mana Cost: {{ spellCast.spell.manaCost }}</p>
                         <p class="is-size-7-mobile">Spell Penetration: {{ spellCast.spellPenetration }}</p>
@@ -631,7 +637,8 @@ import { default as wow } from '../wow'
 export default class MoonkinCalc extends Vue {
   DEBUG = false
   spellNames = wow.Spell.getSpellNames()
-  phase = 2
+  phases = wow.RawGear.getPhases()
+  phase = 3
   faction = 'Horde'
   spellName = 'Starfire Rank 6'
 
@@ -642,18 +649,6 @@ export default class MoonkinCalc extends Vue {
   curseOfShadow = true
   spellVuln = false
   stormStrike = false
-
-  /* gear stats */
-  stamina = 0
-  intellect = 64
-  spirit = 0
-  mp5 = 0
-  spellPenetration = 0
-  spellHit = 2
-  spellCrit = 5
-  spellDamage = 280
-  arcaneDamage = 219
-  natureDamage = 0
 
   /* talents */
   naturesGraceRank = 1
@@ -679,11 +674,41 @@ export default class MoonkinCalc extends Vue {
   arcaneBrilliance = true
   blessingOfKings = true
   improvedGiftOfTheWild = true
+  burningAdrenaline = false
 
   tooltipBase =
     'Base damage is the spells damage including talents that modify the base, such as Moonfury. This is the damage listed in the in-game spellbook.'
   tooltipActual = 'Actual damage is base damage plus (spellpower * spell coefficient)'
   tooltipEffective = 'Effective damage is actual damage plus multipliers from buffs, debuffs, and partial resists'
+
+  stamina = this.rawGear.stamina
+  intellect = this.rawGear.intellect
+  spirit = this.rawGear.spirit
+  mp5 = this.rawGear.mp5
+  spellPenetration = this.rawGear.spellPenetration
+  spellHit = this.rawGear.spellHit
+  spellCrit = this.rawGear.spellCrit
+  spellDamage = this.rawGear.spellDamage
+  arcaneDamage = this.rawGear.arcaneDamage
+  natureDamage = this.rawGear.natureDamage
+
+  phaseChange(): void {
+    // window.alert('phase changed: ' + this.phase)
+    this.stamina = this.rawGear.stamina
+    this.intellect = this.rawGear.intellect
+    this.spirit = this.rawGear.spirit
+    this.mp5 = this.rawGear.mp5
+    this.spellPenetration = this.rawGear.spellPenetration
+    this.spellHit = this.rawGear.spellHit
+    this.spellCrit = this.rawGear.spellCrit
+    this.spellDamage = this.rawGear.spellDamage
+    this.arcaneDamage = this.rawGear.arcaneDamage
+    this.natureDamage = this.rawGear.natureDamage
+  }
+
+  get rawGear() {
+    return new wow.RawGear(this.phase)
+  }
 
   get spellCast() {
     return new wow.Cast(
@@ -701,11 +726,11 @@ export default class MoonkinCalc extends Vue {
           this.improvedMoonfireRank
         ),
         new wow.Gear(
-          0,
+          this.stamina,
           this.intellect,
-          0,
-          0,
-          0,
+          this.spirit,
+          this.mp5,
+          this.spellPenetration,
           this.spellHit,
           this.spellCrit,
           this.spellDamage,
@@ -727,7 +752,8 @@ export default class MoonkinCalc extends Vue {
           this.slipkiksSavvy,
           this.songflowerSerenade,
           this.saygesDarkFortune,
-          this.tracesOfSilithyst
+          this.tracesOfSilithyst,
+          this.burningAdrenaline
         )
       ),
       new wow.Spell(this.spellName),

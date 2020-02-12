@@ -17,6 +17,7 @@ export default class Buffs {
   public arcaneBrilliance: boolean
   public blessingOfKings: boolean
   public improvedGiftOfTheWild: boolean
+  public burningAdrenaline: boolean
 
   public constructor(
     moonkinAura: boolean,
@@ -33,7 +34,8 @@ export default class Buffs {
     slipkiksSavvy: boolean,
     songflowerSerenade: boolean,
     saygesDarkFortune: boolean,
-    tracesOfSilithyst: boolean
+    tracesOfSilithyst: boolean,
+    burningAdrenaline: boolean
   ) {
     this.moonkinAura = moonkinAura
     this.powerInfusion = powerInfusion
@@ -50,6 +52,7 @@ export default class Buffs {
     this.songflowerSerenade = songflowerSerenade
     this.saygesDarkFortune = saygesDarkFortune
     this.tracesOfSilithyst = tracesOfSilithyst
+    this.burningAdrenaline = burningAdrenaline
   }
 
   public get moonkinAuraBonus(): number {
@@ -130,6 +133,14 @@ export default class Buffs {
 
   public get improvedGiftOfTheWildResistancesBonus(): number {
     return this.improvedGiftOfTheWild ? 27 : 0
+  }
+
+  public get burningAdrenalineDamageBonus(): number {
+    return this.burningAdrenaline ? 2 : 1
+  }
+
+  public get burningAdrenalineCastTimeBonus(): number {
+    return this.burningAdrenaline ? 3.5 : 0
   }
 
   toJSON() {

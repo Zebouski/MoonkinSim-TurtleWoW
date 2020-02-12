@@ -67,7 +67,7 @@ export default class Cast {
     let normalObj = this.normalDmg
 
     let _critDmg = (dmg: number) => {
-      return dmg * this.spellCritMultiplier
+      return dmg * this.critMultiplier
     }
 
     myObj.base.min = _critDmg(normalObj.base.min)
@@ -127,7 +127,7 @@ export default class Cast {
     myObj.effective = {} as CastDmgValues
 
     let _dps = (normalDmg: number, critDmg: number) => {
-      return (normalDmg * this.spellChanceToNormal + critDmg * this.spellChanceToCrit) / 100 / this.effectiveCastTime
+      return (normalDmg * this.chanceToNormal + critDmg * this.chanceToCrit) / 100 / this.effectiveCastTime
     }
 
     myObj.base.min = _dps(this.normalDmg.base.min, this.critDmg.base.min)
@@ -181,7 +181,7 @@ export default class Cast {
   }
 
   public get improvedMoonfireSpellCritBonus(): number {
-    return (this.improvedMoonfireBonus - 1) * 100
+    return this.spell.isMoonfire ? (this.improvedMoonfireBonus - 1) * 100 : 0
   }
 
   public get curseOfShadowDamageBonus(): number {
@@ -223,6 +223,10 @@ export default class Cast {
     )
   }
 
+  public get effectiveSpellCrit(): number {
+    return this.character.spellCrit + this.improvedMoonfireSpellCritBonus
+  }
+
   public get partialResistPenalty(): number {
     const br1 = Math.min(this.target.spellResistance, 276)
     const br2 = Math.min(this.spellPenetration, br1)
@@ -241,6 +245,7 @@ export default class Cast {
       this.target.debuffs.spellVulnBonus *
       this.curseOfShadowDamageBonus *
       this.stormStrikeBonus *
+      this.character.buffs.burningAdrenalineDamageBonus *
       (1 - this.partialResistPenalty)
     )
   }
@@ -289,9 +294,13 @@ export default class Cast {
    * Factors in cast speed, procs like natures grace, hit, crit and "human factor" (which might actually be latency?)
    */
   public get effectiveCastTime(): number {
-    return Math.max(
-      constants.globalCoolDown,
-      this.castTime - this.castTimeReductionOnCrit * (this.spellChanceToCrit / 100) + constants.castTimePenalty
+    if (this.character.buffs.burningAdrenaline) {
+      return constants.globalCoolDown + constants.castTimePenalty
+    }
+
+    return (
+      Math.max(constants.globalCoolDown, this.castTime - this.castTimeReductionOnCrit * (this.chanceToCrit / 100)) +
+      constants.castTimePenalty
     )
   }
 
@@ -299,7 +308,7 @@ export default class Cast {
    * Chance of hitting with a spell
    *
    */
-  public get spellChanceToHit(): number {
+  public get chanceToHit(): number {
     return 83 + this.character.spellHit
   }
 
@@ -307,27 +316,27 @@ export default class Cast {
    * Chance of missing a spell
    *
    */
-  public get spellChanceToMiss(): number {
-    return 100 - this.spellChanceToHit
+  public get chanceToMiss(): number {
+    return 100 - this.chanceToHit
   }
 
   /**
    * Chance of critting with a spell
    *
    */
-  public get spellChanceToCrit(): number {
-    return (this.character.spellCrit + this.improvedMoonfireSpellCritBonus) * (this.spellChanceToHit / 100)
+  public get chanceToCrit(): number {
+    return this.effectiveSpellCrit * (this.chanceToHit / 100)
   }
 
   /**
    * Chance of landing a Normal hit i.e. not a miss and not a crit
    *
    */
-  public get spellChanceToNormal(): number {
-    return this.spellChanceToHit - this.spellChanceToCrit
+  public get chanceToNormal(): number {
+    return this.chanceToHit - this.chanceToCrit
   }
 
-  public get spellCritMultiplier(): number {
+  public get critMultiplier(): number {
     switch (this.spell.baseName.toUpperCase()) {
       case 'WRATH':
         return constants.baseSpellCritMultiplier + this.character.talents.vengeanceBonus
@@ -342,15 +351,15 @@ export default class Cast {
   /**
    * The bonus multiplier of a crit, not counting the base
    */
-  public get spellCritBonusMultiplier(): number {
-    return this.spellCritMultiplier - 1
+  public get critBonusMultiplier(): number {
+    return this.critMultiplier - 1
   }
 
   /**
    * spell crit weight i.e. the amount of spell power 1 point of crit is worth.
    */
   public get spellCritWeight(): number {
-    return this.character.spellCrit < constants.spellCritCap ? this.spellCritToSpellDamage : 0
+    return this.effectiveSpellCrit < constants.spellCritCap ? this.spellCritToSpellDamage : 0
   }
 
   /**
@@ -376,8 +385,8 @@ export default class Cast {
     return (
       (this.effectiveDmgMultiplier *
         this.spell.coefficient.direct *
-        (this.spellChanceToHit / 100) *
-        (1 + (this.spellCritBonusMultiplier * this.character.spellCrit) / 100)) /
+        (this.chanceToHit / 100) *
+        (1 + (this.critBonusMultiplier * this.effectiveSpellCrit) / 100)) /
       this.effectiveCastTime
     )
   }
@@ -389,9 +398,8 @@ export default class Cast {
   public get spellCritToDamage(): number {
     return (
       (this.normalDmg.effective.avg *
-        this.spellChanceToHit *
-        (this.spellCritBonusMultiplier * this.castTime +
-          this.castTimeReductionOnCrit * (this.spellChanceToHit / 100))) /
+        this.chanceToHit *
+        (this.critBonusMultiplier * this.castTime + this.castTimeReductionOnCrit * (this.chanceToHit / 100))) /
       (100 * this.effectiveCastTime) ** 2
     )
   }
@@ -403,7 +411,7 @@ export default class Cast {
   public get spellHitToDamage(): number {
     return (
       (this.normalDmg.effective.avg *
-        (100 + this.spellCritBonusMultiplier * this.character.spellCrit) *
+        (100 + this.critBonusMultiplier * this.effectiveSpellCrit) *
         (100 ** 2 * this.castTime)) /
       (100 ** 2 * this.effectiveCastTime) ** 2
     )
@@ -412,10 +420,9 @@ export default class Cast {
   // v3 Crit:Spellpower = x(mB/c + P)/(100+xR)   *   (T + (0.83+H/100)t/x)/(T-(0.83+H/100)tR/100)
   public get spellCritToSpellDamage(): number {
     return (
-      (((this.spellCritBonusMultiplier * this.normalDmg.actual.avg) /
-        (100 + this.spellCritBonusMultiplier * this.character.spellCrit)) *
-        (this.castTime +
-          ((this.spellChanceToHit / 100) * this.castTimeReductionOnCrit) / this.spellCritBonusMultiplier)) /
+      (((this.critBonusMultiplier * this.normalDmg.actual.avg) /
+        (100 + this.critBonusMultiplier * this.effectiveSpellCrit)) *
+        (this.castTime + ((this.chanceToHit / 100) * this.castTimeReductionOnCrit) / this.critBonusMultiplier)) /
       this.effectiveCastTime
     )
   }
@@ -425,7 +432,7 @@ export default class Cast {
   */
   public get spellHitToSpellDamage(): number {
     return (
-      ((this.normalDmg.actual.avg / this.spellChanceToHit) * (100 ** 2 * this.castTime)) /
+      ((this.normalDmg.actual.avg / this.chanceToHit) * (100 ** 2 * this.castTime)) /
       (100 ** 2 * this.effectiveCastTime)
     )
   }
@@ -437,9 +444,7 @@ export default class Cast {
    */
   public get ffDPS(): number {
     const ffDuration = 40
-    return (
-      (ffDuration * this.dps.effective.avg) / (ffDuration + (constants.globalCoolDown * 100) / this.spellChanceToHit)
-    )
+    return (ffDuration * this.dps.effective.avg) / (ffDuration + (constants.globalCoolDown * 100) / this.chanceToHit)
   }
   public get ffDPSLoss(): number {
     return this.dps.effective.avg - this.ffDPS
@@ -447,9 +452,7 @@ export default class Cast {
 
   public get mfDPS(): number {
     const mfDuration = 12
-    return (
-      (mfDuration * this.dps.effective.avg) / (mfDuration + (constants.globalCoolDown * 100) / this.spellChanceToHit)
-    )
+    return (mfDuration * this.dps.effective.avg) / (mfDuration + (constants.globalCoolDown * 100) / this.chanceToHit)
   }
   public get mfDPSLoss(): number {
     return this.dps.effective.avg - this.mfDPS
@@ -463,7 +466,7 @@ export default class Cast {
   public get kefDPS(): number {
     // =(($H$9*$H$13*$I$9+$H$9*$H$16)/100) / $I$18*$D$22*$D$23*$D$24*$D$25*$D$26*$D$27*(1-$H$20)
     return (
-      ((this.normalDmg.actual.avg * this.spellChanceToNormal + this.critDmg.actual.avg * this.spellChanceToCrit) /
+      ((this.normalDmg.actual.avg * this.chanceToNormal + this.critDmg.actual.avg * this.chanceToCrit) /
         100 /
         this.effectiveCastTime) *
       this.effectiveDmgMultiplier
@@ -474,10 +477,10 @@ export default class Cast {
       this.effectiveDmgMultiplier *
       this.spell.coefficient.direct *
       (0.83 + this.character.spellHit / 100) *
-      (1 + (this.spellCritBonusMultiplier * this.character.spellCrit) / 100)
+      (1 + (this.critBonusMultiplier * this.effectiveSpellCrit) / 100)
     const y =
       this.castTime -
-      this.castTimeReductionOnCrit * (0.83 + this.character.spellHit / 100) * (this.character.spellCrit / 100)
+      this.castTimeReductionOnCrit * (0.83 + this.character.spellHit / 100) * (this.effectiveSpellCrit / 100)
 
     return x / y
   }
@@ -487,10 +490,10 @@ export default class Cast {
       (this.effectiveDmgMultiplier *
         (83 + this.character.spellHit) *
         (this.moonFuryBonus * this.spell.avgDmg + this.spell.coefficient.direct * this.effectiveSpellDamage) *
-        (this.spellCritBonusMultiplier * this.castTime +
+        (this.critBonusMultiplier * this.castTime +
           this.castTimeReductionOnCrit * (0.83 + this.character.spellHit / 100))) /
       (100 * this.castTime -
-        this.castTimeReductionOnCrit * (0.83 + this.character.spellHit / 100) * this.character.spellCrit) **
+        this.castTimeReductionOnCrit * (0.83 + this.character.spellHit / 100) * this.effectiveSpellCrit) **
         2
     )
   }
@@ -499,23 +502,23 @@ export default class Cast {
     return (
       (this.effectiveDmgMultiplier *
         (this.moonFuryBonus * this.spell.avgDmg + this.spell.coefficient.direct * this.effectiveSpellDamage) *
-        (100 + this.spellCritBonusMultiplier * this.character.spellCrit) *
+        (100 + this.critBonusMultiplier * this.effectiveSpellCrit) *
         (100 ** 2 * this.castTime)) /
       (100 ** 2 * this.castTime -
-        this.castTimeReductionOnCrit * (83 + this.character.spellHit) * this.character.spellCrit) **
+        this.castTimeReductionOnCrit * (83 + this.character.spellHit) * this.effectiveSpellCrit) **
         2
     )
   }
 
   public get OGspellCritToSpellDamage(): number {
     return (
-      (((this.spellCritBonusMultiplier *
+      (((this.critBonusMultiplier *
         ((this.moonFuryBonus * this.spell.avgDmg) / this.spell.coefficient.direct + this.effectiveSpellDamage)) /
-        (100 + this.spellCritBonusMultiplier * this.character.spellCrit)) *
+        (100 + this.critBonusMultiplier * this.effectiveSpellCrit)) *
         (this.castTime +
-          ((0.83 + this.character.spellHit / 100) * this.castTimeReductionOnCrit) / this.spellCritBonusMultiplier)) /
+          ((0.83 + this.character.spellHit / 100) * this.castTimeReductionOnCrit) / this.critBonusMultiplier)) /
       (this.castTime -
-        ((0.83 + this.character.spellHit / 100) * this.castTimeReductionOnCrit * this.character.spellCrit) / 100)
+        ((0.83 + this.character.spellHit / 100) * this.castTimeReductionOnCrit * this.effectiveSpellCrit) / 100)
     )
   }
 
@@ -525,7 +528,7 @@ export default class Cast {
         (83 + this.character.spellHit)) *
         (100 ** 2 * this.castTime)) /
       (100 ** 2 * this.castTime -
-        this.castTimeReductionOnCrit * (83 + this.character.spellHit) * this.character.spellCrit)
+        this.castTimeReductionOnCrit * (83 + this.character.spellHit) * this.effectiveSpellCrit)
     )
   }
 
@@ -534,9 +537,9 @@ export default class Cast {
       (this.effectiveDmgMultiplier *
         (0.83 + this.character.spellHit / 100) *
         (this.moonFuryBonus * this.spell.avgDmg + this.spell.coefficient.direct * this.effectiveSpellDamage) *
-        (1 + (this.spellCritBonusMultiplier * this.character.spellCrit) / 100)) /
+        (1 + (this.critBonusMultiplier * this.effectiveSpellCrit) / 100)) /
       (this.castTime -
-        this.castTimeReductionOnCrit * (0.83 + this.character.spellHit / 100) * (this.character.spellCrit / 100))
+        this.castTimeReductionOnCrit * (0.83 + this.character.spellHit / 100) * (this.effectiveSpellCrit / 100))
     )
   }
 

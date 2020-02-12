@@ -19,6 +19,7 @@ import Talents from './class/Talents'
 import Character from './class/Character'
 import Buffs from './class/Buffs'
 import Gear from './class/Gear'
+import RawGear from './class/RawGear'
 import Target from './class/Target'
 import Debuffs from './class/Debuffs'
 import Spell from './class/Spell'
@@ -30,6 +31,7 @@ export default {
   Character,
   Buffs,
   Gear,
+  RawGear,
   Target,
   Debuffs,
   Spell,
