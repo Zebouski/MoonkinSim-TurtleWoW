@@ -1,0 +1,204 @@
+$border: #a7a7ad;
+$bg: rgba(10,0,5,0.8);
+$shadow: transparentize( $bg , 0.3 );
+
+$gap: 3px;
+
+$crafting: #f4d403;
+$trash: #999;
+$common: white;
+$uncommon: #24ee10;
+$rare: #0070DD;
+$epic: #ad23ed;
+$legendary: #fa7c18;
+$heirloom: #e5d9c5;
+$flavour: #FFD100;
+
+.wow-item {
+  
+  border-style: solid;
+  border-width: 5px;
+  border-image: url(http://files.simey.me/wow-tooltip-border-2.png) 5 repeat;
+  border-radius: 4px;
+  
+  position: absolute;
+  
+  color: white;
+  background-color: $bg;
+  
+  font-family: Verdana, "Open Sans", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: normal;
+  padding: 0.5em 0.6em;
+  text-shadow: 0 1px 0 rgba(0,0,0,1);
+  
+  box-shadow:
+    -1px -1px 1px $shadow,
+    -1px 1px 1px $shadow,
+    1px 1px 1px $shadow,
+    1px -1px 1px $shadow;
+  
+  max-width: 24em;
+  
+  transition: 
+    opacity 0.05s ease-out 0.05s,
+    transform 0.1s ease-out 0.05s;
+  
+  &.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transform: scale(0.90);
+  }
+  
+  p {
+    padding: 0;
+    margin: 0;
+  }
+  
+  &[data-quality=Poor] {
+    .header__title {
+      color: $trash;
+    }
+  }
+  &[data-quality=Common] {
+    .header__title {
+      color: $common;
+    }
+  }
+  &[data-quality=Uncommon] {
+    .header__title {
+      color: $uncommon;
+    }
+  }
+  &[data-quality=Rare] {
+    .header__title {
+      color: $rare;
+    }
+  }
+  &[data-quality=Epic] {
+    .header__title {
+      color: $epic;
+    }
+  }
+  &[data-quality=Legendary] {
+    .header__title {
+      color: $legendary;
+    }
+  }
+  
+}
+
+
+  
+.wow-item__header {
+
+  .header__title {
+
+    margin-bottom: $gap;
+    font-size: 1.12em;
+    margin-right: 1em;
+
+  }
+
+  .header__item-level {
+    color: $flavour;
+  }
+
+}
+
+.wow-item__type {
+   
+  overflow: hidden;
+  margin-top: $gap;
+  
+  .type {
+
+    &__slot,
+    &__item {
+
+      float: left;
+
+    }
+    
+    &__item {
+
+      float: right;
+      text-align: right;
+
+    }
+
+  }
+    
+}
+
+.wow-item__stats {
+   
+  overflow: hidden;
+  
+  .stats {
+    
+    &__damage-armor {
+      float: left;
+      margin-right: 5em;
+    }
+
+    &__speed {
+      float: right;
+      text-align: right;
+    }
+    
+    &__list-item:first-child {
+      margin-top: $gap;
+    }
+
+    &__dps {
+      float: none;
+      clear: both;
+    }
+
+    &__secondary {
+      color: $uncommon;
+    }
+    
+  }
+
+}
+
+.wow-item__info {
+  
+  .info {
+    
+    &__chance-on-hit {
+      
+      color: $uncommon;
+      
+    }
+    
+    &__flavour-text {
+      
+      color: $flavour;
+      margin-top: $gap;
+      
+    }
+    
+  }
+  
+}
+
+
+.wow-item__bonuses {
+  
+  margin-top: $gap;
+  
+  .bonuses {
+    
+    &__bonus {
+      
+      color: $uncommon;
+      margin: $gap 0 0;
+      
+    }
+    
+  }
+  
+}

@@ -1,10 +1,8 @@
-import jsonQuery from 'json-query'
+import Database from './Database'
 import constants from '../constants'
 import SpellCoefficient from '../interface/SpellCoefficient'
 import SpellJSON from '../interface/SpellJSON'
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const druidSpells = require('../db/spells/druid.yaml')
+import MagicSchool from '../enum/MagicSchool'
 
 /**
  * Spell details. The values returned from this class are referred to as 'native'. These are raw values that don't factor
@@ -17,14 +15,7 @@ export default class Spell {
 
   public constructor(name: string) {
     this.name = name
-    this.spellJSON = jsonQuery(`[name=${name}]`, { data: druidSpells }).value
-  }
-
-  /**
-   * Return array of spell names.
-   */
-  public static getSpellNames(): JSON {
-    return jsonQuery('.name', { data: druidSpells }).value
+    this.spellJSON = Database.spell(name)
   }
 
   /**
@@ -84,24 +75,28 @@ export default class Spell {
   }
 
   /**
-   * Return spell school, unmodified.
+   * Return spell magicSchool, unmodified.
    */
-  public get school(): string {
-    return this.spellJSON.school
+  public get magicSchool(): MagicSchool {
+    return this.spellJSON.magicSchool
+  }
+
+  public get magicSchoolText(): string {
+    return MagicSchool[this.spellJSON.magicSchool]
   }
 
   /**
    * is spell nature damage?
    */
   public get isNature(): boolean {
-    return this.school.toUpperCase() === 'NATURE'
+    return this.magicSchool === MagicSchool.Nature
   }
 
   /**
    * is spell arcane damage?
    */
   public get isArcane(): boolean {
-    return this.school.toUpperCase() === 'ARCANE'
+    return this.magicSchool === MagicSchool.Arcane
   }
 
   /**
@@ -175,6 +170,7 @@ export default class Spell {
     const baseDirectCoefficient = this.castTime / 3.5
     const spellLevelPenalty = this.reqLvl < 20 ? 1 - (20 - this.reqLvl) * 0.0375 : 0
     const secondaryEffectPenalty = this.secondaryEffect ? 0.05 : 0
+    const penaltyMultiplier = (1 - spellLevelPenalty) * (1 - secondaryEffectPenalty)
 
     // (TODO: this is dumb and only applies to hurricane. i'm guessing the 3 here is the
     // number of mobs, but don't know if that's accurate)
@@ -188,7 +184,7 @@ export default class Spell {
     // direct damage spell
     if (this.type.toUpperCase() === 'DIRECT') {
       return {
-        direct: baseDirectCoefficient * (1 - spellLevelPenalty) * (1 - secondaryEffectPenalty),
+        direct: baseDirectCoefficient * penaltyMultiplier,
         periodic: 0
       }
     }
@@ -198,16 +194,15 @@ export default class Spell {
     if (this.type.toUpperCase() === 'PERIODIC') {
       return {
         direct: 0,
-        periodic: basePeriodicCoefficient * (1 - spellLevelPenalty) * (1 - secondaryEffectPenalty)
+        periodic: basePeriodicCoefficient * penaltyMultiplier
       }
     }
 
     // hybrid spell (direct + periodic)
     const baseHybridCoefficient = basePeriodicCoefficient / (baseDirectCoefficient + basePeriodicCoefficient)
     return {
-      direct:
-        baseDirectCoefficient * (1 - baseHybridCoefficient) * (1 - spellLevelPenalty) * (1 - secondaryEffectPenalty),
-      periodic: basePeriodicCoefficient * baseHybridCoefficient * (1 - spellLevelPenalty) * (1 - secondaryEffectPenalty)
+      direct: baseDirectCoefficient * (1 - baseHybridCoefficient) * penaltyMultiplier,
+      periodic: basePeriodicCoefficient * baseHybridCoefficient * penaltyMultiplier
     }
   }
 

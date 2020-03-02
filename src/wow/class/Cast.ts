@@ -4,6 +4,8 @@ import Spell from './Spell'
 import Target from './Target'
 import CastDmgValues from '../interface/CastDmgValues'
 import CastDmgObject from '../interface/CastDmgObject'
+import MagicSchool from '../enum/MagicSchool'
+import Buff from '../enum/Buff'
 
 /**
  * A Spell cast by Character at Target.
@@ -185,29 +187,29 @@ export default class Cast {
   }
 
   public get curseOfShadowDamageBonus(): number {
-    return this.spell.isArcane ? this.target.debuffs.curseOfShadowDamageBonus : 1.0
+    return this.spell.isArcane ? this.target.curseOfShadowDamageBonus : 1.0
   }
 
   public get curseOfShadowResistBonus(): number {
-    return this.spell.isArcane ? this.target.debuffs.curseOfShadowResistBonus : 0
+    return this.spell.isArcane ? this.target.curseOfShadowResistBonus : 0
   }
 
   public get stormStrikeBonus(): number {
-    return this.spell.isNature ? this.target.debuffs.stormStrikeBonus : 1.0
+    return this.spell.isNature ? this.target.stormStrikeBonus : 1.0
   }
 
   public get actualSpellDamage(): number {
-    switch (this.spell.school.toUpperCase()) {
-      case 'PHYSICAL':
+    switch (this.spell.magicSchool) {
+      case MagicSchool.Physical:
         return 0
-      case 'ARCANE':
+      case MagicSchool.Arcane:
         return this.character.arcaneDamage
-      case 'NATURE':
+      case MagicSchool.Nature:
         return this.character.natureDamage
-      case 'FIRE':
-      case 'FROST':
-      case 'SHADOW':
-      case 'HOLY':
+      case MagicSchool.Fire:
+      case MagicSchool.Frost:
+      case MagicSchool.Shadow:
+      case MagicSchool.Holy:
       default:
         return this.character.spellDamage
     }
@@ -217,9 +219,9 @@ export default class Cast {
   public get effectiveSpellDamage(): number {
     return (
       this.actualSpellDamage +
-      this.character.buffs.flaskOfSupremePowerBonus +
-      this.character.buffs.greaterArcaneElixirBonus +
-      this.character.buffs.ephemeralPowerBonus
+      this.character.flaskOfSupremePowerBonus +
+      this.character.greaterArcaneElixirBonus +
+      this.character.ephemeralPowerBonus
     )
   }
 
@@ -239,13 +241,13 @@ export default class Cast {
 
   public get effectiveDmgMultiplier(): number {
     return (
-      this.character.buffs.powerInfusionBonus *
-      this.character.buffs.saygesDarkFortuneBonus *
-      this.character.buffs.tracesOfSilithystBonus *
-      this.target.debuffs.spellVulnBonus *
+      this.character.powerInfusionBonus *
+      this.character.saygesDarkFortuneBonus *
+      this.character.tracesOfSilithystBonus *
+      this.target.spellVulnBonus *
       this.curseOfShadowDamageBonus *
       this.stormStrikeBonus *
-      this.character.buffs.burningAdrenalineDamageBonus *
+      this.character.burningAdrenalineDamageBonus *
       (1 - this.partialResistPenalty)
     )
   }
@@ -254,10 +256,10 @@ export default class Cast {
    * Mitigates spell resist of SpellCast. Needs work.
    */
   public get spellPenetration(): number {
-    switch (this.spell.school.toUpperCase()) {
-      case 'ARCANE':
-      case 'SHADOW':
-        return this.character.gear.spellPenetration + this.target.debuffs.curseOfShadowResistBonus
+    switch (this.spell.magicSchool) {
+      case MagicSchool.Arcane:
+      case MagicSchool.Shadow:
+        return this.character.gear.spellPenetration + this.target.curseOfShadowResistBonus
       default:
         return 0
     }
@@ -294,7 +296,7 @@ export default class Cast {
    * Factors in cast speed, procs like natures grace, hit, crit and "human factor" (which might actually be latency?)
    */
   public get effectiveCastTime(): number {
-    if (this.character.buffs.burningAdrenaline) {
+    if ((this.character.buffs & Buff.BurningAdrenaline) === Buff.BurningAdrenaline) {
       return constants.globalCoolDown + constants.castTimePenalty
     }
 

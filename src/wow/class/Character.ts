@@ -1,33 +1,40 @@
 import constants from '../constants'
 import Talents from './Talents'
 import Gear from './Gear'
-import Buffs from './Buffs'
+
+import PlayableRace from '../enum/PlayableRace'
+import PlayableClass from '../enum/PlayableClass'
+import Gender from '../enum/Gender'
+import Faction from '../enum/Faction'
+import Buff from '../enum/Buff'
+
+declare type BuffFlagType = keyof typeof Buff
 
 /**
  * Stores character attributes, Talents, Gear, and Buffs
  */
 export default class Character {
   public level: number
-  public race: string
-  public className: string
-  public gender: string
+  public playerRace: PlayableRace
+  public playableClass: PlayableClass
+  public gender: Gender
   public talents: Talents
   public gear: Gear
-  public buffs: Buffs
+  public buffs: Buff
 
   public constructor(
     level: number,
-    race: string,
-    className: string,
-    gender: string,
+    playableRace: PlayableRace,
+    playableClass: PlayableClass,
+    gender: Gender,
     talents: Talents,
     gear: Gear,
-    buffs: Buffs
+    buffs: Buff
   ) {
     this.level = level
-    this.race = race.toUpperCase()
-    this.gender = gender.toUpperCase()
-    this.className = className.toUpperCase()
+    this.playerRace = playableRace
+    this.gender = gender
+    this.playableClass = playableClass
     this.talents = talents
     this.gear = gear
     this.buffs = buffs
@@ -36,32 +43,32 @@ export default class Character {
   /**
    * TODO: Return faction name based on race
    */
-  public get faction(): string {
-    switch (this.race.toUpperCase()) {
-      case 'TAUREN':
-      case 'ORC':
-      case 'UNDEAD':
-      case 'TROLL':
-        return 'Horde'
+  public get faction(): Faction {
+    switch (this.playerRace) {
+      case PlayableRace.Tauren:
+      case PlayableRace.Orc:
+      case PlayableRace.Undead:
+      case PlayableRace.Troll:
+        return Faction.Horde
       default:
-        return 'Alliance'
+        return Faction.Alliance
     }
   }
 
   public get isHorde(): boolean {
-    return this.faction.toUpperCase() === 'HORDE'
+    return (this.faction & Faction.Horde) === Faction.Horde
   }
 
   public get isAlliance(): boolean {
-    return this.faction.toUpperCase() === 'ALLIANCE'
+    return (this.faction & Faction.Alliance) === Faction.Alliance
   }
 
   public get isTauren(): boolean {
-    return this.race.toUpperCase() === 'TAUREN'
+    return this.playerRace === PlayableRace.Tauren
   }
 
   public get isNightElf(): boolean {
-    return this.race.toUpperCase() === 'NIGHTELF'
+    return this.playerRace === PlayableRace.NightElf
   }
 
   /**
@@ -75,12 +82,12 @@ export default class Character {
   public get intellect(): number {
     return (
       (this.baseIntellect +
-        this.buffs.arcaneBrillianceBonus +
-        this.buffs.improvedGiftOfTheWildAttributeBonus +
-        this.buffs.songflowerSerenadeAttributeBonus +
-        this.buffs.cerebralCortexCompoundBonus +
-        this.buffs.runnTumTuberSurpriseBonus) *
-      (this.isAlliance ? this.buffs.blessingOfKingsBonus : 1)
+        this.arcaneBrillianceBonus +
+        this.improvedGiftOfTheWildAttributeBonus +
+        this.songflowerSerenadeAttributeBonus +
+        this.cerebralCortexCompoundBonus +
+        this.runnTumTuberSurpriseBonus) *
+      (this.isAlliance ? this.blessingOfKingsBonus : 1)
     )
   }
 
@@ -93,10 +100,10 @@ export default class Character {
   }
 
   public get baseStamina(): number {
-    switch (this.race.toUpperCase()) {
-      case 'TAUREN':
+    switch (this.playerRace) {
+      case PlayableRace.Tauren:
         return 72
-      case 'NIGHTELF':
+      case PlayableRace.NightElf:
         return 69
       default:
         return 0
@@ -108,10 +115,10 @@ export default class Character {
   }
 
   public get baseHealth(): number {
-    switch (this.race.toUpperCase()) {
-      case 'TAUREN':
+    switch (this.playerRace) {
+      case PlayableRace.Tauren:
         return this.nativeHealth + 10 * this.baseStamina
-      case 'NIGHTELF':
+      case PlayableRace.NightElf:
         return this.nativeHealth + 10 * this.baseStamina
       default:
         return 0
@@ -138,8 +145,8 @@ export default class Character {
     return this.intellect / 60
   }
 
-  public get baseSpellCrit(): number {
-    return constants.baseSpellChanceToCrit + this.spellCritFromIntellect + this.gear.spellCrit
+  public get actualSpellCrit(): number {
+    return constants.baseSpellCrit + this.spellCritFromIntellect + this.gear.spellCrit
   }
 
   /**
@@ -148,11 +155,11 @@ export default class Character {
   public get spellCrit(): number {
     return Math.min(
       constants.spellCritCap,
-      this.baseSpellCrit +
-        this.buffs.rallyingCryOfTheDragonSlayerSpellCritBonus +
-        this.buffs.moonkinAuraBonus +
-        this.buffs.slipkiksSavvyBonus +
-        this.buffs.songflowerSerenadeSpellCritBonus
+      this.actualSpellCrit +
+        this.rallyingCryOfTheDragonSlayerSpellCritBonus +
+        this.moonkinAuraBonus +
+        this.slipkiksSavvyBonus +
+        this.songflowerSerenadeSpellCritBonus
     )
   }
 
@@ -161,6 +168,103 @@ export default class Character {
    */
   public get spellHit(): number {
     return Math.min(this.gear.spellHit, constants.spellHitCap)
+  }
+
+  public static buffListToFlags(buffList: string[]): Buff {
+    let buffs: Buff = Buff.None
+
+    for (let buffName of buffList) {
+      buffs |= Buff[buffName as BuffFlagType]
+    }
+    return buffs
+  }
+
+  public get moonkinAuraBonus(): number {
+    return (this.buffs & Buff.MoonkinAura) === Buff.MoonkinAura ? 3 : 0
+  }
+
+  /* CONSUMABLE BUFFS */
+
+  public get flaskOfSupremePowerBonus(): number {
+    return (this.buffs & Buff.FlaskOfSupremePower) === Buff.FlaskOfSupremePower ? 150 : 0
+  }
+
+  public get greaterArcaneElixirBonus(): number {
+    return (this.buffs & Buff.GreaterArcaneElixir) === Buff.GreaterArcaneElixir ? 35 : 0
+  }
+
+  public get cerebralCortexCompoundBonus(): number {
+    return (this.buffs & Buff.CerebralCortexCompound) === Buff.CerebralCortexCompound ? 25 : 0
+  }
+
+  public get runnTumTuberSurpriseBonus(): number {
+    return (this.buffs & Buff.RunnTumTuberSurprise) === Buff.RunnTumTuberSurprise ? 10 : 0
+  }
+
+  /* PROC BUFFS */
+
+  public get powerInfusionBonus(): number {
+    return (this.buffs & Buff.PowerInfusion) === Buff.PowerInfusion ? 1.2 : 1.0
+  }
+
+  public get ephemeralPowerBonus(): number {
+    return (this.buffs & Buff.EphemeralPower) === Buff.EphemeralPower ? 175 : 0
+  }
+
+  /* WORLD BUFFS */
+
+  public get rallyingCryOfTheDragonSlayerSpellCritBonus(): number {
+    return (this.buffs & Buff.RallyingCryOfTheDragonSlayer) === Buff.RallyingCryOfTheDragonSlayer ? 10 : 0
+  }
+
+  public get slipkiksSavvyBonus(): number {
+    return (this.buffs & Buff.SlipkiksSavvy) === Buff.SlipkiksSavvy ? 3 : 0
+  }
+
+  public get songflowerSerenadeSpellCritBonus(): number {
+    return (this.buffs & Buff.SongflowerSerenade) === Buff.SongflowerSerenade ? 5 : 0
+  }
+
+  public get songflowerSerenadeAttributeBonus(): number {
+    return (this.buffs & Buff.SongflowerSerenade) === Buff.SongflowerSerenade ? 15 : 0
+  }
+
+  public get saygesDarkFortuneBonus(): number {
+    return (this.buffs & Buff.SaygesDarkFortune) === Buff.SaygesDarkFortune ? 1.1 : 1.0
+  }
+
+  public get tracesOfSilithystBonus(): number {
+    return (this.buffs & Buff.TracesOfSilithyst) === Buff.TracesOfSilithyst ? 1.05 : 1.0
+  }
+
+  /* RAID BUFFS */
+
+  public get arcaneBrillianceBonus(): number {
+    return (this.buffs & Buff.ArcaneBrilliance) === Buff.ArcaneBrilliance ? 31 : 0
+  }
+
+  public get blessingOfKingsBonus(): number {
+    return (this.buffs & Buff.BlessingOfKings) === Buff.BlessingOfKings ? 1.1 : 1
+  }
+
+  public get improvedGiftOfTheWildAttributeBonus(): number {
+    return (this.buffs & Buff.ImprovedGiftOfTheWild) === Buff.ImprovedGiftOfTheWild ? 16 : 0
+  }
+
+  public get improvedGiftOfTheWildArmorBonus(): number {
+    return (this.buffs & Buff.ImprovedGiftOfTheWild) === Buff.ImprovedGiftOfTheWild ? 384 : 0
+  }
+
+  public get improvedGiftOfTheWildResistancesBonus(): number {
+    return (this.buffs & Buff.ImprovedGiftOfTheWild) === Buff.ImprovedGiftOfTheWild ? 27 : 0
+  }
+
+  public get burningAdrenalineDamageBonus(): number {
+    return (this.buffs & Buff.BurningAdrenaline) === Buff.BurningAdrenaline ? 2 : 1
+  }
+
+  public get burningAdrenalineCastTimeBonus(): number {
+    return (this.buffs & Buff.BurningAdrenaline) === Buff.BurningAdrenaline ? 3.5 : 0
   }
 
   toJSON() {

@@ -1,6 +1,8 @@
+/*
 body, button, input, select, textarea {
     font-family: $family-monospace;
 }
+*/
 .field:not(:last-child) {
    margin-bottom: 1.5em; 
 }
@@ -25,7 +27,6 @@ body, button, input, select, textarea {
 .b-tabs .tabs {
    margin-bottom: 1.5rem; 
 }
-
 
 .table {
     background-color: $black-ter;
@@ -71,19 +72,19 @@ a {
     border-bottom-color: $grey-dark;
 }
 
-.input {
-    background-color: $grey-dark;
-    color: #fff;
-}
-
 pre {
     background-color: $black-ter;
     color: #fff;
 }
 
+.input {
+    background-color: $grey-darker;
+    color: #fff;
+}
+
 .input checkbox {
     border: 0px;
-    background-color: $grey-dark;
+    background-color: $grey-darker;
     color: #fff;
 }
 
@@ -93,12 +94,12 @@ pre {
 
 .select select {
     //border: 0px;
-    background-color: $grey-dark;
+    background-color: $grey-darker;
     color: #fff;
 }
 
 .select select option {
-    background-color: $grey-dark;
+    background-color: $grey-darker;
     color: #fff;
 }
 

@@ -1,4 +1,14 @@
 Equipment Type,Slot,Name,Phase,Location,Boss,Stamina,Intellect,Spirit,Spell Damage,Spell Critical %,Spell Hit %,MP5,Spell Penetration,Score,,Alliance,Horde,Starfire,Wrath
+Weapon,Staff,Staff of Dominance,1,Molten Core,Golemagg the Incinerator,16,37,14,40,1,,,,57.24,,Yes,Yes,Yes,Yes
+Weapon,Staff,Staff of the Shadow Flame,3,Blackwing Lair,Nefarian,24,29,18,84,2,,,,110.48,,Yes,Yes,Yes,Yes
+Off-Hand,Off-Hand,Tome of Arcane Domination,2,Alterac Valley,,,,,34,,,3,,34.00,,Yes,Yes,Yes,No
+Weapon,1H Mace,Lok'amir il Romathis,3,Blackwing Lair,Nefarian,10,18,8,84,,,,,87.20,,Yes,Yes,Yes,Yes
+Trinket,Trinket,Eye of the Beast,1,Blackrock Spire,"Quest: For The Horde!, General Drakkisath's Demise",,,,,2,,,,21.33,,Yes,Yes,Yes,Yes
+Head,Head,"Mish'undare, Circlet of the Mind Flayer",3,Blackwing Lair,Nefarian,15,24,9,35,2,,,,60.59,,Yes,Yes,Yes,Yes
+Head,Head,Adventurer's Bandana of Arcane Wrath,1,World Drop,,,,,40,,,,,40.00,,Yes,Yes,Yes,No
+Weapon,2H Mace,High Warlord's Destroyer,2,Requires High Warlord,,28,27,,27,,,7,,31.80,,No,Yes,Yes,Yes
+Head,Head,Warlord's Dragonhide Helmet,2,Requires Warlord,,19,15,7,18,1,,,,31.33,,No,Yes,Yes,Yes
+Hands,Hands,General's Dragonhide Gloves,2,Requires General,,15,,,12,,,,,12.00,,No,Yes,Yes,Yes
 Head,Head,Adventurer's Bandana of Nature's Wrath,1,World Drop,,,,,40,,,,,40.00,,Yes,Yes,No,Yes
 Weapon,Dagger,Dire Nail of Arcane Wrath,1,Sunken Temple,Shade of Eranikus,,,,17,,,,,17.00,,Yes,Yes,Yes,No
 Weapon,Dagger,Dire Nail of Nature's Wrath,1,Sunken Temple,Shade of Eranikus,,,,17,,,,,17.00,,Yes,Yes,No,Yes
@@ -40,3 +50,27 @@ Finger,Finger,Wrath of Cenarius (Wrath),5,Silithus,Quest: Champion's Battlegear,
 Trinket,Trinket,Briarwood Reed,1,Blackrock Spire,Jed Runewatcher,,,,29,,,,,29.00,,Yes,Yes,Yes,Yes
 Trinket,Trinket,Burst of Knowledge,1,Blackrock Depths,Ambassador Flamelash,,,,12,,,,,12.00,,Yes,Yes,Yes,Yes
 Trinket,Trinket,Draconic Infused Emblem,5,Blackrock Spire,General Drakkisath,,,,,,,,,0.00,,Yes,Yes,Yes,Yes
+Weapon Enchant,Enchant,Enchant Weapon - Spell Power,1,,,,,,30,,,,,30.00,,Yes,Yes,Yes,Yes
+Weapon Enchant,Enchant,Enchant Weapon - Mighty Intellect,1,,,,22,,,,,,,3.91,,Yes,Yes,Yes,Yes
+Head Enchant,Enchant,Arcanum of Focus,1,,,,,,8,,,,,8.00,,Yes,Yes,Yes,Yes
+Head Enchant,Enchant,Animist's Caress,4,,,,10,,,,,,,1.78,,Yes,Yes,Yes,Yes
+Head Enchant,Enchant,Lesser Arcanum of Voracity,1,,,,8,,,,,,,1.42,,Yes,Yes,Yes,Yes
+Neck,Neck,Pristine Enchanted South Seas Kelp,4,Stranglethorn Vale,Quest: Pristine Enchanted South Seas Kelp,10,10,9,,2,,,,23.10,,Yes,Yes,Yes,Yes
+Shoulder Enchant,Enchant,Power of the Scourge,6,,,,,,15,1,,,,25.66,,Yes,Yes,Yes,Yes
+Shoulder Enchant,Enchant,Zandalar Signet of Mojo,4,,,,,,18,,,,,18.00,,Yes,Yes,Yes,Yes
+Shoulder Enchant,Enchant,Resilience of the Scourge,6,,,,,,11,,,,,11.00,,Yes,Yes,Yes,Yes
+Chest Enchant,Enchant,Enchant Chest - Greater Stats,1,,,4,4,4,,,,,,0.71,,Yes,Yes,Yes,Yes
+Chest Enchant,Enchant,Enchant Chest - Stats,1,,,3,3,3,,,,,,0.53,,Yes,Yes,Yes,Yes
+Chest Enchant,Enchant,Enchant Chest - Lesser Stats,1,,,2,2,2,,,,,,0.36,,Yes,Yes,Yes,Yes
+Chest Enchant,Enchant,Enchant Chest - Minor Stats,1,,,1,1,1,,,,,,0.18,,Yes,Yes,Yes,Yes
+Back Enchant,Enchant,Enchant Cloak - Subtlety,5,,,,,,,,,,,0.00,,Yes,Yes,Yes,Yes
+Wrist Enchant,Enchant,Enchant Bracer - Greater Intellect,1,,,,7,,,,,,,1.24,,Yes,Yes,Yes,Yes
+Wrist Enchant,Enchant,Enchant Bracer - Intellect,1,,,,5,,,,,,,0.89,,Yes,Yes,Yes,Yes
+Wrist Enchant,Enchant,Enchant Bracer - Lesser Intellect,1,,,,3,,,,,,,0.53,,Yes,Yes,Yes,Yes
+Wrist Enchant,Enchant,Enchant Bracer - Mana Regeneration,1,,,,,,,,,4,,0.00,,Yes,Yes,Yes,Yes
+Hands Enchant,Enchant,Enchant Gloves - Healing Power,5,,,,,,,,,,,0.00,,Yes,Yes,Yes,Yes
+Legs Enchant,Enchant,Arcanum of Focus,1,,,,,,8,,,,,8.00,,Yes,Yes,Yes,Yes
+Legs Enchant,Enchant,Animist's Caress,4,,,,10,,,,,,,1.78,,Yes,Yes,Yes,Yes
+Legs Enchant,Enchant,Lesser Arcanum of Voracity,1,,,,8,,,,,,,1.42,,Yes,Yes,Yes,Yes
+Feet Enchant,Enchant,Enchant Boots - Minor Speed,1,,,,,,,,,,,0.00,,Yes,Yes,Yes,Yes
+Feet Enchant,Enchant,Enchant Boots - Spirit,1,,,,,5,,,,,,0.00,,Yes,Yes,Yes,Yes

@@ -1,8 +1,9 @@
 import jsonQuery from 'json-query'
-import Debuffs from './Debuffs'
+import Buff from '../enum/Buff'
+import TargetType from '../enum/TargetType'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const bosses = require('../db/targets/bosses.yaml')
+const targets = require('../db/targets.yaml')
 
 /**
  * Object format of targets stored in db/targets.
@@ -27,22 +28,49 @@ interface TargetJSON {
 }
 
 export default class Target {
-  public name: string
-  public targetJSON: TargetJSON
-  public debuffs: Debuffs
+  // public name: string
+  public type: TargetType
+  // public targetJSON: TargetJSON
   public spellResistance: number
+  public debuffs: Buff
 
-  public constructor(name: string, spellResistance: number, debuffs: Debuffs) {
-    this.name = name
+  public constructor(type: TargetType, spellResistance: number, debuffs: Buff) {
+    // this.name = name
+    this.type = type
     this.debuffs = debuffs
     this.spellResistance = spellResistance
-    this.targetJSON = jsonQuery(`[name=${name}]`, { data: bosses }).value
+    // this.targetJSON = jsonQuery(`[name=${name}]`, { data: targets }).value
+  }
+
+  public get spellVulnBonus(): number {
+    return (this.debuffs & Buff.SpellVulnerability) === Buff.SpellVulnerability ? 1.15 : 1.0
+  }
+
+  /**
+   * ...reducing Shadow and Arcane resistances by 75...
+   */
+  public get curseOfShadowResistBonus(): number {
+    return (this.debuffs & Buff.CurseOfShadow) === Buff.CurseOfShadow ? 75 : 0
+  }
+
+  /**
+   * ...and increasing Shadow and Arcane damage taken by 10%...
+   */
+  public get curseOfShadowDamageBonus(): number {
+    return (this.debuffs & Buff.CurseOfShadow) === Buff.CurseOfShadow ? 1.1 : 1.0
+  }
+
+  /**
+   * ..the next 2 sources of Nature damage dealt to the target are increased by 20%
+   */
+  public get stormStrikeBonus(): number {
+    return (this.debuffs & Buff.StormStrike) === Buff.StormStrike ? 1.2 : 1.0
   }
 
   /**
    * Return array of target names.
    */
   public static getTargetNames(): JSON {
-    return jsonQuery('.name', { data: bosses }).value
+    return jsonQuery('.name', { data: targets }).value
   }
 }

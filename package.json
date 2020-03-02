@@ -1,14 +1,14 @@
 {
   "name": "moonkin-calc",
-  "version": "0.1.0",
+  "version": "0.1.9",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "docs": "typedoc --out dist/docs src",
-    "db": "ts-node src/convert-items.ts > src/db/gear/all.json && js-yaml src/db/gear/all.json > src/db/gear/all.yaml && rm -f src/db/gear/all.json",
-    "test-db": "cross-env TEST=1 ts-node src/convert-items.ts > vendor/testItems.json && js-yaml vendor/testItems.json > vendor/testItems.yaml"
+    "db": "cross-env scripts/tsrun src/wow/convert-items.ts > src/wow/db/gear.json && js-yaml src/wow/db/gear.json > src/wow/db/gear.yaml && rm -f src/wow/db/gear.json",
+    "test-db": "cross-env TEST=1 scripts/tsrun src/wow/convert-items.ts > src/wow/db/testGear.json && js-yaml src/wow/db/testGear.json > src/wow/db/testGear.yaml && rm -f src/wow/db/testGear.json"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.12.0",
@@ -42,7 +42,6 @@
     "node-sass": "^4.12.0",
     "prettier": "^1.19.1",
     "sass-loader": "^8.0.0",
-    "ts-node": "^8.6.2",
     "tslint-config-standard": "^9.0.0",
     "typedoc": "^0.15.8",
     "typescript": "~3.5.3",

@@ -1,46 +1,6 @@
 <template>
   <div>
-    <!--
-    <section id="header" class="section has-background-black-ter">
-      <nav class="level is-mobile">
-        <div class="level-item has-text-centered">
-          <div>
-            <p class="heading has-text-white">DPS</p>
-            <p class="title has-text-white is-size-5-mobile">
-              {{ spellCast.dps.effective.avg.toFixed(1) }}
-            </p>
-          </div>
-        </div>
-        <div class="level-item has-text-centered">
-          <div>
-            <p class="heading has-text-white">Crit Weight</p>
-            <p class="title has-text-white is-size-5-mobile">
-              {{ spellCast.spellCritWeight.toFixed(1) }}
-            </p>
-            <p></p>
-          </div>
-        </div>
-        <div class="level-item has-text-centered">
-          <div>
-            <p class="heading has-text-white">Hit Weight</p>
-            <p class="title has-text-white is-size-5-mobile">
-              {{ spellCast.spellHitWeight.toFixed(1) }}
-            </p>
-          </div>
-        </div>
-        <div class="level-item has-text-centered">
-          <div>
-            <p class="heading has-text-white">Int Weight</p>
-            <p class="title has-text-white is-size-5-mobile">
-              {{ spellCast.intWeight.toFixed(2) }}
-            </p>
-          </div>
-        </div>
-      </nav>
-    </section>
-    -->
-
-    <section id="spellSelectSection" class="section has-background-grey-darker is-paddingless	">
+    <section id="spellSelectSection" class="section has-background-black-ter is-paddingless	">
       <div class="container is-fluid is-marginless">
         <div class="tile is-ancestor">
           <div class="tile is-parent">
@@ -51,24 +11,24 @@
                   <div class="column is-narrow">
                     <b-field label="Spell Name" label-position="on-border">
                       <b-select class="is-size-7-mobile" v-model="spellName">
-                        <option v-for="name in spellNames" :key="name" v-bind:value="name">
+                        <option v-for="name in spellList" :key="name" v-bind:value="name">
                           {{ name }}
                         </option>
                       </b-select>
                     </b-field>
                   </div>
                   <div class="column is-narrow">
-                    <b-field label="Faction" label-position="on-border">
-                      <b-select class="is-size-7-mobile" v-model="faction">
-                        <option name="horde">Horde</option>
-                        <option name="alliance">Alliance</option>
+                    <b-field label="Race" label-position="on-border">
+                      <b-select class="is-size-7-mobile" v-model.number="race">
+                        <option value="6">Tauren</option>
+                        <option value="4">Night-elf</option>
                       </b-select>
                     </b-field>
                   </div>
                   <div class="column is-narrow">
                     <b-field label="Phase" label-position="on-border">
                       <b-select class="is-size-7-mobile" v-model="phase" @input="phaseChange">
-                        <option v-for="phase in phases" :key="phase" v-bind:value="phase">
+                        <option v-for="phase in phaseList" :key="phase" v-bind:value="phase">
                           {{ phase }}
                         </option>
                       </b-select>
@@ -153,95 +113,103 @@
                     <div class="columns is-mobile">
                       <div class="column">
                         <div class="field">
-                          <b-checkbox class="is-size-7-mobile" v-model="powerInfusion">
+                          <b-checkbox class="is-size-7-mobile" native-value="PowerInfusion" v-model="buffNames">
                             Power Infusion
                           </b-checkbox>
                         </div>
                         <div class="field">
-                          <b-checkbox class="is-size-7-mobile" v-model="flaskOfSupremePower">
+                          <b-checkbox class="is-size-7-mobile" native-value="FlaskOfSupremePower" v-model="buffNames">
                             Flask of Supreme Power
                           </b-checkbox>
                         </div>
 
                         <div class="field">
-                          <b-checkbox class="is-size-7-mobile" v-model="cerebralCortexCompound">
+                          <b-checkbox
+                            class="is-size-7-mobile"
+                            native-value="CerebralCortexCompound"
+                            v-model="buffNames"
+                          >
                             Cerebral Cortex Compound
                           </b-checkbox>
                         </div>
 
                         <div class="field">
-                          <b-checkbox class="is-size-7-mobile" v-model="arcaneBrilliance">
+                          <b-checkbox class="is-size-7-mobile" native-value="ArcaneBrilliance" v-model="buffNames">
                             Arcane Brilliance
                           </b-checkbox>
                         </div>
 
                         <div class="field">
-                          <b-checkbox class="is-size-7-mobile" v-model="improvedGiftOfTheWild">
+                          <b-checkbox class="is-size-7-mobile" native-value="ImprovedGiftOfTheWild" v-model="buffNames">
                             Improved Gift of the Wild
                           </b-checkbox>
                         </div>
 
                         <div class="field">
-                          <b-checkbox class="is-size-7-mobile" v-model="slipkiksSavvy">
+                          <b-checkbox class="is-size-7-mobile" native-value="SlipkiksSavvy" v-model="buffNames">
                             Slip'kik's Saavy
                           </b-checkbox>
                         </div>
 
                         <div class="field">
-                          <b-checkbox class="is-size-7-mobile" v-model="moonkinAura">
+                          <b-checkbox class="is-size-7-mobile" native-value="MoonkinAura" v-model="buffNames">
                             Moonkin Aura
                           </b-checkbox>
                         </div>
 
                         <div class="field">
-                          <b-checkbox class="is-size-7-mobile" v-model="saygesDarkFortune">
+                          <b-checkbox class="is-size-7-mobile" native-value="SaygesDarkFortune" v-model="buffNames">
                             Sayge's Dark Fortune
                           </b-checkbox>
                         </div>
                       </div>
                       <div class="column">
                         <div class="field">
-                          <b-checkbox class="is-size-7-mobile" v-model="ephemeralPower">
+                          <b-checkbox class="is-size-7-mobile" native-value="EphemeralPower" v-model="buffNames">
                             Ephemeral Power
                           </b-checkbox>
                         </div>
                         <div class="field">
-                          <b-checkbox class="is-size-7-mobile" v-model="greaterArcaneElixir">
+                          <b-checkbox class="is-size-7-mobile" native-value="GreaterArcaneElixir" v-model="buffNames">
                             Greater Arcane Elixir
                           </b-checkbox>
                         </div>
 
                         <div class="field">
-                          <b-checkbox class="is-size-7-mobile" v-model="runnTumTuberSurprise">
+                          <b-checkbox class="is-size-7-mobile" native-value="RunnTumTuberSurprise" v-model="buffNames">
                             Runn Tum Tuber Surprise
                           </b-checkbox>
                         </div>
 
                         <div class="field">
-                          <b-checkbox class="is-size-7-mobile" v-model="blessingOfKings">
+                          <b-checkbox class="is-size-7-mobile" native-value="BlessingOfKings" v-model="buffNames">
                             Blessing of Kings
                           </b-checkbox>
                         </div>
 
                         <div class="field">
-                          <b-checkbox class="is-size-7-mobile" v-model="rallyingCryOfTheDragonSlayer">
+                          <b-checkbox
+                            class="is-size-7-mobile"
+                            native-value="RallyingCryOfTheDragonSlayer"
+                            v-model="buffNames"
+                          >
                             Rallying Cry of the Dragon Slayer
                           </b-checkbox>
                         </div>
 
                         <div class="field">
-                          <b-checkbox class="is-size-7-mobile" v-model="songflowerSerenade">
+                          <b-checkbox class="is-size-7-mobile" native-value="SongflowerSerenade" v-model="buffNames">
                             Songflower Serenade
                           </b-checkbox>
                         </div>
 
                         <div class="field">
-                          <b-checkbox class="is-size-7-mobile" v-model="tracesOfSilithyst">
+                          <b-checkbox class="is-size-7-mobile" native-value="TracesOfSilithyst" v-model="buffNames">
                             Traces of Silithyst
                           </b-checkbox>
                         </div>
                         <div class="field">
-                          <b-checkbox class="is-size-7-mobile" v-model="burningAdrenaline">
+                          <b-checkbox class="is-size-7-mobile" native-value="BurningAdrenaline" v-model="buffNames">
                             Burning Adrenaline
                           </b-checkbox>
                         </div>
@@ -253,24 +221,36 @@
                   <div class="content">
                     <div class="columns is-mobile">
                       <div class="column">
-                        <b-field label="Target Resistance" label-position="on-border">
-                          <input class="input is-size-7-mobile" type="number" v-model.number="targetSpellResistance" />
+                        <b-field label="Type" label-position="on-border">
+                          <b-select class="is-size-7-mobile" v-model.number="targetType">
+                            <option value="0">Beast</option>
+                            <option value="1">Demon</option>
+                            <option value="2">Dragonkin</option>
+                            <option value="3">Elemental</option>
+                            <option value="4">Giant</option>
+                            <option value="5">Humanoid</option>
+                            <option value="6">Mechanical</option>
+                            <option value="7">Undead</option>
+                          </b-select>
                         </b-field>
                         <div class="field">
-                          <b-checkbox class="is-size-7-mobile" v-model="stormStrike">
+                          <b-checkbox class="is-size-7-mobile" native-value="StormStrike" v-model="buffNames">
                             Storm Strike
+                          </b-checkbox>
+                        </div>
+                        <div class="field">
+                          <b-checkbox class="is-size-7-mobile" native-value="SpellVulnerability" v-model="buffNames">
+                            Spell Vulnerability
                           </b-checkbox>
                         </div>
                       </div>
                       <div class="column">
+                        <b-field label="Resistance" label-position="on-border">
+                          <input class="input is-size-7-mobile" type="number" v-model.number="targetSpellResistance" />
+                        </b-field>
                         <div class="field">
-                          <b-checkbox class="is-size-7-mobile" v-model="curseOfShadow">
+                          <b-checkbox class="is-size-7-mobile" native-value="CurseOfShadow" v-model="buffNames">
                             Curse of Shadow
-                          </b-checkbox>
-                        </div>
-                        <div class="field">
-                          <b-checkbox class="is-size-7-mobile" v-model="spellVuln">
-                            Spell Vulnerability
                           </b-checkbox>
                         </div>
                       </div>
@@ -318,7 +298,7 @@
                           Cast Time:
                           {{ spellCast.effectiveCastTime.toFixed(2) }} (Base: {{ spellCast.castTime }})
                         </p>
-                        <p class="is-size-7-mobile">School: {{ spellCast.spell.school }}</p>
+                        <p class="is-size-7-mobile">Magic School: {{ spellCast.spell.magicSchoolText }}</p>
                         <p class="is-size-7-mobile">
                           Target Resistance:
                           {{ spellCast.target.spellResistance }}
@@ -541,7 +521,7 @@
       </div>
     </section>
 
-    <section id="debugSection" class="section has-background-grey-darker" v-bind:class="{ 'is-hidden': !DEBUG }">
+    <section id="debugSection" class="section has-background-black-ter" v-bind:class="{ 'is-hidden': !DEBUG }">
       <!-- <section id="debugSection" class="section has-background-grey-darker"> -->
       <div class="container is-fluid">
         <div class="tile is-ancestor">
@@ -551,7 +531,10 @@
               <div class="content">
                 <div class="columns is-mobile">
                   <div class="column">
-                    <pre>{{ JSON.stringify(spellCast, null, 2) }}</pre>
+                    <pre>
+                      {{ buffNames }}
+                      {{ JSON.stringify(spellCast, null, 2) }}
+                    </pre>
                   </div>
                 </div>
               </div>
@@ -582,6 +565,8 @@
             >Classic Balance Druid spreadsheet</a
           >
           and math by Balor.
+          <br />
+          <span class="is-size-7">Version: {{ version }}</span>
         </p>
       </div>
     </footer>
@@ -636,19 +621,14 @@ import { default as wow } from '../wow'
 @Component
 export default class MoonkinCalc extends Vue {
   DEBUG = false
-  spellNames = wow.Spell.getSpellNames()
-  phases = wow.RawGear.getPhases()
+
   phase = 3
-  faction = 'Horde'
   spellName = 'Starfire Rank 6'
+  race = wow.PlayableRace.Tauren
 
   /* target */
-  targetNames = wow.Target.getTargetNames()
-  targetName = 'Ragnaros'
+  targetType = wow.TargetType.Elemental
   targetSpellResistance = 75
-  curseOfShadow = true
-  spellVuln = false
-  stormStrike = false
 
   /* talents */
   naturesGraceRank = 1
@@ -659,22 +639,20 @@ export default class MoonkinCalc extends Vue {
   improvedMoonfireRank = 5
 
   /* buffs */
-  moonkinAura = true
-  flaskOfSupremePower = true
-  greaterArcaneElixir = true
-  cerebralCortexCompound = true
-  runnTumTuberSurprise = true
-  powerInfusion = false
-  ephemeralPower = false
-  rallyingCryOfTheDragonSlayer = true
-  slipkiksSavvy = true
-  songflowerSerenade = true
-  saygesDarkFortune = false
-  tracesOfSilithyst = false
-  arcaneBrilliance = true
-  blessingOfKings = true
-  improvedGiftOfTheWild = true
-  burningAdrenaline = false
+  buffNames = [
+    'MoonkinAura',
+    'FlaskOfSupremePower',
+    'GreaterArcaneElixir',
+    'CerebralCortexCompound',
+    'RunnTumTuberSurprise',
+    'RallyingCryOfTheDragonSlayer',
+    'SlipkiksSavvy',
+    'ArcaneBrilliance',
+    'SongflowerSerenade',
+    'BlessingOfKings',
+    'ImprovedGiftOfTheWild',
+    'CurseOfShadow'
+  ]
 
   tooltipBase =
     'Base damage is the spells damage including talents that modify the base, such as Moonfury. This is the damage listed in the in-game spellbook.'
@@ -692,6 +670,15 @@ export default class MoonkinCalc extends Vue {
   arcaneDamage = this.rawGear.arcaneDamage
   natureDamage = this.rawGear.natureDamage
 
+  /*
+  mounted(): void {
+    console.log('hello mounted world')
+  }
+*/
+  get version() {
+    return process.env.VUE_APP_VERSION ? process.env.VUE_APP_VERSION : 'debug'
+  }
+
   phaseChange(): void {
     // window.alert('phase changed: ' + this.phase)
     this.stamina = this.rawGear.stamina
@@ -706,6 +693,18 @@ export default class MoonkinCalc extends Vue {
     this.natureDamage = this.rawGear.natureDamage
   }
 
+  get spellList() {
+    return wow.Database.spellListByPhase(this.phase)
+  }
+
+  get phaseList() {
+    return wow.Database.phaseList()
+  }
+
+  get targetList() {
+    return wow.Database.targetList()
+  }
+
   get rawGear() {
     return new wow.RawGear(this.phase)
   }
@@ -713,10 +712,10 @@ export default class MoonkinCalc extends Vue {
   get spellCast() {
     return new wow.Cast(
       new wow.Character(
-        60,
-        this.faction.toUpperCase() === 'ALLIANCE' ? 'NIGHTELF' : 'TAUREN',
-        'Druid',
-        'Male',
+        wow.constants.playerLevelCap,
+        this.race,
+        wow.PlayableClass.Druid,
+        wow.Gender.Male,
         new wow.Talents(
           this.naturesGraceRank,
           this.moonFuryRank,
@@ -737,31 +736,10 @@ export default class MoonkinCalc extends Vue {
           this.arcaneDamage,
           this.natureDamage
         ),
-        new wow.Buffs(
-          this.moonkinAura,
-          this.powerInfusion,
-          this.ephemeralPower,
-          this.flaskOfSupremePower,
-          this.greaterArcaneElixir,
-          this.cerebralCortexCompound,
-          this.runnTumTuberSurprise,
-          this.arcaneBrilliance,
-          this.blessingOfKings,
-          this.improvedGiftOfTheWild,
-          this.rallyingCryOfTheDragonSlayer,
-          this.slipkiksSavvy,
-          this.songflowerSerenade,
-          this.saygesDarkFortune,
-          this.tracesOfSilithyst,
-          this.burningAdrenaline
-        )
+        wow.Character.buffListToFlags(this.buffNames)
       ),
       new wow.Spell(this.spellName),
-      new wow.Target(
-        this.targetName,
-        this.targetSpellResistance,
-        new wow.Debuffs(this.curseOfShadow, this.stormStrike, this.spellVuln)
-      )
+      new wow.Target(this.targetType, this.targetSpellResistance, wow.Character.buffListToFlags(this.buffNames))
     )
   }
 }

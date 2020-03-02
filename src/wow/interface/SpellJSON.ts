@@ -1,3 +1,4 @@
+import MagicSchool from '../enum/MagicSchool'
 /**
  * Object format of spells stored in db/spells.
  * Spells are stored as YAML, but converted to
@@ -8,9 +9,10 @@ export default interface SpellJSON {
   type: string // direct, periodic or hybrid
   reqLvl: number
   castTime: number // 0 = instant
-  school: string
+  magicSchool: MagicSchool
   range: number
   manaCost: number
+  phase: number
   minDmg?: number // direct and hybrid spells only
   maxDmg?: number // direct and hybrid spells only
   tickDmg?: number // periodic and hybrid spells only

@@ -1,7 +1,5 @@
 import RawGearJSON from '../interface/RawGearJSON'
-import jsonQuery from 'json-query'
-
-const rawGear = require('../db/gear/rawbis.yaml')
+import Database from './Database'
 
 export default class RawGear {
   public phase: number
@@ -9,11 +7,7 @@ export default class RawGear {
 
   public constructor(phase: number) {
     this.phase = phase
-    this.rawGearJSON = jsonQuery(`[phase=${phase}]`, { data: rawGear }).value
-  }
-
-  public static getPhases(): JSON {
-    return jsonQuery('.phase', { data: rawGear }).value
+    this.rawGearJSON = Database.rawGear(phase)
   }
 
   public get stamina(): number {
