@@ -43,7 +43,7 @@
       </div>
     </section>
 
-    <section id="mainSection" class="section has-background-grey-darker">
+    <section id="mainSection" class="section has-background-black-bis">
       <div class="container is-fluid">
         <div class="tile is-ancestor">
           <div class="tile is-parent">
@@ -354,7 +354,7 @@
                       <thead>
                         <tr>
                           <th>
-                            <span class="is-size-6 is-size-7-mobile has-text-warning">
+                            <span class="is-size-7 has-text-warning">
                               Direct ({{ (spellCast.spell.coefficient.direct * 100).toFixed(2) }}%)
                             </span>
                           </th>
@@ -427,7 +427,7 @@
                       <thead>
                         <tr>
                           <th>
-                            <span class="is-size-6 is-size-7-mobile has-text-warning">
+                            <span class="is-size-7 has-text-warning">
                               Periodic ({{ (spellCast.spell.coefficient.periodic * 100).toFixed(2) }}%)
                             </span>
                           </th>
@@ -521,7 +521,7 @@
       </div>
     </section>
 
-    <section id="debugSection" class="section has-background-black-ter" v-bind:class="{ 'is-hidden': !DEBUG }">
+    <section id="debugSection" class="section has-background-black-bis" v-bind:class="{ 'is-hidden': !DEBUG }">
       <!-- <section id="debugSection" class="section has-background-grey-darker"> -->
       <div class="container is-fluid">
         <div class="tile is-ancestor">

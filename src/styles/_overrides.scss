@@ -72,6 +72,10 @@ a {
     border-bottom-color: $grey-dark;
 }
 
+.input, .taginput .taginput-container.is-focusable, .textarea, .select select {
+    border-color: $grey;
+}
+
 pre {
     background-color: $black-ter;
     color: #fff;
@@ -86,10 +90,6 @@ pre {
     border: 0px;
     background-color: $grey-darker;
     color: #fff;
-}
-
-.input, .taginput .taginput-container.is-focusable, .textarea, .select select {
-    border-color: $grey;
 }
 
 .select select {
