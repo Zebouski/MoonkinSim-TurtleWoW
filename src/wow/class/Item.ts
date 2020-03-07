@@ -239,7 +239,11 @@ export default class Item {
   }
 
   public get icon(): string {
-    return this.itemJSON ? `${this.itemJSON.icon}.jpg` : `${this.slotName.split(' ').join('')}.jpg`
+    let emptySlot = `${this.slotName.split(' ').join('')}`
+    if (emptySlot === 'Offhand') {
+      emptySlot = 'OffHand'
+    }
+    return this.itemJSON ? `${this.itemJSON.icon}.jpg` : `${emptySlot}.jpg`
   }
 
   public get iconFullPath(): string {
