@@ -29,8 +29,10 @@ import WeaponSubclass from './enum/WeaponSubclass'
 import ItemSlot from './enum/ItemSlot'
 import PvPRank from './enum/PvPRank'
 import PlayableClass from './enum/PlayableClass'
+import TargetType from './enum/TargetType'
 
-let csvFilePath = 'vendor/Classic_Balance_Druidv1.3.csv'
+// let csvFilePath = 'vendor/Classic_Balance_Druidv1.3.csv'
+let csvFilePath = 'vendor/Classic_Balance_Druidv1.4.csv'
 if (process.env.TEST && process.env.TEST === '1') {
   csvFilePath = 'vendor/testItems.csv'
 }
@@ -38,6 +40,9 @@ if (process.env.TEST && process.env.TEST === '1') {
 const csv = require('csvtojson')
 const axios = require('axios').default
 const xml2js = require('xml2js')
+const fs = require('fs')
+const fsPromises = require('fs').promises
+const path = require('path')
 
 interface WowHeadResult {
   $: Object
@@ -75,6 +80,58 @@ interface ItemOld {
   Horde: string
   Starfire: string
   Wrath: string
+}
+
+function toNumber(input: string): number | undefined {
+  let val = parseInt(input, 10)
+  return val > 0 ? val : undefined
+}
+
+async function downloadWowheadIcon(iconName: string) {
+  const fileName = `${iconName}.jpg`
+  const url = `https://wow.zamimg.com/images/wow/icons/large/${fileName}`
+  const outputPath = `public/wow-icons/${fileName}`
+
+  return downloadFile(url, outputPath)
+}
+
+async function downloadWowheadXML(baseName: string) {
+  const encodedName = encodeURIComponent(baseName)
+  const url = `https://classic.wowhead.com/item=${encodedName}&xml`
+  const outputPath = `vendor/wowhead/xml/${baseName}.xml`
+
+  return downloadFile(url, outputPath)
+}
+
+async function parseWowheadXML(baseName: string) {
+  const filePath = `vendor/wowhead/xml/${baseName}.xml`
+  const xmlString = await readFileAsString(filePath)
+  const result = await xml2js.parseStringPromise(xmlString)
+  return result.wowhead.error ? null : result.wowhead.item[0]
+}
+
+async function readFileAsString(filePath: string) {
+  const data = await fsPromises.readFile(filePath, 'utf8')
+  return data
+}
+
+async function downloadFile(url: string, outputPath: string) {
+  if (!fs.existsSync(outputPath)) {
+    const outputPathResolved = path.resolve(outputPath)
+    const writer = fs.createWriteStream(outputPathResolved)
+    const response = await axios({
+      url,
+      method: 'GET',
+      responseType: 'stream'
+    })
+
+    response.data.pipe(writer)
+
+    return new Promise((resolve, reject) => {
+      writer.on('finish', resolve)
+      writer.on('error', reject)
+    })
+  }
 }
 
 class Item {
@@ -178,73 +235,73 @@ class Item {
     return parseFloat(this.itemOld.Phase)
   }
 
-  public get itemLocation(): string {
-    return this.itemOld.Location
+  public get itemLocation(): string | undefined {
+    return this.itemOld.Location !== '' ? this.itemOld.Location : undefined
   }
 
-  public get itemBoss(): string {
-    return this.itemOld.Boss
+  public get itemBoss(): string | undefined {
+    return this.itemOld.Boss !== '' ? this.itemOld.Boss : undefined
   }
 
-  public get itemStamina(): number {
-    return this.itemOld.Stamina !== '' ? parseInt(this.itemOld.Stamina, 10) : 0
+  public get itemStamina(): number | undefined {
+    return toNumber(this.itemOld.Stamina)
   }
 
-  public get itemIntellect(): number {
-    return this.itemOld.Intellect !== '' ? parseInt(this.itemOld.Intellect, 10) : 0
+  public get itemIntellect(): number | undefined {
+    return toNumber(this.itemOld.Intellect)
   }
 
-  public get itemSpirit(): number {
-    return this.itemOld.Spirit !== '' ? parseInt(this.itemOld.Spirit, 10) : 0
+  public get itemSpirit(): number | undefined {
+    return toNumber(this.itemOld.Spirit)
   }
 
-  public get itemSpellCrit(): number {
-    return this.itemOld['Spell Critical %'] !== '' ? parseInt(this.itemOld['Spell Critical %'], 10) : 0
+  public get itemSpellCrit(): number | undefined {
+    return toNumber(this.itemOld['Spell Critical %'])
   }
 
-  public get itemSpellHit(): number {
-    return this.itemOld['Spell Hit %'] !== '' ? parseInt(this.itemOld['Spell Hit %'], 10) : 0
+  public get itemSpellHit(): number | undefined {
+    return toNumber(this.itemOld['Spell Hit %'])
   }
 
-  public get itemSpellPen(): number {
-    return this.itemOld['Spell Penetration'] !== '' ? parseInt(this.itemOld['Spell Penetration'], 10) : 0
+  public get itemSpellPen(): number | undefined {
+    return toNumber(this.itemOld['Spell Penetration'])
   }
 
-  public get itemSpellDamage(): number {
+  public get itemSpellDamage(): number | undefined {
     if (this.itemOld['Spell Damage'] !== '' && this.itemOld.Wrath === 'Yes' && this.itemOld.Starfire === 'Yes') {
-      return parseInt(this.itemOld['Spell Damage'], 10)
+      return toNumber(this.itemOld['Spell Damage'])
     }
-    return 0
+    return undefined
   }
 
   /* TODO */
-  public get itemSpellHealing(): number {
-    return 0
+  public get itemSpellHealing(): number | undefined {
+    return undefined
   }
 
-  public get itemArcaneDamage(): number {
+  public get itemArcaneDamage(): number | undefined {
     if (this.itemOld['Spell Damage'] !== '' && this.itemOld.Wrath === 'No' && this.itemOld.Starfire === 'Yes') {
-      return parseInt(this.itemOld['Spell Damage'], 10)
+      return toNumber(this.itemOld['Spell Damage'])
     }
-    return 0
+    return undefined
   }
 
-  public get itemNatureDamage(): number {
+  public get itemNatureDamage(): number | undefined {
     if (this.itemOld['Spell Damage'] !== '' && this.itemOld.Wrath === 'Yes' && this.itemOld.Starfire === 'No') {
-      return parseInt(this.itemOld['Spell Damage'], 10)
+      return toNumber(this.itemOld['Spell Damage'])
     }
-    return 0
+    return undefined
   }
 
-  public get itemMp5(): number {
-    return this.itemOld.MP5 !== '' ? parseInt(this.itemOld.MP5, 10) : 0
+  public get itemMp5(): number | undefined {
+    return toNumber(this.itemOld.MP5)
   }
 
-  public get itemScore(): number {
-    return this.itemOld.Score !== '' ? parseFloat(this.itemOld.Score) : 0
+  public get itemScore(): number | undefined {
+    return toNumber(this.itemOld.Score)
   }
 
-  public get itemRank(): PvPRank {
+  public get itemRank(): PvPRank | undefined {
     switch (this.itemLocation) {
       case 'Requires Blood Guard':
         return PvPRank.BloodGuard
@@ -271,7 +328,7 @@ class Item {
       case 'Requires Warlord':
         return PvPRank.Warlord
       default:
-        return 0
+        return undefined
     }
   }
 
@@ -324,28 +381,35 @@ class Item {
     return JSON.parse(`{ ${this._wowHeadItem['json'][0]} }`).reqlevel
   }
 
-  public get itemArmor(): number {
-    return JSON.parse(`{ ${this._wowHeadItem['json'][0]} }`).armor
+  public get itemArmor(): number | undefined {
+    return toNumber(JSON.parse(`{ ${this._wowHeadItem['json'][0]} }`).armor)
   }
 
-  public get itemDurability(): number {
-    return JSON.parse(`{ ${this._wowHeadItem['jsonEquip'][0]} }`).dura
+  public get itemDurability(): number | undefined {
+    return toNumber(JSON.parse(`{ ${this._wowHeadItem['jsonEquip'][0]} }`).dura)
   }
 
-  public get itemMinDmg(): number {
-    return JSON.parse(`{ ${this._wowHeadItem['jsonEquip'][0]} }`).mledmgmin
+  public get itemMinDmg(): number | undefined {
+    return toNumber(JSON.parse(`{ ${this._wowHeadItem['jsonEquip'][0]} }`).mledmgmin)
   }
 
-  public get itemMaxDmg(): number {
-    return JSON.parse(`{ ${this._wowHeadItem['jsonEquip'][0]} }`).mledmgmax
+  public get itemMaxDmg(): number | undefined {
+    return toNumber(JSON.parse(`{ ${this._wowHeadItem['jsonEquip'][0]} }`).mledmgmax)
   }
 
-  public get itemSpeed(): number {
-    return JSON.parse(`{ ${this._wowHeadItem['jsonEquip'][0]} }`).mlespeed
+  public get itemSpeed(): number | undefined {
+    return toNumber(JSON.parse(`{ ${this._wowHeadItem['jsonEquip'][0]} }`).mlespeed)
   }
 
-  public get itemDps(): number {
-    return JSON.parse(`{ ${this._wowHeadItem['jsonEquip'][0]} }`).mledps
+  public get itemDps(): number | undefined {
+    return toNumber(JSON.parse(`{ ${this._wowHeadItem['jsonEquip'][0]} }`).mledps)
+  }
+
+  public get itemTargetType(): number | undefined {
+    if (this._wowHeadItem['htmlTooltip'][0].includes('Increases damage done to Undead')) {
+      return TargetType.Undead
+    }
+    return undefined
   }
 
   public get itemBop(): boolean {
@@ -395,6 +459,16 @@ class Item {
   }
 
   public get newItem(): ItemJSON {
+    /*
+    let item: ItemJSON = {
+      id: this.itemId,
+      name: this.itemName,
+      class: this.itemClass,
+      subclass: this.itemSubclass,
+      slot: this.itemSlot
+    }
+    */
+
     return {
       id: this.itemId,
       name: this.itemName,
@@ -407,6 +481,7 @@ class Item {
       bop: this.itemBop,
       unique: this.itemUnique,
       allowableClasses: this.allowableClasses,
+      targetType: this.itemTargetType,
       phase: this.itemPhase,
       pvpRank: this.itemRank,
       icon: this.itemIconName,
@@ -448,11 +523,15 @@ const start = async function() {
     if (gearItem.isEnchant) {
       continue
     }
-    let wowHeadItem = await gearItem.getWowHeadItem()
+    console.warn('Processing: ' + gearItem.itemName)
+    await downloadWowheadXML(gearItem.itemBaseName)
+    let wowHeadItem = await parseWowheadXML(gearItem.itemBaseName)
+    // let wowHeadItem = await gearItem.getWowHeadItem()
     if (wowHeadItem === null) {
       console.error('Item not found: ' + ogObj.Name)
     } else {
       gearItem.wowHeadItem = wowHeadItem
+      await downloadWowheadIcon(gearItem.itemIconName)
       myArray.push(gearItem.newItem)
     }
     // return parseInt(this._wowHeadItem['level'][0].$.id, 10)

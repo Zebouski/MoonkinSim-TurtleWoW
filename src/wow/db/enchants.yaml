@@ -16,7 +16,7 @@
   spirit: 0
   mp5: 0
 - name: Enchant Weapon - Spell Power
-  slot: 16
+  slot: 21
   phase: 1
   icon: spell_holy_greaterheal
   faction: BOTH
@@ -33,7 +33,7 @@
   spirit: 0
   mp5: 0
 - name: Enchant Weapon - Mighty Intellect
-  slot: 16
+  slot: 21
   phase: 1
   icon: spell_holy_greaterheal
   faction: BOTH

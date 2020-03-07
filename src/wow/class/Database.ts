@@ -10,6 +10,7 @@ import SortOrder from '../enum/SortOrder'
 
 import Item from './Item'
 import Faction from '../enum/Faction'
+import TargetType from '../enum/TargetType'
 
 /* these are converted to JSON by webpack at build-time */
 const spells = require('../db/spells.yaml')
@@ -128,11 +129,76 @@ export default class Database {
   }
 
   /****************/
+  public static getBestInSlotTrinkets(
+    phase: number,
+    faction: Faction,
+    magicSchool: MagicSchool,
+    targetType: TargetType,
+    spellHitWeight: number,
+    spellCritWeight: number
+  ) {
+    let result = this.getWeightedEquipmentBySlot(
+      ItemSlot.Trinket,
+      phase,
+      faction,
+      magicSchool,
+      targetType,
+      spellHitWeight,
+      spellCritWeight,
+      SortOrder.Descending
+    )
+
+    return {
+      trinket: result[0],
+      trinket2: result[0].unique ? result[1] : result[0]
+    }
+  }
+
+  public static getBestInSlotRings(
+    phase: number,
+    faction: Faction,
+    magicSchool: MagicSchool,
+    targetType: TargetType,
+    spellHitWeight: number,
+    spellCritWeight: number
+  ) {
+    let result = this.getWeightedEquipmentBySlot(
+      ItemSlot.Finger,
+      phase,
+      faction,
+      magicSchool,
+      targetType,
+      spellHitWeight,
+      spellCritWeight,
+      SortOrder.Descending
+    )
+
+    return {
+      finger: result[0],
+      finger2: result[0].unique ? result[1] : result[0]
+    }
+  }
+
+  public static getBestInSlotItemWithEnchant(
+    slot: ItemSlot,
+    phase: number,
+    faction: Faction,
+    magicSchool: MagicSchool,
+    targetType: TargetType,
+    spellHitWeight: number,
+    spellCritWeight: number
+  ) {
+    const item = this.getBestInSlotItem(slot, phase, faction, magicSchool, targetType, spellHitWeight, spellCritWeight)
+    const enchant = this.getBestInSlotEnchant(slot, phase, magicSchool, spellHitWeight, spellCritWeight)
+
+    return new Item(slot, item, enchant)
+  }
 
   public static getBestInSlotWeaponCombo(
     phase: number,
     faction: Faction,
     magicSchool: MagicSchool,
+    targetType: TargetType,
     spellHitWeight: number,
     spellCritWeight: number
   ): WeaponComboJSON {
@@ -141,6 +207,7 @@ export default class Database {
       phase,
       faction,
       magicSchool,
+      targetType,
       spellHitWeight,
       spellCritWeight
     )
@@ -149,6 +216,7 @@ export default class Database {
       phase,
       faction,
       magicSchool,
+      targetType,
       spellHitWeight,
       spellCritWeight
     )
@@ -157,9 +225,12 @@ export default class Database {
       phase,
       faction,
       magicSchool,
+      targetType,
       spellHitWeight,
       spellCritWeight
     )
+
+    const enchant = this.getBestInSlotEnchant(ItemSlot.Mainhand, phase, magicSchool, spellHitWeight, spellCritWeight)
 
     const onehandscore = onehand !== undefined ? onehand.score : 0
     const offhandscore = offhand !== undefined ? offhand.score : 0
@@ -167,13 +238,15 @@ export default class Database {
 
     if (twohandscore > onehandscore + offhandscore) {
       return {
-        mainHand: twohand
+        mainHand: twohand,
+        enchant: enchant
       }
     }
 
     return {
       mainHand: onehand,
-      offHand: offhand
+      offHand: offhand,
+      enchant: enchant
     }
   }
 
@@ -182,6 +255,7 @@ export default class Database {
     phase: number,
     faction: Faction,
     magicSchool: MagicSchool,
+    targetType: TargetType,
     spellHitWeight: number,
     spellCritWeight: number
   ) {
@@ -190,6 +264,7 @@ export default class Database {
       phase,
       faction,
       magicSchool,
+      targetType,
       spellHitWeight,
       spellCritWeight,
       SortOrder.Descending
@@ -202,6 +277,7 @@ export default class Database {
     phase: number,
     faction: Faction,
     magicSchool: MagicSchool,
+    targetType: TargetType,
     spellHitWeight: number,
     spellCritWeight: number,
     sortOrder: SortOrder
@@ -220,11 +296,12 @@ export default class Database {
       }
     }
 
-    let result = jsonQuery(slot2query(slot), { data: testGear }).value
-    result = jsonQuery(`[* faction = ${faction}]`, { data: result }).value
+    let result = jsonQuery(slot2query(slot), { data: gear }).value
+    result = jsonQuery(`[* faction = ${faction} | faction = ${Faction.Horde | Faction.Alliance}]`, { data: result })
+      .value
     result = jsonQuery(`[* phase <= ${phase}]`, { data: result }).value
     for (let i in result) {
-      result[i].score = Item.scoreItem(result[i], magicSchool, spellHitWeight, spellCritWeight)
+      result[i].score = Item.scoreItem(result[i], magicSchool, targetType, spellHitWeight, spellCritWeight)
     }
     result.sort(sortOrder === SortOrder.Descending ? Item.sortScoreDes : Item.sortScoreAsc)
     return result

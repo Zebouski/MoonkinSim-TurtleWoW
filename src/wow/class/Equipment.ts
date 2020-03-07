@@ -1,4 +1,5 @@
 import Item from './Item'
+import ItemSlot from '../enum/ItemSlot'
 
 /* head, gloves, neck, waist, shoulders, legs, back, feet, chest, finger1
 wrists, finger 2, mainhand, trinket1, offhand, trinket2 */
@@ -22,51 +23,41 @@ export default class Equipment {
   public idol: Item
 
   public constructor(
-    head: Item,
-    hands: Item,
-    neck: Item,
-    waist: Item,
-    shoulders: Item,
-    legs: Item,
-    back: Item,
-    feet: Item,
-    chest: Item,
-    finger1: Item,
-    wrists: Item,
-    finger2: Item,
-    mainhand: Item,
-    trinket1: Item,
-    offhand: Item,
-    trinket2: Item,
-    idol: Item
+    head?: Item | undefined,
+    hands?: Item | undefined,
+    neck?: Item | undefined,
+    waist?: Item | undefined,
+    shoulders?: Item | undefined,
+    legs?: Item | undefined,
+    back?: Item | undefined,
+    feet?: Item | undefined,
+    chest?: Item | undefined,
+    finger1?: Item | undefined,
+    wrists?: Item | undefined,
+    finger2?: Item | undefined,
+    mainhand?: Item | undefined,
+    trinket1?: Item | undefined,
+    offhand?: Item | undefined,
+    trinket2?: Item | undefined,
+    idol?: Item | undefined
   ) {
-    this.head = head
-    this.hands = hands
-    this.neck = neck
-    this.waist = waist
-    this.shoulders = shoulders
-    this.legs = legs
-    this.back = back
-    this.feet = feet
-    this.chest = chest
-    this.finger1 = finger1
-    this.wrists = wrists
-    this.finger2 = finger2
-    this.mainhand = mainhand
-    this.trinket1 = trinket1
-    this.offhand = offhand
-    this.trinket2 = trinket2
-    this.idol = idol
-  }
-
-  public get headUI(): Object {
-    return {
-      icon: `inv_helmet_52.png`,
-      nameText: `Mishd'undare, Circlet of the Mind Flayer`,
-      nameClass: 'epic has-text-left is-size-7-mobile',
-      enchantText: '+8 Spell Damage and Healing',
-      enchantClass: 'uncommon has-text-left is-size-7-mobile'
-    }
+    this.head = head ? head : new Item(ItemSlot.Head)
+    this.hands = hands ? hands : new Item(ItemSlot.Hands)
+    this.neck = neck ? neck : new Item(ItemSlot.Neck)
+    this.waist = waist ? waist : new Item(ItemSlot.Waist)
+    this.shoulders = shoulders ? shoulders : new Item(ItemSlot.Shoulder)
+    this.legs = legs ? legs : new Item(ItemSlot.Legs)
+    this.back = back ? back : new Item(ItemSlot.Back)
+    this.feet = feet ? feet : new Item(ItemSlot.Feet)
+    this.chest = chest ? chest : new Item(ItemSlot.Chest)
+    this.finger1 = finger1 ? finger1 : new Item(ItemSlot.Finger)
+    this.wrists = wrists ? wrists : new Item(ItemSlot.Wrist)
+    this.finger2 = finger2 ? finger2 : new Item(ItemSlot.Finger2)
+    this.mainhand = mainhand ? mainhand : new Item(ItemSlot.Mainhand)
+    this.trinket1 = trinket1 ? trinket1 : new Item(ItemSlot.Trinket)
+    this.offhand = offhand ? offhand : new Item(ItemSlot.Offhand)
+    this.trinket2 = trinket2 ? trinket2 : new Item(ItemSlot.Trinket2)
+    this.idol = idol ? idol : new Item(ItemSlot.Relic)
   }
 
   public get spellDamage(): number {
@@ -199,5 +190,76 @@ export default class Equipment {
       this.trinket2.intellect +
       this.idol.intellect
     )
+  }
+
+  public get stamina(): number {
+    return (
+      this.head.stamina +
+      this.hands.stamina +
+      this.neck.stamina +
+      this.waist.stamina +
+      this.shoulders.stamina +
+      this.legs.stamina +
+      this.back.stamina +
+      this.feet.stamina +
+      this.chest.stamina +
+      this.finger1.stamina +
+      this.wrists.stamina +
+      this.finger2.stamina +
+      this.mainhand.stamina +
+      this.trinket1.stamina +
+      this.offhand.stamina +
+      this.trinket2.stamina +
+      this.idol.stamina
+    )
+  }
+
+  public get spirit(): number {
+    return (
+      this.head.spirit +
+      this.hands.spirit +
+      this.neck.spirit +
+      this.waist.spirit +
+      this.shoulders.spirit +
+      this.legs.spirit +
+      this.back.spirit +
+      this.feet.spirit +
+      this.chest.spirit +
+      this.finger1.spirit +
+      this.wrists.spirit +
+      this.finger2.spirit +
+      this.mainhand.spirit +
+      this.trinket1.spirit +
+      this.offhand.spirit +
+      this.trinket2.spirit +
+      this.idol.spirit
+    )
+  }
+
+  public get mp5(): number {
+    return (
+      this.head.mp5 +
+      this.hands.mp5 +
+      this.neck.mp5 +
+      this.waist.mp5 +
+      this.shoulders.mp5 +
+      this.legs.mp5 +
+      this.back.mp5 +
+      this.feet.mp5 +
+      this.chest.mp5 +
+      this.finger1.mp5 +
+      this.wrists.mp5 +
+      this.finger2.mp5 +
+      this.mainhand.mp5 +
+      this.trinket1.mp5 +
+      this.offhand.mp5 +
+      this.trinket2.mp5 +
+      this.idol.mp5
+    )
+  }
+
+  /* TODO: There's isn't any spell pen gear yet */
+  public get spellPenetration(): number {
+    return 0
   }
 }

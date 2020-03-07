@@ -1,4 +1,5 @@
 enum ArmorSubclass {
+  Empty = -100,
   Rings = -2,
   Trinkets = -4,
   OffHand = -5,

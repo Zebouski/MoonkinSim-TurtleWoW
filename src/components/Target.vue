@@ -1,0 +1,62 @@
+<template>
+  <div class="content">
+    <div class="columns is-mobile">
+      <div class="column">
+        <b-field label="Type" label-position="on-border">
+          <b-select class="is-size-7-mobile" v-model.number="options.target.type">
+            <option value="0">Beast</option>
+            <option value="1">Demon</option>
+            <option value="2">Dragonkin</option>
+            <option value="3">Elemental</option>
+            <option value="4">Giant</option>
+            <option value="5">Humanoid</option>
+            <option value="6">Mechanical</option>
+            <option value="7">Undead</option>
+          </b-select>
+        </b-field>
+        <div class="field">
+          <b-checkbox class="is-size-7-mobile" native-value="StormStrike" v-model="options.target.debuffs">
+            Storm Strike
+          </b-checkbox>
+        </div>
+        <div class="field">
+          <b-checkbox class="is-size-7-mobile" native-value="SpellVulnerability" v-model="options.target.debuffs">
+            Spell Vulnerability
+          </b-checkbox>
+        </div>
+      </div>
+      <div class="column">
+        <b-field label="Resistance" label-position="on-border">
+          <input class="input is-size-7-mobile" type="number" v-model.number="options.target.spellResistance" />
+        </b-field>
+        <div class="field">
+          <b-checkbox class="is-size-7-mobile" native-value="CurseOfShadow" v-model="options.target.debuffs">
+            Curse of Shadow
+          </b-checkbox>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style scoped></style>
+
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
+import { default as wow } from '../wow'
+
+const Props = Vue.extend({
+  props: {
+    options: Object
+  }
+})
+
+@Component
+export default class Target extends Props {
+  wow = wow
+
+  get targetList() {
+    return wow.Database.targetList()
+  }
+}
+</script>

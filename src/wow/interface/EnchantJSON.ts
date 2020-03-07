@@ -7,6 +7,8 @@ export default interface EnchantJSON {
   icon: string
   score: number
   text: string
+  spellHealing?: number
+  armor?: number
   spellDamage: number
   arcaneDamage: number
   natureDamage: number

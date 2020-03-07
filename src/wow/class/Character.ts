@@ -40,11 +40,8 @@ export default class Character {
     this.buffs = buffs
   }
 
-  /**
-   * TODO: Return faction name based on race
-   */
-  public get faction(): Faction {
-    switch (this.playerRace) {
+  public static factionFromRace(race: PlayableRace): Faction {
+    switch (race) {
       case PlayableRace.Tauren:
       case PlayableRace.Orc:
       case PlayableRace.Undead:
@@ -53,6 +50,10 @@ export default class Character {
       default:
         return Faction.Alliance
     }
+  }
+
+  public get faction(): Faction {
+    return Character.factionFromRace(this.playerRace)
   }
 
   public get isHorde(): boolean {

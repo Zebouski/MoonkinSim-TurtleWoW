@@ -29,14 +29,14 @@ interface TargetJSON {
 
 export default class Target {
   // public name: string
-  public type: TargetType
+  public targetType: TargetType
   // public targetJSON: TargetJSON
   public spellResistance: number
   public debuffs: Buff
 
-  public constructor(type: TargetType, spellResistance: number, debuffs: Buff) {
+  public constructor(targetType: TargetType, spellResistance: number, debuffs: Buff) {
     // this.name = name
-    this.type = type
+    this.targetType = targetType
     this.debuffs = debuffs
     this.spellResistance = spellResistance
     // this.targetJSON = jsonQuery(`[name=${name}]`, { data: targets }).value

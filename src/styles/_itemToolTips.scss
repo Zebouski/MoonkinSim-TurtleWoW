@@ -14,6 +14,30 @@ $legendary: #fa7c18;
 $heirloom: #e5d9c5;
 $flavour: #FFD100;
 
+.poor {
+  color: $trash
+}
+
+.common {
+  color: $common
+}
+
+.uncommon {
+  color: $uncommon  
+}
+
+.rare {
+  color: $rare
+}
+
+.epic {
+  color: $epic 
+}
+
+.legendary {
+  color: $legendary
+}
+
 .wow-item {
   
   border-style: solid;
