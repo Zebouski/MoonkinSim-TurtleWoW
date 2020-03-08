@@ -11,6 +11,7 @@ import SortOrder from '../enum/SortOrder'
 import Item from './Item'
 import Faction from '../enum/Faction'
 import TargetType from '../enum/TargetType'
+import PvPRank from '../enum/PvPRank'
 
 /* these are converted to JSON by webpack at build-time */
 const spells = require('../db/spells.yaml')
@@ -132,6 +133,7 @@ export default class Database {
   public static getBestInSlotTrinkets(
     phase: number,
     faction: Faction,
+    pvpRank: PvPRank,
     magicSchool: MagicSchool,
     targetType: TargetType,
     spellHitWeight: number,
@@ -141,6 +143,7 @@ export default class Database {
       ItemSlot.Trinket,
       phase,
       faction,
+      pvpRank,
       magicSchool,
       targetType,
       spellHitWeight,
@@ -157,6 +160,7 @@ export default class Database {
   public static getBestInSlotRings(
     phase: number,
     faction: Faction,
+    pvpRank: PvPRank,
     magicSchool: MagicSchool,
     targetType: TargetType,
     spellHitWeight: number,
@@ -166,6 +170,7 @@ export default class Database {
       ItemSlot.Finger,
       phase,
       faction,
+      pvpRank,
       magicSchool,
       targetType,
       spellHitWeight,
@@ -183,12 +188,22 @@ export default class Database {
     slot: ItemSlot,
     phase: number,
     faction: Faction,
+    pvpRank: PvPRank,
     magicSchool: MagicSchool,
     targetType: TargetType,
     spellHitWeight: number,
     spellCritWeight: number
   ) {
-    const item = this.getBestInSlotItem(slot, phase, faction, magicSchool, targetType, spellHitWeight, spellCritWeight)
+    const item = this.getBestInSlotItem(
+      slot,
+      phase,
+      faction,
+      pvpRank,
+      magicSchool,
+      targetType,
+      spellHitWeight,
+      spellCritWeight
+    )
     const enchant = this.getBestInSlotEnchant(slot, phase, magicSchool, spellHitWeight, spellCritWeight)
 
     return new Item(slot, item, enchant)
@@ -197,6 +212,7 @@ export default class Database {
   public static getBestInSlotWeaponCombo(
     phase: number,
     faction: Faction,
+    pvpRank: PvPRank,
     magicSchool: MagicSchool,
     targetType: TargetType,
     spellHitWeight: number,
@@ -206,6 +222,7 @@ export default class Database {
       ItemSlot.Twohand,
       phase,
       faction,
+      pvpRank,
       magicSchool,
       targetType,
       spellHitWeight,
@@ -215,6 +232,7 @@ export default class Database {
       ItemSlot.Onehand,
       phase,
       faction,
+      pvpRank,
       magicSchool,
       targetType,
       spellHitWeight,
@@ -224,6 +242,7 @@ export default class Database {
       ItemSlot.Offhand,
       phase,
       faction,
+      pvpRank,
       magicSchool,
       targetType,
       spellHitWeight,
@@ -254,6 +273,7 @@ export default class Database {
     slot: ItemSlot,
     phase: number,
     faction: Faction,
+    pvpRank: PvPRank,
     magicSchool: MagicSchool,
     targetType: TargetType,
     spellHitWeight: number,
@@ -263,6 +283,7 @@ export default class Database {
       slot,
       phase,
       faction,
+      pvpRank,
       magicSchool,
       targetType,
       spellHitWeight,
@@ -276,6 +297,7 @@ export default class Database {
     slot: ItemSlot,
     phase: number,
     faction: Faction,
+    pvpRank: PvPRank,
     magicSchool: MagicSchool,
     targetType: TargetType,
     spellHitWeight: number,
@@ -300,6 +322,15 @@ export default class Database {
     result = jsonQuery(`[* faction = ${faction} | faction = ${Faction.Horde | Faction.Alliance}]`, { data: result })
       .value
     result = jsonQuery(`[* phase <= ${phase}]`, { data: result }).value
+
+    /* filter by pvp rank */
+    for (let i in result) {
+      if (result[i].pvpRank && result[i].pvpRank > pvpRank) {
+        result.splice(i, 1)
+      }
+    }
+
+    /* score items */
     for (let i in result) {
       result[i].score = Item.scoreItem(result[i], magicSchool, targetType, spellHitWeight, spellCritWeight)
     }

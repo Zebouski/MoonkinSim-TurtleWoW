@@ -24,6 +24,9 @@
                     </b-select>
                   </b-field>
                 </div>
+                <div class="column"></div>
+              </div>
+              <div class="columns is-centered is-vcentered is-mobile">
                 <div class="column is-narrow">
                   <b-field label="Phase" label-position="on-border">
                     <b-select
@@ -37,7 +40,15 @@
                     </b-select>
                   </b-field>
                 </div>
-                <div class="column"></div>
+                <div class="column is-narrow">
+                  <b-field label="Rank" label-position="on-border">
+                    <b-select class="is-size-7-mobile" v-model="options.pvpRank">
+                      <option v-for="rank in pvpRankList" :key="rank" v-bind:value="rank">
+                        {{ rank }}
+                      </option>
+                    </b-select>
+                  </b-field>
+                </div>
               </div>
             </div>
           </article>
@@ -75,6 +86,10 @@ export default class Header extends Props {
 
   get phaseList() {
     return wow.Database.phaseList()
+  }
+
+  get pvpRankList() {
+    return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
   }
 }
 </script>

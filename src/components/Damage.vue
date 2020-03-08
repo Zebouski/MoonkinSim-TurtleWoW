@@ -1,6 +1,6 @@
 <template>
-  <div class="content">
-    <table class="table is-fullwidth is-bordered">
+  <div class="container is-fluid">
+    <table class="table is-fullwidth">
       <thead>
         <tr>
           <th>
@@ -68,10 +68,12 @@
             <span class="is-size-7 is-italic has-text-success has-text-weight-bold">{{ data.dps.effective.text }}</span>
           </td>
         </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
       </tbody>
-    </table>
-    <br />
-    <table class="table is-fullwidth is-bordered">
       <thead>
         <tr>
           <th>

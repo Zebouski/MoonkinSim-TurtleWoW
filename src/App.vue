@@ -25,6 +25,7 @@ export default class App extends Vue {
   options = {
     debug: false,
     phase: 3,
+    pvpRank: 1,
     race: wow.PlayableRace.Tauren,
     spellName: 'Starfire Rank 6',
 

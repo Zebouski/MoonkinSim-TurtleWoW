@@ -14,6 +14,18 @@
             <option value="7">Undead</option>
           </b-select>
         </b-field>
+        <b-field label="Type" label-position="on-border">
+          <b-select class="is-size-7-mobile" v-model.number="options.target.shimmer">
+            <option value="0">Beast</option>
+            <option value="1">Demon</option>
+            <option value="2">Dragonkin</option>
+            <option value="3">Elemental</option>
+            <option value="4">Giant</option>
+            <option value="5">Humanoid</option>
+            <option value="6">Mechanical</option>
+            <option value="7">Undead</option>
+          </b-select>
+        </b-field>
         <div class="field">
           <b-checkbox class="is-size-7-mobile" native-value="StormStrike" v-model="options.target.debuffs">
             Storm Strike

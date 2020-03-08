@@ -73,6 +73,7 @@ export default class Content extends Props {
   calcBisGear(
     phase: number,
     faction: number,
+    pvpRank: number,
     magicSchool: number,
     targetType: TargetType,
     spellHitWeight: number,
@@ -83,6 +84,7 @@ export default class Content extends Props {
         slot,
         phase,
         faction,
+        pvpRank,
         magicSchool,
         targetType,
         spellHitWeight,
@@ -93,6 +95,7 @@ export default class Content extends Props {
     let bisRings = wow.Database.getBestInSlotRings(
       phase,
       faction,
+      pvpRank,
       magicSchool,
       targetType,
       spellHitWeight,
@@ -102,6 +105,7 @@ export default class Content extends Props {
     let bisTrinkets = wow.Database.getBestInSlotTrinkets(
       phase,
       faction,
+      pvpRank,
       magicSchool,
       targetType,
       spellHitWeight,
@@ -111,6 +115,7 @@ export default class Content extends Props {
     let bisWeaponCombo = wow.Database.getBestInSlotWeaponCombo(
       phase,
       faction,
+      pvpRank,
       magicSchool,
       targetType,
       spellHitWeight,
@@ -144,6 +149,7 @@ export default class Content extends Props {
     return this.calcBisGear(
       this.options.phase,
       wow.Character.factionFromRace(this.options.faction),
+      this.options.pvpRank,
       spell.magicSchool,
       this.options.target.type,
       15,
