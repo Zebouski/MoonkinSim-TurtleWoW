@@ -17,7 +17,6 @@ import spells from '../db/spells.json'
 import targets from '../db/targets.json'
 import gear from '../db/gear.json'
 import rawGear from '../db/rawGear.json'
-import testGear from '../db/testGear.json'
 import enchants from '../db/enchants.json'
 
 export default class Database {
@@ -36,10 +35,6 @@ export default class Database {
 
   public static queryRawGear(query: string): any {
     return jsonQuery(query, { data: rawGear }).value
-  }
-
-  public static queryTestGear(query: string): any {
-    return jsonQuery(query, { data: testGear }).value
   }
 
   public static queryEnchants(query: string): any {
@@ -95,10 +90,6 @@ export default class Database {
     return this.queryGear(`[name=${name}]`)
   }
 
-  public static testGearByName(name: string): ItemJSON {
-    return this.queryTestGear(`[name=${name}]`)
-  }
-
   /* multiple item fetch functions */
   public static gearBySlot(slot: ItemSlot): any {
     return this.queryGear(`[*slot=${slot}]`)
@@ -106,10 +97,6 @@ export default class Database {
 
   public static enchantsBySlot(slot: ItemSlot): any {
     return this.queryEnchants(`[*slot=${slot}]`)
-  }
-
-  public static testGearBySlot(slot: ItemSlot): any {
-    return this.queryTestGear(`[*slot=${slot}]`)
   }
 
   /****************/
