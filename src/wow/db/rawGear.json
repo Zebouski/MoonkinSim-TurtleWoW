@@ -1,1 +1,80 @@
-[{"phase":1,"spellDamage":248,"arcaneDamage":215,"natureDamage":0,"spellHit":0,"spellCrit":5,"spellPenetration":0,"stamina":0,"intellect":93,"spirit":0,"mp5":0},{"phase":2,"spellDamage":280,"arcaneDamage":219,"natureDamage":0,"spellHit":2,"spellCrit":5,"intellect":64,"spellPenetration":0,"stamina":0,"spirit":0,"mp5":0},{"phase":3,"spellDamage":537,"arcaneDamage":31,"natureDamage":0,"spellHit":4,"spellCrit":5,"intellect":155,"spellPenetration":0,"stamina":0,"spirit":0,"mp5":0},{"phase":4,"spellDamage":560,"arcaneDamage":31,"natureDamage":0,"spellHit":8,"spellCrit":10,"intellect":155,"spellPenetration":0,"stamina":0,"spirit":0,"mp5":0},{"phase":5,"spellDamage":620,"arcaneDamage":0,"natureDamage":0,"spellHit":11,"spellCrit":6,"intellect":162,"spellPenetration":0,"stamina":0,"spirit":0,"mp5":0},{"phase":6,"spellDamage":684,"arcaneDamage":0,"natureDamage":0,"spellHit":16,"spellCrit":11,"intellect":156,"spellPenetration":0,"stamina":0,"spirit":0,"mp5":0}]
+[
+    {
+        "phase": 1,
+        "spellDamage": 248,
+        "arcaneDamage": 215,
+        "natureDamage": 0,
+        "spellHit": 0,
+        "spellCrit": 5,
+        "spellPenetration": 0,
+        "stamina": 0,
+        "intellect": 93,
+        "spirit": 0,
+        "mp5": 0
+    },
+    {
+        "phase": 2,
+        "spellDamage": 280,
+        "arcaneDamage": 219,
+        "natureDamage": 0,
+        "spellHit": 2,
+        "spellCrit": 5,
+        "intellect": 64,
+        "spellPenetration": 0,
+        "stamina": 0,
+        "spirit": 0,
+        "mp5": 0
+    },
+    {
+        "phase": 3,
+        "spellDamage": 537,
+        "arcaneDamage": 31,
+        "natureDamage": 0,
+        "spellHit": 4,
+        "spellCrit": 5,
+        "intellect": 155,
+        "spellPenetration": 0,
+        "stamina": 0,
+        "spirit": 0,
+        "mp5": 0
+    },
+    {
+        "phase": 4,
+        "spellDamage": 560,
+        "arcaneDamage": 31,
+        "natureDamage": 0,
+        "spellHit": 8,
+        "spellCrit": 10,
+        "intellect": 155,
+        "spellPenetration": 0,
+        "stamina": 0,
+        "spirit": 0,
+        "mp5": 0
+    },
+    {
+        "phase": 5,
+        "spellDamage": 620,
+        "arcaneDamage": 0,
+        "natureDamage": 0,
+        "spellHit": 11,
+        "spellCrit": 6,
+        "intellect": 162,
+        "spellPenetration": 0,
+        "stamina": 0,
+        "spirit": 0,
+        "mp5": 0
+    },
+    {
+        "phase": 6,
+        "spellDamage": 684,
+        "arcaneDamage": 0,
+        "natureDamage": 0,
+        "spellHit": 16,
+        "spellCrit": 11,
+        "intellect": 156,
+        "spellPenetration": 0,
+        "stamina": 0,
+        "spirit": 0,
+        "mp5": 0
+    }
+]
