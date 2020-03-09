@@ -1,6 +1,7 @@
 import jsonQuery from 'json-query'
 import Buff from '../enum/Buff'
 import TargetType from '../enum/TargetType'
+import MagicSchool from '../enum/MagicSchool'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const targets = require('../db/targets.yaml')
@@ -33,12 +34,14 @@ export default class Target {
   // public targetJSON: TargetJSON
   public spellResistance: number
   public debuffs: Buff
+  public shimmer: MagicSchool
 
-  public constructor(targetType: TargetType, spellResistance: number, debuffs: Buff) {
+  public constructor(targetType: TargetType, spellResistance: number, shimmer: MagicSchool, debuffs: Buff) {
     // this.name = name
     this.targetType = targetType
     this.debuffs = debuffs
     this.spellResistance = spellResistance
+    this.shimmer = shimmer
     // this.targetJSON = jsonQuery(`[name=${name}]`, { data: targets }).value
   }
 

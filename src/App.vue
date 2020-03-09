@@ -22,39 +22,6 @@ import Content from './components/Content.vue'
   }
 })
 export default class App extends Vue {
-  options = {
-    debug: false,
-    phase: 3,
-    pvpRank: 1,
-    race: wow.PlayableRace.Tauren,
-    spellName: 'Starfire Rank 6',
-
-    talents: {
-      naturesGraceRank: 1,
-      moonFuryRank: 5,
-      vengeanceRank: 5,
-      improvedWrathRank: 5,
-      improvedStarfireRank: 5,
-      improvedMoonfireRank: 5
-    },
-    buffs: [
-      'MoonkinAura',
-      'FlaskOfSupremePower',
-      'GreaterArcaneElixir',
-      'CerebralCortexCompound',
-      'RunnTumTuberSurprise',
-      'RallyingCryOfTheDragonSlayer',
-      'SlipkiksSavvy',
-      'ArcaneBrilliance',
-      'SongflowerSerenade',
-      'BlessingOfKings',
-      'ImprovedGiftOfTheWild'
-    ],
-    target: {
-      type: wow.TargetType.Elemental,
-      spellResistance: 75,
-      debuffs: ['CurseOfShadow']
-    }
-  }
+  options = wow.constants.defaults
 }
 </script>

@@ -53,3 +53,14 @@
   stamina: 0
   spirit: 0
   mp5: 0
+- phase: 6
+  spellDamage: 684
+  arcaneDamage: 0
+  natureDamage: 0
+  spellHit: 16
+  spellCrit: 11
+  intellect: 156
+  spellPenetration: 0
+  stamina: 0
+  spirit: 0
+  mp5: 0

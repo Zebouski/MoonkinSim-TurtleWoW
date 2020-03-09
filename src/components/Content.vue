@@ -7,7 +7,7 @@
             <article class="tile is-child box has-background-black-ter has-text-white">
               <b-tabs class="block">
                 <b-tab-item label="Gear">
-                  <Gear :gearData="bisGear" />
+                  <Gear :options="options" :gearData="bisGear" />
                 </b-tab-item>
                 <b-tab-item label="Talents">
                   <Talents :options="options" />
@@ -74,6 +74,7 @@ export default class Content extends Props {
     phase: number,
     faction: number,
     pvpRank: number,
+    worldBosses: boolean,
     magicSchool: number,
     targetType: TargetType,
     spellHitWeight: number,
@@ -85,6 +86,7 @@ export default class Content extends Props {
         phase,
         faction,
         pvpRank,
+        worldBosses,
         magicSchool,
         targetType,
         spellHitWeight,
@@ -96,6 +98,7 @@ export default class Content extends Props {
       phase,
       faction,
       pvpRank,
+      worldBosses,
       magicSchool,
       targetType,
       spellHitWeight,
@@ -106,6 +109,7 @@ export default class Content extends Props {
       phase,
       faction,
       pvpRank,
+      worldBosses,
       magicSchool,
       targetType,
       spellHitWeight,
@@ -116,6 +120,7 @@ export default class Content extends Props {
       phase,
       faction,
       pvpRank,
+      worldBosses,
       magicSchool,
       targetType,
       spellHitWeight,
@@ -150,6 +155,7 @@ export default class Content extends Props {
       this.options.phase,
       wow.Character.factionFromRace(this.options.faction),
       this.options.pvpRank,
+      this.options.worldBosses,
       spell.magicSchool,
       this.options.target.type,
       15,
@@ -192,6 +198,7 @@ export default class Content extends Props {
       new wow.Target(
         this.options.target.type,
         this.options.target.spellResistance,
+        this.options.target.shimmer,
         wow.Character.buffListToFlags(this.options.target.debuffs)
       )
     )

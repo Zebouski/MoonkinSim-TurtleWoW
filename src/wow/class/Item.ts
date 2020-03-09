@@ -76,8 +76,8 @@ export default class Item {
   ): number {
     return (
       spellDamage +
-      (magicSchool === MagicSchool.Arcane ? arcaneDamage : 0) +
-      (magicSchool === MagicSchool.Nature ? natureDamage : 0) +
+      (magicSchool && magicSchool === MagicSchool.Arcane ? arcaneDamage : 0) +
+      (magicSchool && magicSchool === MagicSchool.Nature ? natureDamage : 0) +
       spellHit * spellHitWeight +
       spellCrit * spellCritWeight +
       (intellect / SpellCritFromIntellectDivisor.Druid) * spellCritWeight
@@ -258,18 +258,8 @@ export default class Item {
     return this.itemJSON && this.itemJSON.boss ? this.itemJSON.boss : ''
   }
 
-  public get fromWorldBoss(): boolean {
-    if (!this.itemJSON || !this.itemJSON.location) {
-      return false
-    }
-
-    switch (this.itemJSON.location.toUpperCase()) {
-      case 'LORD KAZZAK':
-      case 'AZUREGOS':
-        return true
-      default:
-        return false
-    }
+  public get worldBoss(): boolean {
+    return this.itemJSON && this.itemJSON.worldBoss === true ? true : false
   }
 
   public get faction(): Faction {

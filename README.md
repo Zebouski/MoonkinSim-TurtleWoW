@@ -1,7 +1,8 @@
 ### [Moonkin Calculator](https://kmmiles.gitlab.io/moonkin-calc/)
 ##### Version 0.2.1
   - Allow filtering items by PVP Rank
-  - Fix styling of damage tab 
+  - Allow filtering items by World Bosses
+  - Support shimmer targets
 
 ### Project setup
 ```

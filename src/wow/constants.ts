@@ -1,4 +1,7 @@
 /* constants */
+import TargetType from './enum/TargetType'
+import PlayableRace from './enum/PlayableRace'
+
 export default {
   globalCoolDown: 1.5,
   playerLevelCap: 60,
@@ -19,5 +22,41 @@ export default {
 
   baseSpellCrit: 1.8,
   baseSpellCritMultiplier: 1.5,
-  castTimePenalty: 0.05 // This is an artifact from Ayz's spell damage calculator. No one knows what it is. Human factor? Latency factor?
+  castTimePenalty: 0.05, // This is an artifact from Ayz's spell damage calculator. No one knows what it is. Human factor? Latency factor?
+
+  defaults: {
+    debug: false,
+    phase: 3,
+    race: PlayableRace.Tauren,
+    pvpRank: 1,
+    worldBosses: false,
+    spellName: 'Starfire Rank 6',
+    talents: {
+      naturesGraceRank: 1,
+      moonFuryRank: 5,
+      vengeanceRank: 5,
+      improvedWrathRank: 5,
+      improvedStarfireRank: 5,
+      improvedMoonfireRank: 5
+    },
+    buffs: [
+      'MoonkinAura',
+      'FlaskOfSupremePower',
+      'GreaterArcaneElixir',
+      'CerebralCortexCompound',
+      'RunnTumTuberSurprise',
+      'RallyingCryOfTheDragonSlayer',
+      'SlipkiksSavvy',
+      'ArcaneBrilliance',
+      'SongflowerSerenade',
+      'BlessingOfKings',
+      'ImprovedGiftOfTheWild'
+    ],
+    target: {
+      shimmer: 0,
+      type: TargetType.Elemental,
+      spellResistance: 75,
+      debuffs: ['CurseOfShadow']
+    }
+  }
 }

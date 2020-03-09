@@ -9,9 +9,11 @@
   bop: true
   unique: false
   phase: 2
+  pvpRank: 1
   icon: inv_staff_goldfeathered_01
   location: Blasted Lands
   boss: Lord Kazzak
+  worldBoss: true
   faction: 3
   spellDamage: 44
   intellect: 20
@@ -31,10 +33,12 @@
   reqLevel: 55
   bop: true
   unique: false
-  phase: 4
+  phase: 5
+  pvpRank: 1
   icon: inv_staff_11
   location: Silithus
   boss: Azure Templar
+  worldBoss: false
   faction: 3
   spellDamage: 34
   stamina: 6
@@ -55,9 +59,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_hammer_05
   location: Molten Core
   boss: Garr
+  worldBoss: false
   faction: 3
   spellDamage: 25
   stamina: 10
@@ -79,9 +85,11 @@
   bop: true
   unique: true
   phase: 1
+  pvpRank: 1
   icon: inv_sword_09
   location: Maraudon
   boss: Princess Theradras
+  worldBoss: false
   faction: 3
   durability: 75
   minDmg: 33
@@ -99,9 +107,11 @@
   bop: true
   unique: true
   phase: 5
+  pvpRank: 1
   icon: inv_staff_20
   location: Temple of Ahn'Qiraj
   boss: 'Quest: Imperial Qiraji Regalia'
+  worldBoss: false
   faction: 3
   spellDamage: 76
   spellHit: 2
@@ -124,8 +134,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_hammer_02
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 14
   durability: 75
@@ -144,8 +156,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_hammer_02
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 14
   durability: 75
@@ -164,9 +178,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_weapon_shortblade_15
   location: Blackrock Depths
   boss: Doom'rel
+  worldBoss: false
   faction: 3
   spellDamage: 6
   stamina: 12
@@ -186,9 +202,11 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_weapon_shortblade_03
   location: Sunken Temple
   boss: Shade of Eranikus
+  worldBoss: false
   faction: 3
   arcaneDamage: 17
   durability: 55
@@ -207,9 +225,11 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_weapon_shortblade_03
   location: Sunken Temple
   boss: Shade of Eranikus
+  worldBoss: false
   faction: 3
   natureDamage: 17
   durability: 55
@@ -228,9 +248,11 @@
   bop: true
   unique: false
   phase: 6
+  pvpRank: 1
   icon: inv_staff_13
   location: Naxxramas
   boss: Loatheb
+  worldBoss: false
   faction: 3
   spellDamage: 113
   spellHit: 2
@@ -253,9 +275,11 @@
   bop: true
   unique: true
   phase: 3
+  pvpRank: 1
   icon: inv_weapon_shortblade_28
   location: Blackwing Lair
   boss: Chromaggus
+  worldBoss: false
   faction: 3
   spellDamage: 64
   stamina: 7
@@ -276,9 +300,11 @@
   bop: true
   unique: true
   phase: 4
+  pvpRank: 1
   icon: inv_staff_07
   location: Silithus
   boss: 'Quest: Into The Maw of Madness'
+  worldBoss: false
   faction: 3
   spellDamage: 26
   stamina: 11
@@ -298,8 +324,10 @@
   bop: true
   unique: true
   phase: 2
+  pvpRank: 1
   icon: inv_staff_20
   location: Alterac Valley
+  worldBoss: false
   faction: 3
   spellDamage: 15
   stamina: 25
@@ -320,9 +348,11 @@
   bop: false
   unique: true
   phase: 4
+  pvpRank: 1
   icon: inv_weapon_shortblade_16
   location: Silithus
   boss: Chest of Spoils
+  worldBoss: false
   faction: 3
   spellDamage: 19
   stamina: 6
@@ -342,9 +372,11 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_weapon_shortblade_03
   location: Sunken Temple
   boss: Shade of Eranikus
+  worldBoss: false
   faction: 3
   arcaneDamage: 17
   durability: 55
@@ -363,9 +395,11 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_weapon_shortblade_03
   location: Sunken Temple
   boss: Shade of Eranikus
+  worldBoss: false
   faction: 3
   natureDamage: 17
   durability: 55
@@ -384,9 +418,11 @@
   bop: true
   unique: true
   phase: 1
+  pvpRank: 1
   icon: inv_weapon_shortblade_16
   location: Sunken Temple
   boss: Shade of Eranikus
+  worldBoss: false
   faction: 3
   arcaneDamage: 17
   durability: 65
@@ -405,9 +441,11 @@
   bop: true
   unique: true
   phase: 1
+  pvpRank: 1
   icon: inv_weapon_shortblade_16
   location: Sunken Temple
   boss: Shade of Eranikus
+  worldBoss: false
   faction: 3
   natureDamage: 17
   durability: 65
@@ -426,9 +464,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_mace_13
   location: 'Dire Maul: East'
   boss: Alzzin the Wildshaper
+  worldBoss: false
   faction: 3
   spellDamage: 14
   intellect: 5
@@ -448,9 +488,11 @@
   bop: true
   unique: false
   phase: 2
+  pvpRank: 1
   icon: inv_weapon_shortblade_06
   location: Azshara
   boss: Azuregos
+  worldBoss: true
   faction: 3
   spellDamage: 40
   spellCrit: 1
@@ -472,9 +514,11 @@
   bop: true
   unique: true
   phase: 4
+  pvpRank: 1
   icon: inv_weapon_shortblade_31
   location: Zul'Gurub
   boss: High Priest Venoxis
+  worldBoss: false
   faction: 3
   spellDamage: 24
   intellect: 8
@@ -496,9 +540,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_hammer_23
   location: Silithus
   boss: 'Quest: Champion''s Battlegear'
+  worldBoss: false
   faction: 3
   spellDamage: 40
   spellCrit: 2
@@ -518,8 +564,10 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_hammer_04
   location: Ruins of Ahn'Qiraj
+  worldBoss: false
   faction: 3
   spellDamage: 19
   stamina: 15
@@ -544,6 +592,7 @@
   pvpRank: 14
   icon: inv_hammer_23
   location: Requires Grand Marshal
+  worldBoss: false
   faction: 1
   spellDamage: 27
   stamina: 28
@@ -568,6 +617,7 @@
   pvpRank: 14
   icon: inv_weapon_shortblade_26
   location: Requires Grand Marshal
+  worldBoss: false
   faction: 1
   spellDamage: 72
   spellCrit: 1
@@ -592,6 +642,7 @@
   pvpRank: 14
   icon: inv_staff_14
   location: Requires Grand Marshal
+  worldBoss: false
   faction: 1
   spellDamage: 71
   stamina: 41
@@ -613,9 +664,11 @@
   bop: true
   unique: false
   phase: 6
+  pvpRank: 1
   icon: inv_hammer_04
   location: Scholomance
   boss: Kormok
+  worldBoss: false
   faction: 3
   spellDamage: 27
   stamina: 13
@@ -636,9 +689,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_mace_21
   location: Temple of Ahn'Qiraj
   boss: The Prophet Skeram
+  worldBoss: false
   faction: 3
   spellDamage: 30
   stamina: 26
@@ -662,6 +717,7 @@
   pvpRank: 14
   icon: inv_mace_09
   location: Requires High Warlord
+  worldBoss: false
   faction: 2
   spellDamage: 27
   stamina: 28
@@ -686,6 +742,7 @@
   pvpRank: 14
   icon: inv_weapon_shortblade_26
   location: Requires High Warlord
+  worldBoss: false
   faction: 2
   spellDamage: 72
   spellCrit: 1
@@ -710,6 +767,7 @@
   pvpRank: 14
   icon: inv_misc_bone_elfskull_01
   location: Requires High Warlord
+  worldBoss: false
   faction: 2
   spellDamage: 71
   stamina: 41
@@ -731,8 +789,10 @@
   bop: true
   unique: false
   phase: 4
+  pvpRank: 1
   icon: inv_wand_04
   location: Requires The League of Arathor - Exalted
+  worldBoss: false
   faction: 1
   spellDamage: 41
   spellCrit: 2
@@ -755,9 +815,11 @@
   bop: true
   unique: true
   phase: 4
+  pvpRank: 1
   icon: inv_mace_17
   location: Zul'Gurub
   boss: Jin'do the Hexxer
+  worldBoss: false
   faction: 3
   spellCrit: 1
   stamina: 6
@@ -778,9 +840,11 @@
   bop: true
   unique: false
   phase: 4
+  pvpRank: 1
   icon: inv_staff_33
   location: Zul'Gurub
   boss: Jin'do the Hexxer
+  worldBoss: false
   faction: 3
   spellDamage: 27
   spellHit: 2
@@ -803,9 +867,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_hammer_10
   location: Blackrock Depths
   boss: Magmus
+  worldBoss: false
   faction: 3
   spellDamage: 20
   stamina: 14
@@ -826,9 +892,11 @@
   bop: true
   unique: true
   phase: 3
+  pvpRank: 1
   icon: inv_mace_06
   location: Blackwing Lair
   boss: Nefarian
+  worldBoss: false
   faction: 3
   spellDamage: 84
   stamina: 10
@@ -850,9 +918,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_staff_07
   location: Blackrock Spire
   boss: Lord Valthalak
+  worldBoss: false
   faction: 3
   spellDamage: 30
   spellHit: 1
@@ -876,9 +946,11 @@
   allowableClasses:
     - 11
   phase: 5
+  pvpRank: 1
   icon: inv_mace22
   location: Temple of Ahn'Qiraj
   boss: 'Quest: Mace of Unending Life'
+  worldBoss: false
   faction: 3
   spellDamage: 40
   stamina: 10
@@ -899,8 +971,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_staff_14
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 37
   durability: 85
@@ -919,8 +993,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_staff_14
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 37
   durability: 85
@@ -939,9 +1015,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_hammer_06
   location: Blackrock Spire
   boss: Goraluk Anvilcrack
+  worldBoss: false
   faction: 3
   spellDamage: 14
   intellect: 5
@@ -961,9 +1039,11 @@
   bop: true
   unique: false
   phase: 6
+  pvpRank: 1
   icon: inv_mace_26
   location: Naxxramas
   boss: Four Horsemen
+  worldBoss: false
   faction: 3
   spellDamage: 35
   stamina: 29
@@ -985,9 +1065,11 @@
   bop: true
   unique: true
   phase: 6
+  pvpRank: 1
   icon: inv_knife_1h_stratholme_d_02
   location: Naxxramas
   boss: Grobbulus
+  worldBoss: false
   faction: 3
   spellDamage: 85
   stamina: 20
@@ -1008,8 +1090,10 @@
   bop: true
   unique: false
   phase: 4
+  pvpRank: 1
   icon: inv_sword_13
   location: Requires The Defilers - Exalted
+  worldBoss: false
   faction: 2
   spellDamage: 30
   spellCrit: 1
@@ -1031,9 +1115,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_staff_28
   location: Un'goro Crater
   boss: 'Quest: A Better Ingredient'
+  worldBoss: false
   faction: 3
   spellDamage: 18
   spellCrit: 1
@@ -1054,9 +1140,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_staff_32
   location: 'Dire Maul: North (Tribute)'
   boss: Gordok Tribute
+  worldBoss: false
   faction: 3
   spellDamage: 23
   spellCrit: 1
@@ -1079,8 +1167,10 @@
   bop: true
   unique: false
   phase: 4
+  pvpRank: 1
   icon: inv_sword_13
   location: Requires The League of Arathor - Exalted
+  worldBoss: false
   faction: 1
   spellDamage: 30
   spellCrit: 1
@@ -1102,9 +1192,11 @@
   bop: true
   unique: false
   phase: 3
+  pvpRank: 1
   icon: inv_staff_13
   location: Blackwing Lair
   boss: 'Ebonroc, Flamegor, Firemaw'
+  worldBoss: false
   faction: 3
   spellDamage: 56
   stamina: 22
@@ -1126,9 +1218,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_sword_21
   location: Silithus
   boss: 'Quest: The Perfect Poison'
+  worldBoss: false
   faction: 3
   spellDamage: 13
   stamina: 13
@@ -1148,8 +1242,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_staff_03
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 37
   durability: 85
@@ -1168,8 +1264,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_staff_03
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 37
   durability: 85
@@ -1188,9 +1286,11 @@
   bop: true
   unique: true
   phase: 1
+  pvpRank: 1
   icon: inv_weapon_shortblade_07
   location: Molten Core
   boss: 'Sulfuron Harbinger, Lucifron, Gehennas, Shazzrah'
+  worldBoss: false
   faction: 3
   spellDamage: 20
   stamina: 8
@@ -1211,9 +1311,11 @@
   bop: true
   unique: false
   phase: 6
+  pvpRank: 1
   icon: inv_staff_15
   location: Naxxramas
   boss: Kel'Thuzad
+  worldBoss: false
   faction: 3
   spellDamage: 126
   spellCrit: 2
@@ -1236,9 +1338,11 @@
   bop: true
   unique: false
   phase: 6
+  pvpRank: 1
   icon: inv_staff_07
   location: Stratholme (Scourge Invasion)
   boss: Balzaphon
+  worldBoss: false
   faction: 3
   spellDamage: 29
   spellCrit: 1
@@ -1261,9 +1365,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_staff_13
   location: Molten Core
   boss: Golemagg the Incinerator
+  worldBoss: false
   faction: 3
   spellDamage: 40
   spellCrit: 1
@@ -1286,9 +1392,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_staff_01
   location: Temple of Ahn'Qiraj
   boss: The Prophet Skeram
+  worldBoss: false
   faction: 3
   spellDamage: 56
   stamina: 21
@@ -1310,9 +1418,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_staff_12
   location: Ruins of Ahn'Qiraj
   boss: Ossirian the Unscarred
+  worldBoss: false
   faction: 3
   spellDamage: 60
   spellHit: 1
@@ -1336,9 +1446,11 @@
   bop: true
   unique: false
   phase: 3
+  pvpRank: 1
   icon: inv_staff_06
   location: Blackwing Lair
   boss: Nefarian
+  worldBoss: false
   faction: 3
   spellDamage: 84
   spellCrit: 2
@@ -1361,9 +1473,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_mace23
   location: Ruins of Ahn'Qiraj
   boss: Ayamiss the Hunter
+  worldBoss: false
   faction: 3
   spellDamage: 36
   spellCrit: 1
@@ -1385,9 +1499,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_staff_08
   location: 'Dire Maul: West'
   boss: Tendris Warpwood
+  worldBoss: false
   faction: 3
   spellCrit: 1
   intellect: 24
@@ -1407,9 +1523,11 @@
   bop: true
   unique: true
   phase: 6
+  pvpRank: 1
   icon: inv_mace_1h_stratholme_d_02
   location: Naxxramas
   boss: Grobbulus
+  worldBoss: false
   faction: 3
   spellDamage: 95
   stamina: 18
@@ -1431,8 +1549,10 @@
   bop: false
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_sword_32
   location: World Drop
+  worldBoss: false
   faction: 3
   spellDamage: 14
   spellCrit: 1
@@ -1453,9 +1573,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_staff_29
   location: Blackrock Spire
   boss: Overlord Wyrmthalak
+  worldBoss: false
   faction: 3
   spellDamage: 14
   stamina: 12
@@ -1475,9 +1597,11 @@
   bop: true
   unique: true
   phase: 6
+  pvpRank: 1
   icon: inv_weapon_shortblade_03
   location: Eastern Plaguelands
   boss: 'Quest: Superior Armaments of Battle'
+  worldBoss: false
   faction: 3
   spellDamage: 19
   stamina: 7
@@ -1498,8 +1622,10 @@
   bop: true
   unique: true
   phase: 2
+  pvpRank: 1
   icon: inv_staff_30
   location: Alterac Valley
+  worldBoss: false
   faction: 3
   spellDamage: 15
   stamina: 25
@@ -1520,9 +1646,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_weapon_shortblade_25
   location: Scholomance
   boss: Darkmaster Gandling
+  worldBoss: false
   faction: 3
   spellDamage: 14
   intellect: 8
@@ -1542,8 +1670,10 @@
   bop: false
   unique: true
   phase: 4
+  pvpRank: 1
   icon: inv_staff_34
   location: Zul'Gurub
+  worldBoss: false
   faction: 3
   spellDamage: 32
   stamina: 13
@@ -1564,7 +1694,9 @@
   bop: true
   unique: false
   phase: 6
+  pvpRank: 1
   icon: inv_potion_26
+  worldBoss: false
   faction: 3
   spellDamage: 60
 - id: 20749
@@ -1577,8 +1709,10 @@
   reqLevel: 45
   bop: false
   unique: false
-  phase: 4
+  phase: 5
+  pvpRank: 1
   icon: inv_potion_105
+  worldBoss: false
   faction: 3
   spellDamage: 36
   spellCrit: 1
@@ -1592,8 +1726,10 @@
   reqLevel: 40
   bop: false
   unique: false
-  phase: 4
+  phase: 5
+  pvpRank: 1
   icon: inv_potion_104
+  worldBoss: false
   faction: 3
   spellDamage: 24
 - id: 20746
@@ -1606,8 +1742,10 @@
   reqLevel: 30
   bop: false
   unique: false
-  phase: 4
+  phase: 5
+  pvpRank: 1
   icon: inv_potion_103
+  worldBoss: false
   faction: 3
   spellDamage: 16
 - id: 20744
@@ -1620,8 +1758,10 @@
   reqLevel: 5
   bop: false
   unique: false
-  phase: 4
+  phase: 5
+  pvpRank: 1
   icon: inv_poison_mindnumbing
+  worldBoss: false
   faction: 3
   spellDamage: 8
 - id: 15985
@@ -1635,8 +1775,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_wand_03
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 20
 - id: 19922
@@ -1650,9 +1792,11 @@
   bop: true
   unique: true
   phase: 4
+  pvpRank: 1
   icon: inv_misc_bone_dwarfskull_01
   location: Zul'Gurub
   boss: High Priestess Arlokk
+  worldBoss: false
   faction: 3
   spellDamage: 22
   spellCrit: 1
@@ -1668,8 +1812,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_orb_01
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 21
 - id: 23156
@@ -1683,9 +1829,11 @@
   bop: true
   unique: false
   phase: 6
+  pvpRank: 1
   icon: inv_misc_bone_10
   location: Scholomance (Scourge Invasion)
   boss: Lord Blackwood
+  worldBoss: false
   faction: 3
   spellDamage: 9
   stamina: 12
@@ -1701,8 +1849,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_staff_23
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 21
 - id: 15939
@@ -1716,8 +1866,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_wand_04
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 21
 - id: 10796
@@ -1731,9 +1883,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_orb_03
   location: Sunken Temple
   boss: 'Hazzas, Morphaz, Weaver, Dreamscythe'
+  worldBoss: false
   faction: 3
   arcaneDamage: 28
 - id: 15936
@@ -1747,8 +1901,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_branch_01
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 20
 - id: 15940
@@ -1762,8 +1918,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_wand_11
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 21
 - id: 15989
@@ -1777,8 +1935,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_staff_14
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 23
 - id: 19142
@@ -1792,9 +1952,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_book_09
   location: Molten Core
   boss: 'Golemagg the Incinerator, Magmadar, Garr, Baron Geddon'
+  worldBoss: false
   faction: 3
   spellDamage: 11
   stamina: 12
@@ -1810,9 +1972,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_potion_19
   location: The Hinterlands
   boss: 'Quest: Return to Primal Torntusk'
+  worldBoss: false
   faction: 3
   spellDamage: 9
   intellect: 8
@@ -1827,9 +1991,11 @@
   bop: true
   unique: false
   phase: 6
+  pvpRank: 1
   icon: inv_offhand_naxxramas_d_01
   location: Naxxramas
   boss: Anub'Rekhan
+  worldBoss: false
   faction: 3
   spellDamage: 25
   spellPenetration: 10
@@ -1845,10 +2011,12 @@
   reqLevel: 55
   bop: false
   unique: false
-  phase: 4
+  phase: 5
+  pvpRank: 1
   icon: inv_misc_orb_04
   location: Silithus
   boss: 'Quest: Abyssal Contacts / Abyssal Crests'
+  worldBoss: false
   faction: 3
   spellDamage: 12
   intellect: 10
@@ -1866,6 +2034,7 @@
   pvpRank: 14
   icon: inv_misc_book_12
   location: Requires Grand Marshal
+  worldBoss: false
   faction: 1
   spellDamage: 20
   stamina: 17
@@ -1881,8 +2050,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_wand_05
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 23
 - id: 23468
@@ -1899,6 +2070,7 @@
   pvpRank: 14
   icon: inv_misc_book_15
   location: Requires High Warlord
+  worldBoss: false
   faction: 2
   spellDamage: 20
   stamina: 17
@@ -1914,9 +2086,11 @@
   bop: true
   unique: true
   phase: 4
+  pvpRank: 1
   icon: inv_misc_bag_10_black
   location: Zul'Gurub
   boss: Jin'do the Hexxer
+  worldBoss: false
   faction: 3
   spellDamage: 18
   spellHit: 1
@@ -1933,9 +2107,11 @@
   bop: true
   unique: false
   phase: 3
+  pvpRank: 1
   icon: inv_misc_orb_03
   location: Stormwind City / Ogrimmar
   boss: 'Quest: The Lord of Blackrock'
+  worldBoss: false
   faction: 3
   spellDamage: 28
   stamina: 10
@@ -1951,8 +2127,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_staff_07
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 23
 - id: 15938
@@ -1966,8 +2144,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_orb_02
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 21
 - id: 7749
@@ -1981,9 +2161,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_orb_03
   location: Scarlet Monastery
   boss: 'Quest: Compendium of the Fallen'
+  worldBoss: false
   faction: 3
   spellDamage: 11
 - id: 15984
@@ -1997,8 +2179,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_staff_07
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 20
 - id: 15988
@@ -2012,8 +2196,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_orb_03
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 21
 - id: 21597
@@ -2027,9 +2213,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_wand_10
   location: Temple of Ahn'Qiraj
   boss: Emperor Vek'lor
+  worldBoss: false
   faction: 3
   spellDamage: 20
   spellHit: 1
@@ -2047,9 +2235,11 @@
   bop: true
   unique: false
   phase: 6
+  pvpRank: 1
   icon: inv_offhand_naxxramas_03
   location: Naxxramas
   boss: Sapphiron
+  worldBoss: false
   faction: 3
   spellDamage: 26
   spellHit: 1
@@ -2067,9 +2257,11 @@
   bop: true
   unique: false
   phase: 6
+  pvpRank: 1
   icon: inv_wand_07
   location: Stratholme
   boss: Sothos and Jarien's Herilooms
+  worldBoss: false
   faction: 3
   spellDamage: 9
   spellHit: 1
@@ -2085,9 +2277,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_ore_arcanite_02
   location: Un'goro Crater
   boss: 'Quest: It''s Dangerous to Go Alone'
+  worldBoss: false
   faction: 3
   spellDamage: 20
 - id: 21471
@@ -2101,9 +2295,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_mace_21
   location: Ruins of Ahn'Qiraj
   boss: Moam
+  worldBoss: false
   faction: 3
   spellDamage: 21
   spellCrit: 1
@@ -2120,8 +2316,10 @@
   bop: true
   unique: true
   phase: 2
+  pvpRank: 1
   icon: inv_misc_branch_01
   location: Alterac Valley
+  worldBoss: false
   faction: 3
   spellDamage: 33
 - id: 19308
@@ -2135,8 +2333,10 @@
   bop: true
   unique: true
   phase: 2
+  pvpRank: 1
   icon: inv_misc_book_01
   location: Alterac Valley
+  worldBoss: false
   faction: 3
   arcaneDamage: 34
   mp5: 3
@@ -2151,9 +2351,11 @@
   bop: true
   unique: false
   phase: 6
+  pvpRank: 1
   icon: inv_misc_book_06
   location: Blackrock Spire
   boss: General Drakkisath
+  worldBoss: false
   faction: 3
   spellDamage: 18
   stamina: 6
@@ -2169,8 +2371,10 @@
   bop: true
   unique: true
   phase: 4
+  pvpRank: 1
   icon: inv_misc_orb_01
   boss: 'Emeriss, Taerar, Lethon, Ysondre'
+  worldBoss: false
   faction: 3
   spellDamage: 25
   stamina: 9
@@ -2187,8 +2391,10 @@
   bop: false
   unique: true
   phase: 6
+  pvpRank: 1
   icon: inv_relics_idolofrejuvenation
   location: World Drop
+  worldBoss: false
   faction: 3
 - id: 10261
   name: Adventurer's Bandana of Arcane Wrath
@@ -2201,8 +2407,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_bandana_03
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 40
   armor: 130
@@ -2218,8 +2426,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_bandana_03
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 40
   armor: 130
@@ -2235,8 +2445,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_crown_01
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 36
   armor: 58
@@ -2252,8 +2464,10 @@
   bop: false
   unique: false
   phase: 4
+  pvpRank: 1
   icon: inv_helmet_47
   location: Engineering (300)
+  worldBoss: false
   faction: 3
   spellHit: 2
   spellCrit: 1
@@ -2271,8 +2485,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_crown_02
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 37
   armor: 62
@@ -2294,9 +2510,11 @@
     - 9
     - 11
   phase: 1
+  pvpRank: 1
   icon: inv_helmet_59
   location: Winterspring
   boss: 'Quest: Cap of the Scarlet Savant'
+  worldBoss: false
   faction: 3
   spellCrit: 2
   stamina: 17
@@ -2314,8 +2532,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_crown_01
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 40
   armor: 64
@@ -2333,9 +2553,11 @@
   allowableClasses:
     - 11
   phase: 1
+  pvpRank: 1
   icon: inv_helmet_09
   location: Molten Core
   boss: Garr
+  worldBoss: false
   faction: 3
   spellDamage: 12
   stamina: 26
@@ -2359,6 +2581,7 @@
   pvpRank: 10
   icon: inv_helmet_09
   location: Requires Champion
+  worldBoss: false
   faction: 2
   spellDamage: 18
   stamina: 16
@@ -2377,9 +2600,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_helmet_51
   location: Stratholme
   boss: Magistrate Barthilas
+  worldBoss: false
   faction: 3
   spellDamage: 30
   stamina: 8
@@ -2398,9 +2623,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_crown_01
   location: 'Dire Maul: North'
   boss: King Gordok
+  worldBoss: false
   faction: 3
   spellCrit: 1
   stamina: 16
@@ -2419,9 +2646,11 @@
   bop: true
   unique: false
   phase: 4
+  pvpRank: 1
   icon: inv_helmet_43
   location: World Drop
   boss: Lethon
+  worldBoss: false
   faction: 3
   spellCrit: 1
   stamina: 16
@@ -2440,9 +2669,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_helmet_27
   location: Blackrock Spire
   boss: Gyth
+  worldBoss: false
   faction: 3
   spellDamage: 18
   stamina: 12
@@ -2460,8 +2691,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_helmet_32
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 31
   armor: 54
@@ -2477,9 +2710,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_helmet_62
   location: Ruins of Ahn'Qiraj
   boss: Moam
+  worldBoss: false
   faction: 3
   spellCrit: 1
   stamina: 18
@@ -2498,8 +2733,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_crown_01
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 37
   armor: 63
@@ -2515,8 +2752,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_helmet_06
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 41
   armor: 67
@@ -2531,9 +2770,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_helmet_27
   location: Ironforge / Ogrimmar
   boss: 'Quest: Saving the Best for Last'
+  worldBoss: false
   faction: 3
   spellDamage: 16
   stamina: 17
@@ -2557,6 +2798,7 @@
   pvpRank: 13
   icon: inv_helmet_41
   location: Requires Field Marshal
+  worldBoss: false
   faction: 1
   spellDamage: 18
   spellCrit: 1
@@ -2578,9 +2820,11 @@
   allowableClasses:
     - 11
   phase: 5
+  pvpRank: 1
   icon: inv_helmet_06
   location: Temple of Ahn'Qiraj
   boss: 'Quest: Genesis Helm'
+  worldBoss: false
   faction: 3
   spellDamage: 27
   stamina: 22
@@ -2599,9 +2843,11 @@
   bop: true
   unique: false
   phase: 6
+  pvpRank: 1
   icon: inv_helmet_53
   location: Naxxramas
   boss: Gothik the Harvester
+  worldBoss: false
   faction: 3
   spellDamage: 18
   stamina: 20
@@ -2619,8 +2865,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_helmet_06
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 40
   armor: 129
@@ -2636,8 +2884,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_helmet_06
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 40
   armor: 129
@@ -2653,9 +2903,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_helmet_41
   location: Stratholme
   boss: Canon Master Willey
+  worldBoss: false
   faction: 3
   spellDamage: 23
   stamina: 14
@@ -2674,8 +2926,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_crown_02
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 40
   armor: 65
@@ -2691,9 +2945,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_helmet_41
   location: 'Dire Maul: North'
   boss: Cho'Rush the Observer
+  worldBoss: false
   faction: 3
   spellCrit: 1
   stamina: 12
@@ -2712,8 +2968,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_helmet_40
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 36
   armor: 118
@@ -2729,8 +2987,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_helmet_40
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 36
   armor: 118
@@ -2751,6 +3011,7 @@
   pvpRank: 10
   icon: inv_helmet_09
   location: Requires Lieutenant Commander
+  worldBoss: false
   faction: 1
   spellDamage: 18
   stamina: 16
@@ -2769,8 +3030,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_helmet_51
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 40
   armor: 66
@@ -2786,8 +3049,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_helmet_54
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 40
   armor: 129
@@ -2803,8 +3068,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_helmet_54
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 40
   armor: 129
@@ -2820,9 +3087,11 @@
   bop: true
   unique: false
   phase: 3
+  pvpRank: 1
   icon: inv_helmet_52
   location: Blackwing Lair
   boss: Nefarian
+  worldBoss: false
   faction: 3
   spellDamage: 35
   spellCrit: 2
@@ -2842,8 +3111,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_helmet_61
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 36
   armor: 58
@@ -2859,8 +3130,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_helmet_08
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 40
   armor: 127
@@ -2876,8 +3149,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_helmet_08
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 40
   armor: 127
@@ -2893,8 +3168,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_bandage_19
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 37
   armor: 125
@@ -2910,8 +3187,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_bandage_19
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 37
   armor: 125
@@ -2927,8 +3206,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_belt_11
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 36
   armor: 120
@@ -2944,8 +3225,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_belt_11
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 36
   armor: 120
@@ -2961,9 +3244,11 @@
   bop: true
   unique: false
   phase: 6
+  pvpRank: 1
   icon: inv_helmet_50
   location: Naxxramas
   boss: Heigan the Unclean
+  worldBoss: false
   faction: 3
   spellDamage: 51
   stamina: 18
@@ -2981,8 +3266,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_helmet_01
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 40
   armor: 65
@@ -2997,8 +3284,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_helmet_47
   location: Engineering (215)
+  worldBoss: false
   faction: 3
   spellDamage: 21
   armor: 46
@@ -3013,8 +3302,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_helmet_47
   location: Engineering (270)
+  worldBoss: false
   faction: 3
   spellDamage: 27
   armor: 57
@@ -3030,9 +3321,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_helmet_62
   location: Blackrock Spire
   boss: General Drakkisath
+  worldBoss: false
   faction: 3
   spellDamage: 36
   spellHit: 1
@@ -3052,9 +3345,11 @@
   allowableClasses:
     - 11
   phase: 1
+  pvpRank: 1
   icon: inv_helmet_09
   location: Onyxia's Lair
   boss: Onyxia
+  worldBoss: false
   faction: 3
   stamina: 20
   intellect: 31
@@ -3073,8 +3368,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_crown_01
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 41
   armor: 132
@@ -3090,8 +3387,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_crown_01
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 41
   armor: 132
@@ -3107,8 +3406,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_helmet_46
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 36
   armor: 117
@@ -3124,8 +3425,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_helmet_46
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 36
   armor: 117
@@ -3141,8 +3444,10 @@
   bop: false
   unique: false
   phase: 6
+  pvpRank: 1
   icon: inv_crown_01
   location: Tailoring
+  worldBoss: false
   faction: 3
   spellDamage: 18
   stamina: 10
@@ -3159,9 +3464,11 @@
   bop: true
   unique: false
   phase: 4
+  pvpRank: 1
   icon: inv_mask_02
   location: Zul'Gurub
   boss: Jin'do the Hexxer
+  worldBoss: false
   faction: 3
   spellDamage: 41
   stamina: 10
@@ -3179,8 +3486,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_helmet_50
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 36
   armor: 120
@@ -3196,8 +3505,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_helmet_50
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 36
   armor: 120
@@ -3218,6 +3529,7 @@
   pvpRank: 13
   icon: inv_helmet_09
   location: Requires Warlord
+  worldBoss: false
   faction: 2
   spellDamage: 18
   spellCrit: 1
@@ -3236,9 +3548,11 @@
   bop: true
   unique: false
   phase: 6
+  pvpRank: 1
   icon: inv_jewelry_amulet_04
   location: Eastern Plaguelands
   boss: 'Quest: Epic Armaments of Battle'
+  worldBoss: false
   faction: 3
   spellDamage: 15
   stamina: 13
@@ -3254,9 +3568,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_jewelry_necklace_ahnqiraj_01
   location: Temple of Ahn'Qiraj
   boss: Emperor Vek'nilash
+  worldBoss: false
   faction: 3
   spellDamage: 27
   spellCrit: 1
@@ -3273,9 +3589,11 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_jewelry_necklace_09
   location: Dire Maul
   boss: 'Warpwood Crusher, Guardian, Treant, Stomper, Tangler'
+  worldBoss: false
   faction: 3
   spellDamage: 17
   stamina: 7
@@ -3290,9 +3608,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_jewelry_amulet_05
   location: 'Dire Maul: North'
   boss: 'Quest: Falrin''s Vendetta'
+  worldBoss: false
   faction: 3
   spellDamage: 13
   stamina: 12
@@ -3308,9 +3628,11 @@
   bop: true
   unique: false
   phase: 6
+  pvpRank: 1
   icon: inv_belt_18
   location: Stratholme (Scourge Invasion)
   boss: Balzaphon
+  worldBoss: false
   faction: 3
   spellDamage: 22
 - id: 21504
@@ -3324,9 +3646,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_jewelry_necklace_ahnqiraj_03
   location: Ruins of Ahn'Qiraj
   boss: 'Quest: The Fall of Ossirian'
+  worldBoss: false
   faction: 3
   spellDamage: 25
   stamina: 9
@@ -3342,9 +3666,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_jewelry_necklace_10
   location: Molten Core
   boss: Lucifron
+  worldBoss: false
   faction: 3
   spellDamage: 18
   stamina: 9
@@ -3361,9 +3687,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_jewelry_amulet_05
   location: Molten Core
   boss: Ragnaros
+  worldBoss: false
   faction: 3
   spellDamage: 34
   stamina: 7
@@ -3379,9 +3707,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_jewelry_necklace_10
   location: Stratholme
   boss: Cannon Master Willey
+  worldBoss: false
   faction: 3
   spellDamage: 9
   spellHit: 1
@@ -3398,9 +3728,11 @@
   bop: true
   unique: false
   phase: 6
+  pvpRank: 1
   icon: inv_jewelry_necklace_29naxxramas
   location: Naxxramas
   boss: Kel'Thuzad
+  worldBoss: false
   faction: 3
   spellDamage: 15
   spellCrit: 2
@@ -3417,9 +3749,11 @@
   bop: true
   unique: false
   phase: 4
+  pvpRank: 1
   icon: inv_jewelry_necklace_03
   location: Zul'Gurub
   boss: High Priestess Jeklik
+  worldBoss: false
   faction: 3
   spellDamage: 22
   mp5: 3
@@ -3434,9 +3768,11 @@
   bop: true
   unique: false
   phase: 6
+  pvpRank: 1
   icon: inv_jewelry_necklace_29naxxramas
   location: Naxxramas
   boss: Grand Widow Faerlina
+  worldBoss: false
   faction: 3
   spellDamage: 28
   spellPenetration: 13
@@ -3453,9 +3789,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_jewelry_necklace_ahnqiraj_04
   location: Temple of Ahn'Qiraj
   boss: Battleguard Sartura
+  worldBoss: false
   faction: 3
   spellDamage: 8
   stamina: 9
@@ -3471,9 +3809,11 @@
   bop: true
   unique: false
   phase: 3
+  pvpRank: 1
   icon: inv_jewelry_necklace_16
   location: Darkmoon Faire
   boss: 'Quest: 1200 Tickets - Orb of the Darkmoon'
+  worldBoss: false
   faction: 3
   spellDamage: 22
   stamina: 11
@@ -3490,9 +3830,11 @@
   allowableClasses:
     - 11
   phase: 4
+  pvpRank: 1
   icon: inv_jewelry_necklace_26
   location: Stranglethorn Vale
   boss: 'Quest: Pristine Enchanted South Seas Kelp'
+  worldBoss: false
   faction: 3
   spellCrit: 2
   stamina: 10
@@ -3509,9 +3851,11 @@
   bop: true
   unique: false
   phase: 6
+  pvpRank: 1
   icon: inv_jewelry_necklace_03
   location: Scarlet Monastery Graveyard (Scourge Invasion)
   boss: Scorn
+  worldBoss: false
   faction: 3
   spellDamage: 7
   stamina: 5
@@ -3527,9 +3871,11 @@
   bop: true
   unique: false
   phase: 4
+  pvpRank: 1
   icon: inv_jewelry_necklace_19
   location: Zul'Gurub
   boss: Hakkar
+  worldBoss: false
   faction: 3
   spellHit: 1
   stamina: 10
@@ -3546,9 +3892,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_jewelry_talisman_08
   location: Stratholme
   boss: Balnazzar
+  worldBoss: false
   faction: 3
   spellHit: 1
   stamina: 9
@@ -3565,9 +3913,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_jewelry_necklace_03
   location: 'Dire Maul: East'
   boss: Hydrospawn
+  worldBoss: false
   faction: 3
   spellCrit: 1
   intellect: 7
@@ -3582,10 +3932,12 @@
   reqLevel: 60
   bop: true
   unique: false
-  phase: 4
+  phase: 5
+  pvpRank: 1
   icon: inv_shoulder_25
   location: Silithus
   boss: Baron Kazum
+  worldBoss: false
   faction: 3
   spellDamage: 15
   spellHit: 1
@@ -3603,10 +3955,12 @@
   reqLevel: 60
   bop: true
   unique: false
-  phase: 4
+  phase: 5
+  pvpRank: 1
   icon: inv_shoulder_25
   location: Silithus
   boss: Baron Kazum
+  worldBoss: false
   faction: 3
   spellDamage: 15
   spellHit: 1
@@ -3624,10 +3978,12 @@
   reqLevel: 60
   bop: true
   unique: false
-  phase: 4
+  phase: 5
+  pvpRank: 1
   icon: inv_shoulder_08
   location: Silithus
   boss: High Marshal Whirlaxis
+  worldBoss: false
   faction: 3
   spellDamage: 15
   stamina: 13
@@ -3645,8 +4001,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_shoulder_15
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 30
   armor: 120
@@ -3662,8 +4020,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_shoulder_18
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 24
   armor: 51
@@ -3679,9 +4039,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_shoulder_18
   location: Sunken Temple
   boss: 'Zolo, Gasher, Mijan, Hukku, Loro, Zul''Lor'
+  worldBoss: false
   faction: 3
   natureDamage: 29
   armor: 193
@@ -3697,8 +4059,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_shoulder_14
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 26
   armor: 54
@@ -3714,8 +4078,10 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_shoulder_05
   location: Scholomance
+  worldBoss: false
   faction: 3
   spellDamage: 20
   intellect: 16
@@ -3732,8 +4098,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_shoulder_25
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 29
   armor: 57
@@ -3751,9 +4119,11 @@
   allowableClasses:
     - 11
   phase: 1
+  pvpRank: 1
   icon: inv_shoulder_07
   location: Molten Core
   boss: Baron Geddon
+  worldBoss: false
   faction: 3
   stamina: 13
   intellect: 20
@@ -3777,6 +4147,7 @@
   pvpRank: 10
   icon: inv_shoulder_07
   location: Requires Champion
+  worldBoss: false
   faction: 2
   spellDamage: 14
   stamina: 12
@@ -3795,8 +4166,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_shoulder_06
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 26
   armor: 55
@@ -3812,9 +4185,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_shoulder_26
   location: 'Dire Maul: North (Tribute)'
   boss: Gordok Mastiff
+  worldBoss: false
   faction: 3
   spellDamage: 14
   stamina: 11
@@ -3833,8 +4208,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_shoulder_18
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 23
   armor: 50
@@ -3850,8 +4227,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_shoulder_14
   location: World Drop
+  worldBoss: false
   faction: 3
   spellDamage: 11
   intellect: 20
@@ -3868,8 +4247,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_shoulder_10
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 29
   armor: 58
@@ -3885,8 +4266,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_shoulder_14
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 30
   armor: 61
@@ -3901,9 +4284,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_shoulder_01
   location: Ironforge / Ogrimmar
   boss: 'Quest: Anthion''s Parting Words'
+  worldBoss: false
   faction: 3
   spellDamage: 6
   stamina: 9
@@ -3928,6 +4313,7 @@
   pvpRank: 13
   icon: inv_shoulder_23
   location: Requires Field Marshal
+  worldBoss: false
   faction: 1
   spellDamage: 18
   stamina: 13
@@ -3948,9 +4334,11 @@
   allowableClasses:
     - 11
   phase: 5
+  pvpRank: 1
   icon: inv_shoulder_03
   location: Temple of Ahn'Qiraj
   boss: 'Quest: Genesis Shoulderpads'
+  worldBoss: false
   faction: 3
   spellDamage: 20
   stamina: 15
@@ -3969,9 +4357,11 @@
   bop: true
   unique: false
   phase: 6
+  pvpRank: 1
   icon: inv_shoulder_14
   location: Naxxramas
   boss: Grobbulus
+  worldBoss: false
   faction: 3
   spellDamage: 16
   stamina: 18
@@ -3988,8 +4378,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_shoulder_24
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 29
   armor: 114
@@ -4005,8 +4397,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_shoulder_02
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 30
   armor: 60
@@ -4022,8 +4416,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_shoulder_18
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 24
   armor: 104
@@ -4039,9 +4435,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_shoulder_25
   location: Blackrock Depths
   boss: High Interrogator Gerstahn
+  worldBoss: false
   faction: 3
   spellDamage: 14
   stamina: 5
@@ -4065,6 +4463,7 @@
   pvpRank: 10
   icon: inv_shoulder_07
   location: Requires Lieutenant Commander
+  worldBoss: false
   faction: 1
   spellDamage: 14
   stamina: 12
@@ -4083,9 +4482,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_shoulder_25
   location: Ruins of Ahn'Qiraj
   boss: Moam
+  worldBoss: false
   faction: 3
   spellDamage: 21
   stamina: 11
@@ -4104,9 +4505,11 @@
   bop: true
   unique: false
   phase: 3
+  pvpRank: 1
   icon: inv_shoulder_25
   location: Blackwing Lair
   boss: Razorgore the Untamed
+  worldBoss: false
   faction: 3
   spellDamage: 34
   stamina: 12
@@ -4124,8 +4527,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_shoulder_09
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 30
   armor: 61
@@ -4141,8 +4546,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_shoulder_24
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 30
   armor: 119
@@ -4158,8 +4565,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_shoulder_21
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 26
   armor: 54
@@ -4175,8 +4584,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_shoulder_11
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 29
   armor: 115
@@ -4192,8 +4603,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_shoulder_08
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 29
   armor: 113
@@ -4209,8 +4622,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_shoulder_23
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 24
   armor: 106
@@ -4226,8 +4641,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_shoulder_23
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 30
   armor: 59
@@ -4243,9 +4660,11 @@
   bop: true
   unique: false
   phase: 6
+  pvpRank: 1
   icon: inv_shoulder_05
   location: Naxxramas
   boss: Gluth
+  worldBoss: false
   faction: 3
   spellDamage: 39
   spellCrit: 1
@@ -4264,9 +4683,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_shoulder_23
   location: Stratholme
   boss: Balnazaar
+  worldBoss: false
   faction: 3
   spellCrit: 1
   intellect: 16
@@ -4284,9 +4705,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_shoulder_13
   location: Blackrock Depths
   boss: Eviscerator
+  worldBoss: false
   faction: 3
   spellDamage: 9
   stamina: 10
@@ -4306,9 +4729,11 @@
   allowableClasses:
     - 11
   phase: 3
+  pvpRank: 1
   icon: inv_shoulder_07
   location: Blackwing Lair
   boss: Chromaggus
+  worldBoss: false
   faction: 3
   stamina: 14
   intellect: 21
@@ -4327,9 +4752,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_shoulder_02
   location: Blackrock Spire
   boss: Crystal Fang
+  worldBoss: false
   faction: 3
   spellDamage: 8
   stamina: 4
@@ -4348,8 +4775,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_shoulder_21
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 30
   armor: 120
@@ -4365,8 +4794,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_shoulder_23
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 26
   armor: 108
@@ -4382,8 +4813,10 @@
   bop: false
   unique: false
   phase: 6
+  pvpRank: 1
   icon: inv_shoulder_18
   location: Tailoring
+  worldBoss: false
   faction: 3
   spellDamage: 7
   stamina: 18
@@ -4400,9 +4833,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_shoulder_02
   location: Stratholme
   boss: Baron Rivendare
+  worldBoss: false
   faction: 3
   spellDamage: 12
   stamina: 11
@@ -4420,8 +4855,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_shoulder_08
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 26
   armor: 111
@@ -4442,6 +4879,7 @@
   pvpRank: 13
   icon: inv_shoulder_07
   location: Requires Warlord
+  worldBoss: false
   faction: 2
   spellDamage: 18
   stamina: 13
@@ -4460,8 +4898,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_chest_leather_07
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 41
   armor: 165
@@ -4477,9 +4917,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_chest_cloth_12
   location: Scholomance
   boss: Ras Frostwhisper
+  worldBoss: false
   faction: 3
   spellDamage: 20
   stamina: 20
@@ -4498,8 +4940,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_shirt_17
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 36
   armor: 74
@@ -4515,8 +4959,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_chest_cloth_35
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 36
   armor: 74
@@ -4532,8 +4978,10 @@
   bop: false
   unique: false
   phase: 4
+  pvpRank: 1
   icon: inv_chest_cloth_07
   location: Tailoring
+  worldBoss: false
   faction: 3
   spellDamage: 27
   spellHit: 2
@@ -4551,8 +4999,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_chest_cloth_38
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 37
   armor: 77
@@ -4568,8 +5018,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_chest_cloth_17
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 37
   armor: 77
@@ -4585,8 +5037,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_chest_cloth_28
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 40
   armor: 79
@@ -4602,8 +5056,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_chest_chain_11
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 40
   armor: 79
@@ -4621,9 +5077,11 @@
   allowableClasses:
     - 11
   phase: 1
+  pvpRank: 1
   icon: inv_chest_cloth_06
   location: Molten Core
   boss: Golemagg the Incinerator
+  worldBoss: false
   faction: 3
   stamina: 23
   intellect: 24
@@ -4642,9 +5100,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_chest_leather_08
   location: 'Dire Maul: North'
   boss: Prince Tortheldrin
+  worldBoss: false
   faction: 3
   spellDamage: 23
   stamina: 10
@@ -4663,8 +5123,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_chest_cloth_39
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 37
   armor: 76
@@ -4680,8 +5142,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_chest_cloth_10
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 37
   armor: 76
@@ -4697,9 +5161,11 @@
   bop: true
   unique: false
   phase: 6
+  pvpRank: 1
   icon: inv_chest_cloth_46
   location: Naxxramas
   boss: Maexxna
+  worldBoss: false
   faction: 3
   spellDamage: 53
   stamina: 25
@@ -4717,8 +5183,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_chest_cloth_46
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 36
   armor: 71
@@ -4734,8 +5202,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_chest_leather_09
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 36
   armor: 71
@@ -4750,9 +5220,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_chest_cloth_06
   location: Silithus
   boss: 'Quest: Veteran''s Battlegear'
+  worldBoss: false
   faction: 3
   spellDamage: 25
   spellCrit: 1
@@ -4770,8 +5242,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_chest_cloth_30
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 40
   armor: 80
@@ -4787,8 +5261,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_chest_cloth_08
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 40
   armor: 80
@@ -4804,8 +5280,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_shirt_17
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 41
   armor: 83
@@ -4821,8 +5299,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_chest_cloth_29
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 41
   armor: 83
@@ -4837,9 +5317,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_chest_plate06
   location: Ironforge / Ogrimmar
   boss: 'Quest: Saving the Best for Last'
+  worldBoss: false
   faction: 3
   spellDamage: 12
   stamina: 17
@@ -4864,6 +5346,7 @@
   pvpRank: 13
   icon: inv_chest_cloth_07
   location: Requires Field Marshal
+  worldBoss: false
   faction: 1
   spellDamage: 21
   spellCrit: 1
@@ -4882,8 +5365,10 @@
   bop: false
   unique: false
   phase: 3
+  pvpRank: 1
   icon: inv_chest_cloth_18
   location: Tailoring
+  worldBoss: false
   faction: 3
   spellDamage: 25
   stamina: 35
@@ -4900,9 +5385,11 @@
   bop: true
   unique: true
   phase: 4
+  pvpRank: 1
   icon: inv_chest_cloth_25
   location: Zul'Gurub
   boss: High Priestess Mar'li
+  worldBoss: false
   faction: 3
   spellDamage: 22
   stamina: 15
@@ -4921,9 +5408,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_chest_cloth_48
   location: Temple of Ahn'Qiraj
   boss: Trash Drop
+  worldBoss: false
   faction: 3
   spellDamage: 30
   spellHit: 2
@@ -4943,9 +5432,11 @@
   allowableClasses:
     - 11
   phase: 5
+  pvpRank: 1
   icon: inv_chest_leather_08
   location: Temple of Ahn'Qiraj
   boss: 'Quest: Genesis Vest'
+  worldBoss: false
   faction: 3
   spellDamage: 28
   spellCrit: 1
@@ -4965,9 +5456,11 @@
   bop: false
   unique: false
   phase: 6
+  pvpRank: 1
   icon: inv_chest_cloth_08
   location: Naxxramas
   boss: 'Quest: Glacial Vest'
+  worldBoss: false
   faction: 3
   spellDamage: 21
   stamina: 26
@@ -4984,8 +5477,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_chest_leather_05
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 40
   armor: 158
@@ -5001,8 +5496,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_chest_cloth_12
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 41
   armor: 82
@@ -5018,8 +5515,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_shirt_17
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 41
   armor: 82
@@ -5035,9 +5534,11 @@
   bop: true
   unique: false
   phase: 4
+  pvpRank: 1
   icon: inv_chest_cloth_39
   location: World Drop
   boss: Ysondre
+  worldBoss: false
   faction: 3
   spellDamage: 44
   stamina: 16
@@ -5056,8 +5557,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_chest_plate07
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 36
   armor: 146
@@ -5078,6 +5581,7 @@
   pvpRank: 8
   icon: inv_chest_leather_07
   location: Requires Knight-Captain
+  worldBoss: false
   faction: 1
   spellDamage: 15
   stamina: 13
@@ -5100,6 +5604,7 @@
   pvpRank: 8
   icon: inv_chest_leather_07
   location: Requires Legionnaire
+  worldBoss: false
   faction: 2
   spellDamage: 15
   stamina: 13
@@ -5117,8 +5622,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_chest_cloth_29
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 41
   armor: 83
@@ -5134,8 +5641,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_shirt_04
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 41
   armor: 83
@@ -5151,8 +5660,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_chest_cloth_05
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 41
   armor: 163
@@ -5168,8 +5679,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_shirt_17
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 37
   armor: 75
@@ -5185,8 +5698,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_chest_cloth_17
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 37
   armor: 75
@@ -5202,8 +5717,10 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_chest_cloth_43
   location: Scholomance
+  worldBoss: false
   faction: 3
   spellDamage: 8
   stamina: 22
@@ -5222,8 +5739,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_chest_leather_02
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 40
   armor: 160
@@ -5239,8 +5758,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_chest_leather_02
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 40
   armor: 156
@@ -5256,8 +5777,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_chest_chain_07
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 36
   armor: 148
@@ -5273,8 +5796,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_chest_cloth_25
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 40
   armor: 81
@@ -5290,8 +5815,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_chest_cloth_18
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 40
   armor: 81
@@ -5307,9 +5834,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_chest_cloth_51
   location: 'Dire Maul: West'
   boss: Immol'thar
+  worldBoss: false
   faction: 3
   spellDamage: 27
   stamina: 11
@@ -5328,8 +5857,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_chest_cloth_17
   location: World Drop
+  worldBoss: false
   faction: 3
   spellDamage: 22
   intellect: 6
@@ -5348,9 +5879,11 @@
   unique: false
   targetType: 7
   phase: 6
+  pvpRank: 1
   icon: inv_chest_cloth_04
   location: World Drop (Scourge Invasion)
   boss: Shadow of Doom
+  worldBoss: false
   faction: 3
   spellDamage: 48
   stamina: 12
@@ -5368,9 +5901,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_chest_cloth_18
   location: Molten Core
   boss: 'Sulfuron Harbinger, Lucifron, Gehennas, Shazzrah'
+  worldBoss: false
   faction: 3
   spellDamage: 23
   spellCrit: 2
@@ -5390,9 +5925,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_chest_cloth_26
   location: Temple of Ahn'Qiraj
   boss: Battleguard Sartura
+  worldBoss: false
   faction: 3
   spellDamage: 36
   spellPenetration: 20
@@ -5412,9 +5949,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_chest_cloth_16
   location: Blackrock Depths
   boss: Emperor Dagran Thaurissan
+  worldBoss: false
   faction: 3
   spellDamage: 18
   stamina: 19
@@ -5435,9 +5974,11 @@
   allowableClasses:
     - 11
   phase: 3
+  pvpRank: 1
   icon: inv_chest_chain_16
   location: Blackwing Lair
   boss: Nefarian
+  worldBoss: false
   faction: 3
   spellCrit: 1
   stamina: 20
@@ -5456,8 +5997,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_chest_plate06
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 41
   armor: 165
@@ -5473,8 +6016,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_chest_leather_02
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 37
   armor: 150
@@ -5490,8 +6035,10 @@
   bop: false
   unique: false
   phase: 6
+  pvpRank: 1
   icon: inv_chest_plate07
   location: Tailoring
+  worldBoss: false
   faction: 3
   spellDamage: 12
   stamina: 15
@@ -5508,9 +6055,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_chest_leather_10
   location: Stratholme
   boss: Postmaster Malown
+  worldBoss: false
   faction: 3
   spellDamage: 15
   stamina: 13
@@ -5529,9 +6078,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_chest_leather_08
   location: Stratholme
   boss: Baron Rivendare
+  worldBoss: false
   faction: 3
   spellDamage: 15
   spellCrit: 1
@@ -5551,9 +6102,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_chest_cloth_17
   location: Ruins of Ahn'Qiraj
   boss: Kurinnaxx
+  worldBoss: false
   faction: 3
   spellDamage: 32
   spellCrit: 1
@@ -5573,8 +6126,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_chest_leather_10
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 37
   armor: 154
@@ -5595,6 +6150,7 @@
   pvpRank: 13
   icon: inv_chest_chain_16
   location: Requires Warlord
+  worldBoss: false
   faction: 2
   spellDamage: 21
   spellCrit: 1
@@ -5613,8 +6169,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_08
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 21
   armor: 39
@@ -5629,8 +6187,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_08
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 21
   armor: 39
@@ -5645,9 +6205,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_18
   location: 'Dire Maul: West'
   boss: Magister Kalendris
+  worldBoss: false
   faction: 3
   spellDamage: 18
   armor: 39
@@ -5662,8 +6224,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_chest_cloth_15
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 17
   armor: 32
@@ -5678,9 +6242,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_19
   location: Stratholme
   boss: Archivist Galford
+  worldBoss: false
   faction: 3
   arcaneDamage: 21
   mp5: 4
@@ -5696,8 +6262,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_02
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 19
   armor: 34
@@ -5712,9 +6280,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_misc_cape_18
   location: Temple of Ahn'Qiraj
   boss: 'Lord Kri, Princess Yauj, Vem'
+  worldBoss: false
   faction: 3
   spellDamage: 21
   stamina: 17
@@ -5731,8 +6301,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_05
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 19
   armor: 35
@@ -5747,8 +6319,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_02
   location: Leatherworking
+  worldBoss: false
   faction: 3
   spellCrit: 1
   stamina: 10
@@ -5764,9 +6338,11 @@
   bop: true
   unique: false
   phase: 4
+  pvpRank: 1
   icon: inv_misc_cape_22
   location: Zul'Gurub
   boss: Hakkar
+  worldBoss: false
   faction: 3
   spellDamage: 23
   spellHit: 1
@@ -5783,9 +6359,11 @@
   bop: true
   unique: false
   phase: 3
+  pvpRank: 1
   icon: inv_misc_cape_20
   location: Blackwing Lair
   boss: Nefarian
+  worldBoss: false
   faction: 3
   spellDamage: 28
   stamina: 10
@@ -5802,9 +6380,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_misc_cape_18
   location: Temple of Ahn'Qiraj
   boss: C'Thun
+  worldBoss: false
   faction: 3
   spellDamage: 30
   spellHit: 1
@@ -5821,9 +6401,11 @@
   reqLevel: 60
   bop: true
   unique: false
-  phase: 6
+  phase: 4
+  pvpRank: 1
   icon: inv_misc_cape_16
   location: Zul'Gurub
+  worldBoss: false
   faction: 3
   spellDamage: 23
   stamina: 6
@@ -5840,9 +6422,11 @@
   bop: true
   unique: false
   phase: 6
+  pvpRank: 1
   icon: inv_misc_cape_naxxramas_03
   location: Naxxramas
   boss: Sapphiron
+  worldBoss: false
   faction: 3
   spellDamage: 26
   spellHit: 1
@@ -5863,9 +6447,11 @@
   allowableClasses:
     - 11
   phase: 5
+  pvpRank: 1
   icon: inv_misc_cape_15
   location: Temple of Ahn'Qiraj
   boss: 'Quest: Cloak of Unedning Life'
+  worldBoss: false
   faction: 3
   spellDamage: 11
   stamina: 10
@@ -5883,8 +6469,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_17
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 19
   armor: 34
@@ -5899,9 +6487,11 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_19
   location: Winterspring
   boss: Chillwind Ravager
+  worldBoss: false
   faction: 3
   spellDamage: 20
   stamina: 5
@@ -5918,9 +6508,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_17
   location: The Hinterlands
   boss: 'Quest: Wanted: Vile Priestess Hexx and Her Minions'
+  worldBoss: false
   faction: 3
   spellDamage: 12
   stamina: 6
@@ -5937,8 +6529,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_20
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 17
   armor: 32
@@ -5953,8 +6547,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_06
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 20
   armor: 37
@@ -5969,8 +6565,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_18
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 20
   armor: 36
@@ -5985,8 +6583,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_18
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 20
   armor: 36
@@ -6001,8 +6601,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_04
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 21
   armor: 38
@@ -6017,8 +6619,10 @@
   bop: true
   unique: false
   phase: 2
+  pvpRank: 1
   icon: inv_misc_cape_16
   location: Alterac Valley
+  worldBoss: false
   faction: 3
   spellDamage: 14
   stamina: 11
@@ -6034,8 +6638,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_02
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 20
   armor: 36
@@ -6050,8 +6656,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_02
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 20
   armor: 36
@@ -6066,9 +6674,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_02
   location: 'Dire Maul: North'
   boss: 'Guard Mol''dar, Guard Slip''kik'
+  worldBoss: false
   faction: 3
   spellCrit: 1
   intellect: 10
@@ -6084,8 +6694,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_16
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 21
   armor: 38
@@ -6100,8 +6712,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_17
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 17
   armor: 32
@@ -6116,8 +6730,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_17
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 17
   armor: 32
@@ -6132,8 +6748,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_18
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 20
   armor: 36
@@ -6148,8 +6766,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_18
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 20
   armor: 36
@@ -6164,8 +6784,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_20
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 21
   armor: 39
@@ -6180,8 +6802,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_14
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 21
   armor: 39
@@ -6196,8 +6820,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_18
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 21
   armor: 38
@@ -6212,8 +6838,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_10
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 21
   armor: 38
@@ -6228,8 +6856,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_10
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 21
   armor: 38
@@ -6244,8 +6874,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_02
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 19
   armor: 34
@@ -6260,8 +6892,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_02
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 20
   armor: 37
@@ -6276,8 +6910,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_02
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 20
   armor: 37
@@ -6292,8 +6928,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_02
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 19
   armor: 35
@@ -6308,8 +6946,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_02
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 19
   armor: 35
@@ -6324,8 +6964,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_18
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 17
   armor: 33
@@ -6340,8 +6982,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_18
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 17
   armor: 33
@@ -6356,8 +7000,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_08
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 20
   armor: 36
@@ -6372,9 +7018,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_16
   location: Onyxia's Lair
   boss: Onyxia
+  worldBoss: false
   faction: 3
   spellDamage: 14
   stamina: 10
@@ -6391,9 +7039,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_misc_cape_16
   location: Blackrock Depths
   boss: Arena Spoils
+  worldBoss: false
   faction: 3
   spellHit: 1
   stamina: 10
@@ -6410,9 +7060,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_20
   location: Blackrock Depths
   boss: Houndmaster Grebar
+  worldBoss: false
   faction: 3
   spellDamage: 14
   stamina: 4
@@ -6430,8 +7082,10 @@
   bop: true
   unique: false
   phase: 2
+  pvpRank: 1
   icon: inv_misc_cape_18
   location: Alterac Valley
+  worldBoss: false
   faction: 3
   spellDamage: 14
   stamina: 11
@@ -6447,8 +7101,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_02
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 21
   armor: 39
@@ -6463,8 +7119,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_02
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 21
   armor: 39
@@ -6479,8 +7137,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_18
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 17
   armor: 33
@@ -6495,8 +7155,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_18
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 17
   armor: 33
@@ -6511,8 +7173,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_14
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 21
   armor: 38
@@ -6527,9 +7191,11 @@
   bop: true
   unique: false
   phase: 6
+  pvpRank: 1
   icon: inv_misc_cape_naxxramas_01
   location: Naxxramas
   boss: Instructor Razuvious
+  worldBoss: false
   faction: 3
   spellDamage: 28
   spellPenetration: 10
@@ -6547,8 +7213,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_10
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 19
   armor: 34
@@ -6563,8 +7231,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_misc_cape_10
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 19
   armor: 34
@@ -6578,10 +7248,12 @@
   reqLevel: 60
   bop: true
   unique: false
-  phase: 4
+  phase: 5
+  pvpRank: 1
   icon: inv_bracer_12
   location: Silithus
   boss: High Marshal Whirlaxis
+  worldBoss: false
   faction: 3
   spellDamage: 14
   stamina: 11
@@ -6598,10 +7270,12 @@
   reqLevel: 60
   bop: true
   unique: false
-  phase: 4
+  phase: 5
+  pvpRank: 1
   icon: inv_bracer_10
   location: Silithus
   boss: Prince Skaldrenox
+  worldBoss: false
   faction: 3
   spellDamage: 14
   stamina: 11
@@ -6619,8 +7293,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_13
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 21
   armor: 68
@@ -6636,8 +7312,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_13
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 21
   armor: 68
@@ -6653,8 +7331,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_07
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 17
   armor: 29
@@ -6670,8 +7350,10 @@
   bop: true
   unique: false
   phase: 4
+  pvpRank: 1
   icon: inv_bracer_07
   boss: Lethon
+  worldBoss: false
   faction: 3
   spellDamage: 25
   stamina: 15
@@ -6690,9 +7372,11 @@
   bop: true
   unique: false
   phase: 2
+  pvpRank: 1
   icon: inv_bracer_07
   location: Blasted Lands
   boss: Lord Kazzak
+  worldBoss: true
   faction: 3
   spellCrit: 1
   stamina: 11
@@ -6711,8 +7395,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_17
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 19
   armor: 30
@@ -6728,9 +7414,11 @@
   bop: true
   unique: false
   phase: 3
+  pvpRank: 1
   icon: inv_bracer_07
   location: Blackwing Lair
   boss: Broodlord Lashlayer
+  worldBoss: false
   faction: 3
   spellDamage: 21
   spellHit: 1
@@ -6750,8 +7438,10 @@
   unique: false
   targetType: 7
   phase: 6
+  pvpRank: 1
   icon: inv_bracer_12
   boss: Scourge Invasion
+  worldBoss: false
   faction: 3
   spellDamage: 26
   stamina: 6
@@ -6769,9 +7459,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_bracer_13
   location: Temple of Ahn'Qiraj
   boss: Ouro
+  worldBoss: false
   faction: 3
   spellDamage: 28
   stamina: 10
@@ -6789,8 +7481,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_17
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 20
   armor: 31
@@ -6808,8 +7502,10 @@
   allowableClasses:
     - 11
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_03
   location: Molten Core
+  worldBoss: false
   faction: 3
   spellDamage: 6
   stamina: 13
@@ -6817,6 +7513,26 @@
   spirit: 13
   armor: 88
   durability: 40
+- id: 11764
+  name: Cinderhide Armsplints of Arcane Wrath
+  class: 4
+  subclass: 2
+  slot: 9
+  quality: 3
+  level: 57
+  reqLevel: 52
+  bop: true
+  unique: false
+  phase: 1
+  pvpRank: 1
+  icon: inv_bracer_02
+  location: Blackrock Depths
+  boss: Lord Incendius
+  worldBoss: false
+  faction: 3
+  arcaneDamage: 21
+  armor: 71
+  durability: 35
 - id: 11764
   name: Cinderhide Armsplints of Nature's Wrath
   class: 4
@@ -6828,9 +7544,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_02
   location: Blackrock Depths
   boss: Lord Incendius
+  worldBoss: false
   faction: 3
   natureDamage: 21
   armor: 71
@@ -6846,8 +7564,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_12
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 19
   armor: 31
@@ -6863,9 +7583,11 @@
   bop: true
   unique: false
   phase: 3
+  pvpRank: 1
   icon: inv_bracer_13
   location: Ashenvale
   boss: 'Illiyana Moonblaze, Kelm Hargunth'
+  worldBoss: false
   faction: 3
   spellDamage: 22
   stamina: 8
@@ -6884,8 +7606,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_07
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 17
   armor: 29
@@ -6901,8 +7625,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_13
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 21
   armor: 33
@@ -6918,8 +7644,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_16
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 21
   armor: 34
@@ -6935,9 +7663,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_bracer_09
   location: Ironforge / Ogrimmar
   boss: 'Quest: An Earnest Proposition'
+  worldBoss: false
   faction: 3
   spellDamage: 5
   stamina: 6
@@ -6956,9 +7686,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_05
   location: Blackrock Depths
   boss: Lord Incendius
+  worldBoss: false
   faction: 3
   arcaneDamage: 21
   armor: 35
@@ -6974,9 +7706,11 @@
   bop: false
   unique: false
   phase: 6
+  pvpRank: 1
   icon: inv_bracer_07
   location: Naxxramas
   boss: 'Quest: Glacial Wrists'
+  worldBoss: false
   faction: 3
   spellDamage: 12
   stamina: 20
@@ -6993,8 +7727,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_18
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 20
   armor: 65
@@ -7010,8 +7746,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_18
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 20
   armor: 65
@@ -7027,8 +7765,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_05
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 21
   armor: 34
@@ -7044,8 +7784,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_06
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 17
   armor: 58
@@ -7061,8 +7803,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_06
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 17
   armor: 58
@@ -7078,8 +7822,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_13
   location: World Drop
+  worldBoss: false
   faction: 3
   intellect: 17
   armor: 38
@@ -7095,8 +7841,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_07
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 21
   armor: 35
@@ -7112,8 +7860,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_18
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 21
   armor: 67
@@ -7129,8 +7879,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_18
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 21
   armor: 67
@@ -7146,8 +7898,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_10
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 19
   armor: 30
@@ -7163,8 +7917,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_16
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 21
   armor: 66
@@ -7180,8 +7936,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_16
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 21
   armor: 66
@@ -7197,8 +7955,10 @@
   bop: false
   unique: false
   phase: 2
+  pvpRank: 1
   icon: inv_bracer_09
   location: World Drop
+  worldBoss: false
   faction: 3
   spellDamage: 11
   intellect: 7
@@ -7216,8 +7976,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_02
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 20
   armor: 63
@@ -7233,8 +7995,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_02
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 20
   armor: 63
@@ -7250,8 +8014,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_14
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 17
   armor: 59
@@ -7267,8 +8033,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_14
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 18
   armor: 59
@@ -7284,8 +8052,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_09
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 20
   armor: 32
@@ -7300,9 +8070,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_bracer_12
   location: Silithus
   boss: 'Quest: Stalwart''s Battlegear'
+  worldBoss: false
   faction: 3
   spellDamage: 27
   spellHit: 1
@@ -7320,9 +8092,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_bracer_07
   location: Ruins of Ahn'Qiraj
   boss: Ossirian the Unscarred
+  worldBoss: false
   faction: 3
   spellDamage: 21
   spellPenetration: 10
@@ -7343,9 +8117,11 @@
   allowableClasses:
     - 11
   phase: 3
+  pvpRank: 1
   icon: inv_bracer_03
   location: Blackwing Lair
   boss: Razorgore the Untamed
+  worldBoss: false
   faction: 3
   stamina: 11
   intellect: 15
@@ -7363,9 +8139,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_13
   location: 'Dire Maul: North'
   boss: 'Guard Mol''dar, Guard Slip''kik'
+  worldBoss: false
   faction: 3
   spellDamage: 12
   stamina: 6
@@ -7384,8 +8162,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_15
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 21
   armor: 67
@@ -7401,8 +8181,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_15
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 21
   armor: 67
@@ -7418,8 +8200,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_03
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 19
   armor: 60
@@ -7435,8 +8219,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_03
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 19
   armor: 60
@@ -7452,9 +8238,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_13
   location: Stratholme
   boss: The Unforgiven
+  worldBoss: false
   faction: 3
   arcaneDamage: 21
   armor: 35
@@ -7470,9 +8258,11 @@
   bop: true
   unique: false
   phase: 6
+  pvpRank: 1
   icon: inv_bracer_07
   location: Naxxramas
   boss: Gothik the Harvester
+  worldBoss: false
   faction: 3
   spellDamage: 21
   spellCrit: 1
@@ -7491,8 +8281,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_05
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 19
   armor: 62
@@ -7508,8 +8300,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_bracer_05
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 19
   armor: 62
@@ -7524,10 +8318,12 @@
   reqLevel: 55
   bop: false
   unique: false
-  phase: 4
+  phase: 5
+  pvpRank: 1
   icon: inv_gauntlets_32
   location: Silithus
   boss: Crimson Templar
+  worldBoss: false
   faction: 3
   spellDamage: 12
   stamina: 11
@@ -7544,10 +8340,12 @@
   reqLevel: 55
   bop: false
   unique: false
-  phase: 4
+  phase: 5
+  pvpRank: 1
   icon: inv_gauntlets_05
   location: Silithus
   boss: Earthen Templar
+  worldBoss: false
   faction: 3
   spellDamage: 13
   stamina: 11
@@ -7565,8 +8363,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_gauntlets_25
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 30
   armor: 100
@@ -7582,9 +8382,11 @@
   bop: true
   unique: false
   phase: 4
+  pvpRank: 1
   icon: inv_gauntlets_16
   location: Zul'Gurub
   boss: Jin'do the Hexxer
+  worldBoss: false
   faction: 3
   spellDamage: 19
   spellHit: 1
@@ -7604,9 +8406,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_gauntlets_16
   location: 'Dire Maul: West'
   boss: Tsu'zee
+  worldBoss: false
   faction: 3
   spellCrit: 1
   stamina: 9
@@ -7626,9 +8430,11 @@
   allowableClasses:
     - 11
   phase: 1
+  pvpRank: 1
   icon: inv_gauntlets_07
   location: Molten Core
   boss: Shazzrah
+  worldBoss: false
   faction: 3
   stamina: 17
   intellect: 18
@@ -7646,9 +8452,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_gauntlets_17
   location: Temple of Ahn'Qiraj
   boss: C'Thun
+  worldBoss: false
   faction: 3
   spellDamage: 37
   spellHit: 1
@@ -7667,9 +8475,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_gauntlets_24
   location: Winterspring
   boss: 'Quest: Winterfall Activity'
+  worldBoss: false
   faction: 3
   spellDamage: 22
   armor: 47
@@ -7684,9 +8494,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_gauntlets_17
   location: Ironforge / Ogrimmar
   boss: 'Quest: Just Compensation'
+  worldBoss: false
   faction: 3
   spellDamage: 11
   stamina: 10
@@ -7705,9 +8517,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_gauntlets_05
   location: Ruins of Ahn'Qiraj
   boss: Moam
+  worldBoss: false
   faction: 3
   spellDamage: 25
   stamina: 11
@@ -7730,6 +8544,7 @@
   pvpRank: 12
   icon: inv_gauntlets_25
   location: Requires General
+  worldBoss: false
   faction: 2
   spellDamage: 12
   stamina: 15
@@ -7746,9 +8561,11 @@
   bop: false
   unique: false
   phase: 6
+  pvpRank: 1
   icon: inv_gauntlets_06
   location: Naxxramas
   boss: 'Quest: Glacial Gloves'
+  worldBoss: false
   faction: 3
   spellDamage: 15
   stamina: 22
@@ -7765,8 +8582,10 @@
   bop: true
   unique: false
   phase: 4
+  pvpRank: 1
   icon: inv_gauntlets_17
   boss: 'Emeriss, Taerar, Lethon, Ysondre'
+  worldBoss: false
   faction: 3
   spellDamage: 27
   stamina: 14
@@ -7784,9 +8603,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_gauntlets_18
   location: Silithus
   boss: 'Quest: Volunteer''s Battlegear'
+  worldBoss: false
   faction: 3
   spellDamage: 27
   intellect: 9
@@ -7803,9 +8624,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_gauntlets_23
   location: Temple of Ahn'Qiraj
   boss: Vem
+  worldBoss: false
   faction: 3
   spellDamage: 27
   spellCrit: 1
@@ -7824,9 +8647,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_gauntlets_03
   location: Molten Core
   boss: 'Flamewaker Elite, Flamewaker Healer'
+  worldBoss: false
   faction: 3
   spellDamage: 9
   stamina: 18
@@ -7845,8 +8670,10 @@
   unique: false
   targetType: 7
   phase: 6
+  pvpRank: 1
   icon: inv_gauntlets_16
   boss: 'Quest: Argent Dawn Gloves'
+  worldBoss: false
   faction: 3
   spellDamage: 35
   stamina: 10
@@ -7864,9 +8691,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_gauntlets_01
   location: 'Dire Maul: North'
   boss: 'Quest: Unfinished Gordok Business'
+  worldBoss: false
   faction: 3
   spellCrit: 1
   stamina: 10
@@ -7885,9 +8714,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_gauntlets_06
   location: 'Dire Maul: North'
   boss: 'Quest: Unfinished Gordok Business'
+  worldBoss: false
   faction: 3
   spellCrit: 1
   stamina: 10
@@ -7906,8 +8737,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_gauntlets_31
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 29
   armor: 96
@@ -7923,9 +8756,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_gauntlets_14
   location: Blackrock Spire
   boss: Quartermaster Zigris
+  worldBoss: false
   faction: 3
   spellDamage: 26
   intellect: 6
@@ -7943,8 +8778,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_gauntlets_11
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 24
   armor: 86
@@ -7960,9 +8797,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_gauntlets_17
   location: Blackrock Depths
   boss: 'Watchman Doomgrip, Warbringer Construct'
+  worldBoss: false
   faction: 3
   spellDamage: 16
   stamina: 9
@@ -7986,6 +8825,7 @@
   pvpRank: 12
   icon: inv_gauntlets_21
   location: Requires Marshal
+  worldBoss: false
   faction: 1
   spellDamage: 12
   stamina: 15
@@ -8002,8 +8842,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_gauntlets_23
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 30
   armor: 97
@@ -8019,8 +8861,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_gauntlets_15
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 29
   armor: 95
@@ -8036,8 +8880,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_gauntlets_15
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 29
   armor: 94
@@ -8053,8 +8899,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_gauntlets_29
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 24
   armor: 88
@@ -8069,9 +8917,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_gauntlets_17
   location: Silithus
   boss: 'Quest: Armaments of War'
+  worldBoss: false
   faction: 3
   spellDamage: 27
   stamina: 8
@@ -8089,9 +8939,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_gauntlets_22
   location: Blackrock Spire
   boss: Urok Doomhowl
+  worldBoss: false
   faction: 3
   arcaneDamage: 31
   armor: 207
@@ -8109,9 +8961,11 @@
   allowableClasses:
     - 11
   phase: 3
+  pvpRank: 1
   icon: inv_gauntlets_25
   location: Blackwing Lair
   boss: 'Ebonroc, Flamegor, Firemaw'
+  worldBoss: false
   faction: 3
   stamina: 13
   intellect: 19
@@ -8129,8 +8983,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_gauntlets_26
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 30
   armor: 100
@@ -8146,8 +9002,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_gauntlets_03
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 24
   armor: 87
@@ -8163,9 +9021,11 @@
   bop: true
   unique: false
   phase: 3
+  pvpRank: 1
   icon: inv_gauntlets_19
   location: Blackwing Lair
   boss: Chromaggus
+  worldBoss: false
   faction: 3
   spellCrit: 1
   stamina: 20
@@ -8184,8 +9044,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_gauntlets_24
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 26
   armor: 90
@@ -8200,10 +9062,12 @@
   reqLevel: 60
   bop: false
   unique: false
-  phase: 4
+  phase: 5
+  pvpRank: 1
   icon: inv_belt_06
   location: Silithus
   boss: The Duke of Cynders
+  worldBoss: false
   faction: 3
   spellDamage: 13
   stamina: 11
@@ -8220,10 +9084,12 @@
   reqLevel: 60
   bop: false
   unique: false
-  phase: 4
+  phase: 5
+  pvpRank: 1
   icon: inv_belt_30
   location: Silithus
   boss: The Duke of Fathoms
+  worldBoss: false
   faction: 3
   spellDamage: 13
   stamina: 11
@@ -8241,8 +9107,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_belt_06
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 30
   armor: 89
@@ -8258,9 +9126,11 @@
   bop: true
   unique: false
   phase: 3
+  pvpRank: 1
   icon: inv_belt_13
   location: Blackwing Lair
   boss: Chromaggus
+  worldBoss: false
   faction: 3
   spellHit: 2
   stamina: 17
@@ -8279,9 +9149,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_belt_29
   location: Blackrock Depths
   boss: Ok'thor the Breaker
+  worldBoss: false
   faction: 3
   spellDamage: 12
   spellHit: 1
@@ -8300,8 +9172,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_belt_31
   location: Tailoring
+  worldBoss: false
   faction: 3
   spellCrit: 1
   stamina: 10
@@ -8319,8 +9193,10 @@
   bop: true
   unique: false
   phase: 4
+  pvpRank: 1
   icon: inv_belt_15
   boss: Lethon
+  worldBoss: false
   faction: 3
   spellDamage: 14
   stamina: 16
@@ -8337,9 +9213,11 @@
   reqLevel: 60
   bop: true
   unique: false
-  phase: 6
+  phase: 4
+  pvpRank: 1
   icon: inv_belt_01
   location: Zul'Gurub
+  worldBoss: false
   faction: 3
   spellDamage: 29
   stamina: 6
@@ -8359,8 +9237,10 @@
   allowableClasses:
     - 11
   phase: 1
+  pvpRank: 1
   icon: inv_belt_06
   location: Molten Core
+  worldBoss: false
   faction: 3
   spellDamage: 9
   stamina: 10
@@ -8380,9 +9260,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_belt_12
   location: Scholomance
   boss: Kirtonos the Herald
+  worldBoss: false
   faction: 3
   spellHit: 1
   stamina: 9
@@ -8400,9 +9282,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_belt_10
   location: Blackrock Spire
   boss: Solakar Flamewreath
+  worldBoss: false
   faction: 3
   spellDamage: 9
   stamina: 6
@@ -8424,9 +9308,11 @@
     - 4
     - 11
   phase: 4
+  pvpRank: 1
   icon: inv_belt_17
   location: The Hinterlands
   boss: Rutherford Twing
+  worldBoss: false
   faction: 3
   spellCrit: 1
   stamina: 7
@@ -8444,9 +9330,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_belt_11
   location: Blackrock Spire
   boss: Solakar Flamewreath
+  worldBoss: false
   faction: 3
   spellDamage: 9
   stamina: 10
@@ -8464,9 +9352,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_belt_12
   location: Temple of Ahn'Qiraj
   boss: C'Thun
+  worldBoss: false
   faction: 3
   spellDamage: 41
   spellCrit: 1
@@ -8484,9 +9374,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_belt_15
   location: Ironforge / Ogrimmar
   boss: 'Quest: Just Compensation'
+  worldBoss: false
   faction: 3
   spellDamage: 7
   stamina: 9
@@ -8505,9 +9397,11 @@
   bop: true
   unique: false
   phase: 3
+  pvpRank: 1
   icon: inv_belt_10
   location: Blackwing Lair
   boss: Firemaw
+  worldBoss: false
   faction: 3
   spellDamage: 35
   stamina: 12
@@ -8526,9 +9420,11 @@
   bop: true
   unique: false
   phase: 2
+  pvpRank: 1
   icon: inv_belt_16
   location: Blasted Lands
   boss: Lord Kazzak
+  worldBoss: true
   faction: 3
   spellDamage: 14
   spellCrit: 1
@@ -8547,9 +9443,11 @@
   bop: true
   unique: false
   phase: 2
+  pvpRank: 1
   icon: inv_belt_04
   location: Alterac Valley
   boss: Grunnda Wolfheart
+  worldBoss: false
   faction: 3
   spellDamage: 18
   stamina: 11
@@ -8567,8 +9465,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_belt_12
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 26
   armor: 83
@@ -8587,9 +9487,11 @@
     - 4
     - 11
   phase: 4
+  pvpRank: 1
   icon: inv_belt_17
   location: Arathi Highlands
   boss: Samuel Hawke
+  worldBoss: false
   faction: 3
   spellCrit: 1
   stamina: 7
@@ -8607,8 +9509,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_belt_21
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 24
   armor: 77
@@ -8624,9 +9528,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_belt_11
   location: Molten Core
   boss: 'Golemagg the Incinerator, Magmadar, Garr, Baron Geddon'
+  worldBoss: false
   faction: 3
   spellDamage: 25
   spellCrit: 1
@@ -8645,8 +9551,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_belt_12
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 29
   armor: 84
@@ -8662,8 +9570,10 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_belt_07
   location: 'Dire Maul: North (Tribute)'
+  worldBoss: false
   faction: 3
   spellDamage: 16
   stamina: 13
@@ -8680,8 +9590,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_belt_12
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 26
   armor: 82
@@ -8697,8 +9609,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_belt_11
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 24
   armor: 78
@@ -8714,9 +9628,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_belt_25
   location: Ruins of Ahn'Qiraj
   boss: General Rajaxx
+  worldBoss: false
   faction: 3
   spellDamage: 16
   spellCrit: 1
@@ -8735,9 +9651,11 @@
   bop: true
   unique: false
   phase: 2
+  pvpRank: 1
   icon: inv_belt_04
   location: Alterac Valley
   boss: 'Gaelden Hammersmith, Thanthaldis Snowgleam'
+  worldBoss: false
   faction: 3
   spellDamage: 18
   stamina: 11
@@ -8757,9 +9675,11 @@
   allowableClasses:
     - 11
   phase: 3
+  pvpRank: 1
   icon: inv_belt_06
   location: Blackwing Lair
   boss: Vaelastrasz the Corrupt
+  worldBoss: false
   faction: 3
   stamina: 12
   intellect: 23
@@ -8778,8 +9698,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_belt_12
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 30
   armor: 88
@@ -8795,8 +9717,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_belt_13
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 24
   armor: 77
@@ -8812,9 +9736,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_belt_13
   location: Stratholme
   boss: Nerub'enkan
+  worldBoss: false
   faction: 3
   spellDamage: 11
   stamina: 11
@@ -8833,8 +9759,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_belt_11
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 24
   armor: 80
@@ -8849,10 +9777,12 @@
   reqLevel: 57
   bop: false
   unique: false
-  phase: 4
+  phase: 5
+  pvpRank: 1
   icon: inv_pants_cloth_04
   location: Silithus
   boss: The Duke of Zephyrs
+  worldBoss: false
   faction: 3
   spellDamage: 18
   spellCrit: 1
@@ -8871,8 +9801,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_pants_06
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 41
   armor: 142
@@ -8888,9 +9820,11 @@
   bop: true
   unique: false
   phase: 4
+  pvpRank: 1
   icon: inv_pants_cloth_14
   location: Zul'Gurub
   boss: Bloodlord Mandokir
+  worldBoss: false
   faction: 3
   spellDamage: 28
   stamina: 20
@@ -8908,8 +9842,10 @@
   bop: false
   unique: false
   phase: 4
+  pvpRank: 1
   icon: inv_pants_cloth_14
   location: Tailoring
+  worldBoss: false
   faction: 3
   spellDamage: 37
   spellHit: 1
@@ -8929,9 +9865,11 @@
   allowableClasses:
     - 11
   phase: 1
+  pvpRank: 1
   icon: inv_pants_06
   location: Molten Core
   boss: Magmadar
+  worldBoss: false
   faction: 3
   spellCrit: 1
   stamina: 18
@@ -8951,9 +9889,11 @@
   bop: true
   unique: false
   phase: 3
+  pvpRank: 1
   icon: inv_pants_cloth_19
   location: Blackwing Lair
   boss: Chromaggus
+  worldBoss: false
   faction: 3
   spellCrit: 1
   stamina: 12
@@ -8971,9 +9911,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_pants_08
   location: Ironforge / Ogrimmar
   boss: 'Quest: Anthion''s Parting Words'
+  worldBoss: false
   faction: 3
   spellDamage: 9
   stamina: 14
@@ -8992,8 +9934,10 @@
   bop: false
   unique: false
   phase: 3
+  pvpRank: 1
   icon: inv_pants_06
   location: Tailoring
+  worldBoss: false
   faction: 3
   spellDamage: 43
   stamina: 21
@@ -9012,9 +9956,11 @@
   allowableClasses:
     - 11
   phase: 5
+  pvpRank: 1
   icon: inv_pants_leather_01
   location: Temple of Ahn'Qiraj
   boss: 'Quest: Genesis Trousers'
+  worldBoss: false
   faction: 3
   spellDamage: 27
   stamina: 22
@@ -9032,9 +9978,11 @@
   bop: true
   unique: false
   phase: 6
+  pvpRank: 1
   icon: inv_pants_06
   location: Naxxramas
-  boss: 'Quest: The Only Song I Know�'
+  boss: 'Quest: The Only Song I Know…'
+  worldBoss: false
   faction: 3
   spellDamage: 18
   stamina: 28
@@ -9051,8 +9999,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_pants_06
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 40
   armor: 136
@@ -9068,8 +10018,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_pants_06
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 33
   armor: 124
@@ -9090,6 +10042,7 @@
   pvpRank: 8
   icon: inv_pants_06
   location: Requires Knight-Captain
+  worldBoss: false
   faction: 1
   spellDamage: 14
   spellCrit: 1
@@ -9109,9 +10062,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_pants_05
   location: Winterspring
   boss: 'Quest: Leggings of Arcana'
+  worldBoss: false
   faction: 3
   spellDamage: 18
   intellect: 20
@@ -9129,9 +10084,11 @@
   bop: true
   unique: false
   phase: 2
+  pvpRank: 1
   icon: inv_pants_08
   location: Azshara
   boss: Azuregos
+  worldBoss: true
   faction: 3
   arcaneDamage: 36
   stamina: 14
@@ -9150,9 +10107,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_pants_leather_21
   location: Blackrock Depths
   boss: Gorosh the Dervish
+  worldBoss: false
   faction: 3
   spellDamage: 16
   stamina: 15
@@ -9171,9 +10130,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_pants_leather_11
   location: Temple of Ahn'Qiraj
   boss: The Prophet Skeram
+  worldBoss: false
   faction: 3
   spellDamage: 39
   stamina: 15
@@ -9192,9 +10153,11 @@
   bop: true
   unique: false
   phase: 6
+  pvpRank: 1
   icon: inv_pants_08
   location: Naxxramas
   boss: Thaddius
+  worldBoss: false
   faction: 3
   spellDamage: 44
   spellCrit: 2
@@ -9213,9 +10176,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_pants_cloth_06
   location: Ruins of Ahn'Qiraj
   boss: Ossirian the Unscarred
+  worldBoss: false
   faction: 3
   spellDamage: 41
   spellCrit: 1
@@ -9240,6 +10205,7 @@
   pvpRank: 8
   icon: inv_pants_06
   location: Requires Legionnaire
+  worldBoss: false
   faction: 2
   spellDamage: 14
   spellCrit: 1
@@ -9259,9 +10225,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_pants_13
   location: Blackrock Depths
   boss: Golem Lord Argelmach
+  worldBoss: false
   faction: 3
   spellDamage: 22
   stamina: 8
@@ -9280,8 +10248,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_pants_06
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 40
   armor: 140
@@ -9297,8 +10267,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_pants_06
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 40
   armor: 138
@@ -9314,9 +10286,11 @@
   bop: true
   unique: false
   phase: 6
+  pvpRank: 1
   icon: inv_pants_06
   location: Ashenvale
   boss: Kelm Hargunth
+  worldBoss: false
   faction: 3
   spellDamage: 11
   stamina: 22
@@ -9335,9 +10309,11 @@
   bop: true
   unique: true
   phase: 6
+  pvpRank: 1
   icon: inv_pants_cloth_05
   location: Ashenvale
   boss: Kelm Hargunth
+  worldBoss: false
   faction: 3
   spellDamage: 28
   stamina: 23
@@ -9356,8 +10332,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_pants_06
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 37
   armor: 133
@@ -9373,8 +10351,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_pants_06
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 36
   armor: 126
@@ -9390,8 +10370,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_pants_01
   location: Stratholme
+  worldBoss: false
   faction: 3
   spellDamage: 14
   stamina: 12
@@ -9410,9 +10392,11 @@
   bop: true
   unique: false
   phase: 6
+  pvpRank: 1
   icon: inv_pants_06
   location: Ashenvale
   boss: Illiyana Moonblaze
+  worldBoss: false
   faction: 3
   spellDamage: 11
   stamina: 22
@@ -9431,9 +10415,11 @@
   bop: true
   unique: true
   phase: 6
+  pvpRank: 1
   icon: inv_pants_cloth_05
   location: Ashenvale
   boss: Illiyana Moonblaze
+  worldBoss: false
   faction: 3
   spellDamage: 28
   stamina: 23
@@ -9452,9 +10438,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_pants_13
   location: Blackrock Spire
   boss: Highlord Omokk
+  worldBoss: false
   faction: 3
   spellDamage: 34
   stamina: 8
@@ -9472,9 +10460,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_pants_06
   location: Blackrock Spire
   boss: The Beast
+  worldBoss: false
   faction: 3
   spellDamage: 19
   stamina: 13
@@ -9495,9 +10485,11 @@
   allowableClasses:
     - 11
   phase: 1
+  pvpRank: 1
   icon: inv_pants_06
   location: Molten Core
   boss: Ragnaros
+  worldBoss: false
   faction: 3
   stamina: 17
   intellect: 26
@@ -9516,8 +10508,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_pants_06
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 40
   armor: 140
@@ -9533,8 +10527,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_pants_06
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 36
   armor: 127
@@ -9550,9 +10546,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_pants_14
   location: 'Dire Maul: West'
   boss: Tendris Warpwood
+  worldBoss: false
   faction: 3
   spellCrit: 1
   stamina: 12
@@ -9571,9 +10569,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_pants_09
   location: Blackrock Spire
   boss: Highlord Omokk
+  worldBoss: false
   faction: 3
   spellDamage: 19
   stamina: 12
@@ -9592,8 +10592,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_pants_06
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 37
   armor: 131
@@ -9608,10 +10610,12 @@
   reqLevel: 55
   bop: false
   unique: false
-  phase: 4
+  phase: 5
+  pvpRank: 1
   icon: inv_boots_cloth_10
   location: Silithus
   boss: Azure Templar
+  worldBoss: false
   faction: 3
   spellDamage: 12
   stamina: 11
@@ -9628,10 +10632,12 @@
   reqLevel: 55
   bop: false
   unique: false
-  phase: 4
+  phase: 5
+  pvpRank: 1
   icon: inv_boots_07
   location: Silithus
   boss: Hoary Templar
+  worldBoss: false
   faction: 3
   spellDamage: 13
   stamina: 10
@@ -9649,8 +10655,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_boots_07
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 30
   armor: 109
@@ -9666,8 +10674,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_boots_05
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 23
   armor: 46
@@ -9683,9 +10693,11 @@
   bop: true
   unique: false
   phase: 4
+  pvpRank: 1
   icon: inv_boots_cloth_09
   location: Zul'Gurub
   boss: High Priest Thekal
+  worldBoss: false
   faction: 3
   spellDamage: 30
   stamina: 8
@@ -9709,6 +10721,7 @@
   pvpRank: 7
   icon: inv_boots_08
   location: Requires Blood Guard
+  worldBoss: false
   faction: 2
   spellDamage: 14
   stamina: 13
@@ -9727,8 +10740,10 @@
   bop: false
   unique: false
   phase: 4
+  pvpRank: 1
   icon: inv_boots_cloth_02
   location: Tailoring
+  worldBoss: false
   faction: 3
   spellDamage: 19
   spellHit: 1
@@ -9746,8 +10761,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_boots_07
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 24
   armor: 48
@@ -9763,9 +10780,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_boots_cloth_05
   location: Temple of Ahn'Qiraj
   boss: Emperor Vek'lor
+  worldBoss: false
   faction: 3
   spellDamage: 34
   stamina: 18
@@ -9783,8 +10802,10 @@
   bop: true
   unique: false
   phase: 4
+  pvpRank: 1
   icon: inv_boots_08
   boss: Taerar
+  worldBoss: false
   faction: 3
   spellDamage: 34
   stamina: 11
@@ -9803,9 +10824,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_boots_08
   location: Scholomance
   boss: Darkmaster Gandling
+  worldBoss: false
   faction: 3
   spellDamage: 12
   stamina: 10
@@ -9824,8 +10847,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_boots_05
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 29
   armor: 52
@@ -9843,9 +10868,11 @@
   allowableClasses:
     - 11
   phase: 1
+  pvpRank: 1
   icon: inv_boots_08
   location: Molten Core
   boss: Lucifron
+  worldBoss: false
   faction: 3
   stamina: 16
   intellect: 13
@@ -9864,8 +10891,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_boots_09
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 26
   armor: 50
@@ -9881,9 +10910,11 @@
   bop: true
   unique: true
   phase: 1
+  pvpRank: 1
   icon: inv_boots_05
   location: Blackrock Spire
   boss: Warchief Rend Blackhand
+  worldBoss: false
   faction: 3
   spellDamage: 18
   stamina: 5
@@ -9901,8 +10932,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_boots_09
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 23
   armor: 45
@@ -9918,8 +10951,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_boots_02
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 29
   armor: 52
@@ -9934,9 +10969,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_boots_08
   location: Ironforge / Ogrimmar
   boss: 'Quest: Anthion''s Parting Words'
+  worldBoss: false
   faction: 3
   spellDamage: 11
   stamina: 13
@@ -9961,6 +10998,7 @@
   pvpRank: 12
   icon: inv_boots_08
   location: Requires General
+  worldBoss: false
   faction: 2
   spellDamage: 16
   stamina: 14
@@ -9981,9 +11019,11 @@
   allowableClasses:
     - 11
   phase: 5
+  pvpRank: 1
   icon: inv_boots_cloth_07
   location: Temple of Ahn'Qiraj
   boss: 'Quest: Genesis Boots'
+  worldBoss: false
   faction: 3
   spellDamage: 20
   spellPenetration: 10
@@ -10004,8 +11044,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_boots_07
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 29
   armor: 106
@@ -10021,8 +11063,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_boots_08
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 30
   armor: 54
@@ -10038,9 +11082,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_boots_cloth_02
   location: Blackrock Spire
   boss: War Master Voone
+  worldBoss: false
   faction: 3
   spellHit: 1
   stamina: 11
@@ -10063,6 +11109,7 @@
   pvpRank: 7
   icon: inv_boots_08
   location: Requires Knight-Lieutenant
+  worldBoss: false
   faction: 1
   spellDamage: 14
   stamina: 13
@@ -10086,6 +11133,7 @@
   pvpRank: 12
   icon: inv_boots_08
   location: Requires Marshal
+  worldBoss: false
   faction: 1
   spellDamage: 16
   stamina: 14
@@ -10104,8 +11152,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_boots_05
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 30
   armor: 56
@@ -10121,8 +11171,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_boots_07
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 30
   armor: 107
@@ -10138,8 +11190,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_boots_09
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 24
   armor: 48
@@ -10155,8 +11209,10 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_boots_05
   location: Scholomance
+  worldBoss: false
   faction: 3
   spellDamage: 11
   stamina: 15
@@ -10175,8 +11231,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_boots_01
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 29
   armor: 105
@@ -10192,9 +11250,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_boots_05
   location: Blackrock Depths
   boss: Golem Lord Argelmach
+  worldBoss: false
   faction: 3
   spellDamage: 22
   stamina: 6
@@ -10212,8 +11272,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_boots_08
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 29
   armor: 103
@@ -10229,8 +11291,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_boots_plate_07
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 26
   armor: 99
@@ -10246,9 +11310,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_boots_cloth_05
   location: Ruins of Ahn'Qiraj
   boss: Buru the Gorger
+  worldBoss: false
   faction: 3
   spellDamage: 16
   stamina: 14
@@ -10267,9 +11333,11 @@
   bop: true
   unique: false
   phase: 5
+  pvpRank: 1
   icon: inv_boots_cloth_07
   location: Temple of Ahn'Qiraj
   boss: Battleguard Sartura
+  worldBoss: false
   faction: 3
   spellDamage: 20
   stamina: 21
@@ -10287,8 +11355,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_boots_08
   location: World Drop
+  worldBoss: false
   faction: 3
   arcaneDamage: 29
   armor: 52
@@ -10304,9 +11374,11 @@
   bop: true
   unique: false
   phase: 3
+  pvpRank: 1
   icon: inv_boots_cloth_16
   location: Blackwing Lair
   boss: Death Talon Wyrmguard
+  worldBoss: false
   faction: 3
   spellHit: 1
   stamina: 11
@@ -10323,9 +11395,11 @@
   bop: true
   unique: false
   phase: 4
+  pvpRank: 1
   icon: inv_boots_08
   location: Silithus
   boss: 'Quest: Armaments of War'
+  worldBoss: false
   faction: 3
   spellDamage: 14
   stamina: 12
@@ -10344,9 +11418,11 @@
   bop: true
   unique: false
   phase: 2
+  pvpRank: 1
   icon: inv_boots_cloth_14
   location: Azshara
   boss: Azuregos
+  worldBoss: true
   faction: 3
   spellDamage: 32
   stamina: 10
@@ -10367,9 +11443,11 @@
   allowableClasses:
     - 11
   phase: 3
+  pvpRank: 1
   icon: inv_boots_08
   location: Blackwing Lair
   boss: Broodlord Lashlayer
+  worldBoss: false
   faction: 3
   spellCrit: 1
   stamina: 15
@@ -10388,8 +11466,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_boots_plate_08
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 30
   armor: 110
@@ -10405,8 +11485,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_boots_08
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 24
   armor: 97
@@ -10422,9 +11504,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_boots_02
   location: Stratholme
   boss: Postmaster Malown
+  worldBoss: false
   faction: 3
   spellDamage: 7
   stamina: 14
@@ -10443,9 +11527,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_boots_08
   location: Stratholme
   boss: Stonespine
+  worldBoss: false
   faction: 3
   natureDamage: 24
   armor: 118
@@ -10461,8 +11547,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_boots_07
   location: World Drop
+  worldBoss: false
   faction: 3
   natureDamage: 26
   armor: 100
@@ -10478,9 +11566,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_boots_08
   location: 'Dire Maul: East'
   boss: Hydrospawn
+  worldBoss: false
   faction: 3
   spellDamage: 25
   intellect: 6
@@ -10498,8 +11588,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_boots_05
   location: World Drop
+  worldBoss: false
   faction: 3
   spellDamage: 13
   stamina: 11
@@ -10518,9 +11610,11 @@
   bop: true
   unique: true
   phase: 3
+  pvpRank: 1
   icon: inv_jewelry_ring_20
   location: Ashenvale
   boss: Kelm Hargunth
+  worldBoss: false
   faction: 3
   spellDamage: 14
   stamina: 8
@@ -10535,9 +11629,11 @@
   bop: true
   unique: true
   phase: 5
+  pvpRank: 1
   icon: inv_jewelry_ring_18
   location: Silithus
   boss: 'Quest: Volunteer''s Battlegear'
+  worldBoss: false
   faction: 3
   spellCrit: 1
   intellect: 8
@@ -10553,9 +11649,11 @@
   bop: true
   unique: true
   phase: 3
+  pvpRank: 1
   icon: inv_jewelry_ring_34
   location: Blackwing Lair
   boss: Ebonroc
+  worldBoss: false
   faction: 3
   spellDamage: 21
   spellHit: 1
@@ -10572,9 +11670,11 @@
   bop: true
   unique: true
   phase: 1
+  pvpRank: 1
   icon: inv_jewelry_ring_16
   location: Blackrock Spire
   boss: Warchief Rend Blackhand
+  worldBoss: false
   faction: 3
   spellCrit: 1
   mp5: 5
@@ -10588,9 +11688,11 @@
   reqLevel: 60
   bop: true
   unique: true
-  phase: 6
+  phase: 4
+  pvpRank: 1
   icon: inv_jewelry_ring_16
   location: Zul'Gurub
+  worldBoss: false
   faction: 3
   spellDamage: 23
   stamina: 8
@@ -10606,9 +11708,11 @@
   bop: true
   unique: true
   phase: 6
+  pvpRank: 1
   icon: inv_jewelry_ring_53naxxramas
   location: Naxxramas
   boss: Noth the Plaguebringer
+  worldBoss: false
   faction: 3
   spellDamage: 36
   spellHit: 1
@@ -10623,8 +11727,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_jewelry_ring_11
   location: World Drop
+  worldBoss: false
   faction: 3
   spellDamage: 13
 - id: 11824
@@ -10638,9 +11744,11 @@
   bop: true
   unique: true
   phase: 1
+  pvpRank: 1
   icon: inv_jewelry_ring_08
   location: Blackrock Depths
   boss: Ok'thor the Breaker
+  worldBoss: false
   faction: 3
   spellDamage: 9
   stamina: 8
@@ -10657,9 +11765,11 @@
   bop: true
   unique: false
   phase: 2
+  pvpRank: 1
   icon: inv_jewelry_ring_35
   location: Alterac Valley
   boss: 'Ivus the Forest Lord, Lokholar the Ice Lord'
+  worldBoss: false
   faction: 3
   spellDamage: 12
   stamina: 10
@@ -10675,9 +11785,11 @@
   bop: true
   unique: true
   phase: 5
+  pvpRank: 1
   icon: inv_jewelry_ring_16
   location: Scholomance
   boss: Darkmaster Gandling
+  worldBoss: false
   faction: 3
   spellDamage: 11
   spellCrit: 1
@@ -10693,9 +11805,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_jewelry_ring_27
   location: Stormwind City / Ogrimmar
   boss: 'Quest: Celebrating Good Times, For All To See'
+  worldBoss: false
   faction: 3
   spellCrit: 1
   stamina: 12
@@ -10711,10 +11825,12 @@
   reqLevel: 60
   bop: true
   unique: true
-  phase: 4
+  phase: 5
+  pvpRank: 1
   icon: inv_jewelry_ring_23
   location: Silithus
   boss: Prince Skaldrenox
+  worldBoss: false
   faction: 3
   spellDamage: 22
   stamina: 8
@@ -10730,9 +11846,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_jewelry_ring_05
   location: Blackrock Depths
   boss: 'Quest: The Princess Saved?'
+  worldBoss: false
   faction: 2
   spellDamage: 18
   intellect: 7
@@ -10748,9 +11866,11 @@
   bop: true
   unique: true
   phase: 3
+  pvpRank: 1
   icon: inv_jewelry_ring_28
   location: Ashenvale
   boss: Illiyana Moonblaze
+  worldBoss: false
   faction: 3
   spellDamage: 14
   stamina: 8
@@ -10766,8 +11886,10 @@
   bop: false
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_jewelry_ring_12
   location: World Drop
+  worldBoss: false
   faction: 3
   spellDamage: 18
   intellect: 7
@@ -10783,8 +11905,10 @@
   bop: true
   unique: true
   phase: 4
+  pvpRank: 1
   icon: inv_jewelry_ring_04
   boss: Taerar
+  worldBoss: false
   faction: 3
   spellDamage: 22
   spellCrit: 1
@@ -10801,9 +11925,11 @@
   bop: true
   unique: true
   phase: 3
+  pvpRank: 1
   icon: inv_jewelry_ring_43
   location: Blackwing Lair
   boss: 'Ebonroc, Flamegor, Firemaw'
+  worldBoss: false
   faction: 3
   spellDamage: 19
   mp5: 9
@@ -10818,9 +11944,11 @@
   bop: true
   unique: false
   phase: 2
+  pvpRank: 1
   icon: inv_jewelry_ring_20
   location: Blasted Lands
   boss: Lord Kazzak
+  worldBoss: true
   faction: 3
   spellCrit: 1
   stamina: 11
@@ -10837,9 +11965,11 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_jewelry_ring_38
   location: Molten Core
   boss: 'Sulfuron Harbinger, Lucifron, Gehennas, Shazzrah'
+  worldBoss: false
   faction: 3
   spellDamage: 33
 - id: 21707
@@ -10853,9 +11983,11 @@
   bop: true
   unique: true
   phase: 5
+  pvpRank: 1
   icon: inv_jewelry_ring_ahnqiraj_04
   location: Temple of Ahn'Qiraj
   boss: The Prophet Skeram
+  worldBoss: false
   faction: 3
   spellDamage: 26
   spellPenetration: 20
@@ -10870,9 +12002,11 @@
   bop: true
   unique: true
   phase: 5
+  pvpRank: 1
   icon: inv_jewelry_ring_ahnqiraj_05
   location: Ruins of Ahn'Qiraj
   boss: Ayamiss the Hunter
+  worldBoss: false
   faction: 3
   spellDamage: 9
   spellCrit: 1
@@ -10889,8 +12023,10 @@
   bop: true
   unique: true
   phase: 6
+  pvpRank: 1
   icon: inv_jewelry_ring_48naxxramas
   location: Naxxramas
+  worldBoss: false
   faction: 3
   spellCrit: 1
   intellect: 10
@@ -10905,9 +12041,11 @@
   bop: true
   unique: true
   phase: 5
+  pvpRank: 1
   icon: inv_jewelry_ring_ahnqiraj_02
   location: Temple of Ahn'Qiraj
   boss: 'Quest: The Savior of Kalimdor'
+  worldBoss: false
   faction: 3
   spellDamage: 37
   spellHit: 1
@@ -10924,8 +12062,10 @@
   bop: true
   unique: true
   phase: 5
+  pvpRank: 1
   icon: inv_jewelry_ring_34
   location: Temple of Ahn'Qiraj
+  worldBoss: false
   faction: 3
   spellDamage: 25
   spellCrit: 1
@@ -10941,9 +12081,11 @@
   bop: true
   unique: true
   phase: 5
+  pvpRank: 1
   icon: inv_jewelry_ring_35
   location: Blackrock Spire
   boss: Lord Valthalak
+  worldBoss: false
   faction: 3
   spellDamage: 16
   spellHit: 1
@@ -10959,9 +12101,11 @@
   bop: true
   unique: true
   phase: 6
+  pvpRank: 1
   icon: inv_jewelry_ring_48naxxramas
   location: Naxxramas
   boss: Four Horsemen
+  worldBoss: false
   faction: 3
   spellDamage: 21
   spellHit: 1
@@ -10978,9 +12122,11 @@
   bop: true
   unique: true
   phase: 5
+  pvpRank: 1
   icon: inv_jewelry_ring_40
   location: Tanaris
   boss: 'Quest: The Path of the Invoker'
+  worldBoss: false
   faction: 3
   spellDamage: 28
   stamina: 8
@@ -10997,13 +12143,32 @@
   bop: true
   unique: false
   phase: 1
+  pvpRank: 1
   icon: inv_jewelry_ring_05
   location: Blackrock Depths
   boss: 'Quest: The Princess''s Surprise'
+  worldBoss: false
   faction: 1
   spellDamage: 18
   intellect: 7
   spirit: 4
+- id: 21190
+  name: Wrath of Cenarius
+  class: 4
+  subclass: -2
+  slot: 11
+  quality: 4
+  level: 66
+  bop: true
+  unique: true
+  phase: 5
+  pvpRank: 1
+  icon: inv_jewelry_ring_40
+  location: Silithus
+  boss: 'Quest: Champion''s Battlegear'
+  worldBoss: false
+  faction: 3
+  spellDamage: 22
 - id: 19905
   name: Zanzil's Band
   class: 4
@@ -11015,9 +12180,11 @@
   bop: true
   unique: true
   phase: 4
+  pvpRank: 1
   icon: inv_jewelry_ring_46
   location: Zul'Gurub
   boss: High Priest Venoxis
+  worldBoss: false
   faction: 3
   spellHit: 1
   intellect: 13
@@ -11033,9 +12200,11 @@
   bop: true
   unique: true
   phase: 4
+  pvpRank: 1
   icon: inv_jewelry_ring_46
   location: Zul'Gurub
   boss: Bloodlord Mandokir
+  worldBoss: false
   faction: 3
   spellDamage: 11
   spellHit: 1
@@ -11052,9 +12221,11 @@
   bop: true
   unique: true
   phase: 1
+  pvpRank: 1
   icon: inv_misc_root_02
   location: Blackrock Spire
   boss: Jed Runewatcher
+  worldBoss: false
   faction: 3
   spellDamage: 29
 - id: 11832
@@ -11068,9 +12239,11 @@
   bop: true
   unique: true
   phase: 1
+  pvpRank: 1
   icon: inv_jewelry_amulet_07
   location: Blackrock Depths
   boss: Ambassador Flamelash
+  worldBoss: false
   faction: 3
   spellDamage: 12
 - id: 22268
@@ -11084,9 +12257,11 @@
   bop: true
   unique: true
   phase: 5
+  pvpRank: 1
   icon: inv_jewelry_talisman_09
   location: Blackrock Spire
   boss: General Drakkisath
+  worldBoss: false
   faction: 3
 - id: 23001
   name: Eye of Diminution
@@ -11099,9 +12274,11 @@
   bop: true
   unique: true
   phase: 6
+  pvpRank: 1
   icon: inv_trinket_naxxramas02
   location: Naxxramas
   boss: Thaddius
+  worldBoss: false
   faction: 3
   spellCrit: 2
 - id: 21473
@@ -11115,9 +12292,11 @@
   bop: true
   unique: true
   phase: 5
+  pvpRank: 1
   icon: inv_misc_eye_01
   location: Ruins of Ahn'Qiraj
   boss: Moam
+  worldBoss: false
   faction: 3
 - id: 13968
   name: Eye of the Beast
@@ -11136,9 +12315,11 @@
     - 9
     - 11
   phase: 1
+  pvpRank: 1
   icon: inv_jewelry_talisman_08
   location: Blackrock Spire
   boss: 'Quest: For The Horde!, General Drakkisath''s Demise'
+  worldBoss: false
   faction: 3
   spellCrit: 2
 - id: 23206
@@ -11152,9 +12333,11 @@
   bop: true
   unique: true
   phase: 6
+  pvpRank: 1
   icon: inv_misc_token_argentdawn2
   location: Naxxramas
   boss: 'Quest: The Fall of Kel''Thuzad'
+  worldBoss: false
   faction: 3
   spellDamage: 85
 - id: 19947
@@ -11168,9 +12351,11 @@
   bop: true
   unique: true
   phase: 4
+  pvpRank: 1
   icon: inv_gizmo_09
   location: Zul'Gurub
   boss: Gahz'ranka
+  worldBoss: false
   faction: 3
 - id: 19379
   name: Neltharion's Tear
@@ -11183,9 +12368,11 @@
   bop: true
   unique: true
   phase: 3
+  pvpRank: 1
   icon: inv_stone_15
   location: Blackwing Lair
   boss: Nefarian
+  worldBoss: false
   faction: 3
   spellDamage: 44
   spellHit: 2
@@ -11206,9 +12393,11 @@
     - 9
     - 11
   phase: 5
+  pvpRank: 1
   icon: inv_misc_rune_05
   location: Ashenvale
   boss: Illiyana Moonblaze
+  worldBoss: false
   faction: 3
   spellPenetration: 20
   stamina: 7
@@ -11224,9 +12413,11 @@
   unique: true
   targetType: 7
   phase: 1
+  pvpRank: 1
   icon: inv_misc_rune_06
   location: Stratholme
   boss: 'Quest: The Active Agent'
+  worldBoss: false
   faction: 3
   spellDamage: 48
 - id: 22678
@@ -11239,9 +12430,11 @@
   bop: true
   unique: true
   phase: 6
+  pvpRank: 1
   icon: inv_misc_gem_pearl_04
   location: Eastern Plaguelands
   boss: 'Quest: Armaments of Battle'
+  worldBoss: false
   faction: 3
 - id: 18820
   name: Talisman of Ephemeral Power
@@ -11254,9 +12447,11 @@
   bop: true
   unique: true
   phase: 1
+  pvpRank: 1
   icon: inv_misc_stonetablet_11
   location: Molten Core
   boss: 'Golemagg the Incinerator, Magmadar, Garr, Baron Geddon'
+  worldBoss: false
   faction: 3
 - id: 23046
   name: The Restrained Essence of Sapphiron
@@ -11269,9 +12464,11 @@
   bop: true
   unique: true
   phase: 6
+  pvpRank: 1
   icon: inv_trinket_naxxramas06
   location: Naxxramas
   boss: Sapphiron
+  worldBoss: false
   faction: 3
   spellDamage: 40
 - id: 19950
@@ -11285,8 +12482,10 @@
   bop: true
   unique: true
   phase: 4
+  pvpRank: 1
   icon: inv_jewelry_necklace_13
   location: Zul'Gurub
   boss: 'Quest: The Heart of Hakkar'
+  worldBoss: false
   faction: 3
 

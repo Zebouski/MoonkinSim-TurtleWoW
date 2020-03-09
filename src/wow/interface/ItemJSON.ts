@@ -22,10 +22,11 @@ export default interface ItemJSON {
   allowableClasses?: PlayableClass[]
   targetType?: TargetType
   phase?: number
-  pvpRank?: PvPRank
+  pvpRank: PvPRank
   icon?: string
   location?: string
   boss?: string
+  worldBoss: boolean
   faction?: Faction
   score?: number
   spellDamage?: number

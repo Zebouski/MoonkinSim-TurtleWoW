@@ -134,6 +134,7 @@ export default class Database {
     phase: number,
     faction: Faction,
     pvpRank: PvPRank,
+    worldBosses: boolean,
     magicSchool: MagicSchool,
     targetType: TargetType,
     spellHitWeight: number,
@@ -144,6 +145,7 @@ export default class Database {
       phase,
       faction,
       pvpRank,
+      worldBosses,
       magicSchool,
       targetType,
       spellHitWeight,
@@ -161,6 +163,7 @@ export default class Database {
     phase: number,
     faction: Faction,
     pvpRank: PvPRank,
+    worldBosses: boolean,
     magicSchool: MagicSchool,
     targetType: TargetType,
     spellHitWeight: number,
@@ -171,6 +174,7 @@ export default class Database {
       phase,
       faction,
       pvpRank,
+      worldBosses,
       magicSchool,
       targetType,
       spellHitWeight,
@@ -189,6 +193,7 @@ export default class Database {
     phase: number,
     faction: Faction,
     pvpRank: PvPRank,
+    worldBosses: boolean,
     magicSchool: MagicSchool,
     targetType: TargetType,
     spellHitWeight: number,
@@ -199,6 +204,7 @@ export default class Database {
       phase,
       faction,
       pvpRank,
+      worldBosses,
       magicSchool,
       targetType,
       spellHitWeight,
@@ -213,6 +219,7 @@ export default class Database {
     phase: number,
     faction: Faction,
     pvpRank: PvPRank,
+    worldBosses: boolean,
     magicSchool: MagicSchool,
     targetType: TargetType,
     spellHitWeight: number,
@@ -223,6 +230,7 @@ export default class Database {
       phase,
       faction,
       pvpRank,
+      worldBosses,
       magicSchool,
       targetType,
       spellHitWeight,
@@ -233,6 +241,7 @@ export default class Database {
       phase,
       faction,
       pvpRank,
+      worldBosses,
       magicSchool,
       targetType,
       spellHitWeight,
@@ -243,6 +252,7 @@ export default class Database {
       phase,
       faction,
       pvpRank,
+      worldBosses,
       magicSchool,
       targetType,
       spellHitWeight,
@@ -274,6 +284,7 @@ export default class Database {
     phase: number,
     faction: Faction,
     pvpRank: PvPRank,
+    worldBosses: boolean,
     magicSchool: MagicSchool,
     targetType: TargetType,
     spellHitWeight: number,
@@ -284,6 +295,7 @@ export default class Database {
       phase,
       faction,
       pvpRank,
+      worldBosses,
       magicSchool,
       targetType,
       spellHitWeight,
@@ -298,6 +310,7 @@ export default class Database {
     phase: number,
     faction: Faction,
     pvpRank: PvPRank,
+    worldBosses: boolean,
     magicSchool: MagicSchool,
     targetType: TargetType,
     spellHitWeight: number,
@@ -322,13 +335,8 @@ export default class Database {
     result = jsonQuery(`[* faction = ${faction} | faction = ${Faction.Horde | Faction.Alliance}]`, { data: result })
       .value
     result = jsonQuery(`[* phase <= ${phase}]`, { data: result }).value
-
-    /* filter by pvp rank */
-    for (let i in result) {
-      if (result[i].pvpRank && result[i].pvpRank > pvpRank) {
-        result.splice(i, 1)
-      }
-    }
+    result = jsonQuery(`[* pvpRank <= ${pvpRank}]`, { data: result }).value
+    result = jsonQuery(`[* worldBoss = false | worldBoss = ${worldBosses}]`, { data: result }).value
 
     /* score items */
     for (let i in result) {

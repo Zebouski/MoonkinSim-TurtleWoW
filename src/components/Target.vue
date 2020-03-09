@@ -14,26 +14,20 @@
             <option value="7">Undead</option>
           </b-select>
         </b-field>
-        <b-field label="Type" label-position="on-border">
+        <b-field label="Shimmer" label-position="on-border">
           <b-select class="is-size-7-mobile" v-model.number="options.target.shimmer">
-            <option value="0">Beast</option>
-            <option value="1">Demon</option>
-            <option value="2">Dragonkin</option>
-            <option value="3">Elemental</option>
-            <option value="4">Giant</option>
-            <option value="5">Humanoid</option>
-            <option value="6">Mechanical</option>
-            <option value="7">Undead</option>
+            <option value="0">None</option>
+            <option value="1">Arcane</option>
+            <option value="2">Fire</option>
+            <option value="3">Frost</option>
+            <option value="4">Nature</option>
+            <option value="5">Shadow</option>
+            <option value="6">Holy</option>
           </b-select>
         </b-field>
         <div class="field">
           <b-checkbox class="is-size-7-mobile" native-value="StormStrike" v-model="options.target.debuffs">
             Storm Strike
-          </b-checkbox>
-        </div>
-        <div class="field">
-          <b-checkbox class="is-size-7-mobile" native-value="SpellVulnerability" v-model="options.target.debuffs">
-            Spell Vulnerability
           </b-checkbox>
         </div>
       </div>
@@ -44,6 +38,11 @@
         <div class="field">
           <b-checkbox class="is-size-7-mobile" native-value="CurseOfShadow" v-model="options.target.debuffs">
             Curse of Shadow
+          </b-checkbox>
+        </div>
+        <div class="field">
+          <b-checkbox class="is-size-7-mobile" native-value="SpellVulnerability" v-model="options.target.debuffs">
+            Spell Vulnerability
           </b-checkbox>
         </div>
       </div>

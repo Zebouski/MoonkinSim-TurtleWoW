@@ -239,6 +239,10 @@ export default class Cast {
     return this.moonFuryBonus * this.improvedMoonfireBonus
   }
 
+  public get shimmerBonus(): number {
+    return this.target.shimmer === this.spell.magicSchool ? 4.0 : 1.0
+  }
+
   public get effectiveDmgMultiplier(): number {
     return (
       this.character.powerInfusionBonus *
@@ -248,6 +252,7 @@ export default class Cast {
       this.curseOfShadowDamageBonus *
       this.stormStrikeBonus *
       this.character.burningAdrenalineDamageBonus *
+      this.shimmerBonus *
       (1 - this.partialResistPenalty)
     )
   }

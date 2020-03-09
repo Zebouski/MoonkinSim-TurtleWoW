@@ -12,6 +12,16 @@
  *     - more work need for all attributes
  *   - Gear.
  *     - Add rudimentary gear selection
+ *
+ *
+ * "a spell miss due to level difference is the same combatlog event as a full resist
+ * for a mob to full resist a non binary spell via resistances I think its 120+ resistance they need
+ * to have a chance to roll the full resist
+ * and resistance based full resists arent related to hit related full resists in any way"
+ *
+ * "What he said big true
+ * For frost as a binary spell it basically never comes into play
+ * Because fire gets partials it starts to effect stuff but I think we largely ignore it because the math is poorly understood and difficult to test in classic"
  */
 
 import constants from './constants'

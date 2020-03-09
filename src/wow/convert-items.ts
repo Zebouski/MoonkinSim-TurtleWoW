@@ -32,7 +32,8 @@ import PlayableClass from './enum/PlayableClass'
 import TargetType from './enum/TargetType'
 
 // let csvFilePath = 'vendor/Classic_Balance_Druidv1.3.csv'
-let csvFilePath = 'vendor/Classic_Balance_Druidv1.4.csv'
+// let csvFilePath = 'vendor/Classic_Balance_Druidv1.4.csv'
+let csvFilePath = 'vendor/Classic_Balance_Druidv1.5.csv'
 if (process.env.TEST && process.env.TEST === '1') {
   csvFilePath = 'vendor/testItems.csv'
 }
@@ -243,6 +244,20 @@ class Item {
     return this.itemOld.Boss !== '' ? this.itemOld.Boss : undefined
   }
 
+  public get itemWorldBoss(): boolean {
+    if (!this.itemBoss) {
+      return false
+    }
+
+    switch (this.itemBoss.toUpperCase()) {
+      case 'LORD KAZZAK':
+      case 'AZUREGOS':
+        return true
+      default:
+        return false
+    }
+  }
+
   public get itemStamina(): number | undefined {
     return toNumber(this.itemOld.Stamina)
   }
@@ -301,7 +316,7 @@ class Item {
     return toNumber(this.itemOld.Score)
   }
 
-  public get itemRank(): PvPRank | undefined {
+  public get itemRank(): PvPRank {
     switch (this.itemLocation) {
       case 'Requires Blood Guard':
         return PvPRank.BloodGuard
@@ -328,7 +343,7 @@ class Item {
       case 'Requires Warlord':
         return PvPRank.Warlord
       default:
-        return undefined
+        return PvPRank.Scout
     }
   }
 
@@ -487,6 +502,7 @@ class Item {
       icon: this.itemIconName,
       location: this.itemLocation,
       boss: this.itemBoss,
+      worldBoss: this.itemWorldBoss,
       faction: this.itemFaction,
       spellDamage: this.itemSpellDamage,
       spellHealing: this.itemSpellHealing,
