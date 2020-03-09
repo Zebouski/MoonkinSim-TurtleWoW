@@ -24,7 +24,6 @@
     "json-query": "^2.2.2",
     "vue": "^2.6.10",
     "vue-class-component": "^7.0.2",
-    "vue-cli-plugin-yaml": "^1.0.1",
     "vue-property-decorator": "^8.3.0"
   },
   "devDependencies": {

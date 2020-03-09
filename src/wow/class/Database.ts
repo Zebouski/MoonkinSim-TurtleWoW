@@ -13,31 +13,14 @@ import Faction from '../enum/Faction'
 import TargetType from '../enum/TargetType'
 import PvPRank from '../enum/PvPRank'
 
-/* these are converted to JSON by webpack at build-time */
-const spells = require('../db/spells.yaml')
-const targets = require('../db/targets.yaml')
-const gear = require('../db/gear.yaml')
-const rawGear = require('../db/rawGear.yaml')
-const testGear = require('../db/testGear.yaml')
-const enchants = require('../db/enchants.yaml')
+import spells from '../db/spells.json'
+import targets from '../db/targets.json'
+import gear from '../db/gear.json'
+import rawGear from '../db/rawGear.json'
+import testGear from '../db/testGear.json'
+import enchants from '../db/enchants.json'
 
 export default class Database {
-  public spells: JSON
-  public targets: JSON
-  public gear: JSON
-  public rawGear: JSON
-  public testGear: JSON
-  public enchants: JSON
-
-  public constructor() {
-    this.spells = spells
-    this.targets = targets
-    this.gear = gear
-    this.rawGear = rawGear
-    this.testGear = testGear
-    this.enchants = enchants
-  }
-
   /* generic query functions */
   public static querySpells(query: string): any {
     return jsonQuery(query, { data: spells }).value

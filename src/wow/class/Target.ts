@@ -1,10 +1,6 @@
-import jsonQuery from 'json-query'
 import Buff from '../enum/Buff'
 import TargetType from '../enum/TargetType'
 import MagicSchool from '../enum/MagicSchool'
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const targets = require('../db/targets.yaml')
 
 /**
  * Object format of targets stored in db/targets.
@@ -68,12 +64,5 @@ export default class Target {
    */
   public get stormStrikeBonus(): number {
     return (this.debuffs & Buff.StormStrike) === Buff.StormStrike ? 1.2 : 1.0
-  }
-
-  /**
-   * Return array of target names.
-   */
-  public static getTargetNames(): JSON {
-    return jsonQuery('.name', { data: targets }).value
   }
 }
