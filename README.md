@@ -3,6 +3,7 @@
   - Allow filtering items by PVP Rank
   - Allow filtering items by World Bosses
   - Support shimmer targets
+  - Various bug fixes
 
 ### Project setup
 ```
