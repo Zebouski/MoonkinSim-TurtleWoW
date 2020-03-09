@@ -451,7 +451,7 @@ export default class Item {
       bonuses.push(`Equip: Increases damage done by Arcane spells and effects by up to ${this._arcaneDamage}.`)
     }
 
-    if (this._arcaneDamage > 0) {
+    if (this._natureDamage > 0) {
       bonuses.push(`Equip: Increases damage done by Nature spells and effects by up to ${this._natureDamage}.`)
     }
 
