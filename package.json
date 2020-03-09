@@ -7,8 +7,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "docs": "typedoc --out dist/docs src",
-    "db": "cross-env scripts/tsrun src/wow/convert-items.ts > src/wow/db/gear.json",
-    "test-db": "cross-env TEST=1 scripts/tsrun src/wow/convert-items.ts > src/wow/db/testGear.json"
+    "db": "cross-env scripts/tsrun src/wow/convert-items.ts > src/wow/db/gear.json"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.12.0",
