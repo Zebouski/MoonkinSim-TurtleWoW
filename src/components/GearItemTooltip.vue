@@ -52,6 +52,11 @@
     <section class="wow-item__bonuses">
       <p v-for="bonus in itemData.bonusesList" :key="bonus" class="bonuses__bonus">{{ bonus }}</p>
     </section>
+
+    <section class="wow-item__info">
+      <p v-if="itemData.location" class="info__level-requirement">Aquired from: {{ itemData.location }}</p>
+      <p v-if="itemData.boss" class="info__level-requirement">{{ itemData.boss }}</p>
+    </section>
   </aside>
 </template>
 
