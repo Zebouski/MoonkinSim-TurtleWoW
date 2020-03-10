@@ -194,6 +194,17 @@ export default class Cast {
     return this.spell.isArcane ? this.target.curseOfShadowResistBonus : 0
   }
 
+  /**
+   * Effect #1	Apply Aura: Mod % Damage Taken (All)
+   * Value: -76%
+   * Effect #2	Apply Aura: Mod % Damage Taken (Frost)
+   * Value: 1099%
+   */
+  public get shimmerBonus(): number {
+    let modifier = this.target.shimmer ? 1 - 0.76 : 1
+    return this.target.shimmer === this.spell.magicSchool ? modifier * 10.99 : modifier
+  }
+
   public get stormStrikeBonus(): number {
     return this.spell.isNature ? this.target.stormStrikeBonus : 1.0
   }
@@ -237,10 +248,6 @@ export default class Cast {
 
   public get baseDmgMultiplier(): number {
     return this.moonFuryBonus * this.improvedMoonfireBonus
-  }
-
-  public get shimmerBonus(): number {
-    return this.target.shimmer === this.spell.magicSchool ? 4.0 : 1.0
   }
 
   public get effectiveDmgMultiplier(): number {
