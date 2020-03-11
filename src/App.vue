@@ -1,8 +1,6 @@
 <template>
   <div id="app">
-    <Header :options="options" />
-    <Content :options="options" />
-    <Footer :options="options" />
+    <Component v-for="component in components" :key="component" :is="component" :options="options"></Component>
   </div>
 </template>
 
@@ -22,6 +20,7 @@ import Content from './components/Content.vue'
   }
 })
 export default class App extends Vue {
+  components: Array<string> = ['Header', 'Content', 'Footer']
   options = wow.constants.defaults
 }
 </script>
