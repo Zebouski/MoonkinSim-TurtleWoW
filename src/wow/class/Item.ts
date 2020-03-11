@@ -24,6 +24,28 @@ export default class Item {
     this.enchantJSON = enchantJSON ? enchantJSON : undefined
   }
 
+  public static calcTargetDamage(targetType: number, targetTypes: number, spellDamage: number): number {
+    if (targetTypes === TargetType.All) {
+      return spellDamage
+    }
+
+    let mySpellDamage = 0
+
+    if ((targetTypes & TargetType.Undead) === TargetType.Undead) {
+      if ((targetType === TargetType.Undead)) {
+        mySpellDamage = spellDamage
+      }
+    }
+
+    if ((targetTypes & TargetType.Demon) === TargetType.Demon) {
+      if ((targetType === TargetType.Demon)) {
+        mySpellDamage = spellDamage
+      }
+    }
+
+    return mySpellDamage
+  }
+
   public static scoreItem(
     item: ItemJSON,
     magicSchool: MagicSchool,
@@ -33,7 +55,16 @@ export default class Item {
   ): number {
     return this.score(
       magicSchool,
-      item.spellDamage ? (item.targetType && item.targetType !== targetType ? 0 : item.spellDamage) : 0,
+      this.calcTargetDamage(
+        targetType,
+        item.targetTypes ? item.targetTypes : TargetType.All,
+        item.spellDamage ? item.spellDamage : 0
+      ),
+      //  item.spellDamage
+      //  ? ((item.targetTypes ? item.targetTypes : TargetType.All) & targetType) !== targetType
+      //    ? 0
+      //    : item.spellDamage
+      //  : 0,
       item.arcaneDamage ? item.arcaneDamage : 0,
       item.natureDamage ? item.natureDamage : 0,
       item.spellHit ? item.spellHit : 0,
@@ -226,8 +257,8 @@ export default class Item {
     return text
   }
 
-  public get targetType(): TargetType | undefined {
-    return this.itemJSON && this.itemJSON.targetType ? this.itemJSON.targetType : undefined
+  public get targetTypes(): TargetType {
+    return this.itemJSON && this.itemJSON.targetTypes ? this.itemJSON.targetTypes : TargetType.All
   }
 
   public get phase(): number {
@@ -436,7 +467,14 @@ export default class Item {
     }
 
     if (this._spellDamage > 0) {
-      if (this.targetType && this.targetType === TargetType.Undead) {
+      if (
+        (this.targetTypes & TargetType.Undead) === TargetType.Undead &&
+        (this.targetTypes & TargetType.Demon) === TargetType.Demon
+      ) {
+        bonuses.push(
+          `Equip: Increases damage done to Undead and Demons by magical spells and effects by up to ${this._spellDamage}.`
+        )
+      } else if ((this.targetTypes & TargetType.Undead) === TargetType.Undead) {
         bonuses.push(
           `Equip: Increases damage done to Undead by magical spells and effects by up to ${this._spellDamage}.`
         )

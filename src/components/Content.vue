@@ -37,7 +37,7 @@
       </div>
     </section>
 
-    <Debug v-bind:class="{ 'is-hidden': !options.debug }" :data="spellCast" />
+    <Debug v-bind:class="{ 'is-hidden': !options.debug }" :data="debugObj" />
   </div>
 </template>
 
@@ -70,6 +70,13 @@ const Props = Vue.extend({
 export default class Content extends Props {
   wow = wow
 
+  get debugObj() {
+    return {
+      itemSet: wow.Database.itemSet('Bloodvine Vest'),
+      spellCast: this.spellCast
+    }
+  }
+
   calcBisGear(
     phase: number,
     faction: number,
@@ -94,7 +101,7 @@ export default class Content extends Props {
       )
     }
 
-    let bisRings = wow.Database.getBestInSlotRings(
+    let bisTrinkets = wow.Database.getBestInSlotTrinkets(
       phase,
       faction,
       pvpRank,
@@ -105,7 +112,7 @@ export default class Content extends Props {
       spellCritWeight
     )
 
-    let bisTrinkets = wow.Database.getBestInSlotTrinkets(
+    let bisRings = wow.Database.getBestInSlotRings(
       phase,
       faction,
       pvpRank,

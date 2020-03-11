@@ -20,7 +20,7 @@ export default interface ItemJSON {
   bop?: boolean
   unique?: boolean
   allowableClasses?: PlayableClass[]
-  targetType?: TargetType
+  targetTypes?: TargetType
   phase?: number
   pvpRank: PvPRank
   icon?: string

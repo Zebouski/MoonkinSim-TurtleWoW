@@ -18,6 +18,7 @@ import targets from '../db/targets.json'
 import gear from '../db/gear.json'
 import rawGear from '../db/rawGear.json'
 import enchants from '../db/enchants.json'
+import itemSets from '../db/itemSets.json'
 
 export default class Database {
   /* generic query functions */
@@ -39,6 +40,10 @@ export default class Database {
 
   public static queryEnchants(query: string): any {
     return jsonQuery(query, { data: enchants }).value
+  }
+
+  public static queryItemSets(query: string): any {
+    return jsonQuery(query, { data: itemSets }).value
   }
 
   /* list functions */
@@ -97,6 +102,18 @@ export default class Database {
 
   public static enchantsBySlot(slot: ItemSlot): any {
     return this.queryEnchants(`[*slot=${slot}]`)
+  }
+
+  public static itemSet(name: string): Object | undefined {
+    let itemSets = this.queryItemSets(``)
+    for (let itemSet of itemSets) {
+      for (let item of itemSet.items) {
+        if (item === name) {
+          return itemSet
+        }
+      }
+    }
+    return undefined
   }
 
   /****************/

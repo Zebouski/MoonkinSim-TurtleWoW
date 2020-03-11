@@ -420,8 +420,10 @@ class Item {
     return toNumber(JSON.parse(`{ ${this._wowHeadItem['jsonEquip'][0]} }`).mledps)
   }
 
-  public get itemTargetType(): number | undefined {
-    if (this._wowHeadItem['htmlTooltip'][0].includes('Increases damage done to Undead')) {
+  public get itemTargetTypes(): number | undefined {
+    if (this._wowHeadItem['htmlTooltip'][0].includes('Undead and Demons')) {
+      return TargetType.Undead | TargetType.Demon
+    } else if (this._wowHeadItem['htmlTooltip'][0].includes('Increases damage done to Undead')) {
       return TargetType.Undead
     }
     return undefined
@@ -496,7 +498,7 @@ class Item {
       bop: this.itemBop,
       unique: this.itemUnique,
       allowableClasses: this.allowableClasses,
-      targetType: this.itemTargetType,
+      targetTypes: this.itemTargetTypes,
       phase: this.itemPhase,
       pvpRank: this.itemRank,
       icon: this.itemIconName,
