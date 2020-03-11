@@ -269,6 +269,7 @@ class Item {
       case `BLACKWING LAIR`:
       case `ZUL'GURUB`:
       case `TEMPLE OF AHN'QIRAJ`:
+      case `RUINS OF AHN'QIRAJ`:
       case `NAXXRAMAS`:
         return true
       default:

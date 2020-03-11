@@ -25,7 +25,7 @@
     </div>
     <div class="columns is-centered is-vcentered is-mobile">
       <div class="column is-narrow">
-        <b-field label="PvP Rank" label-position="on-border">
+        <b-field label="PvP" label-position="on-border">
           <b-select class="is-size-7-mobile" v-model="options.pvpRank">
             <option v-for="rank in pvpRankList" :key="rank" v-bind:value="rank">
               {{ rank }}
