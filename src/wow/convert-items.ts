@@ -30,6 +30,7 @@ import ItemSlot from './enum/ItemSlot'
 import PvPRank from './enum/PvPRank'
 import PlayableClass from './enum/PlayableClass'
 import TargetType from './enum/TargetType'
+import ItemOnUseJSON from './interface/ItemOnUseJSON'
 
 // let csvFilePath = 'vendor/Classic_Balance_Druidv1.3.csv'
 // let csvFilePath = 'vendor/Classic_Balance_Druidv1.4.csv'
@@ -258,6 +259,23 @@ class Item {
     }
   }
 
+  public get itemRaid(): boolean {
+    if (!this.itemLocation) {
+      return false
+    }
+
+    switch (this.itemLocation.toUpperCase()) {
+      case `MOLTEN CORE`:
+      case `BLACKWING LAIR`:
+      case `ZUL'GURUB`:
+      case `TEMPLE OF AHN'QIRAJ`:
+      case `NAXXRAMAS`:
+        return true
+      default:
+        return false
+    }
+  }
+
   public get itemStamina(): number | undefined {
     return toNumber(this.itemOld.Stamina)
   }
@@ -475,6 +493,13 @@ class Item {
     return classes
   }
 
+  public get itemOnUse(): ItemOnUseJSON | undefined {
+    if (this._wowHeadItem['htmlTooltip'][0].includes('Use:')) {
+      console.warn('heyo we got activated trinkets bitch')
+    }
+    return undefined
+  }
+
   public get newItem(): ItemJSON {
     /*
     let item: ItemJSON = {
@@ -504,6 +529,7 @@ class Item {
       icon: this.itemIconName,
       location: this.itemLocation,
       boss: this.itemBoss,
+      raid: this.itemRaid,
       worldBoss: this.itemWorldBoss,
       faction: this.itemFaction,
       spellDamage: this.itemSpellDamage,
@@ -522,7 +548,8 @@ class Item {
       minDmg: this.itemMinDmg,
       maxDmg: this.itemMaxDmg,
       speed: this.itemSpeed,
-      dps: this.itemDps
+      dps: this.itemDps,
+      onUse: this.itemOnUse
     }
   }
 }

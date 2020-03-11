@@ -29,6 +29,7 @@ export default {
     phase: 3,
     race: PlayableRace.Tauren,
     pvpRank: 1,
+    raids: true,
     worldBosses: false,
     spellName: 'Starfire Rank 6',
     talents: {

@@ -32,13 +32,13 @@ export default class Item {
     let mySpellDamage = 0
 
     if ((targetTypes & TargetType.Undead) === TargetType.Undead) {
-      if ((targetType === TargetType.Undead)) {
+      if (targetType === TargetType.Undead) {
         mySpellDamage = spellDamage
       }
     }
 
     if ((targetTypes & TargetType.Demon) === TargetType.Demon) {
-      if ((targetType === TargetType.Demon)) {
+      if (targetType === TargetType.Demon) {
         mySpellDamage = spellDamage
       }
     }

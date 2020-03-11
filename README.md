@@ -1,7 +1,6 @@
 ### [Moonkin Calculator](https://kmmiles.gitlab.io/moonkin-calc/)
 ##### Version 0.2.1
-  - Allow filtering items by PVP Rank
-  - Allow filtering items by World Bosses
+  - Filter items by Raids, World Bosses and PVP Rank
   - Support shimmer targets
   - Show boss / location on tooltips
   - Various bug fixes

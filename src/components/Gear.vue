@@ -35,8 +35,15 @@
       </div>
       <div class="column is-narrow">
         <div class="field">
+          <b-checkbox class="is-size-7-mobile" v-model="options.raids">
+            Raids
+          </b-checkbox>
+        </div>
+      </div>
+      <div class="column is-narrow">
+        <div class="field">
           <b-checkbox class="is-size-7-mobile" v-model="options.worldBosses">
-            Include World Bosses
+            World Bosses
           </b-checkbox>
         </div>
       </div>

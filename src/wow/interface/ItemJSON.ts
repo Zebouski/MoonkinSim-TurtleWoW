@@ -7,6 +7,7 @@ import PlayableClass from '../enum/PlayableClass'
 import Faction from '../enum/Faction'
 import PvPRank from '../enum/PvPRank'
 import TargetType from '../enum/TargetType'
+import ItemOnUseJSON from './ItemOnUseJSON'
 
 export default interface ItemJSON {
   id?: number
@@ -26,6 +27,7 @@ export default interface ItemJSON {
   icon?: string
   location?: string
   boss?: string
+  raid: boolean
   worldBoss: boolean
   faction?: Faction
   score?: number
@@ -46,4 +48,5 @@ export default interface ItemJSON {
   maxDmg?: number
   speed?: number
   dps?: number
+  onUse?: ItemOnUseJSON
 }
