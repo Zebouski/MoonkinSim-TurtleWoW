@@ -9,7 +9,7 @@
                 <div class="column"></div>
                 <div class="column is-narrow">
                   <b-field label="Spell Name" label-position="on-border">
-                    <b-select class="is-size-7-mobile" v-model="options.spellName">
+                    <b-select class="is-size-7-mobile" v-model="options.spell.name">
                       <option v-for="name in spellList" :key="name" v-bind:value="name">
                         {{ name }}
                       </option>
@@ -18,7 +18,7 @@
                 </div>
                 <div class="column is-narrow">
                   <b-field label="Race" label-position="on-border">
-                    <b-select class="is-size-7-mobile" v-model.number="options.race">
+                    <b-select class="is-size-7-mobile" v-model.number="options.character.race">
                       <option value="6">Tauren</option>
                       <option value="4">Night-elf</option>
                     </b-select>

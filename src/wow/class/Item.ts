@@ -14,17 +14,17 @@ import Faction from '../enum/Faction'
 import TargetType from '../enum/TargetType'
 
 export default class Item {
-  public _slot: ItemSlot
-  public itemJSON: ItemJSON | undefined
-  public enchantJSON: EnchantJSON | undefined
+  _slot: ItemSlot
+  itemJSON: ItemJSON | undefined
+  enchantJSON: EnchantJSON | undefined
 
-  public constructor(slot: ItemSlot, itemJSON?: ItemJSON, enchantJSON?: EnchantJSON) {
+  constructor(slot: ItemSlot, itemJSON?: ItemJSON, enchantJSON?: EnchantJSON) {
     this._slot = slot
     this.itemJSON = itemJSON ? itemJSON : undefined
     this.enchantJSON = enchantJSON ? enchantJSON : undefined
   }
 
-  public static calcTargetDamage(targetType: number, targetTypes: number, spellDamage: number): number {
+  static calcTargetDamage(targetType: number, targetTypes: number, spellDamage: number): number {
     if (targetTypes === TargetType.All) {
       return spellDamage
     }
@@ -46,7 +46,7 @@ export default class Item {
     return mySpellDamage
   }
 
-  public static scoreItem(
+  static scoreItem(
     item: ItemJSON,
     magicSchool: MagicSchool,
     targetType: TargetType,
@@ -75,7 +75,7 @@ export default class Item {
     )
   }
 
-  public static scoreEnchant(
+  static scoreEnchant(
     enchant: EnchantJSON,
     magicSchool: MagicSchool,
     spellHitWeight: number,
@@ -94,7 +94,7 @@ export default class Item {
     )
   }
 
-  public static score(
+  static score(
     magicSchool: MagicSchool,
     spellDamage: number,
     arcaneDamage: number,
@@ -115,15 +115,15 @@ export default class Item {
     )
   }
 
-  public get id(): number {
+  get id(): number {
     return this.itemJSON && this.itemJSON.id ? this.itemJSON.id : 0
   }
 
-  public get name(): string {
+  get name(): string {
     return this.itemJSON && this.itemJSON.name ? this.itemJSON.name : ''
   }
 
-  public get class(): ItemClass {
+  get class(): ItemClass {
     if (this.itemJSON && this.itemJSON.class) {
       return this.itemJSON.class
     }
@@ -138,15 +138,15 @@ export default class Item {
     }
   }
 
-  public get isWeapon(): boolean {
+  get isWeapon(): boolean {
     return this.class === ItemClass.Weapon
   }
 
-  public get isArmor(): boolean {
+  get isArmor(): boolean {
     return this.class === ItemClass.Armor
   }
 
-  public get subclass(): WeaponSubclass | ArmorSubclass {
+  get subclass(): WeaponSubclass | ArmorSubclass {
     if (this.itemJSON && this.itemJSON.subclass) {
       return this.itemJSON.subclass
     }
@@ -158,7 +158,7 @@ export default class Item {
     return ArmorSubclass.Empty
   }
 
-  public get subclassName(): string {
+  get subclassName(): string {
     if (this.class === ItemClass.Armor) {
       switch (this.subclass) {
         default:
@@ -174,11 +174,11 @@ export default class Item {
     }
   }
 
-  public get slot(): ItemSlot {
+  get slot(): ItemSlot {
     return this.itemJSON ? this.itemJSON.slot : this._slot
   }
 
-  public get slotName(): string {
+  get slotName(): string {
     switch (this.slot) {
       case ItemSlot.Trinket2:
         return ItemSlot[ItemSlot.Trinket]
@@ -212,39 +212,39 @@ export default class Item {
     }
   }
 
-  public isEmpty(): boolean {
+  isEmpty(): boolean {
     return this.itemJSON ? false : true
   }
 
-  public get quality(): ItemQuality {
+  get quality(): ItemQuality {
     return this.itemJSON && this.itemJSON.quality ? this.itemJSON.quality : ItemQuality.Poor
   }
 
-  public get qualityName(): string {
+  get qualityName(): string {
     return ItemQuality[this.quality]
   }
 
-  public get level(): number {
+  get level(): number {
     return this.itemJSON && this.itemJSON.level ? this.itemJSON.level : 0
   }
 
-  public get reqLevel(): number {
+  get reqLevel(): number {
     return this.itemJSON && this.itemJSON.reqLevel ? this.itemJSON.reqLevel : 0
   }
 
-  public get isBop(): boolean {
+  get isBop(): boolean {
     return this.itemJSON && this.itemJSON.bop ? true : false
   }
 
-  public get isUnique(): boolean {
+  get isUnique(): boolean {
     return this.itemJSON && this.itemJSON.unique ? this.itemJSON.unique : false
   }
 
-  public get allowableClasses(): PlayableClass[] {
+  get allowableClasses(): PlayableClass[] {
     return this.itemJSON && this.itemJSON.allowableClasses ? this.itemJSON.allowableClasses : []
   }
 
-  public get allowableClassesText(): string {
+  get allowableClassesText(): string {
     let ac = this.allowableClasses
     let text = ''
 
@@ -257,19 +257,19 @@ export default class Item {
     return text
   }
 
-  public get targetTypes(): TargetType {
+  get targetTypes(): TargetType {
     return this.itemJSON && this.itemJSON.targetTypes ? this.itemJSON.targetTypes : TargetType.All
   }
 
-  public get phase(): number {
+  get phase(): number {
     return this.itemJSON && this.itemJSON.phase ? this.itemJSON.phase : 1
   }
 
-  public get pvpRank(): PvPRank {
+  get pvpRank(): PvPRank {
     return this.itemJSON && this.itemJSON.pvpRank ? this.itemJSON.pvpRank : PvPRank.Grunt
   }
 
-  public get icon(): string {
+  get icon(): string {
     let emptySlot = `${this.slotName.split(' ').join('')}`
     if (emptySlot === 'Offhand') {
       emptySlot = 'OffHand'
@@ -277,171 +277,171 @@ export default class Item {
     return this.itemJSON ? `${this.itemJSON.icon}.jpg` : `${emptySlot}.jpg`
   }
 
-  public get iconFullPath(): string {
+  get iconFullPath(): string {
     return process.env.BASE_URL + 'wow-icons/' + this.icon
   }
 
-  public get location(): string {
+  get location(): string {
     return this.itemJSON && this.itemJSON.location ? this.itemJSON.location : ''
   }
 
-  public get boss(): string {
+  get boss(): string {
     return this.itemJSON && this.itemJSON.boss ? this.itemJSON.boss : ''
   }
 
-  public get worldBoss(): boolean {
+  get worldBoss(): boolean {
     return this.itemJSON && this.itemJSON.worldBoss === true ? true : false
   }
 
-  public get faction(): Faction {
+  get faction(): Faction {
     return this.itemJSON && this.itemJSON.faction ? this.itemJSON.faction : Faction.Horde
   }
 
-  public get score(): number {
+  get score(): number {
     return this.itemJSON && this.itemJSON.score ? this.itemJSON.score : 0
   }
 
-  public get bindText(): string {
+  get bindText(): string {
     return 'Binds ' + (this.isBop ? 'when picked up' : 'when equipped')
   }
 
-  public get _stamina(): number {
+  get _stamina(): number {
     return this.itemJSON && this.itemJSON.stamina ? this.itemJSON.stamina : 0
   }
 
-  public get stamina(): number {
+  get stamina(): number {
     return this._stamina + (this.enchantJSON ? this.enchantJSON.stamina : 0)
   }
 
-  public get _spirit(): number {
+  get _spirit(): number {
     return this.itemJSON && this.itemJSON.spirit ? this.itemJSON.spirit : 0
   }
 
-  public get spirit(): number {
+  get spirit(): number {
     return this._spirit + (this.enchantJSON ? this.enchantJSON.spirit : 0)
   }
 
-  public get _spellHealing(): number {
+  get _spellHealing(): number {
     return this.itemJSON && this.itemJSON.spellHealing ? this.itemJSON.spellHealing : 0
   }
 
-  public get spellHealing(): number {
+  get spellHealing(): number {
     return this._spellHealing + (this.enchantJSON && this.enchantJSON.spellHealing ? this.enchantJSON.spellHealing : 0)
   }
 
-  public get _spellDamage(): number {
+  get _spellDamage(): number {
     return this.itemJSON && this.itemJSON.spellDamage ? this.itemJSON.spellDamage : 0
   }
 
-  public get spellDamage(): number {
+  get spellDamage(): number {
     return this._spellDamage + (this.enchantJSON ? this.enchantJSON.spellDamage : 0)
   }
 
-  public get _arcaneDamage(): number {
+  get _arcaneDamage(): number {
     return this.itemJSON && this.itemJSON.arcaneDamage ? this.itemJSON.arcaneDamage : 0
   }
 
-  public get arcaneDamage(): number {
+  get arcaneDamage(): number {
     return this._arcaneDamage + (this.enchantJSON ? this.enchantJSON.arcaneDamage : 0)
   }
 
-  public get _natureDamage(): number {
+  get _natureDamage(): number {
     return this.itemJSON && this.itemJSON.natureDamage ? this.itemJSON.natureDamage : 0
   }
 
-  public get natureDamage(): number {
+  get natureDamage(): number {
     return this._natureDamage + (this.enchantJSON ? this.enchantJSON.natureDamage : 0)
   }
 
-  public get _spellHit(): number {
+  get _spellHit(): number {
     return this.itemJSON && this.itemJSON.spellHit ? this.itemJSON.spellHit : 0
   }
 
-  public get spellHit(): number {
+  get spellHit(): number {
     return this._spellHit + (this.enchantJSON ? this.enchantJSON.spellHit : 0)
   }
 
-  public get _spellCrit(): number {
+  get _spellCrit(): number {
     return this.itemJSON && this.itemJSON.spellCrit ? this.itemJSON.spellCrit : 0
   }
 
-  public get spellCrit(): number {
+  get spellCrit(): number {
     return this._spellCrit + (this.enchantJSON ? this.enchantJSON.spellCrit : 0)
   }
 
-  public get _intellect(): number {
+  get _intellect(): number {
     return this.itemJSON && this.itemJSON.intellect ? this.itemJSON.intellect : 0
   }
 
-  public get intellect(): number {
+  get intellect(): number {
     return this._intellect + (this.enchantJSON ? this.enchantJSON.intellect : 0)
   }
 
-  public get _mp5(): number {
+  get _mp5(): number {
     return this.itemJSON && this.itemJSON.mp5 ? this.itemJSON.mp5 : 0
   }
 
-  public get mp5(): number {
+  get mp5(): number {
     return this._mp5 + (this.enchantJSON ? this.enchantJSON.mp5 : 0)
   }
 
-  public get _armor(): number {
+  get _armor(): number {
     return this.itemJSON && this.itemJSON.armor ? this.itemJSON.armor : 0
   }
 
-  public get armor(): number {
+  get armor(): number {
     return this._armor + (this.enchantJSON && this.enchantJSON.armor ? this.enchantJSON.armor : 0)
   }
 
-  public get durability(): number {
+  get durability(): number {
     return this.itemJSON && this.itemJSON.durability ? this.itemJSON.durability : 0
   }
 
-  public get minDmg(): number {
+  get minDmg(): number {
     return this.itemJSON && this.itemJSON.minDmg ? this.itemJSON.minDmg : 0
   }
 
-  public get maxDmg(): number {
+  get maxDmg(): number {
     return this.itemJSON && this.itemJSON.maxDmg ? this.itemJSON.maxDmg : 0
   }
 
-  public get dmgText(): string {
+  get dmgText(): string {
     let minDmg = this.itemJSON && this.itemJSON.minDmg ? this.itemJSON.minDmg.toFixed(0) : 0
     let maxDmg = this.itemJSON && this.itemJSON.maxDmg ? this.itemJSON.maxDmg.toFixed(0) : 0
     return `${minDmg} - ${maxDmg}`
   }
 
-  public get speed(): number {
+  get speed(): number {
     return this.itemJSON && this.itemJSON.speed ? this.itemJSON.speed : 0
   }
 
-  public get speedText(): string {
+  get speedText(): string {
     if (!this.itemJSON || !this.itemJSON.speed) {
       return ''
     }
     return `${parseFloat(this.itemJSON.speed.toFixed(1)).toFixed(2)}`
   }
 
-  public get dps(): number {
+  get dps(): number {
     return this.itemJSON && this.itemJSON.dps ? this.itemJSON.dps : 0
   }
 
-  public get dpsText(): string {
+  get dpsText(): string {
     if (!this.itemJSON || !this.itemJSON.dps) {
       return ''
     }
     return `${parseFloat(this.itemJSON.dps.toFixed(1)).toFixed(2)}`
   }
 
-  public get enchantText(): string {
+  get enchantText(): string {
     return this.enchantJSON ? this.enchantJSON.text : 'No Enchant'
   }
 
-  public get enchantClass(): string {
+  get enchantClass(): string {
     return this.enchantJSON ? 'uncommon' : 'poor'
   }
 
-  public get bonusesList(): string[] {
+  get bonusesList(): string[] {
     let bonuses: string[] = []
     if (
       this.name.includes(`of Arcane Wrath`) ||
@@ -500,7 +500,7 @@ export default class Item {
     return bonuses
   }
 
-  public get statsList(): Object[] {
+  get statsList(): Object[] {
     let stats: Object[] = []
     if (this.name.includes(`of Arcane Wrath`)) {
       stats.push({ stat: 'Arcane Damage', value: this._arcaneDamage, type: 'primary' })
@@ -531,20 +531,20 @@ export default class Item {
     return stats
   }
 
-  public get chanceOnHitList(): string[] {
+  get chanceOnHitList(): string[] {
     let arr: string[] = []
 
     return arr
   }
 
-  public static sortScoreAsc(a: ItemJSON | EnchantJSON, b: ItemJSON | EnchantJSON) {
+  static sortScoreAsc(a: ItemJSON | EnchantJSON, b: ItemJSON | EnchantJSON) {
     if (a.score === undefined || b.score === undefined) {
       return 0
     }
     return a.score - b.score
   }
 
-  public static sortScoreDes(a: ItemJSON | EnchantJSON, b: ItemJSON | EnchantJSON) {
+  static sortScoreDes(a: ItemJSON | EnchantJSON, b: ItemJSON | EnchantJSON) {
     if (a.score === undefined || b.score === undefined) {
       return 0
     }

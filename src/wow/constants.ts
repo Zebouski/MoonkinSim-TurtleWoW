@@ -1,6 +1,9 @@
 /* constants */
 import TargetType from './enum/TargetType'
 import PlayableRace from './enum/PlayableRace'
+import PlayableClass from './enum/PlayableClass'
+import Gender from './enum/Gender'
+import Options from './interface/Options'
 
 export default {
   globalCoolDown: 1.5,
@@ -23,37 +26,47 @@ export default {
   baseSpellCrit: 1.8,
   baseSpellCritMultiplier: 1.5,
   castTimePenalty: 0.05, // This is an artifact from Ayz's spell damage calculator. No one knows what it is. Human factor? Latency factor?
+  unmitigatableBossResistance: 24,
 
   defaults: {
     debug: false,
     phase: 3,
-    race: PlayableRace.Tauren,
-    pvpRank: 1,
     raids: true,
     worldBosses: false,
-    spellName: 'Starfire Rank 6',
-    talents: {
-      naturesGraceRank: 1,
-      moonFuryRank: 5,
-      vengeanceRank: 5,
-      improvedWrathRank: 5,
-      improvedStarfireRank: 5,
-      improvedMoonfireRank: 5
+    combatLength: 30,
+    character: {
+      level: 60,
+      gender: Gender.Male,
+      race: PlayableRace.Tauren,
+      class: PlayableClass.Druid,
+      pvpRank: 1,
+      talents: {
+        naturesGraceRank: 1,
+        moonFuryRank: 5,
+        vengeanceRank: 5,
+        improvedWrathRank: 5,
+        improvedStarfireRank: 5,
+        improvedMoonfireRank: 5
+      },
+      buffs: [
+        'MoonkinAura',
+        'FlaskOfSupremePower',
+        'GreaterArcaneElixir',
+        'CerebralCortexCompound',
+        'RunnTumTuberSurprise',
+        'RallyingCryOfTheDragonSlayer',
+        'SlipkiksSavvy',
+        'ArcaneBrilliance',
+        'SongflowerSerenade',
+        'BlessingOfKings',
+        'ImprovedGiftOfTheWild'
+      ]
     },
-    buffs: [
-      'MoonkinAura',
-      'FlaskOfSupremePower',
-      'GreaterArcaneElixir',
-      'CerebralCortexCompound',
-      'RunnTumTuberSurprise',
-      'RallyingCryOfTheDragonSlayer',
-      'SlipkiksSavvy',
-      'ArcaneBrilliance',
-      'SongflowerSerenade',
-      'BlessingOfKings',
-      'ImprovedGiftOfTheWild'
-    ],
+    spell: {
+      name: 'Starfire Rank 6'
+    },
     target: {
+      level: 63,
       shimmer: 0,
       type: TargetType.Elemental,
       spellResistance: 75,

@@ -10,10 +10,10 @@ import MagicSchool from '../enum/MagicSchool'
  * such as wowhead.
  */
 export default class Spell {
-  public name: string
-  public spellJSON: SpellJSON
+  name: string
+  spellJSON: SpellJSON
 
-  public constructor(name: string) {
+  constructor(name: string) {
     this.name = name
     this.spellJSON = Database.spell(name)
   }
@@ -21,141 +21,145 @@ export default class Spell {
   /**
    * Return base (short) name, parsed from name.
    */
-  public get baseName(): string {
+  get baseName(): string {
     return this.spellJSON.name.split(' ')[0]
   }
 
   /**
    * Spell is Starfire
    */
-  public get isStarfire(): boolean {
+  get isStarfire(): boolean {
     return this.baseName.toUpperCase() === 'STARFIRE'
   }
 
   /**
    * Spell is Warth
    */
-  public get isWrath(): boolean {
+  get isWrath(): boolean {
     return this.baseName.toUpperCase() === 'WRATH'
   }
 
   /**
    * Spell is Moonfire
    */
-  public get isMoonfire(): boolean {
+  get isMoonfire(): boolean {
     return this.baseName.toUpperCase() === 'MOONFIRE'
   }
 
   /**
    * Return spell rank, parsed from name.
    */
-  public get rank(): string {
+  get rank(): string {
     return this.spellJSON.name.split(' ')[2]
   }
 
   /**
    * Return spell type (direct, periodic or hybrid)
    */
-  public get type(): string {
+  get type(): string {
     return this.spellJSON.type.toUpperCase()
   }
 
   /**
    * Return spell reqLvl, unmodified.
    */
-  public get reqLvl(): number {
+  get reqLvl(): number {
     return this.spellJSON.reqLvl
   }
 
   /**
    * Return cast time, limited to globalCoolDown FIXME: dont limit to gcd here
    */
-  public get castTime(): number {
+  get castTime(): number {
     return Math.max(constants.globalCoolDown, this.spellJSON.castTime)
   }
 
   /**
    * Return spell magicSchool, unmodified.
    */
-  public get magicSchool(): MagicSchool {
+  get magicSchool(): MagicSchool {
     return this.spellJSON.magicSchool
   }
 
-  public get magicSchoolText(): string {
+  get magicSchoolText(): string {
     return MagicSchool[this.spellJSON.magicSchool]
   }
 
   /**
    * is spell nature damage?
    */
-  public get isNature(): boolean {
+  get isNature(): boolean {
     return this.magicSchool === MagicSchool.Nature
   }
 
   /**
    * is spell arcane damage?
    */
-  public get isArcane(): boolean {
+  get isArcane(): boolean {
     return this.magicSchool === MagicSchool.Arcane
   }
 
   /**
    * Return spell range, unmodified.
    */
-  public get range(): number {
+  get range(): number {
     return this.spellJSON.range
   }
 
   /**
    * Return mana cost, unmodified.
    */
-  public get manaCost(): number {
+  get manaCost(): number {
     return this.spellJSON.manaCost
   }
 
   /**
    * Return spell minimum damage, unmodified.
    */
-  public get minDmg(): number {
+  get minDmg(): number {
     return this.spellJSON.minDmg ? this.spellJSON.minDmg : 0
   }
 
   /**
    * Return spell max damage, unmodified.
    */
-  public get maxDmg(): number {
+  get maxDmg(): number {
     return this.spellJSON.maxDmg ? this.spellJSON.maxDmg : 0
   }
 
   /**
    * avg spell damage (minDmg + maxDmg) / 2.
    */
-  public get avgDmg(): number {
+  get avgDmg(): number {
     return ((this.minDmg ? this.minDmg : 0) + (this.maxDmg ? this.maxDmg : 0)) / 2
   }
 
-  public get tickDmg(): number {
+  get tickDmg(): number {
     return this.spellJSON.tickDmg ? this.spellJSON.tickDmg : 0
   }
 
-  public get tickRate(): number {
+  get tickRate(): number {
     return this.spellJSON.tickRate ? this.spellJSON.tickRate : 0
   }
 
-  public get ticks(): number {
+  get ticks(): number {
     return this.duration > 0 && this.tickRate > 0 ? this.duration / this.tickRate : 0
   }
 
-  public get duration(): number {
+  get duration(): number {
     return this.spellJSON.duration ? this.spellJSON.duration : 0
   }
 
-  public get periodicDmg(): number {
+  get periodicDmg(): number {
     return this.tickDmg * (this.duration / this.tickRate)
   }
 
-  public get secondaryEffect(): string | undefined {
+  get secondaryEffect(): string | undefined {
     return this.spellJSON.secondary
+  }
+
+  get isBinary(): boolean {
+    return this.secondaryEffect && this.secondaryEffect !== '' ? true : false
   }
 
   /**
@@ -166,7 +170,7 @@ export default class Spell {
    *
    * Source: https://classicwow.live/guides/670/ozgar-s-downranking-guide-tool
    */
-  public get coefficient(): SpellCoefficient {
+  get coefficient(): SpellCoefficient {
     const baseDirectCoefficient = this.castTime / 3.5
     const spellLevelPenalty = this.reqLvl < 20 ? 1 - (20 - this.reqLvl) * 0.0375 : 0
     const secondaryEffectPenalty = this.secondaryEffect ? 0.05 : 0

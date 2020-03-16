@@ -3,26 +3,46 @@
     <div class="columns is-mobile">
       <div class="column">
         <b-field label="Moonfury" label-position="on-border">
-          <input class="input is-size-7-mobile" type="number" v-model.number="options.talents.moonFuryRank" />
+          <input class="input is-size-7-mobile" type="number" v-model.number="options.character.talents.moonFuryRank" />
         </b-field>
 
         <b-field label="Vengeance" label-position="on-border">
-          <input class="input is-size-7-mobile" type="number" v-model.number="options.talents.vengeanceRank" />
+          <input
+            class="input is-size-7-mobile"
+            type="number"
+            v-model.number="options.character.talents.vengeanceRank"
+          />
         </b-field>
 
         <b-field label="Imp. Wrath" label-position="on-border">
-          <input class="input is-size-7-mobile" type="number" v-model.number="options.talents.improvedWrathRank" />
+          <input
+            class="input is-size-7-mobile"
+            type="number"
+            v-model.number="options.character.talents.improvedWrathRank"
+          />
         </b-field>
       </div>
       <div class="column">
         <b-field label="Imp. Starfire" label-position="on-border">
-          <input class="input is-size-7-mobile" type="number" v-model.number="options.talents.improvedStarfireRank" />
+          <input
+            class="input is-size-7-mobile"
+            type="number"
+            v-model.number="options.character.talents.improvedStarfireRank"
+          />
         </b-field>
         <b-field label="Natures Grace" label-position="on-border">
-          <input class="input is-size-7-mobile" type="number" v-model.number="options.talents.naturesGraceRank" />
+          <input
+            class="input is-size-7-mobile"
+            type="number"
+            v-model.number="options.character.talents.naturesGraceRank"
+          />
         </b-field>
         <b-field label="Imp. Moonfire" label-position="on-border">
-          <input class="input is-size-7-mobile" type="number" v-model.number="options.talents.improvedMoonfireRank" />
+          <input
+            class="input is-size-7-mobile"
+            type="number"
+            v-model.number="options.character.talents.improvedMoonfireRank"
+          />
         </b-field>
       </div>
     </div>

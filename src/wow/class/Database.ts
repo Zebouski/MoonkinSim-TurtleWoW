@@ -22,89 +22,89 @@ import itemSets from '../db/itemSets.json'
 
 export default class Database {
   /* generic query functions */
-  public static querySpells(query: string): any {
+  static querySpells(query: string): any {
     return jsonQuery(query, { data: spells }).value
   }
 
-  public static queryTargets(query: string): any {
+  static queryTargets(query: string): any {
     return jsonQuery(query, { data: targets }).value
   }
 
-  public static queryGear(query: string): any {
+  static queryGear(query: string): any {
     return jsonQuery(query, { data: gear }).value
   }
 
-  public static queryRawGear(query: string): any {
+  static queryRawGear(query: string): any {
     return jsonQuery(query, { data: rawGear }).value
   }
 
-  public static queryEnchants(query: string): any {
+  static queryEnchants(query: string): any {
     return jsonQuery(query, { data: enchants }).value
   }
 
-  public static queryItemSets(query: string): any {
+  static queryItemSets(query: string): any {
     return jsonQuery(query, { data: itemSets }).value
   }
 
   /* list functions */
 
-  public static phaseList(): JSON {
+  static phaseList(): JSON {
     return this.queryRawGear('.phase')
   }
 
-  public static spellList(): JSON {
+  static spellList(): JSON {
     return this.querySpells('.name')
   }
 
-  public static spellListByPhase(phase: number): JSON {
+  static spellListByPhase(phase: number): JSON {
     let spells = this.querySpells(`[* phase <= ${phase}].name`)
     return spells
   }
 
-  public static targetList(): JSON {
+  static targetList(): JSON {
     return this.queryTargets('.name')
   }
 
-  public static enchantList(): JSON {
+  static enchantList(): JSON {
     return this.queryEnchants('.name')
   }
 
   /* single item fetch functions */
 
-  public static spell(name: string): SpellJSON {
+  static spell(name: string): SpellJSON {
     return this.querySpells(`[name=${name}]`)
   }
 
-  public static target(name: string): JSON {
+  static target(name: string): JSON {
     return this.queryTargets(`[name=${name}]`)
   }
 
-  public static enchant(name: string): EnchantJSON {
+  static enchant(name: string): EnchantJSON {
     return this.queryEnchants(`[name=${name}]`)
   }
 
-  public static rawGear(phase: number): RawGearJSON {
+  static rawGear(phase: number): RawGearJSON {
     return this.queryRawGear(`[phase=${phase}]`)
   }
 
-  public static gearById(id: number): ItemJSON {
+  static gearById(id: number): ItemJSON {
     return this.queryGear(`[id=${id}]`)
   }
 
-  public static gearByName(name: string): ItemJSON {
+  static gearByName(name: string): ItemJSON {
     return this.queryGear(`[name=${name}]`)
   }
 
   /* multiple item fetch functions */
-  public static gearBySlot(slot: ItemSlot): any {
+  static gearBySlot(slot: ItemSlot): any {
     return this.queryGear(`[*slot=${slot}]`)
   }
 
-  public static enchantsBySlot(slot: ItemSlot): any {
+  static enchantsBySlot(slot: ItemSlot): any {
     return this.queryEnchants(`[*slot=${slot}]`)
   }
 
-  public static itemSet(name: string): Object | undefined {
+  static itemSet(name: string): Object | undefined {
     let itemSets = this.queryItemSets(``)
     for (let itemSet of itemSets) {
       for (let item of itemSet.items) {
@@ -117,7 +117,11 @@ export default class Database {
   }
 
   /****************/
-  public static getBestInSlotTrinkets(
+  static isUniqueEquip(itemJSON: ItemJSON) {
+    return itemJSON.unique || (itemJSON.boss && itemJSON.boss.includes('Quest:')) ? true : false
+  }
+
+  static getBestInSlotTrinkets(
     phase: number,
     faction: Faction,
     pvpRank: PvPRank,
@@ -144,11 +148,11 @@ export default class Database {
 
     return {
       trinket: result[0],
-      trinket2: result[0].unique ? result[1] : result[0]
+      trinket2: this.isUniqueEquip(result[0]) ? result[1] : result[0]
     }
   }
 
-  public static getBestInSlotRings(
+  static getBestInSlotRings(
     phase: number,
     faction: Faction,
     pvpRank: PvPRank,
@@ -175,11 +179,11 @@ export default class Database {
 
     return {
       finger: result[0],
-      finger2: result[0].unique ? result[1] : result[0]
+      finger2: this.isUniqueEquip(result[0]) ? result[1] : result[0]
     }
   }
 
-  public static getBestInSlotItemWithEnchant(
+  static getBestInSlotItemWithEnchant(
     slot: ItemSlot,
     phase: number,
     faction: Faction,
@@ -208,7 +212,7 @@ export default class Database {
     return new Item(slot, item, enchant)
   }
 
-  public static getBestInSlotWeaponCombo(
+  static getBestInSlotWeaponCombo(
     phase: number,
     faction: Faction,
     pvpRank: PvPRank,
@@ -276,7 +280,7 @@ export default class Database {
     }
   }
 
-  public static getBestInSlotItem(
+  static getBestInSlotItem(
     slot: ItemSlot,
     phase: number,
     faction: Faction,
@@ -304,7 +308,7 @@ export default class Database {
     return result[0]
   }
 
-  public static getWeightedEquipmentBySlot(
+  static getWeightedEquipmentBySlot(
     slot: ItemSlot,
     phase: number,
     faction: Faction,
@@ -347,7 +351,7 @@ export default class Database {
     return result
   }
 
-  public static getBestInSlotEnchant(
+  static getBestInSlotEnchant(
     slot: ItemSlot,
     phase: number,
     magicSchool: MagicSchool,
@@ -365,7 +369,7 @@ export default class Database {
     return result[0]
   }
 
-  public static getWeightedEnchantBySlot(
+  static getWeightedEnchantBySlot(
     slot: ItemSlot,
     phase: number,
     magicSchool: MagicSchool,

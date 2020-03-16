@@ -3,14 +3,14 @@
  * probably move here.
  */
 export default class Talents {
-  public naturesGraceRank: number
-  public moonFuryRank: number
-  public vengeanceRank: number
-  public improvedWrathRank: number
-  public improvedStarfireRank: number
-  public improvedMoonfireRank: number
+  naturesGraceRank: number
+  moonFuryRank: number
+  vengeanceRank: number
+  improvedWrathRank: number
+  improvedStarfireRank: number
+  improvedMoonfireRank: number
 
-  public constructor(
+  constructor(
     naturesGraceRank: number,
     moonFuryRank: number,
     vengeanceRank: number,
@@ -26,7 +26,7 @@ export default class Talents {
     this.improvedMoonfireRank = improvedMoonfireRank
   }
 
-  public get improvedMoonfireBonus(): number {
+  get improvedMoonfireBonus(): number {
     switch (this.improvedMoonfireRank) {
       case 1:
         return 1.02 // rank 1: 2% bonus
@@ -46,7 +46,7 @@ export default class Talents {
   /**
    * Increases the damage done by Starfire, Moonfire, and Wrath by 2/4/6/8/10%
    */
-  public get moonFuryBonus(): number {
+  get moonFuryBonus(): number {
     switch (this.moonFuryRank) {
       case 1:
         return 1.02 // rank 1: 2% bonus
@@ -66,7 +66,7 @@ export default class Talents {
   /**
    * Reduces the cast of your Wrath spell by 0.1/0.2/0.3/0.4/0.5 sec
    */
-  public get improvedWrathBonus(): number {
+  get improvedWrathBonus(): number {
     switch (this.improvedWrathRank) {
       case 1:
         return 0.1 // Reduces the cast time of your Wrath spell by 0.1 sec.
@@ -86,7 +86,7 @@ export default class Talents {
   /**
    * Reduces the cast of your Starfire spell by 0.1/0.2/0.3/0.4/0.5 sec
    */
-  public get improvedStarfireBonus(): number {
+  get improvedStarfireBonus(): number {
     switch (this.improvedStarfireRank) {
       case 1:
         return 0.1 // Reduces the cast time of your Starfire spell by 0.1 sec.
@@ -106,7 +106,7 @@ export default class Talents {
   /**
    * Increases the critical strike damage bonus of your Starfire, Moonfire, and Wrath spells by x%.
    */
-  public get vengeanceBonus(): number {
+  get vengeanceBonus(): number {
     switch (this.vengeanceRank) {
       case 1:
         return 0.1 // rank 1: Increases the critical strike damage bonus by 20%
@@ -126,7 +126,7 @@ export default class Talents {
   /**
    * Returns natures grace reduction, if the talent is learned
    */
-  public get naturesGraceBonus(): number {
+  get naturesGraceBonus(): number {
     return this.naturesGraceRank === 1 ? 0.5 : 0
   }
 

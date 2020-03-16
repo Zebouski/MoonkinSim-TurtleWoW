@@ -4,25 +4,25 @@ import ItemSlot from '../enum/ItemSlot'
 /* head, gloves, neck, waist, shoulders, legs, back, feet, chest, finger1
 wrists, finger 2, mainhand, trinket1, offhand, trinket2 */
 export default class Equipment {
-  public head: Item
-  public hands: Item
-  public neck: Item
-  public waist: Item
-  public shoulders: Item
-  public legs: Item
-  public back: Item
-  public feet: Item
-  public chest: Item
-  public finger1: Item
-  public wrists: Item
-  public finger2: Item
-  public mainhand: Item
-  public trinket1: Item
-  public offhand: Item
-  public trinket2: Item
-  public idol: Item
+  head: Item
+  hands: Item
+  neck: Item
+  waist: Item
+  shoulders: Item
+  legs: Item
+  back: Item
+  feet: Item
+  chest: Item
+  finger1: Item
+  wrists: Item
+  finger2: Item
+  mainhand: Item
+  trinket1: Item
+  offhand: Item
+  trinket2: Item
+  idol: Item
 
-  public constructor(
+  constructor(
     head?: Item | undefined,
     hands?: Item | undefined,
     neck?: Item | undefined,
@@ -60,7 +60,7 @@ export default class Equipment {
     this.idol = idol ? idol : new Item(ItemSlot.Relic)
   }
 
-  public get spellDamage(): number {
+  get spellDamage(): number {
     return (
       this.head.spellDamage +
       this.hands.spellDamage +
@@ -82,7 +82,7 @@ export default class Equipment {
     )
   }
 
-  public get arcaneDamage(): number {
+  get arcaneDamage(): number {
     return (
       this.head.arcaneDamage +
       this.hands.arcaneDamage +
@@ -104,7 +104,7 @@ export default class Equipment {
     )
   }
 
-  public get natureDamage(): number {
+  get natureDamage(): number {
     return (
       this.head.natureDamage +
       this.hands.natureDamage +
@@ -126,7 +126,7 @@ export default class Equipment {
     )
   }
 
-  public get spellHit(): number {
+  get spellHit(): number {
     return (
       this.head.spellHit +
       this.hands.spellHit +
@@ -148,7 +148,7 @@ export default class Equipment {
     )
   }
 
-  public get spellCrit(): number {
+  get spellCrit(): number {
     return (
       this.head.spellCrit +
       this.hands.spellCrit +
@@ -170,7 +170,7 @@ export default class Equipment {
     )
   }
 
-  public get intellect(): number {
+  get intellect(): number {
     return (
       this.head.intellect +
       this.hands.intellect +
@@ -192,7 +192,7 @@ export default class Equipment {
     )
   }
 
-  public get stamina(): number {
+  get stamina(): number {
     return (
       this.head.stamina +
       this.hands.stamina +
@@ -214,7 +214,7 @@ export default class Equipment {
     )
   }
 
-  public get spirit(): number {
+  get spirit(): number {
     return (
       this.head.spirit +
       this.hands.spirit +
@@ -236,7 +236,7 @@ export default class Equipment {
     )
   }
 
-  public get mp5(): number {
+  get mp5(): number {
     return (
       this.head.mp5 +
       this.hands.mp5 +
@@ -259,7 +259,7 @@ export default class Equipment {
   }
 
   /* TODO: There's isn't any spell pen gear yet */
-  public get spellPenetration(): number {
+  get spellPenetration(): number {
     return 0
   }
 }

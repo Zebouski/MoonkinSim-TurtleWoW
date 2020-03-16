@@ -2,11 +2,8 @@ import Buff from '../enum/Buff'
 import TargetType from '../enum/TargetType'
 import MagicSchool from '../enum/MagicSchool'
 
-/**
- * Object format of targets stored in db/targets.
- * Targets are stored as YAML, but converted to
- * JSON at build time.
- */
+/* XXX: I originally wanted to allow user to select a target from a list. The lack of
+ * resistance information on bosses makes this pretty fruitless, so I abandoned it.
 interface TargetJSON {
   name: string
   level: number
@@ -23,46 +20,65 @@ interface TargetJSON {
   shadowResist: number
   arcaneResist: number
 }
+*/
 
 export default class Target {
-  // public name: string
-  public targetType: TargetType
-  // public targetJSON: TargetJSON
-  public spellResistance: number
-  public debuffs: Buff
-  public shimmer: MagicSchool
+  level: number
+  type: TargetType
+  spellResistance: number
+  debuffs: Buff
+  shimmer: MagicSchool
 
-  public constructor(targetType: TargetType, spellResistance: number, shimmer: MagicSchool, debuffs: Buff) {
-    // this.name = name
-    this.targetType = targetType
+  constructor(level: number, type: TargetType, spellResistance: number, shimmer: MagicSchool, debuffs: Buff) {
+    this.level = level
+    this.type = type
     this.debuffs = debuffs
     this.spellResistance = spellResistance
     this.shimmer = shimmer
-    // this.targetJSON = jsonQuery(`[name=${name}]`, { data: targets }).value
   }
 
-  public get spellVulnBonus(): number {
+  get spellVulnBonus(): number {
     return (this.debuffs & Buff.SpellVulnerability) === Buff.SpellVulnerability ? 1.15 : 1.0
   }
 
   /**
    * ...reducing Shadow and Arcane resistances by 75...
    */
-  public get curseOfShadowResistBonus(): number {
+  get curseOfShadowResistBonus(): number {
     return (this.debuffs & Buff.CurseOfShadow) === Buff.CurseOfShadow ? 75 : 0
   }
 
   /**
    * ...and increasing Shadow and Arcane damage taken by 10%...
    */
-  public get curseOfShadowDamageBonus(): number {
+  get curseOfShadowDamageBonus(): number {
     return (this.debuffs & Buff.CurseOfShadow) === Buff.CurseOfShadow ? 1.1 : 1.0
   }
 
   /**
    * ..the next 2 sources of Nature damage dealt to the target are increased by 20%
    */
-  public get stormStrikeBonus(): number {
+  get stormStrikeBonus(): number {
     return (this.debuffs & Buff.StormStrike) === Buff.StormStrike ? 1.2 : 1.0
+  }
+
+  get arcaneSpellResistance(): number {
+    return this.spellResistance
+  }
+
+  get natureSpellResistance(): number {
+    return this.spellResistance
+  }
+
+  get fireSpellResistance(): number {
+    return this.spellResistance
+  }
+
+  get frostSpellResistance(): number {
+    return this.spellResistance
+  }
+
+  get shadowSpellResistance(): number {
+    return this.spellResistance
   }
 }

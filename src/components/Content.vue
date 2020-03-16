@@ -58,6 +58,8 @@ import Debug from './Debug.vue'
 import Equipment from '../wow/class/Equipment'
 import TargetType from '../wow/enum/TargetType'
 
+import Options from '../wow/interface/Options'
+
 const Props = Vue.extend({
   props: {
     options: Object
@@ -162,11 +164,11 @@ export default class Content extends Props {
   }
 
   get bisGear() {
-    let spell = new wow.Spell(this.options.spellName)
+    let spell = new wow.Spell(this.options.spell.name)
     return this.calcBisGear(
       this.options.phase,
-      wow.Character.factionFromRace(this.options.faction),
-      this.options.pvpRank,
+      wow.Character.factionFromRace(this.options.character.race),
+      this.options.character.pvpRank,
       this.options.raids,
       this.options.worldBosses,
       spell.magicSchool,
@@ -181,17 +183,17 @@ export default class Content extends Props {
 
     return new wow.Cast(
       new wow.Character(
-        wow.constants.playerLevelCap,
-        this.options.race,
-        wow.PlayableClass.Druid,
-        wow.Gender.Male,
+        this.options.character.level,
+        this.options.character.race,
+        this.options.character.class,
+        this.options.character.gender,
         new wow.Talents(
-          this.options.talents.naturesGraceRank,
-          this.options.talents.moonFuryRank,
-          this.options.talents.vengeanceRank,
-          this.options.talents.improvedWrathRank,
-          this.options.talents.improvedStarfireRank,
-          this.options.talents.improvedMoonfireRank
+          this.options.character.talents.naturesGraceRank,
+          this.options.character.talents.moonFuryRank,
+          this.options.character.talents.vengeanceRank,
+          this.options.character.talents.improvedWrathRank,
+          this.options.character.talents.improvedStarfireRank,
+          this.options.character.talents.improvedMoonfireRank
         ),
         new wow.Gear(
           bis.stamina,
@@ -205,10 +207,11 @@ export default class Content extends Props {
           bis.arcaneDamage,
           bis.natureDamage
         ),
-        wow.Character.buffListToFlags(this.options.buffs)
+        wow.Character.buffListToFlags(this.options.character.buffs)
       ),
-      new wow.Spell(this.options.spellName),
+      new wow.Spell(this.options.spell.name),
       new wow.Target(
+        this.options.target.level,
         this.options.target.type,
         this.options.target.spellResistance,
         this.options.target.shimmer,

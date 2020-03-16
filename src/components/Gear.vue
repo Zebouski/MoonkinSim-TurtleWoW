@@ -26,13 +26,22 @@
     <div class="columns is-centered is-vcentered is-mobile">
       <div class="column is-narrow">
         <b-field label="PvP" label-position="on-border">
-          <b-select class="is-size-7-mobile" v-model="options.pvpRank">
+          <b-select class="is-size-7-mobile" v-model="options.character.pvpRank">
             <option v-for="rank in pvpRankList" :key="rank" v-bind:value="rank">
               {{ rank }}
             </option>
           </b-select>
         </b-field>
       </div>
+      <!--
+      <div class="column is-narrow">
+        <b-field label="Fight Length" label-position="on-border">
+          <input class="input is-size-7-mobile" type="number" v-model.number="options.combatLength" />
+        </b-field>
+      </div>
+      -->
+    </div>
+    <div class="columns is-centered is-vcentered is-mobile">
       <div class="column is-narrow">
         <div class="field">
           <b-checkbox class="is-size-7-mobile" v-model="options.raids">
@@ -92,6 +101,15 @@ const GearProps = Vue.extend({
 })
 export default class Gear extends GearProps {
   wow = wow
+
+  get sliderType() {
+    if (this.options.combatLength < 120) {
+      return 'is-success'
+    } else if (this.options.combatLength >= 120 && this.options.combatLength < 300) {
+      return 'is-warning'
+    }
+    return 'is-danger'
+  }
 
   get pvpRankList() {
     return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]

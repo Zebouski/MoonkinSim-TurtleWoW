@@ -2,18 +2,18 @@
  * TODO: WIP. Stores gear selections, getters return attribute bonuses
  */
 export default class Gear {
-  public stamina: number
-  public intellect: number
-  public spirit: number
-  public mp5: number
-  public spellPenetration: number
-  public spellHit: number
-  public spellCrit: number
-  public spellDamage: number
-  public arcaneDamage: number
-  public natureDamage: number
+  stamina: number
+  intellect: number
+  spirit: number
+  mp5: number
+  spellPenetration: number
+  spellHit: number
+  spellCrit: number
+  spellDamage: number
+  arcaneDamage: number
+  natureDamage: number
 
-  public constructor(
+  constructor(
     stamina: number,
     intellect: number,
     spirit: number,

@@ -45,6 +45,7 @@ const xml2js = require('xml2js')
 const fs = require('fs')
 const fsPromises = require('fs').promises
 const path = require('path')
+const cheerio = require('cheerio')
 
 interface WowHeadResult {
   $: Object
@@ -144,21 +145,21 @@ class Item {
     this._wowHeadItem = null
   }
 
-  public set wowHeadItem(wowHeadItem: any) {
+  set wowHeadItem(wowHeadItem: any) {
     this._wowHeadItem = wowHeadItem
   }
 
-  public get oldItem(): ItemOld {
+  get oldItem(): ItemOld {
     return this.itemOld
   }
 
-  public get wowHeadURL(): string {
+  get wowHeadURL(): string {
     // console.log('itemBaseName: \"' + this.itemBaseName + '\"')
     let encodedName = encodeURIComponent(this.itemBaseName)
     return `https://classic.wowhead.com/item=${encodedName}&xml`
   }
 
-  public async getWowHeadItem(): Promise<any> {
+  async getWowHeadItem(): Promise<any> {
     try {
       const response = await axios.get(this.wowHeadURL)
       const result = await xml2js.parseStringPromise(response.data)
@@ -170,11 +171,11 @@ class Item {
     }
   }
 
-  public get itemId(): number {
+  get itemId(): number {
     return this._wowHeadItem !== null ? parseInt(this._wowHeadItem['$'].id, 10) : 0
   }
 
-  public get itemName(): string {
+  get itemName(): string {
     return this.itemOld.Name
   }
 
@@ -182,7 +183,7 @@ class Item {
    * wowhead doesn't actually have the random suffix items. instead they're
    * listed inside the base item.
    */
-  public get itemBaseName(): string {
+  get itemBaseName(): string {
     const of = this.itemName.indexOf(' of ')
     if (of >= 0) {
       const right = this.itemName.slice(of + 4)
@@ -198,7 +199,7 @@ class Item {
     return this.itemName
   }
 
-  public get isEnchant(): boolean {
+  get isEnchant(): boolean {
     switch (this.itemOld['Equipment Type']) {
       case 'Back Enchant':
       case 'Chest Enchant':
@@ -215,42 +216,44 @@ class Item {
     }
   }
 
-  public get itemSlot(): ItemSlot {
+  get itemSlot(): ItemSlot {
     return parseInt(this._wowHeadItem['inventorySlot'][0].$.id, 10)
   }
 
-  public get itemClass(): ItemClass {
+  get itemClass(): ItemClass {
     return parseInt(this._wowHeadItem['class'][0].$.id, 10)
   }
 
-  public get itemSubclass(): ArmorSubclass | WeaponSubclass {
+  get itemSubclass(): ArmorSubclass | WeaponSubclass {
     return parseInt(this._wowHeadItem['subclass'][0].$.id, 10)
   }
 
-  public get itemIconName(): string {
+  get itemIconName(): string {
     return this._wowHeadItem === null || this.isEnchant
       ? 'spell_holy_greaterheal'
       : this._wowHeadItem.icon[0]._.toLowerCase()
   }
 
-  public get itemPhase(): number {
+  get itemPhase(): number {
     return parseFloat(this.itemOld.Phase)
   }
 
-  public get itemLocation(): string | undefined {
+  get itemLocation(): string | undefined {
     return this.itemOld.Location !== '' ? this.itemOld.Location : undefined
   }
 
-  public get itemBoss(): string | undefined {
+  get itemBoss(): string | undefined {
     return this.itemOld.Boss !== '' ? this.itemOld.Boss : undefined
   }
 
-  public get itemWorldBoss(): boolean {
+  get itemWorldBoss(): boolean {
     if (!this.itemBoss) {
       return false
     }
 
     switch (this.itemBoss.toUpperCase()) {
+      case 'LETHON':
+      case 'TAERAR':
       case 'LORD KAZZAK':
       case 'AZUREGOS':
         return true
@@ -259,7 +262,7 @@ class Item {
     }
   }
 
-  public get itemRaid(): boolean {
+  get itemRaid(): boolean {
     if (!this.itemLocation) {
       return false
     }
@@ -277,31 +280,31 @@ class Item {
     }
   }
 
-  public get itemStamina(): number | undefined {
+  get itemStamina(): number | undefined {
     return toNumber(this.itemOld.Stamina)
   }
 
-  public get itemIntellect(): number | undefined {
+  get itemIntellect(): number | undefined {
     return toNumber(this.itemOld.Intellect)
   }
 
-  public get itemSpirit(): number | undefined {
+  get itemSpirit(): number | undefined {
     return toNumber(this.itemOld.Spirit)
   }
 
-  public get itemSpellCrit(): number | undefined {
+  get itemSpellCrit(): number | undefined {
     return toNumber(this.itemOld['Spell Critical %'])
   }
 
-  public get itemSpellHit(): number | undefined {
+  get itemSpellHit(): number | undefined {
     return toNumber(this.itemOld['Spell Hit %'])
   }
 
-  public get itemSpellPen(): number | undefined {
+  get itemSpellPen(): number | undefined {
     return toNumber(this.itemOld['Spell Penetration'])
   }
 
-  public get itemSpellDamage(): number | undefined {
+  get itemSpellDamage(): number | undefined {
     if (this.itemOld['Spell Damage'] !== '' && this.itemOld.Wrath === 'Yes' && this.itemOld.Starfire === 'Yes') {
       return toNumber(this.itemOld['Spell Damage'])
     }
@@ -309,33 +312,33 @@ class Item {
   }
 
   /* TODO */
-  public get itemSpellHealing(): number | undefined {
+  get itemSpellHealing(): number | undefined {
     return undefined
   }
 
-  public get itemArcaneDamage(): number | undefined {
+  get itemArcaneDamage(): number | undefined {
     if (this.itemOld['Spell Damage'] !== '' && this.itemOld.Wrath === 'No' && this.itemOld.Starfire === 'Yes') {
       return toNumber(this.itemOld['Spell Damage'])
     }
     return undefined
   }
 
-  public get itemNatureDamage(): number | undefined {
+  get itemNatureDamage(): number | undefined {
     if (this.itemOld['Spell Damage'] !== '' && this.itemOld.Wrath === 'Yes' && this.itemOld.Starfire === 'No') {
       return toNumber(this.itemOld['Spell Damage'])
     }
     return undefined
   }
 
-  public get itemMp5(): number | undefined {
+  get itemMp5(): number | undefined {
     return toNumber(this.itemOld.MP5)
   }
 
-  public get itemScore(): number | undefined {
+  get itemScore(): number | undefined {
     return toNumber(this.itemOld.Score)
   }
 
-  public get itemRank(): PvPRank {
+  get itemRank(): PvPRank {
     switch (this.itemLocation) {
       case 'Requires Blood Guard':
         return PvPRank.BloodGuard
@@ -366,7 +369,7 @@ class Item {
     }
   }
 
-  public get itemFaction(): Faction {
+  get itemFaction(): Faction {
     if (this.itemAlliance && this.itemHorde) {
       return Faction.Alliance | Faction.Horde
     } else if (this.itemHorde) {
@@ -376,15 +379,15 @@ class Item {
     return Faction.Alliance
   }
 
-  public get itemAlliance(): boolean {
+  get itemAlliance(): boolean {
     return this.itemOld.Alliance === 'Yes' ? true : false
   }
 
-  public get itemHorde(): boolean {
+  get itemHorde(): boolean {
     return this.itemOld.Horde === 'Yes' ? true : false
   }
 
-  public get itemQuality(): ItemQuality {
+  get itemQuality(): ItemQuality {
     if (this._wowHeadItem === null) {
       return ItemQuality.Common
     }
@@ -407,39 +410,39 @@ class Item {
     }
   }
 
-  public get itemLevel(): number {
+  get itemLevel(): number {
     return parseInt(this._wowHeadItem['level'][0], 10)
   }
 
-  public get itemReqLevel(): number {
+  get itemReqLevel(): number {
     return JSON.parse(`{ ${this._wowHeadItem['json'][0]} }`).reqlevel
   }
 
-  public get itemArmor(): number | undefined {
+  get itemArmor(): number | undefined {
     return toNumber(JSON.parse(`{ ${this._wowHeadItem['json'][0]} }`).armor)
   }
 
-  public get itemDurability(): number | undefined {
+  get itemDurability(): number | undefined {
     return toNumber(JSON.parse(`{ ${this._wowHeadItem['jsonEquip'][0]} }`).dura)
   }
 
-  public get itemMinDmg(): number | undefined {
+  get itemMinDmg(): number | undefined {
     return toNumber(JSON.parse(`{ ${this._wowHeadItem['jsonEquip'][0]} }`).mledmgmin)
   }
 
-  public get itemMaxDmg(): number | undefined {
+  get itemMaxDmg(): number | undefined {
     return toNumber(JSON.parse(`{ ${this._wowHeadItem['jsonEquip'][0]} }`).mledmgmax)
   }
 
-  public get itemSpeed(): number | undefined {
+  get itemSpeed(): number | undefined {
     return toNumber(JSON.parse(`{ ${this._wowHeadItem['jsonEquip'][0]} }`).mlespeed)
   }
 
-  public get itemDps(): number | undefined {
+  get itemDps(): number | undefined {
     return toNumber(JSON.parse(`{ ${this._wowHeadItem['jsonEquip'][0]} }`).mledps)
   }
 
-  public get itemTargetTypes(): number | undefined {
+  get itemTargetTypes(): number | undefined {
     if (this._wowHeadItem['htmlTooltip'][0].includes('Undead and Demons')) {
       return TargetType.Undead | TargetType.Demon
     } else if (this._wowHeadItem['htmlTooltip'][0].includes('Increases damage done to Undead')) {
@@ -448,15 +451,15 @@ class Item {
     return undefined
   }
 
-  public get itemBop(): boolean {
+  get itemBop(): boolean {
     return this._wowHeadItem['htmlTooltip'][0].includes('Binds when picked up')
   }
 
-  public get itemUnique(): boolean {
+  get itemUnique(): boolean {
     return this._wowHeadItem['htmlTooltip'][0].includes('Unique')
   }
 
-  public get allowableClasses(): any {
+  get allowableClasses(): any {
     const htt = this._wowHeadItem['htmlTooltip'][0]
     let classes = []
 
@@ -494,14 +497,17 @@ class Item {
     return classes
   }
 
-  public get itemOnUse(): ItemOnUseJSON | undefined {
-    if (this._wowHeadItem['htmlTooltip'][0].includes('Use:')) {
+  get itemOnUse(): ItemOnUseJSON | undefined {
+    let tooltip = this._wowHeadItem['htmlTooltip'][0]
+    if (tooltip.includes('Use:')) {
+      let $ = cheerio.load(tooltip)
       console.warn('heyo we got activated trinkets bitch')
+      console.warn($('span .q2').html())
     }
     return undefined
   }
 
-  public get newItem(): ItemJSON {
+  get newItem(): ItemJSON {
     /*
     let item: ItemJSON = {
       id: this.itemId,
