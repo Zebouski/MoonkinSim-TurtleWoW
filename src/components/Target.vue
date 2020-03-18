@@ -30,6 +30,11 @@
             Storm Strike
           </b-checkbox>
         </div>
+        <div class="field">
+          <b-checkbox class="is-size-7-mobile" native-value="SpellVulnerability" v-model="options.target.debuffs">
+            Spell Vulnerability
+          </b-checkbox>
+        </div>
       </div>
       <div class="column">
         <b-field label="Resistance" label-position="on-border">
@@ -48,11 +53,6 @@
         <div class="field">
           <b-checkbox class="is-size-7-mobile" native-value="CurseOfShadow" v-model="options.target.debuffs">
             Curse of Shadow
-          </b-checkbox>
-        </div>
-        <div class="field">
-          <b-checkbox class="is-size-7-mobile" native-value="SpellVulnerability" v-model="options.target.debuffs">
-            Spell Vulnerability
           </b-checkbox>
         </div>
       </div>
