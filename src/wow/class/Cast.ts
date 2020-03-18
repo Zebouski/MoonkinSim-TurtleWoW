@@ -248,8 +248,9 @@ export default class Cast {
     }
 
     let targetResistanceFromLevel = () => {
+      const levelDiff = this.target.level > this.character.level ? this.target.level - this.character.level : 0
       const bonusPerLevel = parseFloat((0.1333 * this.character.level).toFixed(2))
-      return this.spell.isBinary ? 0 : (this.target.level - this.character.level) * bonusPerLevel
+      return this.spell.isBinary ? 0 : levelDiff * bonusPerLevel
     }
 
     return (0.75 * effectiveTargetResistance()) / (5 * this.character.level)
@@ -281,6 +282,8 @@ export default class Cast {
       case MagicSchool.Arcane:
       case MagicSchool.Shadow:
         return this.character.gear.spellPenetration + this.target.curseOfShadowResistBonus
+      case MagicSchool.Nature:
+        return this.character.gear.spellPenetration + this.target.thunderfuryResistBonus
       default:
         return 0
     }

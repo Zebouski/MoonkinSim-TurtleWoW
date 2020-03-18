@@ -68,6 +68,7 @@ export default {
     target: {
       level: 63,
       shimmer: 0,
+      thunderfury: 0,
       type: TargetType.Elemental,
       spellResistance: 75,
       debuffs: ['CurseOfShadow']

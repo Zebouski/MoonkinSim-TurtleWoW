@@ -28,13 +28,15 @@ export default class Target {
   spellResistance: number
   debuffs: Buff
   shimmer: MagicSchool
+  thunderfury: number
 
-  constructor(level: number, type: TargetType, spellResistance: number, shimmer: MagicSchool, debuffs: Buff) {
+  constructor(level: number, type: TargetType, spellResistance: number, shimmer: MagicSchool, thunderfury: number, debuffs: Buff) {
     this.level = level
     this.type = type
     this.debuffs = debuffs
     this.spellResistance = spellResistance
     this.shimmer = shimmer
+    this.thunderfury = thunderfury
   }
 
   get spellVulnBonus(): number {
@@ -46,6 +48,13 @@ export default class Target {
    */
   get curseOfShadowResistBonus(): number {
     return (this.debuffs & Buff.CurseOfShadow) === Buff.CurseOfShadow ? 75 : 0
+  }
+
+  /**
+   * ...reducing nature resistances 25 per "jump"...
+   */
+  get thunderfuryResistBonus(): number {
+    return this.thunderfury ? this.thunderfury * 25 : 0
   }
 
   /**

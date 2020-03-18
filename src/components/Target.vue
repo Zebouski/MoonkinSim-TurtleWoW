@@ -35,6 +35,16 @@
         <b-field label="Resistance" label-position="on-border">
           <input class="input is-size-7-mobile" type="number" v-model.number="options.target.spellResistance" />
         </b-field>
+        <b-field label="Thunderfury" label-position="on-border">
+          <b-select class="is-size-7-mobile" v-model.number="options.target.thunderfury">
+            <option value="0">None</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </b-select>
+        </b-field>
         <div class="field">
           <b-checkbox class="is-size-7-mobile" native-value="CurseOfShadow" v-model="options.target.debuffs">
             Curse of Shadow

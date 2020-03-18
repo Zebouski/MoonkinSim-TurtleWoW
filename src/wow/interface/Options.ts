@@ -32,6 +32,7 @@ export default interface Options {
   }
   target: {
     shimmer: MagicSchool
+    thunderfury: number
     type: TargetType
     spellResistance: number
     debuffs: string[]
