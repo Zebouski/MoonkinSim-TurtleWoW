@@ -74,7 +74,7 @@ export default class Content extends Props {
 
   get debugObj() {
     return {
-      itemSet: wow.Database.itemSet('Bloodvine Vest'),
+      bisGear: this.bisGear,
       spellCast: this.spellCast
     }
   }
@@ -215,6 +215,7 @@ export default class Content extends Props {
         this.options.target.type,
         this.options.target.spellResistance,
         this.options.target.shimmer,
+        this.options.target.thunderfury,
         wow.Character.buffListToFlags(this.options.target.debuffs)
       )
     )
