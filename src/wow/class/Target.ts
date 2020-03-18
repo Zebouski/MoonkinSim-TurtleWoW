@@ -30,7 +30,14 @@ export default class Target {
   shimmer: MagicSchool
   thunderfury: number
 
-  constructor(level: number, type: TargetType, spellResistance: number, shimmer: MagicSchool, thunderfury: number, debuffs: Buff) {
+  constructor(
+    level: number,
+    type: TargetType,
+    spellResistance: number,
+    shimmer: MagicSchool,
+    thunderfury: number,
+    debuffs: Buff
+  ) {
     this.level = level
     this.type = type
     this.debuffs = debuffs
