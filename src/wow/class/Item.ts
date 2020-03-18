@@ -24,26 +24,20 @@ export default class Item {
     this.enchantJSON = enchantJSON ? enchantJSON : undefined
   }
 
+  /* Handle items that only damage certain types of mobs */
   static calcTargetDamage(targetType: number, targetTypes: number, spellDamage: number): number {
     if (targetTypes === TargetType.All) {
       return spellDamage
     }
 
-    let mySpellDamage = 0
-
-    if ((targetTypes & TargetType.Undead) === TargetType.Undead) {
-      if (targetType === TargetType.Undead) {
-        mySpellDamage = spellDamage
-      }
+    switch (targetType) {
+      case TargetType.Undead:
+        return (targetTypes & TargetType.Undead) === TargetType.Undead ? spellDamage : 0
+      case TargetType.Demon:
+        return (targetTypes & TargetType.Demon) === TargetType.Demon ? spellDamage : 0
+      default:
+        return 0
     }
-
-    if ((targetTypes & TargetType.Demon) === TargetType.Demon) {
-      if (targetType === TargetType.Demon) {
-        mySpellDamage = spellDamage
-      }
-    }
-
-    return mySpellDamage
   }
 
   static scoreItem(
@@ -60,11 +54,6 @@ export default class Item {
         item.targetTypes ? item.targetTypes : TargetType.All,
         item.spellDamage ? item.spellDamage : 0
       ),
-      //  item.spellDamage
-      //  ? ((item.targetTypes ? item.targetTypes : TargetType.All) & targetType) !== targetType
-      //    ? 0
-      //    : item.spellDamage
-      //  : 0,
       item.arcaneDamage ? item.arcaneDamage : 0,
       item.natureDamage ? item.natureDamage : 0,
       item.spellHit ? item.spellHit : 0,
