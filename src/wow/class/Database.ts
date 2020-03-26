@@ -1,9 +1,10 @@
 import jsonQuery from 'json-query'
 import SpellJSON from '../interface/SpellJSON'
-import RawGearJSON from '../interface/RawGearJSON'
 import ItemJSON from '../interface/ItemJSON'
 import EnchantJSON from '../interface/EnchantJSON'
 import WeaponComboJSON from '../interface/WeaponComboJSON'
+import ItemSearch from '../interface/ItemSearch'
+
 import ItemSlot from '../enum/ItemSlot'
 import MagicSchool from '../enum/MagicSchool'
 import SortOrder from '../enum/SortOrder'
@@ -16,7 +17,6 @@ import PvPRank from '../enum/PvPRank'
 import spells from '../db/spells.json'
 import targets from '../db/targets.json'
 import gear from '../db/gear.json'
-import rawGear from '../db/rawGear.json'
 import enchants from '../db/enchants.json'
 import itemSets from '../db/itemSets.json'
 
@@ -34,10 +34,6 @@ export default class Database {
     return jsonQuery(query, { data: gear }).value
   }
 
-  static queryRawGear(query: string): any {
-    return jsonQuery(query, { data: rawGear }).value
-  }
-
   static queryEnchants(query: string): any {
     return jsonQuery(query, { data: enchants }).value
   }
@@ -47,10 +43,6 @@ export default class Database {
   }
 
   /* list functions */
-
-  static phaseList(): JSON {
-    return this.queryRawGear('.phase')
-  }
 
   static spellList(): JSON {
     return this.querySpells('.name')
@@ -83,10 +75,6 @@ export default class Database {
     return this.queryEnchants(`[name=${name}]`)
   }
 
-  static rawGear(phase: number): RawGearJSON {
-    return this.queryRawGear(`[phase=${phase}]`)
-  }
-
   static gearById(id: number): ItemJSON {
     return this.queryGear(`[id=${id}]`)
   }
@@ -107,8 +95,8 @@ export default class Database {
   static itemSet(name: string): Object | undefined {
     let itemSets = this.queryItemSets(``)
     for (let itemSet of itemSets) {
-      for (let item of itemSet.items) {
-        if (item === name) {
+      for (let itemName of itemSet.itemNames) {
+        if (itemName === name) {
           return itemSet
         }
       }
@@ -116,151 +104,180 @@ export default class Database {
     return undefined
   }
 
-  /****************/
   static isUniqueEquip(itemJSON: ItemJSON) {
     return itemJSON.unique || (itemJSON.boss && itemJSON.boss.includes('Quest:')) ? true : false
   }
 
-  static getBestInSlotTrinkets(
-    phase: number,
-    faction: Faction,
-    pvpRank: PvPRank,
-    raids: boolean,
-    worldBosses: boolean,
-    magicSchool: MagicSchool,
-    targetType: TargetType,
-    spellHitWeight: number,
-    spellCritWeight: number
-  ) {
-    let result = this.getWeightedEquipmentBySlot(
-      ItemSlot.Trinket,
-      phase,
-      faction,
-      pvpRank,
-      raids,
-      worldBosses,
-      magicSchool,
-      targetType,
-      spellHitWeight,
-      spellCritWeight,
-      SortOrder.Descending
-    )
+  /****************/
+  static getWeightedEquipmentBySlot(slot: ItemSlot, itemSearch: ItemSearch) {
+    let slot2query = (slot: ItemSlot) => {
+      switch (slot) {
+        case ItemSlot.Finger2:
+          return `[* slot=${ItemSlot.Finger}]`
+        case ItemSlot.Trinket2:
+          return `[* slot=${ItemSlot.Trinket}]`
+        case ItemSlot.Mainhand:
+        case ItemSlot.Onehand:
+          return `[* slot=${ItemSlot.Mainhand} | slot=${ItemSlot.Onehand}]`
+        default:
+          return `[* slot=${slot}]`
+      }
+    }
 
+    let result = jsonQuery(slot2query(slot), { data: gear }).value
+    result = jsonQuery(`[* faction = ${itemSearch.faction} | faction = ${Faction.Horde | Faction.Alliance}]`, {
+      data: result
+    }).value
+    result = jsonQuery(`[* phase <= ${itemSearch.phase}]`, { data: result }).value
+    result = jsonQuery(`[* pvpRank <= ${itemSearch.pvpRank}]`, { data: result }).value
+    result = jsonQuery(`[* worldBoss = false | worldBoss = ${itemSearch.worldBosses}]`, { data: result }).value
+    result = jsonQuery(`[* raid = false | raid = ${itemSearch.raids}]`, { data: result }).value
+
+    /* score items */
+    for (let i in result) {
+      result[i].score = Item.scoreItem(
+        result[i],
+        itemSearch.magicSchool,
+        itemSearch.targetType,
+        itemSearch.spellHitWeight,
+        itemSearch.spellCritWeight
+      )
+    }
+    result.sort(itemSearch.sortOrder === SortOrder.Descending ? Item.sortScoreDes : Item.sortScoreAsc)
+    return result
+  }
+
+  static getWeightedEnchantBySlot(slot: ItemSlot, itemSearch: ItemSearch) {
+    let result = jsonQuery(`[* slot = ${slot} & phase <= ${itemSearch.phase}]`, { data: enchants }).value
+    for (let i in result) {
+      result[i].score = Item.scoreEnchant(
+        result[i],
+        itemSearch.magicSchool,
+        itemSearch.spellHitWeight,
+        itemSearch.spellCritWeight
+      )
+    }
+    result.sort(itemSearch.sortOrder === SortOrder.Descending ? Item.sortScoreDes : Item.sortScoreAsc)
+    return result
+  }
+
+  static getItemSet(name: string, itemSearch: ItemSearch) {
+    /* Find the set and filter */
+    let itemSet = this.queryItemSets(`[name=${name}]`)
+    if (!itemSearch.raids && itemSet.raid) {
+      return undefined
+    }
+
+    if (itemSearch.phase < itemSet.phase) {
+      return undefined
+    }
+
+    /* Find each item in set, score them and add to array */
+    let itemSetItems = []
+    let itemSetItemsScore = 0
+    for (let itemName of itemSet.itemNames) {
+      let item = this.gearByName(itemName)
+      item.score = Item.scoreItem(
+        item,
+        itemSearch.magicSchool,
+        itemSearch.targetType,
+        itemSearch.spellHitWeight,
+        itemSearch.spellCritWeight
+      )
+      itemSetItemsScore += item.score
+      itemSetItems.push(item)
+    }
+
+    /* Combine score of items plus set bonus */
+    itemSet.score = itemSetItemsScore
+    if (itemSearch.tailoring) {
+      let isb = Item.scoreItemSetBonus(
+        itemSet,
+        itemSearch.magicSchool,
+        itemSearch.targetType,
+        itemSearch.spellHitWeight,
+        itemSearch.spellCritWeight
+      )
+      itemSet.score += isb
+    }
+
+    /* Slap items array onto itemset and return*/
+    itemSet.items = itemSetItems
+    return itemSet
+  }
+
+  static getBestInSlotItem(slot: ItemSlot, itemSearch: ItemSearch) {
+    let result = this.getWeightedEquipmentBySlot(slot, itemSearch)
+    return result[0]
+  }
+
+  static getBestInSlotEnchant(slot: ItemSlot, itemSearch: ItemSearch) {
+    let result = this.getWeightedEnchantBySlot(slot, itemSearch)
+    return result[0]
+  }
+
+  static getBestInSlotItemWithEnchant(slot: ItemSlot, itemSearch: ItemSearch) {
+    const item = this.getBestInSlotItem(slot, itemSearch)
+    const enchant = this.getBestInSlotEnchant(slot, itemSearch)
+    return new Item(slot, item, enchant)
+  }
+
+  static getBestInSlotTrinkets(itemSearch: ItemSearch) {
+    let result = this.getWeightedEquipmentBySlot(ItemSlot.Trinket, itemSearch)
     return {
       trinket: result[0],
       trinket2: this.isUniqueEquip(result[0]) ? result[1] : result[0]
     }
   }
 
-  static getBestInSlotRings(
-    phase: number,
-    faction: Faction,
-    pvpRank: PvPRank,
-    raids: boolean,
-    worldBosses: boolean,
-    magicSchool: MagicSchool,
-    targetType: TargetType,
-    spellHitWeight: number,
-    spellCritWeight: number
-  ) {
-    let result = this.getWeightedEquipmentBySlot(
-      ItemSlot.Finger,
-      phase,
-      faction,
-      pvpRank,
-      raids,
-      worldBosses,
-      magicSchool,
-      targetType,
-      spellHitWeight,
-      spellCritWeight,
-      SortOrder.Descending
-    )
+  static getBestInSlotChestLegsFeet(itemSearch: ItemSearch) {
+    let bloodvine = this.getItemSet(`Bloodvine Garb`, itemSearch)
+    let chest = this.getBestInSlotItem(ItemSlot.Chest, itemSearch)
+    let legs = this.getBestInSlotItem(ItemSlot.Legs, itemSearch)
+    let feet = this.getBestInSlotItem(ItemSlot.Feet, itemSearch)
+    let normScore = chest.score + legs.score + feet.score
+
+    if (bloodvine && bloodvine.score > normScore) {
+      chest = bloodvine.items[0]
+      legs = bloodvine.items[1]
+      feet = bloodvine.items[2]
+    }
 
     return {
-      finger: result[0],
-      finger2: this.isUniqueEquip(result[0]) ? result[1] : result[0]
+      chest: chest,
+      chestEnchant: this.getBestInSlotEnchant(ItemSlot.Chest, itemSearch),
+      legs: legs,
+      legsEnchant: this.getBestInSlotEnchant(ItemSlot.Legs, itemSearch),
+      feet: feet,
+      feetEnchant: this.getBestInSlotEnchant(ItemSlot.Feet, itemSearch)
     }
   }
 
-  static getBestInSlotItemWithEnchant(
-    slot: ItemSlot,
-    phase: number,
-    faction: Faction,
-    pvpRank: PvPRank,
-    raids: boolean,
-    worldBosses: boolean,
-    magicSchool: MagicSchool,
-    targetType: TargetType,
-    spellHitWeight: number,
-    spellCritWeight: number
-  ) {
-    const item = this.getBestInSlotItem(
-      slot,
-      phase,
-      faction,
-      pvpRank,
-      raids,
-      worldBosses,
-      magicSchool,
-      targetType,
-      spellHitWeight,
-      spellCritWeight
-    )
-    const enchant = this.getBestInSlotEnchant(slot, phase, magicSchool, spellHitWeight, spellCritWeight)
+  static getBestInSlotRings(itemSearch: ItemSearch) {
+    let result = this.getWeightedEquipmentBySlot(ItemSlot.Finger, itemSearch)
+    let ring1 = result[0]
+    let ring2 = this.isUniqueEquip(result[0]) ? result[1] : result[0]
+    let basicScore = (ring1 ? ring1.score : 0) + (ring2 ? ring2.score : 0)
 
-    return new Item(slot, item, enchant)
+    /* need to try zanzils set */
+    let zanzils = this.getItemSet(`Zanzil's Concentration`, itemSearch)
+    if (zanzils && zanzils.score > basicScore) {
+      ring1 = zanzils.items[0]
+      ring2 = zanzils.items[1]
+      console.log(`basicScore=${basicScore}, szScore=${zanzils.score}`)
+    }
+
+    return {
+      finger: ring1,
+      finger2: ring2
+    }
   }
 
-  static getBestInSlotWeaponCombo(
-    phase: number,
-    faction: Faction,
-    pvpRank: PvPRank,
-    raids: boolean,
-    worldBosses: boolean,
-    magicSchool: MagicSchool,
-    targetType: TargetType,
-    spellHitWeight: number,
-    spellCritWeight: number
-  ): WeaponComboJSON {
-    const twohand = this.getBestInSlotItem(
-      ItemSlot.Twohand,
-      phase,
-      faction,
-      pvpRank,
-      raids,
-      worldBosses,
-      magicSchool,
-      targetType,
-      spellHitWeight,
-      spellCritWeight
-    )
-    const onehand = this.getBestInSlotItem(
-      ItemSlot.Onehand,
-      phase,
-      faction,
-      pvpRank,
-      raids,
-      worldBosses,
-      magicSchool,
-      targetType,
-      spellHitWeight,
-      spellCritWeight
-    )
-    const offhand = this.getBestInSlotItem(
-      ItemSlot.Offhand,
-      phase,
-      faction,
-      pvpRank,
-      raids,
-      worldBosses,
-      magicSchool,
-      targetType,
-      spellHitWeight,
-      spellCritWeight
-    )
-
-    const enchant = this.getBestInSlotEnchant(ItemSlot.Mainhand, phase, magicSchool, spellHitWeight, spellCritWeight)
+  static getBestInSlotWeaponCombo(itemSearch: ItemSearch) {
+    const twohand = this.getBestInSlotItem(ItemSlot.Twohand, itemSearch)
+    const onehand = this.getBestInSlotItem(ItemSlot.Onehand, itemSearch)
+    const offhand = this.getBestInSlotItem(ItemSlot.Offhand, itemSearch)
+    const enchant = this.getBestInSlotEnchant(ItemSlot.Mainhand, itemSearch)
 
     const onehandscore = onehand !== undefined ? onehand.score : 0
     const offhandscore = offhand !== undefined ? offhand.score : 0
@@ -278,110 +295,5 @@ export default class Database {
       offHand: offhand,
       enchant: enchant
     }
-  }
-
-  static getBestInSlotItem(
-    slot: ItemSlot,
-    phase: number,
-    faction: Faction,
-    pvpRank: PvPRank,
-    raids: boolean,
-    worldBosses: boolean,
-    magicSchool: MagicSchool,
-    targetType: TargetType,
-    spellHitWeight: number,
-    spellCritWeight: number
-  ) {
-    let result = this.getWeightedEquipmentBySlot(
-      slot,
-      phase,
-      faction,
-      pvpRank,
-      raids,
-      worldBosses,
-      magicSchool,
-      targetType,
-      spellHitWeight,
-      spellCritWeight,
-      SortOrder.Descending
-    )
-    return result[0]
-  }
-
-  static getWeightedEquipmentBySlot(
-    slot: ItemSlot,
-    phase: number,
-    faction: Faction,
-    pvpRank: PvPRank,
-    raids: boolean,
-    worldBosses: boolean,
-    magicSchool: MagicSchool,
-    targetType: TargetType,
-    spellHitWeight: number,
-    spellCritWeight: number,
-    sortOrder: SortOrder
-  ) {
-    let slot2query = (slot: ItemSlot) => {
-      switch (slot) {
-        case ItemSlot.Finger2:
-          return `[* slot=${ItemSlot.Finger}]`
-        case ItemSlot.Trinket2:
-          return `[* slot=${ItemSlot.Trinket}]`
-        case ItemSlot.Mainhand:
-        case ItemSlot.Onehand:
-          return `[* slot=${ItemSlot.Mainhand} | slot=${ItemSlot.Onehand}]`
-        default:
-          return `[* slot=${slot}]`
-      }
-    }
-
-    let result = jsonQuery(slot2query(slot), { data: gear }).value
-    result = jsonQuery(`[* faction = ${faction} | faction = ${Faction.Horde | Faction.Alliance}]`, { data: result })
-      .value
-    result = jsonQuery(`[* phase <= ${phase}]`, { data: result }).value
-    result = jsonQuery(`[* pvpRank <= ${pvpRank}]`, { data: result }).value
-    result = jsonQuery(`[* worldBoss = false | worldBoss = ${worldBosses}]`, { data: result }).value
-    result = jsonQuery(`[* raid = false | raid = ${raids}]`, { data: result }).value
-
-    /* score items */
-    for (let i in result) {
-      result[i].score = Item.scoreItem(result[i], magicSchool, targetType, spellHitWeight, spellCritWeight)
-    }
-    result.sort(sortOrder === SortOrder.Descending ? Item.sortScoreDes : Item.sortScoreAsc)
-    return result
-  }
-
-  static getBestInSlotEnchant(
-    slot: ItemSlot,
-    phase: number,
-    magicSchool: MagicSchool,
-    spellHitWeight: number,
-    spellCritWeight: number
-  ) {
-    let result = this.getWeightedEnchantBySlot(
-      slot,
-      phase,
-      magicSchool,
-      spellHitWeight,
-      spellCritWeight,
-      SortOrder.Descending
-    )
-    return result[0]
-  }
-
-  static getWeightedEnchantBySlot(
-    slot: ItemSlot,
-    phase: number,
-    magicSchool: MagicSchool,
-    spellHitWeight: number,
-    spellCritWeight: number,
-    sortOrder: SortOrder
-  ) {
-    let result = jsonQuery(`[* slot = ${slot} & phase <= ${phase}]`, { data: enchants }).value
-    for (let i in result) {
-      result[i].score = Item.scoreEnchant(result[i], magicSchool, spellHitWeight, spellCritWeight)
-    }
-    result.sort(sortOrder === SortOrder.Descending ? Item.sortScoreDes : Item.sortScoreAsc)
-    return result
   }
 }

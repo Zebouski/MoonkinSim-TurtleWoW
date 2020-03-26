@@ -5,7 +5,7 @@ import Target from './Target'
 import CastDmgValues from '../interface/CastDmgValues'
 import CastDmgObject from '../interface/CastDmgObject'
 import MagicSchool from '../enum/MagicSchool'
-import Buff from '../enum/Buff'
+import Buff from '../enum/Buffs'
 
 /**
  * A Spell cast by Character at Target.
@@ -173,13 +173,11 @@ export default class Cast {
   }
 
   get moonFuryBonus(): number {
-    return this.spell.isMoonfire || this.spell.isStarfire || this.spell.isWrath
-      ? this.character.talents.moonFuryBonus
-      : 1.0
+    return this.spell.isMoonfire || this.spell.isStarfire || this.spell.isWrath ? this.character.moonFuryBonus : 1.0
   }
 
   get improvedMoonfireBonus(): number {
-    return this.spell.isMoonfire ? this.character.talents.improvedMoonfireBonus : 1.0
+    return this.spell.isMoonfire ? this.character.improvedMoonfireBonus : 1.0
   }
 
   get improvedMoonfireSpellCritBonus(): number {
@@ -199,6 +197,9 @@ export default class Cast {
    * Value: -76%
    * Effect #2	Apply Aura: Mod % Damage Taken (Vulnerable)
    * Value: 1099%
+   *
+   * i.e. 2.6376 damage multiplier to vulnerable school
+   * 0.24 to non-vulnerable schools
    */
   get shimmerBonus(): number {
     let modifier = this.target.shimmer ? 1 - 0.76 : 1
@@ -281,9 +282,9 @@ export default class Cast {
     switch (this.spell.magicSchool) {
       case MagicSchool.Arcane:
       case MagicSchool.Shadow:
-        return this.character.gear.spellPenetration + this.target.curseOfShadowResistBonus
+        return this.character.equipment.spellPenetration + this.target.curseOfShadowResistBonus
       case MagicSchool.Nature:
-        return this.character.gear.spellPenetration + this.target.thunderfuryResistBonus
+        return this.character.equipment.spellPenetration + this.target.thunderfuryResistBonus
       default:
         return 0
     }
@@ -296,9 +297,9 @@ export default class Cast {
   get castTime(): number {
     switch (this.spell.baseName.toUpperCase()) {
       case 'WRATH':
-        return this.spell.castTime - this.character.talents.improvedWrathBonus
+        return this.spell.castTime - this.character.improvedWrathBonus
       case 'STARFIRE':
-        return this.spell.castTime - this.character.talents.improvedStarfireBonus
+        return this.spell.castTime - this.character.improvedStarfireBonus
       default:
         return this.spell.castTime <= constants.globalCoolDown ? constants.globalCoolDown : this.spell.castTime
     }
@@ -310,17 +311,17 @@ export default class Cast {
    * would not reduce the cast time below the GCD
    */
   get castTimeReductionOnCrit(): number {
-    if (this.character.talents.naturesGraceBonus === 0) return 0
-    return this.castTime - this.character.talents.naturesGraceBonus <= constants.globalCoolDown
+    if (this.character.naturesGraceBonus === 0) return 0
+    return this.castTime - this.character.naturesGraceBonus <= constants.globalCoolDown
       ? constants.globalCoolDown - this.castTime
-      : this.character.talents.naturesGraceBonus
+      : this.character.naturesGraceBonus
   }
 
   /**
    * Factors in cast speed, procs like natures grace, hit, crit and "human factor" (which might actually be latency?)
    */
   get effectiveCastTime(): number {
-    if ((this.character.buffs & Buff.BurningAdrenaline) === Buff.BurningAdrenaline) {
+    if ((this.character.buffFlags & Buff.BurningAdrenaline) === Buff.BurningAdrenaline) {
       return constants.globalCoolDown + constants.castTimePenalty
     }
 
@@ -367,7 +368,7 @@ export default class Cast {
       case 'WRATH':
       case 'STARFIRE':
       case 'MOONFIRE':
-        return constants.baseSpellCritMultiplier + this.character.talents.vengeanceBonus
+        return constants.baseSpellCritMultiplier + this.character.vengeanceBonus
       default:
         return constants.baseSpellCritMultiplier
     }

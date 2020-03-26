@@ -51,6 +51,13 @@
       </div>
       <div class="column is-narrow">
         <div class="field">
+          <b-checkbox class="is-size-7-mobile" v-model="options.tailoring">
+            Tailoring
+          </b-checkbox>
+        </div>
+      </div>
+      <div class="column is-narrow">
+        <div class="field">
           <b-checkbox class="is-size-7-mobile" v-model="options.worldBosses">
             World Bosses
           </b-checkbox>

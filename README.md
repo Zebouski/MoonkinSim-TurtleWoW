@@ -1,4 +1,8 @@
 ### [Moonkin Calculator](https://kmmiles.gitlab.io/moonkin-calc/)
+##### Version 0.2.2
+  - Add item set bonuses
+  - Filter items by tailoring
+  
 ##### Version 0.2.1
   - Filter items by Raids, World Bosses and PVP Rank
   - Support shimmer targets

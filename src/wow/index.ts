@@ -36,19 +36,17 @@ import PlayableClass from './enum/PlayableClass'
 import Gender from './enum/Gender'
 import SortOrder from './enum/SortOrder'
 import PvPRank from './enum/PvPRank'
-import Buff from './enum/Buff'
+import Buffs from './enum/Buffs'
 import TargetType from './enum/TargetType'
 
 import Database from './class/Database'
-import Talents from './class/Talents'
 import Character from './class/Character'
-import Gear from './class/Gear'
 import Item from './class/Item'
 import Equipment from './class/Equipment'
-import RawGear from './class/RawGear'
 import Target from './class/Target'
 import Spell from './class/Spell'
 import Cast from './class/Cast'
+import Encounter from './class/Encounter'
 
 export default {
   constants,
@@ -62,16 +60,14 @@ export default {
   Gender,
   SortOrder,
   PvPRank,
-  Buff,
+  Buffs,
   TargetType,
   Database,
-  Talents,
   Character,
-  Gear,
   Item,
-  RawGear,
   Equipment,
   Target,
   Spell,
-  Cast
+  Cast,
+  Encounter
 }

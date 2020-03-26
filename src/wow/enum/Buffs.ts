@@ -1,4 +1,4 @@
-export enum Buff {
+export enum Buffs {
   None,
   MoonkinAura = 1 << 0,
   PowerInfusion = 1 << 1,
@@ -22,4 +22,4 @@ export enum Buff {
   All = ~(~0 << 18)
 }
 
-export default Buff
+export default Buffs

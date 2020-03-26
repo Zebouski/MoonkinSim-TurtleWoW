@@ -1,8 +1,11 @@
 [
     {
         "name": "Bloodvine Garb",
+        "phase": 4,
+        "raid": false,
+        "tailoring": true,
         "spellCrit": 2,
-        "items": [
+        "itemNames": [
             "Bloodvine Vest",
             "Bloodvine Leggings",
             "Bloodvine Boots"
@@ -10,9 +13,12 @@
     },
     {
         "name": "Zanzil's Concentration",
+        "phase": 4,
+        "raid": true,
+        "tailoring": false,
         "spellHit": 1,
         "spellDamage": 6,
-        "items": [
+        "itemNames": [
             "Zanzil's Band",
             "Zanzil's Seal"
         ]

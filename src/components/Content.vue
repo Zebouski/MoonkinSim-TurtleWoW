@@ -7,7 +7,7 @@
             <article class="tile is-child box has-background-black-ter has-text-white">
               <b-tabs class="block">
                 <b-tab-item label="Gear">
-                  <Gear :options="options" :gearData="bisGear" />
+                  <Gear :options="options" :gearData="encounter.equipment" />
                 </b-tab-item>
                 <b-tab-item label="Talents">
                   <Talents :options="options" />
@@ -25,10 +25,10 @@
             <article class="tile is-child box has-background-black-ter has-text-white">
               <b-tabs class="block">
                 <b-tab-item label="Summary">
-                  <Summary :data="spellCast" />
+                  <Summary :data="encounter.spellCast" />
                 </b-tab-item>
                 <b-tab-item label="Damage">
-                  <Damage :data="spellCast" />
+                  <Damage :data="encounter.spellCast" />
                 </b-tab-item>
               </b-tabs>
             </article>
@@ -55,11 +55,6 @@ import Summary from './Summary.vue'
 import Damage from './Damage.vue'
 import Debug from './Debug.vue'
 
-import Equipment from '../wow/class/Equipment'
-import TargetType from '../wow/enum/TargetType'
-
-import Options from '../wow/interface/Options'
-
 const Props = Vue.extend({
   props: {
     options: Object
@@ -70,155 +65,14 @@ const Props = Vue.extend({
   components: { Gear, Talents, Buffs, Target, Summary, Damage, Debug }
 })
 export default class Content extends Props {
-  wow = wow
+  get encounter() {
+    return new wow.Encounter(this.options)
+  }
 
   get debugObj() {
     return {
-      bisGear: this.bisGear,
-      spellCast: this.spellCast
+      spellCast: this.encounter.spellCast
     }
-  }
-
-  calcBisGear(
-    phase: number,
-    faction: number,
-    pvpRank: number,
-    raids: boolean,
-    worldBosses: boolean,
-    magicSchool: number,
-    targetType: TargetType,
-    spellHitWeight: number,
-    spellCritWeight: number
-  ): Equipment {
-    let _bis = (slot: number) => {
-      return wow.Database.getBestInSlotItemWithEnchant(
-        slot,
-        phase,
-        faction,
-        pvpRank,
-        raids,
-        worldBosses,
-        magicSchool,
-        targetType,
-        spellHitWeight,
-        spellCritWeight
-      )
-    }
-
-    let bisTrinkets = wow.Database.getBestInSlotTrinkets(
-      phase,
-      faction,
-      pvpRank,
-      raids,
-      worldBosses,
-      magicSchool,
-      targetType,
-      spellHitWeight,
-      spellCritWeight
-    )
-
-    let bisRings = wow.Database.getBestInSlotRings(
-      phase,
-      faction,
-      pvpRank,
-      raids,
-      worldBosses,
-      magicSchool,
-      targetType,
-      spellHitWeight,
-      spellCritWeight
-    )
-
-    let bisWeaponCombo = wow.Database.getBestInSlotWeaponCombo(
-      phase,
-      faction,
-      pvpRank,
-      raids,
-      worldBosses,
-      magicSchool,
-      targetType,
-      spellHitWeight,
-      spellCritWeight
-    )
-
-    // return new wow.Equipment()
-    return new wow.Equipment(
-      _bis(wow.ItemSlot.Head),
-      _bis(wow.ItemSlot.Hands),
-      _bis(wow.ItemSlot.Neck),
-      _bis(wow.ItemSlot.Waist),
-      _bis(wow.ItemSlot.Shoulder),
-      _bis(wow.ItemSlot.Legs),
-      _bis(wow.ItemSlot.Back),
-      _bis(wow.ItemSlot.Feet),
-      _bis(wow.ItemSlot.Chest),
-      new wow.Item(wow.ItemSlot.Finger, bisRings.finger),
-      _bis(wow.ItemSlot.Wrist),
-      new wow.Item(wow.ItemSlot.Finger2, bisRings.finger2),
-      new wow.Item(wow.ItemSlot.Mainhand, bisWeaponCombo.mainHand, bisWeaponCombo.enchant),
-      new wow.Item(wow.ItemSlot.Trinket, bisTrinkets.trinket),
-      bisWeaponCombo.offHand ? new wow.Item(wow.ItemSlot.Offhand, bisWeaponCombo.offHand) : undefined,
-      new wow.Item(wow.ItemSlot.Trinket2, bisTrinkets.trinket2),
-      _bis(wow.ItemSlot.Relic)
-    )
-  }
-
-  get bisGear() {
-    let spell = new wow.Spell(this.options.spell.name)
-    return this.calcBisGear(
-      this.options.phase,
-      wow.Character.factionFromRace(this.options.character.race),
-      this.options.character.pvpRank,
-      this.options.raids,
-      this.options.worldBosses,
-      spell.magicSchool,
-      this.options.target.type,
-      15,
-      10
-    )
-  }
-
-  get spellCast() {
-    let bis = this.bisGear
-
-    return new wow.Cast(
-      new wow.Character(
-        this.options.character.level,
-        this.options.character.race,
-        this.options.character.class,
-        this.options.character.gender,
-        new wow.Talents(
-          this.options.character.talents.naturesGraceRank,
-          this.options.character.talents.moonFuryRank,
-          this.options.character.talents.vengeanceRank,
-          this.options.character.talents.improvedWrathRank,
-          this.options.character.talents.improvedStarfireRank,
-          this.options.character.talents.improvedMoonfireRank
-        ),
-        new wow.Gear(
-          bis.stamina,
-          bis.intellect,
-          bis.spirit,
-          bis.mp5,
-          bis.spellPenetration,
-          bis.spellHit,
-          bis.spellCrit,
-          bis.spellDamage,
-          bis.arcaneDamage,
-          bis.natureDamage
-        ),
-        wow.Character.buffListToFlags(this.options.character.buffs)
-      ),
-      new wow.Spell(this.options.spell.name),
-      new wow.Target(
-        this.options.target.level,
-        this.options.target.type,
-        this.options.target.spellResistance,
-        this.options.target.shimmer,
-        this.options.target.thunderfury,
-        wow.Character.buffListToFlags(this.options.target.debuffs)
-      )
-    )
   }
 }
 </script>

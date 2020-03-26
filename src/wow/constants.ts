@@ -5,6 +5,52 @@ import PlayableClass from './enum/PlayableClass'
 import Gender from './enum/Gender'
 import Options from './interface/Options'
 
+let defaults: Options = {
+  debug: false,
+  phase: 3,
+  raids: true,
+  tailoring: true,
+  worldBosses: false,
+  combatLength: 30,
+  spellName: 'Starfire Rank 6',
+  character: {
+    level: 60,
+    gender: Gender.Male,
+    race: PlayableRace.Tauren,
+    class: PlayableClass.Druid,
+    pvpRank: 1,
+    talents: {
+      naturesGraceRank: 1,
+      moonFuryRank: 5,
+      vengeanceRank: 5,
+      improvedWrathRank: 5,
+      improvedStarfireRank: 5,
+      improvedMoonfireRank: 5
+    },
+    buffs: [
+      'MoonkinAura',
+      'FlaskOfSupremePower',
+      'GreaterArcaneElixir',
+      'CerebralCortexCompound',
+      'RunnTumTuberSurprise',
+      'RallyingCryOfTheDragonSlayer',
+      'SlipkiksSavvy',
+      'ArcaneBrilliance',
+      'SongflowerSerenade',
+      'BlessingOfKings',
+      'ImprovedGiftOfTheWild'
+    ]
+  },
+  target: {
+    level: 63,
+    type: TargetType.Elemental,
+    spellResistance: 75,
+    shimmer: 0,
+    thunderfury: 0,
+    debuffs: ['CurseOfShadow']
+  }
+}
+
 export default {
   globalCoolDown: 1.5,
   playerLevelCap: 60,
@@ -26,52 +72,6 @@ export default {
   baseSpellCrit: 1.8,
   baseSpellCritMultiplier: 1.5,
   castTimePenalty: 0.05, // This is an artifact from Ayz's spell damage calculator. No one knows what it is. Human factor? Latency factor?
-  unmitigatableBossResistance: 24,
 
-  defaults: {
-    debug: false,
-    phase: 3,
-    raids: true,
-    worldBosses: false,
-    combatLength: 30,
-    character: {
-      level: 60,
-      gender: Gender.Male,
-      race: PlayableRace.Tauren,
-      class: PlayableClass.Druid,
-      pvpRank: 1,
-      talents: {
-        naturesGraceRank: 1,
-        moonFuryRank: 5,
-        vengeanceRank: 5,
-        improvedWrathRank: 5,
-        improvedStarfireRank: 5,
-        improvedMoonfireRank: 5
-      },
-      buffs: [
-        'MoonkinAura',
-        'FlaskOfSupremePower',
-        'GreaterArcaneElixir',
-        'CerebralCortexCompound',
-        'RunnTumTuberSurprise',
-        'RallyingCryOfTheDragonSlayer',
-        'SlipkiksSavvy',
-        'ArcaneBrilliance',
-        'SongflowerSerenade',
-        'BlessingOfKings',
-        'ImprovedGiftOfTheWild'
-      ]
-    },
-    spell: {
-      name: 'Starfire Rank 6'
-    },
-    target: {
-      level: 63,
-      shimmer: 0,
-      thunderfury: 0,
-      type: TargetType.Elemental,
-      spellResistance: 75,
-      debuffs: ['CurseOfShadow']
-    }
-  }
+  defaults: defaults
 }

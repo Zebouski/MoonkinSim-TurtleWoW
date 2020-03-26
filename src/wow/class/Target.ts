@@ -1,5 +1,6 @@
-import Buff from '../enum/Buff'
-import TargetType from '../enum/TargetType'
+import Buffs from '../enum/Buffs'
+import OptionsTarget from '../interface/OptionsTarget'
+import Character from '../class/Character'
 import MagicSchool from '../enum/MagicSchool'
 
 /* XXX: I originally wanted to allow user to select a target from a list. The lack of
@@ -23,78 +24,74 @@ interface TargetJSON {
 */
 
 export default class Target {
-  level: number
-  type: TargetType
-  spellResistance: number
-  debuffs: Buff
-  shimmer: MagicSchool
-  thunderfury: number
+  options: OptionsTarget
+  debuffFlags: Buffs
+  constructor(options: OptionsTarget) {
+    this.options = options
+    this.debuffFlags = Character.buffListToFlags(options.debuffs)
+  }
 
-  constructor(
-    level: number,
-    type: TargetType,
-    spellResistance: number,
-    shimmer: MagicSchool,
-    thunderfury: number,
-    debuffs: Buff
-  ) {
-    this.level = level
-    this.type = type
-    this.debuffs = debuffs
-    this.spellResistance = spellResistance
-    this.shimmer = shimmer
-    this.thunderfury = thunderfury
+  get level(): number {
+    return this.options.level
+  }
+
+  get spellResistance(): number {
+    return this.options.spellResistance
+  }
+
+  get shimmer(): MagicSchool {
+    return this.options.shimmer
   }
 
   get spellVulnBonus(): number {
-    return (this.debuffs & Buff.SpellVulnerability) === Buff.SpellVulnerability ? 1.15 : 1.0
+    return (this.debuffFlags & Buffs.SpellVulnerability) === Buffs.SpellVulnerability ? 1.15 : 1.0
   }
 
   /**
    * ...reducing Shadow and Arcane resistances by 75...
    */
   get curseOfShadowResistBonus(): number {
-    return (this.debuffs & Buff.CurseOfShadow) === Buff.CurseOfShadow ? 75 : 0
+    return (this.debuffFlags & Buffs.CurseOfShadow) === Buffs.CurseOfShadow ? 75 : 0
   }
 
   /**
    * ...reducing nature resistances 25 per "jump"...
    */
   get thunderfuryResistBonus(): number {
-    return this.thunderfury ? this.thunderfury * 25 : 0
+    return this.options.thunderfury ? this.options.thunderfury * 25 : 0
   }
 
   /**
    * ...and increasing Shadow and Arcane damage taken by 10%...
    */
   get curseOfShadowDamageBonus(): number {
-    return (this.debuffs & Buff.CurseOfShadow) === Buff.CurseOfShadow ? 1.1 : 1.0
+    return (this.debuffFlags & Buffs.CurseOfShadow) === Buffs.CurseOfShadow ? 1.1 : 1.0
   }
 
   /**
    * ..the next 2 sources of Nature damage dealt to the target are increased by 20%
    */
   get stormStrikeBonus(): number {
-    return (this.debuffs & Buff.StormStrike) === Buff.StormStrike ? 1.2 : 1.0
+    return (this.debuffFlags & Buffs.StormStrike) === Buffs.StormStrike ? 1.2 : 1.0
   }
 
   get arcaneSpellResistance(): number {
-    return this.spellResistance
+    return this.options.spellResistance
   }
 
   get natureSpellResistance(): number {
-    return this.spellResistance
+    return this.options.spellResistance
   }
 
   get fireSpellResistance(): number {
-    return this.spellResistance
+    return this.options.spellResistance
   }
 
   get frostSpellResistance(): number {
-    return this.spellResistance
+    return this.options.spellResistance
   }
 
   get shadowSpellResistance(): number {
-    return this.spellResistance
+    return this.options.spellResistance
   }
 }

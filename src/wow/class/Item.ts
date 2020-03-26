@@ -1,5 +1,6 @@
 import Database from './Database'
 import ItemJSON from '../interface/ItemJSON'
+import ItemSetJSON from '../interface/ItemSetJSON'
 import EnchantJSON from '../interface/EnchantJSON'
 import MagicSchool from '../enum/MagicSchool'
 import ItemQuality from '../enum/ItemQuality'
@@ -59,6 +60,26 @@ export default class Item {
       item.spellHit ? item.spellHit : 0,
       item.spellCrit ? item.spellCrit : 0,
       item.intellect ? item.intellect : 0,
+      spellHitWeight,
+      spellCritWeight
+    )
+  }
+
+  static scoreItemSetBonus(
+    itemSet: ItemSetJSON,
+    magicSchool: MagicSchool,
+    targetType: TargetType,
+    spellHitWeight: number,
+    spellCritWeight: number
+  ): number {
+    return this.score(
+      magicSchool,
+      this.calcTargetDamage(targetType, TargetType.All, itemSet.spellDamage ? itemSet.spellDamage : 0),
+      0,
+      0,
+      itemSet.spellHit ? itemSet.spellHit : 0,
+      itemSet.spellCrit ? itemSet.spellCrit : 0,
+      0,
       spellHitWeight,
       spellCritWeight
     )

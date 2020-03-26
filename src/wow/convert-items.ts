@@ -252,6 +252,8 @@ class Item {
     }
 
     switch (this.itemBoss.toUpperCase()) {
+      case 'EMERISS':
+      case 'YSONDRE':
       case 'LETHON':
       case 'TAERAR':
       case 'LORD KAZZAK':
