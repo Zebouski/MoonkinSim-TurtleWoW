@@ -40,6 +40,15 @@ export default class Encounter {
       spell,
       new Target(this.options.target)
     )
+
+    itemSearch.spellHitWeight = this.spellCast.spellHitWeight
+    itemSearch.spellCritWeight = this.spellCast.spellCritWeight
+    this.equipment = Encounter.calcBisGear(itemSearch)
+    this.spellCast = new Cast(
+      new Character(this.options.character, this.equipment),
+      spell,
+      new Target(this.options.target)
+    )
   }
 
   static calcBisGear(itemSearch: ItemSearch): Equipment {
@@ -54,8 +63,8 @@ export default class Encounter {
 
     console.log(bisChestLegsFeet)
 
-    // return new wow.Equipment()
-    return new Equipment(
+    let equipment = new Equipment(
+      itemSearch,
       _bis(ItemSlot.Head),
       _bis(ItemSlot.Hands),
       _bis(ItemSlot.Neck),
@@ -74,5 +83,7 @@ export default class Encounter {
       new Item(ItemSlot.Trinket2, bisTrinkets.trinket2),
       _bis(ItemSlot.Relic)
     )
+
+    return equipment
   }
 }

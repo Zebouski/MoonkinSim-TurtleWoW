@@ -1,9 +1,12 @@
 import Item from './Item'
 import ItemSlot from '../enum/ItemSlot'
 
+import ItemSearch from '../interface/ItemSearch'
+
 /* head, gloves, neck, waist, shoulders, legs, back, feet, chest, finger1
 wrists, finger 2, mainhand, trinket1, offhand, trinket2 */
 export default class Equipment {
+  itemSearch: ItemSearch
   head: Item
   hands: Item
   neck: Item
@@ -23,6 +26,7 @@ export default class Equipment {
   idol: Item
 
   constructor(
+    itemSearch: ItemSearch,
     head?: Item | undefined,
     hands?: Item | undefined,
     neck?: Item | undefined,
@@ -41,6 +45,7 @@ export default class Equipment {
     trinket2?: Item | undefined,
     idol?: Item | undefined
   ) {
+    this.itemSearch = itemSearch
     this.head = head ? head : new Item(ItemSlot.Head)
     this.hands = hands ? hands : new Item(ItemSlot.Hands)
     this.neck = neck ? neck : new Item(ItemSlot.Neck)
@@ -148,8 +153,21 @@ export default class Equipment {
     )
   }
 
+  get hasBloodvine() {
+    if (
+      this.itemSearch.tailoring &&
+      this.chest.name === `Bloodvine Vest` &&
+      this.legs.name === `Bloodvine Leggings` &&
+      this.feet.name === `Bloodvine Boots`
+    ) {
+      return true
+    }
+    return false
+  }
+
   get spellCrit(): number {
     return (
+      (this.hasBloodvine ? 2 : 0) +
       this.head.spellCrit +
       this.hands.spellCrit +
       this.neck.spellCrit +
