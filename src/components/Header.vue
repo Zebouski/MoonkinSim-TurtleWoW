@@ -9,7 +9,7 @@
                 <div class="column"></div>
                 <div class="column is-narrow">
                   <b-field label="Spell Name" label-position="on-border">
-                    <b-select class="is-size-7-mobile" v-model="options.spell.name">
+                    <b-select class="is-size-7-mobile" v-model="options.spellName">
                       <option v-for="name in spellList" :key="name" v-bind:value="name">
                         {{ name }}
                       </option>
@@ -73,7 +73,7 @@ export default class Header extends Props {
   }
 
   get phaseList() {
-    return wow.Database.phaseList()
+    return [1, 2, 3, 4, 5, 6]
   }
 }
 </script>
