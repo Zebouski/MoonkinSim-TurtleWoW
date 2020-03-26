@@ -65,8 +65,41 @@ export default class Equipment {
     this.idol = idol ? idol : new Item(ItemSlot.Relic)
   }
 
+  static printItemNames(equipment: Equipment) {
+    console.log(`
+      ${equipment.head.name}, ${equipment.hands.name}, ${equipment.neck.name},
+      ${equipment.waist.name}, ${equipment.shoulders.name}, ${equipment.legs.name},
+      ${equipment.back.name}, ${equipment.feet.name}, ${equipment.chest.name},
+      ${equipment.finger1.name}, ${equipment.wrists.name}, ${equipment.finger2.name},
+      ${equipment.mainhand.name}, ${equipment.trinket1.name}, ${equipment.offhand.name},
+      ${equipment.trinket2.name}, ${equipment.idol.spellDamage}`)
+  }
+
+  get hasBloodvine() {
+    if (
+      this.itemSearch.tailoring &&
+      this.chest.name === `Bloodvine Vest` &&
+      this.legs.name === `Bloodvine Leggings` &&
+      this.feet.name === `Bloodvine Boots`
+    ) {
+      return true
+    }
+    return false
+  }
+
+  get hasZanzils() {
+    if (
+      (this.finger1.name === `Zanzil's Band` || this.finger1.name === `Zanzil's Seal`) &&
+      (this.finger1.name === `Zanzil's Seal` || this.finger1.name === `Zanzil's Band`)
+    ) {
+      return true
+    }
+    return false
+  }
+
   get spellDamage(): number {
     return (
+      (this.hasZanzils ? 6 : 0) +
       this.head.spellDamage +
       this.hands.spellDamage +
       this.neck.spellDamage +
@@ -133,6 +166,7 @@ export default class Equipment {
 
   get spellHit(): number {
     return (
+      (this.hasZanzils ? 1 : 0) +
       this.head.spellHit +
       this.hands.spellHit +
       this.neck.spellHit +
@@ -151,18 +185,6 @@ export default class Equipment {
       this.trinket2.spellHit +
       this.idol.spellHit
     )
-  }
-
-  get hasBloodvine() {
-    if (
-      this.itemSearch.tailoring &&
-      this.chest.name === `Bloodvine Vest` &&
-      this.legs.name === `Bloodvine Leggings` &&
-      this.feet.name === `Bloodvine Boots`
-    ) {
-      return true
-    }
-    return false
   }
 
   get spellCrit(): number {

@@ -30,8 +30,8 @@ export default class Encounter {
       tailoring: this.options.tailoring,
       magicSchool: spell.magicSchool,
       targetType: this.options.target.type,
-      spellHitWeight: 14.908,
-      spellCritWeight: 12.15,
+      spellHitWeight: 15,
+      spellCritWeight: 10,
       sortOrder: SortOrder.Descending
     }
     this.equipment = Encounter.calcBisGear(itemSearch)
@@ -41,14 +41,31 @@ export default class Encounter {
       new Target(this.options.target)
     )
 
-    itemSearch.spellHitWeight = this.spellCast.spellHitWeight
-    itemSearch.spellCritWeight = this.spellCast.spellCritWeight
-    this.equipment = Encounter.calcBisGear(itemSearch)
-    this.spellCast = new Cast(
-      new Character(this.options.character, this.equipment),
-      spell,
-      new Target(this.options.target)
-    )
+    let maxTries = 5
+    let prevKey = 0
+    let key = 0
+    for (let i = 0; i <= maxTries; i++) {
+      prevKey = key
+      key = itemSearch.spellHitWeight + itemSearch.spellCritWeight
+      if (prevKey !== 0 && key === prevKey) {
+        console.log('No changes in weights, all done.')
+        break
+      }
+      console.log(
+        `[attempt=${i}, key=${key}] hit=${itemSearch.spellHitWeight} crit=${itemSearch.spellCritWeight} dps=${this.spellCast.dps.effective.avg}`
+      )
+      Equipment.printItemNames(this.equipment)
+
+      this.equipment = Encounter.calcBisGear(itemSearch)
+      this.spellCast = new Cast(
+        new Character(this.options.character, this.equipment),
+        spell,
+        new Target(this.options.target)
+      )
+
+      itemSearch.spellHitWeight = this.spellCast.spellHitWeight
+      itemSearch.spellCritWeight = this.spellCast.spellCritWeight
+    }
   }
 
   static calcBisGear(itemSearch: ItemSearch): Equipment {
@@ -60,8 +77,6 @@ export default class Encounter {
     let bisRings = Database.getBestInSlotRings(itemSearch)
     let bisWeaponCombo = Database.getBestInSlotWeaponCombo(itemSearch)
     let bisChestLegsFeet = Database.getBestInSlotChestLegsFeet(itemSearch)
-
-    console.log(bisChestLegsFeet)
 
     let equipment = new Equipment(
       itemSearch,

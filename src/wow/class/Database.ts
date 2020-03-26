@@ -264,7 +264,6 @@ export default class Database {
     if (zanzils && zanzils.score > basicScore) {
       ring1 = zanzils.items[0]
       ring2 = zanzils.items[1]
-      console.log(`basicScore=${basicScore}, szScore=${zanzils.score}`)
     }
 
     return {
