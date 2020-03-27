@@ -1,6 +1,7 @@
 ### [Moonkin Calculator](https://kmmiles.gitlab.io/moonkin-calc/)
 ##### Version 0.2.2
   - Add item set bonuses
+  - Smarter gear recommendation
   - Filter items by tailoring
   
 ##### Version 0.2.1
