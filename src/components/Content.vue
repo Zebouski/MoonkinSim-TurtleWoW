@@ -7,7 +7,7 @@
             <article class="tile is-child box has-background-black-ter has-text-white">
               <b-tabs class="block">
                 <b-tab-item label="Gear">
-                  <Gear :options="options" :gearData="encounter.equipment" />
+                  <Gear :options="options" :gearData="encounter.spellCast.character.equipment" />
                 </b-tab-item>
                 <b-tab-item label="Talents">
                   <Talents :options="options" />

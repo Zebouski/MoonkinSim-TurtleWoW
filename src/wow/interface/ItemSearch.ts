@@ -13,6 +13,7 @@ export default interface ItemSearch {
   worldBosses: boolean
   magicSchool: MagicSchool
   targetType: TargetType
+  equipment?: Object
   spellHitWeight: number
   spellCritWeight: number
   sortOrder?: SortOrder

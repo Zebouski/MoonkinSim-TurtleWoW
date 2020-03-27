@@ -2,6 +2,14 @@
   <div class="content">
     <div class="columns is-mobile">
       <div class="column">
+        <b-field label="Level" label-position="on-border">
+          <b-select class="is-size-7-mobile" v-model.number="options.target.level">
+            <option value="63">63</option>
+            <option value="62">62</option>
+            <option value="61">61</option>
+            <option value="60">60</option>
+          </b-select>
+        </b-field>
         <b-field label="Type" label-position="on-border">
           <b-select class="is-size-7-mobile" v-model.number="options.target.type">
             <option value="1">Beast</option>
@@ -30,11 +38,6 @@
             Storm Strike
           </b-checkbox>
         </div>
-        <div class="field">
-          <b-checkbox class="is-size-7-mobile" native-value="SpellVulnerability" v-model="options.target.debuffs">
-            Spell Vulnerability
-          </b-checkbox>
-        </div>
       </div>
       <div class="column">
         <b-field label="Resistance" label-position="on-border">
@@ -53,6 +56,11 @@
         <div class="field">
           <b-checkbox class="is-size-7-mobile" native-value="CurseOfShadow" v-model="options.target.debuffs">
             Curse of Shadow
+          </b-checkbox>
+        </div>
+        <div class="field">
+          <b-checkbox class="is-size-7-mobile" native-value="SpellVulnerability" v-model="options.target.debuffs">
+            Spell Vulnerability
           </b-checkbox>
         </div>
       </div>

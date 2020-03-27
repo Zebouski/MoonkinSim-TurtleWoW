@@ -16,29 +16,41 @@ import Item from './Item'
 export default class Encounter {
   options: Options
   spellCast: Cast
-  equipment: Equipment
 
   constructor(options: Options) {
     this.options = options
-    let spell = new Spell(this.options.spellName)
+    this.spellCast = new Cast(
+      new Character(this.options.character, Encounter.optimalEquipment(options)),
+      new Spell(this.options.spellName),
+      new Target(this.options.target)
+    )
+  }
+
+  /* returns optimal equipment depending on options. will keep calculating, equipping,
+   * and re-evaluating stat weights until the equipment no longer changes */
+  static optimalEquipment(options: Options) {
+    let spell = new Spell(options.spellName)
+
     let itemSearch = {
-      phase: this.options.phase,
-      faction: Character.factionFromRace(this.options.character.race),
-      pvpRank: this.options.character.pvpRank,
-      raids: this.options.raids,
-      worldBosses: this.options.worldBosses,
-      tailoring: this.options.tailoring,
+      phase: options.phase,
+      faction: Character.factionFromRace(options.character.race),
+      pvpRank: options.character.pvpRank,
+      raids: options.raids,
+      worldBosses: options.worldBosses,
+      tailoring: options.tailoring,
       magicSchool: spell.magicSchool,
-      targetType: this.options.target.type,
+      targetType: options.target.type,
+      lockedItems: options.character.lockedItems,
       spellHitWeight: 15,
       spellCritWeight: 10,
       sortOrder: SortOrder.Descending
     }
-    this.equipment = Encounter.calcBisGear(itemSearch)
-    this.spellCast = new Cast(
-      new Character(this.options.character, this.equipment),
+
+    let equipment = Encounter.calcBisGear(itemSearch)
+    let spellCast = new Cast(
+      new Character(options.character, equipment),
       spell,
-      new Target(this.options.target)
+      new Target(options.target)
     )
 
     let maxTries = 5
@@ -52,20 +64,22 @@ export default class Encounter {
         break
       }
       console.log(
-        `[attempt=${i}, key=${key}] hit=${itemSearch.spellHitWeight} crit=${itemSearch.spellCritWeight} dps=${this.spellCast.dps.effective.avg}`
+        `[attempt=${i}, key=${key}] hit=${itemSearch.spellHitWeight} crit=${itemSearch.spellCritWeight} dps=${spellCast.dps.effective.avg}`
       )
-      Equipment.printItemNames(this.equipment)
+      Equipment.printItemNames(equipment)
 
-      this.equipment = Encounter.calcBisGear(itemSearch)
-      this.spellCast = new Cast(
-        new Character(this.options.character, this.equipment),
+      equipment = Encounter.calcBisGear(itemSearch)
+      spellCast = new Cast(
+        new Character(options.character, equipment),
         spell,
-        new Target(this.options.target)
+        new Target(options.target)
       )
 
-      itemSearch.spellHitWeight = this.spellCast.spellHitWeight
-      itemSearch.spellCritWeight = this.spellCast.spellCritWeight
+      itemSearch.spellHitWeight = spellCast.spellHitWeight
+      itemSearch.spellCritWeight = spellCast.spellCritWeight
     }
+
+    return equipment
   }
 
   static calcBisGear(itemSearch: ItemSearch): Equipment {

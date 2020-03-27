@@ -35,6 +35,21 @@ export default class Target {
     return this.options.level
   }
 
+  /* assumes character level 60 */
+  get hitChance(): number {
+    switch (this.level) {
+      case 60:
+        return 96
+      case 61:
+        return 95
+      case 62:
+        return 94
+      case 63:
+      default:
+        return 83
+    }
+  }
+
   get spellResistance(): number {
     return this.options.spellResistance
   }

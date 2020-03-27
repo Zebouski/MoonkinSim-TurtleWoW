@@ -1,8 +1,9 @@
 ### [Moonkin Calculator](https://kmmiles.gitlab.io/moonkin-calc/)
 ##### Version 0.2.2
-  - Add item set bonuses
   - Smarter gear recommendation
   - Filter items by tailoring
+  - Factors in item set bonuses
+  - Target level selection
   
 ##### Version 0.2.1
   - Filter items by Raids, World Bosses and PVP Rank

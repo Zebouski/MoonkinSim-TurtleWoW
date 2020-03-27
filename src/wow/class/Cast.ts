@@ -336,7 +336,7 @@ export default class Cast {
    *
    */
   get chanceToHit(): number {
-    return 83 + this.character.spellHit
+    return Math.min(99, this.target.hitChance + this.character.spellHit)
   }
 
   /**
@@ -344,7 +344,7 @@ export default class Cast {
    *
    */
   get chanceToMiss(): number {
-    return 100 - this.chanceToHit
+    return Math.max(1, 100 - this.chanceToHit)
   }
 
   /**
@@ -391,7 +391,7 @@ export default class Cast {
    * spell hit weight i.e. the amount of spell power 1 point of hit is worth.
    */
   get spellHitWeight(): number {
-    return this.character.spellHit < constants.spellHitCap ? this.spellHitToSpellDamage : 0
+    return this.chanceToMiss > 1 ? this.spellHitToSpellDamage : 0
   }
 
   /**
@@ -486,86 +486,6 @@ export default class Cast {
   get testRotationDPS(): number {
     // (starfireDPS - mfDPSLoss) + (moonfireDirectDPS / moonfireDotDuration) + moonfireDotDPS
     return 488 - 62 + 289 / 12 + 71
-  }
-  /************************************************/
-  get kefDPS(): number {
-    // =(($H$9*$H$13*$I$9+$H$9*$H$16)/100) / $I$18*$D$22*$D$23*$D$24*$D$25*$D$26*$D$27*(1-$H$20)
-    return (
-      ((this.normalDmg.actual.avg * this.chanceToNormal + this.critDmg.actual.avg * this.chanceToCrit) /
-        100 /
-        this.effectiveCastTime) *
-      this.effectiveDmgMultiplier
-    )
-  }
-  get OGspellDamageToDamage(): number {
-    const x =
-      this.effectiveDmgMultiplier *
-      this.spell.coefficient.direct *
-      (0.83 + this.character.spellHit / 100) *
-      (1 + (this.critBonusMultiplier * this.effectiveSpellCrit) / 100)
-    const y =
-      this.castTime -
-      this.castTimeReductionOnCrit * (0.83 + this.character.spellHit / 100) * (this.effectiveSpellCrit / 100)
-
-    return x / y
-  }
-
-  get OGspellCritToDamage(): number {
-    return (
-      (this.effectiveDmgMultiplier *
-        (83 + this.character.spellHit) *
-        (this.moonFuryBonus * this.spell.avgDmg + this.spell.coefficient.direct * this.effectiveSpellDamage) *
-        (this.critBonusMultiplier * this.castTime +
-          this.castTimeReductionOnCrit * (0.83 + this.character.spellHit / 100))) /
-      (100 * this.castTime -
-        this.castTimeReductionOnCrit * (0.83 + this.character.spellHit / 100) * this.effectiveSpellCrit) **
-        2
-    )
-  }
-
-  get OGspellHitToDamage(): number {
-    return (
-      (this.effectiveDmgMultiplier *
-        (this.moonFuryBonus * this.spell.avgDmg + this.spell.coefficient.direct * this.effectiveSpellDamage) *
-        (100 + this.critBonusMultiplier * this.effectiveSpellCrit) *
-        (100 ** 2 * this.castTime)) /
-      (100 ** 2 * this.castTime -
-        this.castTimeReductionOnCrit * (83 + this.character.spellHit) * this.effectiveSpellCrit) **
-        2
-    )
-  }
-
-  get OGspellCritToSpellDamage(): number {
-    return (
-      (((this.critBonusMultiplier *
-        ((this.moonFuryBonus * this.spell.avgDmg) / this.spell.coefficient.direct + this.effectiveSpellDamage)) /
-        (100 + this.critBonusMultiplier * this.effectiveSpellCrit)) *
-        (this.castTime +
-          ((0.83 + this.character.spellHit / 100) * this.castTimeReductionOnCrit) / this.critBonusMultiplier)) /
-      (this.castTime -
-        ((0.83 + this.character.spellHit / 100) * this.castTimeReductionOnCrit * this.effectiveSpellCrit) / 100)
-    )
-  }
-
-  get OGspellHitToSpellDamage(): number {
-    return (
-      ((((this.moonFuryBonus * this.spell.avgDmg) / this.spell.coefficient.direct + this.effectiveSpellDamage) /
-        (83 + this.character.spellHit)) *
-        (100 ** 2 * this.castTime)) /
-      (100 ** 2 * this.castTime -
-        this.castTimeReductionOnCrit * (83 + this.character.spellHit) * this.effectiveSpellCrit)
-    )
-  }
-
-  get OGDPS(): number {
-    return (
-      (this.effectiveDmgMultiplier *
-        (0.83 + this.character.spellHit / 100) *
-        (this.moonFuryBonus * this.spell.avgDmg + this.spell.coefficient.direct * this.effectiveSpellDamage) *
-        (1 + (this.critBonusMultiplier * this.effectiveSpellCrit) / 100)) /
-      (this.castTime -
-        this.castTimeReductionOnCrit * (0.83 + this.character.spellHit / 100) * (this.effectiveSpellCrit / 100))
-    )
   }
 
   toJSON() {

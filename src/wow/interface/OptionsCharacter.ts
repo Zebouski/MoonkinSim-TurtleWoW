@@ -10,6 +10,25 @@ export default interface OptionsCharacter {
   class: PlayableClass
   pvpRank: PvPRank
   buffs: string[]
+  lockedItems?: {
+    head?: string,
+    hands?: string,
+    neck?: string,
+    waist?: string,
+    shoulders?: string,
+    legs?: string,
+    back?: string,
+    feet?: string,
+    chest?: string,
+    finger1?: string,
+    wrists?: string,
+    finger2?: string,
+    mainhand?: string,
+    trinket1?: string,
+    offhand?: string,
+    trinket2?: string,
+    idol?: string
+  }
   talents: {
     naturesGraceRank: number
     moonFuryRank: number
