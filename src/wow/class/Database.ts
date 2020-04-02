@@ -304,11 +304,11 @@ export default class Database {
     let feet = this.getBestInSlotItem(ItemSlot.Feet, itemSearch)
     let normScore = chest.score + legs.score + feet.score
 
-    if (
-      itemSearch === undefined ||
-      itemSearch.lockedItems === undefined ||
-      (itemSearch.lockedItems.chest === '' && itemSearch.lockedItems.legs === '' && itemSearch.lockedItems.feet === '')
-    ) {
+    let customChest = itemSearch !== undefined && itemSearch.lockedItems !== undefined && itemSearch.lockedItems.chest
+    let customLegs = itemSearch !== undefined && itemSearch.lockedItems !== undefined && itemSearch.lockedItems.chest
+    let customFeet = itemSearch !== undefined && itemSearch.lockedItems !== undefined && itemSearch.lockedItems.chest
+
+    if (!customChest && !customLegs && !customFeet) {
       bloodvine = this.getItemSet(`Bloodvine Garb`, itemSearch)
       if (bloodvine && bloodvine.score > normScore) {
         chest = bloodvine.items[0]
@@ -334,11 +334,11 @@ export default class Database {
     let ring2 = this.isUniqueEquip(result[0]) ? result[1] : result[0]
     let basicScore = (ring1 ? ring1.score : 0) + (ring2 ? ring2.score : 0)
 
-    if (
-      itemSearch === undefined ||
-      itemSearch.lockedItems === undefined ||
-      (itemSearch.lockedItems.finger === '' && itemSearch.lockedItems.finger2 === '')
-    ) {
+    let customFinger = itemSearch !== undefined && itemSearch.lockedItems !== undefined && itemSearch.lockedItems.finger
+    let customFinger2 =
+      itemSearch !== undefined && itemSearch.lockedItems !== undefined && itemSearch.lockedItems.finger2
+
+    if (!customFinger && !customFinger2) {
       zanzils = this.getItemSet(`Zanzil's Concentration`, itemSearch)
       if (zanzils && zanzils.score > basicScore) {
         ring1 = zanzils.items[0]
