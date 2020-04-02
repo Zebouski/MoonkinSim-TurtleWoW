@@ -120,15 +120,15 @@ export default class AttributesGeneral extends Props {
     }
   }
   get chanceToHit() {
-    return `Hit: ${Number(this.data.chanceToHit).toFixed(2)}%`
+    return `${Number(this.data.chanceToHit).toFixed(0)}% chance to hit`
   }
 
   get chanceToMiss() {
-    return `Miss: ${Number(this.data.chanceToMiss).toFixed(0)}%`
+    return `${Number(this.data.chanceToMiss).toFixed(0)}% chance to miss`
   }
 
   get chanceToCrit() {
-    return `Crit: ${Number(this.data.chanceToCrit).toFixed(2)}%`
+    return `${Number(this.data.chanceToCrit).toFixed(2)}% chance to crit`
   }
 }
 </script>
