@@ -20,14 +20,17 @@ export default class Spell {
    * Return base (short) name, parsed from name.
    */
   get baseName(): string {
-    return this.spellJSON.name.split(' ')[0]
+    let splitStr = this.spellJSON.name.split(' ')
+    splitStr.length = splitStr.length - 2
+    return splitStr.join(' ')
   }
 
   /**
    * Return spell rank, parsed from name.
    */
   get rank(): string {
-    return this.spellJSON.name.split(' ')[2]
+    let splitStr = this.spellJSON.name.split(' ')
+    return splitStr[splitStr.length - 1]
   }
 
   /**
@@ -55,7 +58,7 @@ export default class Spell {
    * Spell is Insect Swarm
    */
   get isInsectSwarm(): boolean {
-    return this.baseName.toUpperCase() === 'INSECT'
+    return this.baseName.toUpperCase() === 'INSECT SWARM'
   }
 
   /**

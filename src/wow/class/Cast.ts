@@ -256,7 +256,7 @@ export default class Cast {
       return this.spell.isBinary ? 0 : levelDiff * bonusPerLevel
     }
 
-    return (0.75 * effectiveTargetResistance()) / (5 * this.character.level)
+    return this.spell.canPartialResist ? (0.75 * effectiveTargetResistance()) / (5 * this.character.level) : 0
   }
 
   get baseDmgMultiplier(): number {

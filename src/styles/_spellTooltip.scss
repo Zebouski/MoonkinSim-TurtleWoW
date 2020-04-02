@@ -120,6 +120,7 @@ $flavour: #FFD100;
 
 }
 
+/*
   
 .wow-spell__header {
 
@@ -136,6 +137,35 @@ $flavour: #FFD100;
   }
 
 }
+*/
+
+.wow-spell__header {
+   
+  overflow: hidden;
+    font-size: 1.12em;
+  //margin-top: $gap;
+  
+  .header {
+
+    &__name,
+    &__rank {
+
+      float: left;
+
+    }
+    
+    &__rank {
+
+      float: right;
+      text-align: right;
+      color: $trash;
+
+    }
+
+  }
+    
+}
+
 
 .wow-spell__type {
    
