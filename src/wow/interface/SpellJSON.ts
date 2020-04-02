@@ -13,6 +13,7 @@ export default interface SpellJSON {
   range: number
   manaCost: number
   phase: number
+  icon: string
   minDmg?: number // direct and hybrid spells only
   maxDmg?: number // direct and hybrid spells only
   tickDmg?: number // periodic and hybrid spells only

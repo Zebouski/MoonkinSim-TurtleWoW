@@ -8,19 +8,17 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { default as wow } from './wow'
 
-import Header from './components/Header.vue'
-import Footer from './components/Footer.vue'
 import Content from './components/Content.vue'
+import Footer from './components/Footer.vue'
 
 @Component({
   components: {
-    Header,
-    Footer,
-    Content
+    Content,
+    Footer
   }
 })
 export default class App extends Vue {
-  components: Array<string> = ['Header', 'Content', 'Footer']
+  components: Array<string> = ['Content', 'Footer']
   options = wow.constants.defaults
 }
 </script>

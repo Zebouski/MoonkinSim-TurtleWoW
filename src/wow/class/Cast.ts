@@ -210,14 +210,22 @@ export default class Cast {
     return this.spell.isNature ? this.target.stormStrikeBonus : 1.0
   }
 
+  get spellDamageBonus(): number {
+    return (
+      this.character.flaskOfSupremePowerBonus +
+      this.character.greaterArcaneElixirBonus +
+      this.character.ephemeralPowerBonus
+    )
+  }
+
   get actualSpellDamage(): number {
     switch (this.spell.magicSchool) {
       case MagicSchool.Physical:
         return 0
       case MagicSchool.Arcane:
-        return this.character.arcaneDamage
+        return this.character.arcaneDamage + this.character.spellDamage
       case MagicSchool.Nature:
-        return this.character.natureDamage
+        return this.character.natureDamage + this.character.spellDamage
       case MagicSchool.Fire:
       case MagicSchool.Frost:
       case MagicSchool.Shadow:
@@ -227,14 +235,8 @@ export default class Cast {
     }
   }
 
-  /* actual spell damage plus buffs */
   get effectiveSpellDamage(): number {
-    return (
-      this.actualSpellDamage +
-      this.character.flaskOfSupremePowerBonus +
-      this.character.greaterArcaneElixirBonus +
-      this.character.ephemeralPowerBonus
-    )
+    return this.actualSpellDamage + this.spellDamageBonus
   }
 
   get effectiveSpellCrit(): number {

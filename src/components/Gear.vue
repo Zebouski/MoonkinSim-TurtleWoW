@@ -2,67 +2,76 @@
   <div>
     <div class="gear">
       <div class="gear-left">
-        <GearItem :itemSlot="wow.ItemSlot.Head" :itemData="gearData.head" />
-        <GearItem :itemSlot="wow.ItemSlot.Neck" :itemData="gearData.neck" />
-        <GearItem :itemSlot="wow.ItemSlot.Shoulder" :itemData="gearData.shoulders" />
-        <GearItem :itemSlot="wow.ItemSlot.Back" :itemData="gearData.back" />
-        <GearItem :itemSlot="wow.ItemSlot.Chest" :itemData="gearData.chest" />
-        <GearItem :itemSlot="wow.ItemSlot.Wrist" :itemData="gearData.wrists" />
-        <GearItem :itemSlot="wow.ItemSlot.Mainhand" :itemData="gearData.mainhand" />
-        <GearItem :itemSlot="wow.ItemSlot.Offhand" :itemData="gearData.offhand" />
+        <GearItem :itemSelectOptions="itemSelectOptions" :itemSlot="wow.ItemSlot.Head" :itemData="equipment.head" />
+        <GearItem :itemSelectOptions="itemSelectOptions" :itemSlot="wow.ItemSlot.Neck" :itemData="equipment.neck" />
+        <GearItem
+          :itemSelectOptions="itemSelectOptions"
+          :itemSlot="wow.ItemSlot.Shoulder"
+          :itemData="equipment.shoulders"
+        />
+        <GearItem :itemSelectOptions="itemSelectOptions" :itemSlot="wow.ItemSlot.Back" :itemData="equipment.back" />
+        <GearItem :itemSelectOptions="itemSelectOptions" :itemSlot="wow.ItemSlot.Chest" :itemData="equipment.chest" />
+        <GearItem :itemSelectOptions="itemSelectOptions" :itemSlot="wow.ItemSlot.Wrist" :itemData="equipment.wrists" />
+        <GearItem
+          :itemSelectOptions="itemSelectOptions"
+          :itemSlot="wow.ItemSlot.Mainhand"
+          :itemData="equipment.mainhand"
+        />
+        <GearItem
+          :itemSelectOptions="itemSelectOptions"
+          :itemSlot="wow.ItemSlot.Offhand"
+          :itemData="equipment.offhand"
+        />
       </div>
       <div class="gear-center"></div>
       <div class="gear-right">
-        <GearItem :itemSlot="wow.ItemSlot.Hands" :itemData="gearData.hands" />
-        <GearItem :itemSlot="wow.ItemSlot.Waist" :itemData="gearData.waist" />
-        <GearItem :itemSlot="wow.ItemSlot.Legs" :itemData="gearData.legs" />
-        <GearItem :itemSlot="wow.ItemSlot.Feet" :itemData="gearData.feet" />
-        <GearItem :itemSlot="wow.ItemSlot.Finger" :itemData="gearData.finger1" />
-        <GearItem :itemSlot="wow.ItemSlot.Finger2" :itemData="gearData.finger2" />
-        <GearItem :itemSlot="wow.ItemSlot.Trinket" :itemData="gearData.trinket1" />
-        <GearItem :itemSlot="wow.ItemSlot.Trinket2" :itemData="gearData.trinket2" />
+        <GearItem :itemSelectOptions="itemSelectOptions" :itemSlot="wow.ItemSlot.Hands" :itemData="equipment.hands" />
+        <GearItem :itemSelectOptions="itemSelectOptions" :itemSlot="wow.ItemSlot.Waist" :itemData="equipment.waist" />
+        <GearItem :itemSelectOptions="itemSelectOptions" :itemSlot="wow.ItemSlot.Legs" :itemData="equipment.legs" />
+        <GearItem :itemSelectOptions="itemSelectOptions" :itemSlot="wow.ItemSlot.Feet" :itemData="equipment.feet" />
+        <GearItem
+          :itemSelectOptions="itemSelectOptions"
+          :itemSlot="wow.ItemSlot.Finger"
+          :itemData="equipment.finger1"
+        />
+        <GearItem
+          :itemSelectOptions="itemSelectOptions"
+          :itemSlot="wow.ItemSlot.Finger2"
+          :itemData="equipment.finger2"
+        />
+        <GearItem
+          :itemSelectOptions="itemSelectOptions"
+          :itemSlot="wow.ItemSlot.Trinket"
+          :itemData="equipment.trinket1"
+        />
+        <GearItem
+          :itemSelectOptions="itemSelectOptions"
+          :itemSlot="wow.ItemSlot.Trinket2"
+          :itemData="equipment.trinket2"
+        />
       </div>
     </div>
-    <div class="columns is-centered is-vcentered is-mobile">
-      <div class="column is-narrow">
-        <b-field label="PvP" label-position="on-border">
-          <b-select class="is-size-7-mobile" v-model="options.character.pvpRank">
-            <option v-for="rank in pvpRankList" :key="rank" v-bind:value="rank">
-              {{ rank }}
-            </option>
-          </b-select>
-        </b-field>
-      </div>
-      <!--
-      <div class="column is-narrow">
-        <b-field label="Fight Length" label-position="on-border">
-          <input class="input is-size-7-mobile" type="number" v-model.number="options.combatLength" />
-        </b-field>
-      </div>
-      -->
-    </div>
-    <div class="columns is-centered is-vcentered is-mobile">
-      <div class="column is-narrow">
-        <div class="field">
-          <b-checkbox class="is-size-7-mobile" v-model="options.raids">
-            Raids
-          </b-checkbox>
+    <div class="gearSelect">
+      <b-modal :active.sync="itemSelectOptions.activeItemSelect" scroll="clip">
+        <div class="container is-fluid">
+          <b-table
+            @select="selectItem"
+            :data="table_data"
+            :columns="table_columns"
+            :paginated="paginated"
+            :pagination-simple="true"
+            :selected.sync="selected"
+            per-page="5"
+            sort-icon="arrow-up"
+            sort-icon-size="is-small"
+            aria-next-label="Next page"
+            aria-previous-label="Previous page"
+            aria-page-label="Page"
+            aria-current-label="Current page"
+            default-sort="['score', 'desc']"
+          ></b-table>
         </div>
-      </div>
-      <div class="column is-narrow">
-        <div class="field">
-          <b-checkbox class="is-size-7-mobile" v-model="options.tailoring">
-            Tailoring
-          </b-checkbox>
-        </div>
-      </div>
-      <div class="column is-narrow">
-        <div class="field">
-          <b-checkbox class="is-size-7-mobile" v-model="options.worldBosses">
-            World Bosses
-          </b-checkbox>
-        </div>
-      </div>
+      </b-modal>
     </div>
   </div>
 </template>
@@ -95,11 +104,12 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { default as wow } from '../wow'
 import GearItem from './GearItem.vue'
+import ItemSlot from '../wow/enum/ItemSlot'
 
 const GearProps = Vue.extend({
   props: {
     options: Object,
-    gearData: Object
+    encounter: Object
   }
 })
 
@@ -108,18 +118,155 @@ const GearProps = Vue.extend({
 })
 export default class Gear extends GearProps {
   wow = wow
+  paginated = true
+  selected = null
 
-  get sliderType() {
-    if (this.options.combatLength < 120) {
-      return 'is-success'
-    } else if (this.options.combatLength >= 120 && this.options.combatLength < 300) {
-      return 'is-warning'
-    }
-    return 'is-danger'
+  itemSelectOptions = {
+    activeItemSlot: ItemSlot.Neck,
+    activeItemSelect: false
   }
 
-  get pvpRankList() {
-    return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+  selectItem(obj1: any, obj2: any) {
+    this.itemSelectOptions.activeItemSelect = false
+
+    console.log('hello, an item was selectd')
+    console.log(obj1)
+    console.log(obj2)
+
+    switch (obj1.slot) {
+      case ItemSlot.Head:
+        this.options.character.lockedItems.head = obj1.name
+        break
+      case ItemSlot.Hands:
+        this.options.character.lockedItems.hands = obj1.name
+        break
+      case ItemSlot.Neck:
+        this.options.character.lockedItems.neck = obj1.name
+        break
+      case ItemSlot.Waist:
+        this.options.character.lockedItems.waist = obj1.name
+        break
+      case ItemSlot.Shoulder:
+        this.options.character.lockedItems.shoulder = obj1.name
+        break
+      case ItemSlot.Legs:
+        this.options.character.lockedItems.legs = obj1.name
+        break
+      case ItemSlot.Back:
+        this.options.character.lockedItems.back = obj1.name
+        break
+      case ItemSlot.Feet:
+        this.options.character.lockedItems.feet = obj1.name
+        break
+      case ItemSlot.Chest:
+        this.options.character.lockedItems.chest = obj1.name
+        break
+      case ItemSlot.Wrist:
+        this.options.character.lockedItems.wrist = obj1.name
+        break
+      case ItemSlot.Finger:
+        this.options.character.lockedItems.finger = obj1.name
+        break
+      case ItemSlot.Finger2:
+        this.options.character.lockedItems.finger2 = obj1.name
+        break
+      case ItemSlot.Mainhand:
+        this.options.character.lockedItems.mainhand = obj1.name
+        break
+      case ItemSlot.Offhand:
+        this.options.character.lockedItems.offhand = obj1.name
+        break
+      case ItemSlot.Trinket:
+        this.options.character.lockedItems.trinket = obj1.name
+        break
+      case ItemSlot.Trinket2:
+        this.options.character.lockedItems.trinket2 = obj1.name
+        break
+      case ItemSlot.Relic:
+        this.options.character.lockedItems.idol = obj1.name
+        break
+      default:
+        break
+    }
+  }
+
+  get equipment() {
+    return this.encounter.spellCast.character.equipment
+  }
+
+  get table_data() {
+    console.log('HELLO TABLE DATA')
+    if (this.itemSelectOptions.activeItemSelect) {
+      let itemSearch = wow.Encounter.itemSearchFromOptions(
+        this.options,
+        this.encounter.spellCast.spellHitWeight,
+        this.encounter.spellCast.spellCritWeight
+      )
+      itemSearch.lockedItems = undefined
+      return wow.Database.getWeightedEquipmentBySlot(this.itemSelectOptions.activeItemSlot, itemSearch)
+    }
+    return {}
+  }
+
+  get table_columns() {
+    return [
+      {
+        field: 'name',
+        label: 'name',
+        width: '300',
+        numeric: false,
+        sortable: true,
+        searchable: true
+      },
+      {
+        field: 'spellDamage',
+        label: 'Spell Dmg',
+        width: '20',
+        numeric: true,
+        sortable: true,
+        searchable: false
+      },
+      {
+        field: 'arcaneDamage',
+        label: 'Arcane Dmg',
+        width: '20',
+        numeric: true,
+        sortable: true,
+        searchable: false
+      },
+      {
+        field: 'natureDamage',
+        label: 'Nature Dmg',
+        width: '20',
+        numeric: true,
+        sortable: true,
+        searchable: false
+      },
+      {
+        field: 'spellCrit',
+        label: 'Spell Crit',
+        width: '20',
+        numeric: true,
+        sortable: true,
+        searchable: false
+      },
+      {
+        field: 'spellHit',
+        label: 'Spell Hit',
+        width: '20',
+        numeric: true,
+        sortable: true,
+        searchable: false
+      },
+      {
+        field: 'score',
+        label: 'score',
+        width: '20',
+        numeric: true,
+        sortable: true,
+        searchable: false
+      }
+    ]
   }
 }
 </script>

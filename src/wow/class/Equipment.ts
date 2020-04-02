@@ -138,7 +138,7 @@ export default class Equipment {
       this.trinket1.arcaneDamage +
       this.offhand.arcaneDamage +
       this.trinket2.arcaneDamage +
-      this.idol.spellDamage
+      this.idol.arcaneDamage
     )
   }
 

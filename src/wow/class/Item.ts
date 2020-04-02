@@ -115,14 +115,15 @@ export default class Item {
     spellHitWeight: number,
     spellCritWeight: number
   ): number {
-    return (
+    const totalScore =
       spellDamage +
       (magicSchool && magicSchool === MagicSchool.Arcane ? arcaneDamage : 0) +
       (magicSchool && magicSchool === MagicSchool.Nature ? natureDamage : 0) +
       spellHit * spellHitWeight +
       spellCrit * spellCritWeight +
       (intellect / SpellCritFromIntellectDivisor.Druid) * spellCritWeight
-    )
+
+    return Number(totalScore.toFixed(3))
   }
 
   get id(): number {

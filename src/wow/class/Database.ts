@@ -109,6 +109,56 @@ export default class Database {
   }
 
   /****************/
+  static getLockedItem(slot: number, itemSearch: ItemSearch) {
+    let item = undefined
+    let itemName = this.getLockedItemName(slot, itemSearch)
+    if (itemName) {
+      item = this.gearByName(itemName)
+    }
+    return item
+  }
+
+  static getLockedItemName(slot: number, itemSearch: ItemSearch) {
+    switch (slot) {
+      case ItemSlot.Head:
+        return itemSearch && itemSearch.lockedItems ? itemSearch.lockedItems.head : undefined
+      case ItemSlot.Hands:
+        return itemSearch && itemSearch.lockedItems ? itemSearch.lockedItems.hands : undefined
+      case ItemSlot.Neck:
+        return itemSearch && itemSearch.lockedItems ? itemSearch.lockedItems.neck : undefined
+      case ItemSlot.Waist:
+        return itemSearch && itemSearch.lockedItems ? itemSearch.lockedItems.waist : undefined
+      case ItemSlot.Shoulder:
+        return itemSearch && itemSearch.lockedItems ? itemSearch.lockedItems.shoulder : undefined
+      case ItemSlot.Legs:
+        return itemSearch && itemSearch.lockedItems ? itemSearch.lockedItems.legs : undefined
+      case ItemSlot.Back:
+        return itemSearch && itemSearch.lockedItems ? itemSearch.lockedItems.back : undefined
+      case ItemSlot.Feet:
+        return itemSearch && itemSearch.lockedItems ? itemSearch.lockedItems.feet : undefined
+      case ItemSlot.Chest:
+        return itemSearch && itemSearch.lockedItems ? itemSearch.lockedItems.chest : undefined
+      case ItemSlot.Wrist:
+        return itemSearch && itemSearch.lockedItems ? itemSearch.lockedItems.wrist : undefined
+      case ItemSlot.Finger:
+        return itemSearch && itemSearch.lockedItems ? itemSearch.lockedItems.finger : undefined
+      case ItemSlot.Finger2:
+        return itemSearch && itemSearch.lockedItems ? itemSearch.lockedItems.finger2 : undefined
+      case ItemSlot.Mainhand:
+        return itemSearch && itemSearch.lockedItems ? itemSearch.lockedItems.mainhand : undefined
+      case ItemSlot.Offhand:
+        return itemSearch && itemSearch.lockedItems ? itemSearch.lockedItems.offhand : undefined
+      case ItemSlot.Trinket:
+        return itemSearch && itemSearch.lockedItems ? itemSearch.lockedItems.trinket : undefined
+      case ItemSlot.Trinket2:
+        return itemSearch && itemSearch.lockedItems ? itemSearch.lockedItems.trinket2 : undefined
+      case ItemSlot.Relic:
+        return itemSearch && itemSearch.lockedItems ? itemSearch.lockedItems.idol : undefined
+      default:
+        return undefined
+    }
+  }
+
   static getWeightedEquipmentBySlot(slot: ItemSlot, itemSearch: ItemSearch) {
     let slot2query = (slot: ItemSlot) => {
       switch (slot) {
@@ -117,11 +167,28 @@ export default class Database {
         case ItemSlot.Trinket2:
           return `[* slot=${ItemSlot.Trinket}]`
         case ItemSlot.Mainhand:
+          return `[* slot=${ItemSlot.Mainhand} | slot=${ItemSlot.Onehand} | slot=${ItemSlot.Twohand}]`
         case ItemSlot.Onehand:
           return `[* slot=${ItemSlot.Mainhand} | slot=${ItemSlot.Onehand}]`
         default:
           return `[* slot=${slot}]`
       }
+    }
+
+    /* Handle locked items. This is a piece of gear the user manually selected. The name of the
+     * item is stored in itemSearch and retrieved by getLockedItem */
+    let lockedItem = this.getLockedItem(slot, itemSearch)
+    if (lockedItem) {
+      let x = []
+      lockedItem.score = Item.scoreItem(
+        lockedItem,
+        itemSearch.magicSchool,
+        itemSearch.targetType,
+        itemSearch.spellHitWeight,
+        itemSearch.spellCritWeight
+      )
+      x.push(lockedItem)
+      return x
     }
 
     let result = jsonQuery(slot2query(slot), { data: gear }).value
@@ -231,16 +298,23 @@ export default class Database {
   }
 
   static getBestInSlotChestLegsFeet(itemSearch: ItemSearch) {
-    let bloodvine = this.getItemSet(`Bloodvine Garb`, itemSearch)
+    let bloodvine = undefined
     let chest = this.getBestInSlotItem(ItemSlot.Chest, itemSearch)
     let legs = this.getBestInSlotItem(ItemSlot.Legs, itemSearch)
     let feet = this.getBestInSlotItem(ItemSlot.Feet, itemSearch)
     let normScore = chest.score + legs.score + feet.score
 
-    if (bloodvine && bloodvine.score > normScore) {
-      chest = bloodvine.items[0]
-      legs = bloodvine.items[1]
-      feet = bloodvine.items[2]
+    if (
+      itemSearch === undefined ||
+      itemSearch.lockedItems === undefined ||
+      (itemSearch.lockedItems.chest === '' && itemSearch.lockedItems.legs === '' && itemSearch.lockedItems.feet === '')
+    ) {
+      bloodvine = this.getItemSet(`Bloodvine Garb`, itemSearch)
+      if (bloodvine && bloodvine.score > normScore) {
+        chest = bloodvine.items[0]
+        legs = bloodvine.items[1]
+        feet = bloodvine.items[2]
+      }
     }
 
     return {
@@ -254,16 +328,22 @@ export default class Database {
   }
 
   static getBestInSlotRings(itemSearch: ItemSearch) {
+    let zanzils = undefined
     let result = this.getWeightedEquipmentBySlot(ItemSlot.Finger, itemSearch)
     let ring1 = result[0]
     let ring2 = this.isUniqueEquip(result[0]) ? result[1] : result[0]
     let basicScore = (ring1 ? ring1.score : 0) + (ring2 ? ring2.score : 0)
 
-    /* need to try zanzils set */
-    let zanzils = this.getItemSet(`Zanzil's Concentration`, itemSearch)
-    if (zanzils && zanzils.score > basicScore) {
-      ring1 = zanzils.items[0]
-      ring2 = zanzils.items[1]
+    if (
+      itemSearch === undefined ||
+      itemSearch.lockedItems === undefined ||
+      (itemSearch.lockedItems.finger === '' && itemSearch.lockedItems.finger2 === '')
+    ) {
+      zanzils = this.getItemSet(`Zanzil's Concentration`, itemSearch)
+      if (zanzils && zanzils.score > basicScore) {
+        ring1 = zanzils.items[0]
+        ring2 = zanzils.items[1]
+      }
     }
 
     return {

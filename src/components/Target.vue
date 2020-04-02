@@ -3,7 +3,7 @@
     <div class="columns is-mobile">
       <div class="column">
         <b-field label="Level" label-position="on-border">
-          <b-select class="is-size-7-mobile" v-model.number="options.target.level">
+          <b-select class="is-size-7-mobile" expanded v-model.number="options.target.level">
             <option value="63">63</option>
             <option value="62">62</option>
             <option value="61">61</option>
@@ -11,7 +11,7 @@
           </b-select>
         </b-field>
         <b-field label="Type" label-position="on-border">
-          <b-select class="is-size-7-mobile" v-model.number="options.target.type">
+          <b-select class="is-size-7-mobile" expanded v-model.number="options.target.type">
             <option value="1">Beast</option>
             <option value="2">Demon</option>
             <option value="4">Dragonkin</option>
@@ -23,7 +23,7 @@
           </b-select>
         </b-field>
         <b-field label="Shimmer" label-position="on-border">
-          <b-select class="is-size-7-mobile" v-model.number="options.target.shimmer">
+          <b-select class="is-size-7-mobile" expanded v-model.number="options.target.shimmer">
             <option value="0">None</option>
             <option value="1">Arcane</option>
             <option value="2">Fire</option>
@@ -44,7 +44,7 @@
           <input class="input is-size-7-mobile" type="number" v-model.number="options.target.spellResistance" />
         </b-field>
         <b-field label="Thunderfury" label-position="on-border">
-          <b-select class="is-size-7-mobile" v-model.number="options.target.thunderfury">
+          <b-select class="is-size-7-mobile" expanded v-model.number="options.target.thunderfury">
             <option value="0">None</option>
             <option value="1">1</option>
             <option value="2">2</option>

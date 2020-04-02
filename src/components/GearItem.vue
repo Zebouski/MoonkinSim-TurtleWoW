@@ -3,7 +3,13 @@
     <template v-if="isLeftColumn">
       <div class="gear-item">
         <div class="gear-item-image">
-          <div class="image-wrapper" @mouseenter="mouseEnter(itemSlot)" @mousemove="mouseMove" @mouseleave="mouseLeave">
+          <div
+            class="image-wrapper"
+            @click="mouseClick"
+            @mouseenter="mouseEnter(itemSlot)"
+            @mousemove="mouseMove"
+            @mouseleave="mouseLeave"
+          >
             <figure class="image is-48x48">
               <img :src="itemData.iconFullPath" style="zIndex: 1" />
             </figure>
@@ -44,7 +50,13 @@
           </p>
         </div>
         <div class="gear-item-image">
-          <div class="image-wrapper" @mouseenter="mouseEnter(itemSlot)" @mousemove="mouseMove" @mouseleave="mouseLeave">
+          <div
+            class="image-wrapper"
+            @click="mouseClick"
+            @mouseenter="mouseEnter(itemSlot)"
+            @mousemove="mouseMove"
+            @mouseleave="mouseLeave"
+          >
             <figure class="image is-48x48">
               <img :src="itemData.iconFullPath" style="zIndex: 1" />
             </figure>
@@ -117,6 +129,7 @@ import GearItemTooltip from './GearItemTooltip.vue'
 
 const Props = Vue.extend({
   props: {
+    itemSelectOptions: Object,
     itemSlot: Number,
     itemData: Object
   }
@@ -150,6 +163,13 @@ export default class GearItem extends Props {
       default:
         return false
     }
+  }
+
+  mouseClick(): void {
+    /*
+    this.itemSelectOptions.activeItemSlot = this.itemSlot
+    this.itemSelectOptions.activeItemSelect = true
+    */
   }
 
   mouseEnter(slot: number): void {

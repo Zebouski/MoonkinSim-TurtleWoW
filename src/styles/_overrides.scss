@@ -3,6 +3,10 @@ body, button, input, select, textarea {
     font-family: $family-monospace;
 }
 */
+
+.level {
+    font-family: $family-monospace;
+}
 .field:not(:last-child) {
    margin-bottom: 1.5em; 
 }
@@ -12,11 +16,13 @@ body, button, input, select, textarea {
     border-radius: 0px;
 }
 
-#header {
+.level {
     border: solid 1px $grey-dark;
     border-radius: 0px;
     border-left: none;
     border-right: none;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 
 .footer, .section {
@@ -108,5 +114,19 @@ pre {
 }
 
 .b-checkbox.checkbox:hover {
+    color: white;
+}
+
+.th-wrap {
+    color: white;
+}
+
+.modal .modal-content {
+    background: $black-ter;
+    border: solid 1px $grey-dark;
+    border-radius: 0px;
+}
+
+.pagination-previous, .pagination-next, .pagination-link {
     color: white;
 }

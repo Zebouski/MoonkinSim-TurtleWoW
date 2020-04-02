@@ -4,6 +4,7 @@ import PlayableRace from './enum/PlayableRace'
 import PlayableClass from './enum/PlayableClass'
 import Gender from './enum/Gender'
 import Options from './interface/Options'
+import ItemSlot from './enum/ItemSlot'
 
 let defaults: Options = {
   debug: false,
@@ -13,6 +14,7 @@ let defaults: Options = {
   worldBosses: false,
   combatLength: 30,
   spellName: 'Starfire Rank 6',
+  itemSearchSlot: ItemSlot.None,
   character: {
     level: 60,
     gender: Gender.Male,
@@ -39,7 +41,26 @@ let defaults: Options = {
       'SongflowerSerenade',
       'BlessingOfKings',
       'ImprovedGiftOfTheWild'
-    ]
+    ],
+    lockedItems: {
+      head: '',
+      hands: '',
+      neck: '',
+      waist: '',
+      shoulder: '',
+      legs: '',
+      back: '',
+      feet: '',
+      chest: '',
+      wrist: '',
+      finger: '',
+      finger2: '',
+      mainhand: '',
+      offhand: '',
+      trinket: '',
+      trinket2: '',
+      idol: ''
+    }
   },
   target: {
     level: 63,

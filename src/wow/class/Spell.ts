@@ -25,6 +25,14 @@ export default class Spell {
     return this.spellJSON.name.split(' ')[0]
   }
 
+  get icon(): string {
+    return `${this.spellJSON.icon}.jpg`
+  }
+
+  get iconFullPath(): string {
+    return process.env.BASE_URL + 'wow-icons/' + this.icon
+  }
+
   /**
    * Spell is Starfire
    */

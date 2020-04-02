@@ -72,13 +72,26 @@ export default class Character {
    * TODO: https://classicwow.live/guides/46/basic-stats-sheet
    */
 
-  get baseIntellect(): number {
-    return (this.isNightElf ? 100 : 95) + this.equipment.intellect
+  get health(): number {
+    return 1368 + 10 * this.stamina * (this.isTauren ? 1.05 : 1)
+  }
+
+  get mana(): number {
+    return 964 + 15 * this.intellect
+  }
+
+  get stamina(): number {
+    return (
+      (this.isNightElf ? 69 : 72) +
+      this.equipment.stamina +
+      this.improvedGiftOfTheWildAttributeBonus * (this.isAlliance ? this.blessingOfKingsBonus : 1)
+    )
   }
 
   get intellect(): number {
     return (
-      (this.baseIntellect +
+      ((this.isNightElf ? 100 : 95) +
+        this.equipment.intellect +
         this.arcaneBrillianceBonus +
         this.improvedGiftOfTheWildAttributeBonus +
         this.songflowerSerenadeAttributeBonus +
@@ -88,42 +101,16 @@ export default class Character {
     )
   }
 
-  get baseSpirit(): number {
-    return (this.isNightElf ? 100 : 95) + this.equipment.spirit
+  get spirit(): number {
+    return (
+      (this.isNightElf ? 110 : 112) +
+      this.equipment.spirit +
+      this.improvedGiftOfTheWildAttributeBonus * (this.isAlliance ? this.blessingOfKingsBonus : 1)
+    )
   }
 
-  get enduranceRacialBonus(): number {
-    return this.isTauren ? 1.05 : 1
-  }
-
-  get baseStamina(): number {
-    switch (this.options.race) {
-      case PlayableRace.Tauren:
-        return 72
-      case PlayableRace.NightElf:
-        return 69
-      default:
-        return 0
-    }
-  }
-
-  get nativeHealth(): number {
-    return 1483
-  }
-
-  get baseHealth(): number {
-    switch (this.options.race) {
-      case PlayableRace.Tauren:
-        return this.nativeHealth + 10 * this.baseStamina
-      case PlayableRace.NightElf:
-        return this.nativeHealth + 10 * this.baseStamina
-      default:
-        return 0
-    }
-  }
-
-  get nativeMana(): number {
-    return 1244
+  get mp5(): number {
+    return this.equipment.mp5
   }
 
   get spellDamage(): number {
@@ -131,19 +118,15 @@ export default class Character {
   }
 
   get arcaneDamage(): number {
-    return this.equipment.arcaneDamage + this.equipment.spellDamage
+    return this.equipment.arcaneDamage
   }
 
   get natureDamage(): number {
-    return this.equipment.natureDamage + this.equipment.spellDamage
+    return this.equipment.natureDamage
   }
 
   get spellCritFromIntellect(): number {
     return this.intellect / 60
-  }
-
-  get actualSpellCrit(): number {
-    return constants.baseSpellCrit + this.spellCritFromIntellect + this.equipment.spellCrit
   }
 
   /**
@@ -152,7 +135,9 @@ export default class Character {
   get spellCrit(): number {
     return Math.min(
       constants.spellCritCap,
-      this.actualSpellCrit +
+      constants.baseSpellCrit +
+        this.spellCritFromIntellect +
+        this.equipment.spellCrit +
         this.rallyingCryOfTheDragonSlayerSpellCritBonus +
         this.moonkinAuraBonus +
         this.slipkiksSavvyBonus +
