@@ -2,6 +2,13 @@
   <div class="content">
     <div class="columns is-mobile">
       <div class="column">
+        <b-field label="Spell Name" label-position="on-border">
+          <b-select class="is-size-7-mobile" expanded v-model="options.spellName">
+            <option v-for="name in spellList" :key="name" v-bind:value="name">
+              {{ name }}
+            </option>
+          </b-select>
+        </b-field>
         <b-field label="Phase" label-position="on-border">
           <b-select
             class="is-size-7-mobile"
@@ -11,13 +18,6 @@
           >
             <option v-for="phase in phaseList" :key="phase" v-bind:value="phase">
               {{ phase }}
-            </option>
-          </b-select>
-        </b-field>
-        <b-field label="Spell Name" label-position="on-border">
-          <b-select class="is-size-7-mobile" expanded v-model="options.spellName">
-            <option v-for="name in spellList" :key="name" v-bind:value="name">
-              {{ name }}
             </option>
           </b-select>
         </b-field>
