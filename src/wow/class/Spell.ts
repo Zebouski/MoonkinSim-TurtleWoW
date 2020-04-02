@@ -5,9 +5,7 @@ import SpellJSON from '../interface/SpellJSON'
 import MagicSchool from '../enum/MagicSchool'
 
 /**
- * Spell details. The values returned from this class are referred to as 'native'. These are raw values that don't factor
- * in talents, spellpower, buffs, debuffs, etc. These are the values you would find when looking up the spell on a site
- * such as wowhead.
+ * Spell details. These are base values that don't factor in talents, spellpower, buffs, debuffs, etc.
  */
 export default class Spell {
   name: string
@@ -25,12 +23,11 @@ export default class Spell {
     return this.spellJSON.name.split(' ')[0]
   }
 
-  get icon(): string {
-    return `${this.spellJSON.icon}.jpg`
-  }
-
-  get iconFullPath(): string {
-    return process.env.BASE_URL + 'wow-icons/' + this.icon
+  /**
+   * Return spell rank, parsed from name.
+   */
+  get rank(): string {
+    return this.spellJSON.name.split(' ')[2]
   }
 
   /**
@@ -55,10 +52,37 @@ export default class Spell {
   }
 
   /**
-   * Return spell rank, parsed from name.
+   * Spell is Insect Swarm
    */
-  get rank(): string {
-    return this.spellJSON.name.split(' ')[2]
+  get isInsectSwarm(): boolean {
+    return this.baseName.toUpperCase() === 'INSECT'
+  }
+
+  /**
+   * Spell is Hurricane
+   */
+  get isHurricane(): boolean {
+    return this.baseName.toUpperCase() === 'HURRICANE'
+  }
+
+  get canCrit(): boolean {
+    return this.isStarfire || this.isWrath || this.isMoonfire ? true : false
+  }
+
+  get canMiss(): boolean {
+    return this.isStarfire || this.isWrath || this.isMoonfire || this.isInsectSwarm ? true : false
+  }
+
+  get canPartialResist(): boolean {
+    return this.isStarfire || this.isWrath || this.isMoonfire || this.isInsectSwarm ? true : false
+  }
+
+  get icon(): string {
+    return `${this.spellJSON.icon}.jpg`
+  }
+
+  get iconFullPath(): string {
+    return process.env.BASE_URL + 'wow-icons/' + this.icon
   }
 
   /**
