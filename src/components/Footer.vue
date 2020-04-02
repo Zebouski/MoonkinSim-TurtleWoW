@@ -4,11 +4,11 @@
       <font-awesome-icon :icon="['fab', 'discord']" /> Beef Broccoli#5067
       <br />
       <font-awesome-icon :icon="['fas', 'file-pdf']" />&nbsp;
-      <a href="https://kmmiles.gitlab.io/moonkin-calc/whitepaper/SpellDamage.pdf">Whitepaper</a>&nbsp;
+      <a class="link" href="https://kmmiles.gitlab.io/moonkin-calc/whitepaper/SpellDamage.pdf">Whitepaper</a>&nbsp;
       <font-awesome-icon :icon="['fab', 'gitlab']" />&nbsp;
-      <a href="https://gitlab.com/kmmiles/moonkin-calc">Source</a>&nbsp;
+      <a class="link" href="https://gitlab.com/kmmiles/moonkin-calc">Source</a>&nbsp;
       <font-awesome-icon :icon="['fas', 'book']" />&nbsp;
-      <a href="https://kmmiles.gitlab.io/moonkin-calc/docs">Docs</a>&nbsp;
+      <a class="link" href="https://kmmiles.gitlab.io/moonkin-calc/docs">Docs</a>&nbsp;
       <b-checkbox class="is-size-7" v-model="options.debug">
         <font-awesome-icon :icon="['fas', 'bug']" />
       </b-checkbox>
@@ -16,6 +16,7 @@
       <p>
         Based on Keftenk's
         <a
+          class="link "
           href="https://forum.classicwow.live/topic/726/by-the-great-winds-i-come-classic-balance-druid-theorycraft-spreadsheet-v1-3"
           >Classic Balance Druid spreadsheet</a
         >
@@ -28,6 +29,9 @@
 </template>
 
 <style scoped>
+.link {
+  text-decoration: underline;
+}
 .footer {
   border-left: none;
   border-right: none;
