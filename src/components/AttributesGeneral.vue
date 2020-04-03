@@ -10,12 +10,12 @@
         <p class="is-size-7-mobile">Mp5</p>
       </div>
       <div class="column">
-        <p class="is-size-7-mobile has-text-right">{{ data.character.health }}</p>
-        <p class="is-size-7-mobile has-text-right">{{ data.character.mana }}</p>
-        <p class="is-size-7-mobile has-text-right">{{ data.character.stamina }}</p>
-        <p class="is-size-7-mobile has-text-right">{{ data.character.intellect }}</p>
-        <p class="is-size-7-mobile has-text-right">{{ data.character.spirit }}</p>
-        <p class="is-size-7-mobile has-text-right">{{ data.character.mp5 }}</p>
+        <p class="is-size-7-mobile has-text-right">{{ data.character.health.toFixed(0) }}</p>
+        <p class="is-size-7-mobile has-text-right">{{ data.character.mana.toFixed(0) }}</p>
+        <p class="is-size-7-mobile has-text-right">{{ data.character.stamina.toFixed(0) }}</p>
+        <p class="is-size-7-mobile has-text-right">{{ data.character.intellect.toFixed(0) }}</p>
+        <p class="is-size-7-mobile has-text-right">{{ data.character.spirit.toFixed(0) }}</p>
+        <p class="is-size-7-mobile has-text-right">{{ data.character.mp5.toFixed(0) }}</p>
       </div>
     </div>
   </div>

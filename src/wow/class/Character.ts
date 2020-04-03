@@ -84,7 +84,9 @@ export default class Character {
     return (
       (this.isNightElf ? 69 : 72) +
       this.equipment.stamina +
-      this.improvedGiftOfTheWildAttributeBonus * (this.isAlliance ? this.blessingOfKingsBonus : 1)
+      this.improvedGiftOfTheWildAttributeBonus *
+        this.spiritOfZandalarBonus *
+        (this.isAlliance ? this.blessingOfKingsBonus : 1)
     )
   }
 
@@ -97,6 +99,7 @@ export default class Character {
         this.songflowerSerenadeAttributeBonus +
         this.cerebralCortexCompoundBonus +
         this.runnTumTuberSurpriseBonus) *
+      this.spiritOfZandalarBonus *
       (this.isAlliance ? this.blessingOfKingsBonus : 1)
     )
   }
@@ -105,7 +108,9 @@ export default class Character {
     return (
       (this.isNightElf ? 110 : 112) +
       this.equipment.spirit +
-      this.improvedGiftOfTheWildAttributeBonus * (this.isAlliance ? this.blessingOfKingsBonus : 1)
+      this.improvedGiftOfTheWildAttributeBonus *
+        this.spiritOfZandalarBonus *
+        (this.isAlliance ? this.blessingOfKingsBonus : 1)
     )
   }
 
@@ -208,6 +213,10 @@ export default class Character {
 
   get tracesOfSilithystBonus(): number {
     return (this.buffFlags & Buffs.TracesOfSilithyst) === Buffs.TracesOfSilithyst ? 1.05 : 1.0
+  }
+
+  get spiritOfZandalarBonus(): number {
+    return (this.buffFlags & Buffs.SpiritOfZandalar) === Buffs.SpiritOfZandalar ? 1.15 : 1
   }
 
   /* RAID BUFFS */

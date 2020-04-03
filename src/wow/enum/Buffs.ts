@@ -19,6 +19,7 @@ export enum Buffs {
   SpellVulnerability = 1 << 16,
   CurseOfShadow = 1 << 17,
   StormStrike = 1 << 18,
+  SpiritOfZandalar = 1 << 19,
   All = ~(~0 << 18)
 }
 
