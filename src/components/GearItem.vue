@@ -129,7 +129,7 @@ import GearItemTooltip from './GearItemTooltip.vue'
 
 const Props = Vue.extend({
   props: {
-    itemSelectOptions: Object,
+    options: Object,
     itemSlot: Number,
     itemData: Object
   }
@@ -166,10 +166,9 @@ export default class GearItem extends Props {
   }
 
   mouseClick(): void {
-    /*
-    this.itemSelectOptions.activeItemSlot = this.itemSlot
-    this.itemSelectOptions.activeItemSelect = true
-    */
+    if (this.options.experimental) {
+      this.options.itemSearchSlot = this.itemSlot
+    }
   }
 
   mouseEnter(slot: number): void {

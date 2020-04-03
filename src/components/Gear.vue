@@ -2,57 +2,29 @@
   <div>
     <div class="gear">
       <div class="gear-left">
-        <GearItem :itemSelectOptions="itemSelectOptions" :itemSlot="wow.ItemSlot.Head" :itemData="equipment.head" />
-        <GearItem :itemSelectOptions="itemSelectOptions" :itemSlot="wow.ItemSlot.Neck" :itemData="equipment.neck" />
-        <GearItem
-          :itemSelectOptions="itemSelectOptions"
-          :itemSlot="wow.ItemSlot.Shoulder"
-          :itemData="equipment.shoulders"
-        />
-        <GearItem :itemSelectOptions="itemSelectOptions" :itemSlot="wow.ItemSlot.Back" :itemData="equipment.back" />
-        <GearItem :itemSelectOptions="itemSelectOptions" :itemSlot="wow.ItemSlot.Chest" :itemData="equipment.chest" />
-        <GearItem :itemSelectOptions="itemSelectOptions" :itemSlot="wow.ItemSlot.Wrist" :itemData="equipment.wrists" />
-        <GearItem
-          :itemSelectOptions="itemSelectOptions"
-          :itemSlot="wow.ItemSlot.Mainhand"
-          :itemData="equipment.mainhand"
-        />
-        <GearItem
-          :itemSelectOptions="itemSelectOptions"
-          :itemSlot="wow.ItemSlot.Offhand"
-          :itemData="equipment.offhand"
-        />
+        <GearItem :options="options" :itemSlot="wow.ItemSlot.Head" :itemData="equipment.head" />
+        <GearItem :options="options" :itemSlot="wow.ItemSlot.Neck" :itemData="equipment.neck" />
+        <GearItem :options="options" :itemSlot="wow.ItemSlot.Shoulder" :itemData="equipment.shoulders" />
+        <GearItem :options="options" :itemSlot="wow.ItemSlot.Back" :itemData="equipment.back" />
+        <GearItem :options="options" :itemSlot="wow.ItemSlot.Chest" :itemData="equipment.chest" />
+        <GearItem :options="options" :itemSlot="wow.ItemSlot.Wrist" :itemData="equipment.wrists" />
+        <GearItem :options="options" :itemSlot="wow.ItemSlot.Mainhand" :itemData="equipment.mainhand" />
+        <GearItem :options="options" :itemSlot="wow.ItemSlot.Offhand" :itemData="equipment.offhand" />
       </div>
       <div class="gear-center"></div>
       <div class="gear-right">
-        <GearItem :itemSelectOptions="itemSelectOptions" :itemSlot="wow.ItemSlot.Hands" :itemData="equipment.hands" />
-        <GearItem :itemSelectOptions="itemSelectOptions" :itemSlot="wow.ItemSlot.Waist" :itemData="equipment.waist" />
-        <GearItem :itemSelectOptions="itemSelectOptions" :itemSlot="wow.ItemSlot.Legs" :itemData="equipment.legs" />
-        <GearItem :itemSelectOptions="itemSelectOptions" :itemSlot="wow.ItemSlot.Feet" :itemData="equipment.feet" />
-        <GearItem
-          :itemSelectOptions="itemSelectOptions"
-          :itemSlot="wow.ItemSlot.Finger"
-          :itemData="equipment.finger1"
-        />
-        <GearItem
-          :itemSelectOptions="itemSelectOptions"
-          :itemSlot="wow.ItemSlot.Finger2"
-          :itemData="equipment.finger2"
-        />
-        <GearItem
-          :itemSelectOptions="itemSelectOptions"
-          :itemSlot="wow.ItemSlot.Trinket"
-          :itemData="equipment.trinket1"
-        />
-        <GearItem
-          :itemSelectOptions="itemSelectOptions"
-          :itemSlot="wow.ItemSlot.Trinket2"
-          :itemData="equipment.trinket2"
-        />
+        <GearItem :options="options" :itemSlot="wow.ItemSlot.Hands" :itemData="equipment.hands" />
+        <GearItem :options="options" :itemSlot="wow.ItemSlot.Waist" :itemData="equipment.waist" />
+        <GearItem :options="options" :itemSlot="wow.ItemSlot.Legs" :itemData="equipment.legs" />
+        <GearItem :options="options" :itemSlot="wow.ItemSlot.Feet" :itemData="equipment.feet" />
+        <GearItem :options="options" :itemSlot="wow.ItemSlot.Finger" :itemData="equipment.finger1" />
+        <GearItem :options="options" :itemSlot="wow.ItemSlot.Finger2" :itemData="equipment.finger2" />
+        <GearItem :options="options" :itemSlot="wow.ItemSlot.Trinket" :itemData="equipment.trinket1" />
+        <GearItem :options="options" :itemSlot="wow.ItemSlot.Trinket2" :itemData="equipment.trinket2" />
       </div>
     </div>
     <div class="gearSelect">
-      <b-modal :active.sync="itemSelectOptions.activeItemSelect" scroll="clip">
+      <b-modal :active.sync="showItems" scroll="clip">
         <div class="container is-fluid">
           <b-table
             @select="selectItem"
@@ -60,7 +32,6 @@
             :columns="table_columns"
             :paginated="paginated"
             :pagination-simple="true"
-            :selected.sync="selected"
             per-page="5"
             sort-icon="arrow-up"
             sort-icon-size="is-small"
@@ -121,19 +92,20 @@ export default class Gear extends GearProps {
   paginated = true
   selected = null
 
-  itemSelectOptions = {
+  /*
+  options = {
     activeItemSlot: ItemSlot.Neck,
     activeItemSelect: false
   }
+  */
 
   selectItem(obj1: any, obj2: any) {
-    this.itemSelectOptions.activeItemSelect = false
-
     console.log('hello, an item was selectd')
     console.log(obj1)
     console.log(obj2)
-
-    switch (obj1.slot) {
+    let slot = this.options.itemSearchSlot
+    this.options.itemSearchSlot = ItemSlot.None
+    switch (slot) {
       case ItemSlot.Head:
         this.options.character.lockedItems.head = obj1.name
         break
@@ -190,22 +162,23 @@ export default class Gear extends GearProps {
     }
   }
 
+  get showItems() {
+    if (this.options.itemSearchSlot !== ItemSlot.None) {
+      return true
+    }
+    return false
+  }
+
+  set showItems(slot) {
+    this.options.itemSearchSlot = ItemSlot.None
+  }
+
   get equipment() {
-    return this.encounter.spellCast.character.equipment
+    return this.encounter.equipment
   }
 
   get table_data() {
-    console.log('HELLO TABLE DATA')
-    if (this.itemSelectOptions.activeItemSelect) {
-      let itemSearch = wow.Encounter.itemSearchFromOptions(
-        this.options,
-        this.encounter.spellCast.spellHitWeight,
-        this.encounter.spellCast.spellCritWeight
-      )
-      itemSearch.lockedItems = undefined
-      return wow.Database.getWeightedEquipmentBySlot(this.itemSelectOptions.activeItemSlot, itemSearch)
-    }
-    return {}
+    return this.encounter.items
   }
 
   get table_columns() {

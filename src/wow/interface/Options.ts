@@ -4,6 +4,7 @@ import ItemSlot from '../enum/ItemSlot'
 
 export default interface Options {
   debug: boolean
+  experimental: boolean
   phase: number
   raids: boolean
   tailoring: boolean

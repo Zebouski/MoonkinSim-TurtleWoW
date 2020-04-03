@@ -9,9 +9,6 @@
       <a class="link" href="https://gitlab.com/kmmiles/moonkin-calc">Source</a>&nbsp;
       <font-awesome-icon :icon="['fas', 'book']" />&nbsp;
       <a class="link" href="https://kmmiles.gitlab.io/moonkin-calc/docs">Docs</a>&nbsp;
-      <b-checkbox class="is-size-7" v-model="options.debug">
-        <font-awesome-icon :icon="['fas', 'bug']" />
-      </b-checkbox>
       <br />
       <p>
         Based on Keftenk's
@@ -22,7 +19,13 @@
         >
         and math by Balor.
         <br />
-        <span class="is-size-7">Version: {{ version }}</span>
+        <span class="is-size-7">Version: {{ version }}</span
+        >&nbsp;
+        <b-checkbox class="is-size-7" v-model="options.debug"> <font-awesome-icon :icon="['fas', 'bug']" /> </b-checkbox
+        >&nbsp;
+        <b-checkbox class="is-size-7" v-model="options.experimental">
+          <font-awesome-icon :icon="['fas', 'flask']" /> </b-checkbox
+        >&nbsp;
       </p>
     </div>
   </footer>

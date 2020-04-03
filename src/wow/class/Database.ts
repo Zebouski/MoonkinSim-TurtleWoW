@@ -311,6 +311,8 @@ export default class Database {
     if (!customChest && !customLegs && !customFeet) {
       bloodvine = this.getItemSet(`Bloodvine Garb`, itemSearch)
       if (bloodvine && bloodvine.score > normScore) {
+        console.log(`ATTENTION: I favored bloodvine set (${bloodvine.score}) over other items (${normScore})`)
+        console.log(itemSearch)
         chest = bloodvine.items[0]
         legs = bloodvine.items[1]
         feet = bloodvine.items[2]
@@ -330,10 +332,15 @@ export default class Database {
   static getBestInSlotRings(itemSearch: ItemSearch) {
     let zanzils = undefined
     let result = this.getWeightedEquipmentBySlot(ItemSlot.Finger, itemSearch)
-    let ring1 = result[0]
-    let ring2 = this.isUniqueEquip(result[0]) ? result[1] : result[0]
-    let basicScore = (ring1 ? ring1.score : 0) + (ring2 ? ring2.score : 0)
+    let result2 = this.getWeightedEquipmentBySlot(ItemSlot.Finger2, itemSearch)
 
+    let ring1 = result[0]
+    let ring2 = result2[0]
+    if (this.isUniqueEquip(result[0]) && result[0].name === result2[0].name) {
+      ring2 = result2[1]
+    }
+
+    let basicScore = (ring1 ? ring1.score : 0) + (ring2 ? ring2.score : 0)
     let customFinger = itemSearch.lockedItems !== undefined && itemSearch.lockedItems.finger
     let customFinger2 = itemSearch.lockedItems !== undefined && itemSearch.lockedItems.finger2
 
@@ -344,6 +351,9 @@ export default class Database {
         ring2 = zanzils.items[1]
       }
     }
+
+    console.log(ring1)
+    console.log(ring2)
 
     return {
       finger: ring1,

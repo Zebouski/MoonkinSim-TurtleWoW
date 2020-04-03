@@ -1,10 +1,16 @@
 import Item from './Item'
-import ItemSlot from '../enum/ItemSlot'
+import Character from './Character'
+import Spell from './Spell'
+import Database from './Database'
+import Target from './Target'
+import Cast from './Cast'
 
+import ItemSlot from '../enum/ItemSlot'
+import SortOrder from '../enum/SortOrder'
+
+import Options from '../interface/Options'
 import ItemSearch from '../interface/ItemSearch'
 
-/* head, gloves, neck, waist, shoulders, legs, back, feet, chest, finger1
-wrists, finger 2, mainhand, trinket1, offhand, trinket2 */
 export default class Equipment {
   itemSearch: ItemSearch
   head: Item
@@ -25,44 +31,167 @@ export default class Equipment {
   trinket2: Item
   idol: Item
 
-  constructor(
-    itemSearch: ItemSearch,
-    head?: Item | undefined,
-    hands?: Item | undefined,
-    neck?: Item | undefined,
-    waist?: Item | undefined,
-    shoulders?: Item | undefined,
-    legs?: Item | undefined,
-    back?: Item | undefined,
-    feet?: Item | undefined,
-    chest?: Item | undefined,
-    finger1?: Item | undefined,
-    wrists?: Item | undefined,
-    finger2?: Item | undefined,
-    mainhand?: Item | undefined,
-    trinket1?: Item | undefined,
-    offhand?: Item | undefined,
-    trinket2?: Item | undefined,
-    idol?: Item | undefined
-  ) {
-    this.itemSearch = itemSearch
-    this.head = head ? head : new Item(ItemSlot.Head)
-    this.hands = hands ? hands : new Item(ItemSlot.Hands)
-    this.neck = neck ? neck : new Item(ItemSlot.Neck)
-    this.waist = waist ? waist : new Item(ItemSlot.Waist)
-    this.shoulders = shoulders ? shoulders : new Item(ItemSlot.Shoulder)
-    this.legs = legs ? legs : new Item(ItemSlot.Legs)
-    this.back = back ? back : new Item(ItemSlot.Back)
-    this.feet = feet ? feet : new Item(ItemSlot.Feet)
-    this.chest = chest ? chest : new Item(ItemSlot.Chest)
-    this.finger1 = finger1 ? finger1 : new Item(ItemSlot.Finger)
-    this.wrists = wrists ? wrists : new Item(ItemSlot.Wrist)
-    this.finger2 = finger2 ? finger2 : new Item(ItemSlot.Finger2)
-    this.mainhand = mainhand ? mainhand : new Item(ItemSlot.Mainhand)
-    this.trinket1 = trinket1 ? trinket1 : new Item(ItemSlot.Trinket)
-    this.offhand = offhand ? offhand : new Item(ItemSlot.Offhand)
-    this.trinket2 = trinket2 ? trinket2 : new Item(ItemSlot.Trinket2)
-    this.idol = idol ? idol : new Item(ItemSlot.Relic)
+  constructor(options: Options, spellHitWeight?: number, spellCritWeight?: number) {
+    let _bis = (slot: number) => {
+      return Database.getBestInSlotItemWithEnchant(slot, this.itemSearch)
+    }
+
+    this.itemSearch = Equipment.itemSearchFromOptions(options, spellHitWeight, spellCritWeight)
+
+    let bisTrinkets = Database.getBestInSlotTrinkets(this.itemSearch)
+    let bisRings = Database.getBestInSlotRings(this.itemSearch)
+    let bisWeaponCombo = Database.getBestInSlotWeaponCombo(this.itemSearch)
+    let bisChestLegsFeet = Database.getBestInSlotChestLegsFeet(this.itemSearch)
+    this.head = _bis(ItemSlot.Head)
+    this.hands = _bis(ItemSlot.Hands)
+    this.neck = _bis(ItemSlot.Neck)
+    this.waist = _bis(ItemSlot.Waist)
+    this.shoulders = _bis(ItemSlot.Shoulder)
+    this.legs = new Item(ItemSlot.Legs, bisChestLegsFeet.legs, bisChestLegsFeet.legsEnchant)
+    this.back = _bis(ItemSlot.Back)
+    this.feet = new Item(ItemSlot.Feet, bisChestLegsFeet.feet, bisChestLegsFeet.feetEnchant)
+    this.chest = new Item(ItemSlot.Chest, bisChestLegsFeet.chest, bisChestLegsFeet.chestEnchant)
+    this.finger1 = new Item(ItemSlot.Finger, bisRings.finger)
+    this.wrists = _bis(ItemSlot.Wrist)
+    this.finger2 = new Item(ItemSlot.Finger2, bisRings.finger2)
+    this.mainhand = new Item(ItemSlot.Mainhand, bisWeaponCombo.mainHand, bisWeaponCombo.enchant)
+    this.trinket1 = new Item(ItemSlot.Trinket, bisTrinkets.trinket)
+    this.offhand = bisWeaponCombo.offHand
+      ? new Item(ItemSlot.Offhand, bisWeaponCombo.offHand)
+      : new Item(ItemSlot.Offhand)
+    this.trinket2 = new Item(ItemSlot.Trinket2, bisTrinkets.trinket2)
+    this.idol = _bis(ItemSlot.Relic)
+  }
+
+  static itemSearchFromOptions(options: Options, spellHitWeight?: number, spellCritWeight?: number) {
+    let spell = new Spell(options.spellName)
+
+    return {
+      phase: options.phase,
+      faction: Character.factionFromRace(options.character.race),
+      pvpRank: options.character.pvpRank,
+      raids: options.raids,
+      worldBosses: options.worldBosses,
+      tailoring: options.tailoring,
+      magicSchool: spell.magicSchool,
+      targetType: options.target.type,
+      spellHitWeight: spellHitWeight !== undefined ? spellHitWeight : 15,
+      spellCritWeight: spellCritWeight !== undefined ? spellCritWeight : 10,
+      lockedItems: options.character.lockedItems,
+      slot: options.itemSearchSlot,
+      sortOrder: SortOrder.Descending
+    }
+  }
+
+  static optimalItems(options: Options) {
+    let myOptions = options
+
+    switch (myOptions.itemSearchSlot) {
+      case ItemSlot.Head:
+        myOptions.character.lockedItems.head = ''
+        break
+      case ItemSlot.Hands:
+        myOptions.character.lockedItems.hands = ''
+        break
+      case ItemSlot.Neck:
+        myOptions.character.lockedItems.neck = ''
+        break
+      case ItemSlot.Waist:
+        myOptions.character.lockedItems.waist = ''
+        break
+      case ItemSlot.Shoulder:
+        myOptions.character.lockedItems.shoulder = ''
+        break
+      case ItemSlot.Legs:
+        myOptions.character.lockedItems.legs = ''
+        break
+      case ItemSlot.Back:
+        myOptions.character.lockedItems.back = ''
+        break
+      case ItemSlot.Feet:
+        myOptions.character.lockedItems.feet = ''
+        break
+      case ItemSlot.Chest:
+        myOptions.character.lockedItems.chest = ''
+        break
+      case ItemSlot.Wrist:
+        myOptions.character.lockedItems.wrist = ''
+        break
+      case ItemSlot.Finger:
+        myOptions.character.lockedItems.finger = ''
+        break
+      case ItemSlot.Finger2:
+        myOptions.character.lockedItems.finger2 = ''
+        break
+      case ItemSlot.Mainhand:
+        myOptions.character.lockedItems.mainhand = ''
+        break
+      case ItemSlot.Offhand:
+        myOptions.character.lockedItems.offhand = ''
+        break
+      case ItemSlot.Trinket:
+        myOptions.character.lockedItems.trinket = ''
+        break
+      case ItemSlot.Trinket2:
+        myOptions.character.lockedItems.trinket2 = ''
+        break
+      case ItemSlot.Relic:
+        myOptions.character.lockedItems.idol = ''
+        break
+      default:
+        break
+    }
+
+    let equipment = Equipment.optimalEquipment(myOptions)
+    return Database.getWeightedEquipmentBySlot(myOptions.itemSearchSlot, equipment.itemSearch)
+  }
+
+  /* TODO: If itemSearchSlot isn't none, need to ignore that slot when weighting */
+  static optimalEquipment(options: Options) {
+    let maxTries = 5
+    let dps = 0
+    let prevDps = 0
+    let spellCast = undefined
+    let prevSpellCast = undefined
+
+    console.log(`--- starting gear optimization with maximum of ${maxTries} tries ---`)
+    for (let i = 0; i <= maxTries; i++) {
+      spellCast = new Cast(
+        new Character(
+          options.character,
+          new Equipment(
+            options,
+            spellCast ? spellCast.spellHitWeight : undefined,
+            spellCast ? spellCast.spellCritWeight : undefined
+          )
+        ),
+        new Spell(options.spellName),
+        new Target(options.target)
+      )
+
+      console.log(`spellHitWeight=${spellCast.spellHitWeight}, spellCritWeight=${spellCast.spellCritWeight}`)
+      dps = spellCast.dps.effective.avg
+      prevDps = prevSpellCast ? prevSpellCast.dps.effective.avg : 0
+      if (prevSpellCast && prevDps === dps) {
+        console.log(`[try ${i}] no change in dps (${dps}), using previous set.`)
+        // Equipment.printItemNames(prevSpellCast.character.equipment)
+        console.log(`--- finished gear optimization in ${i} tries ---`)
+        return prevSpellCast.character.equipment
+      } else if (prevSpellCast && prevDps > dps) {
+        console.log(`[try ${i}] dps loss of ${prevDps - dps}, using previous set.`)
+        // Equipment.printItemNames(prevSpellCast.character.equipment)
+        console.log(`--- finished gear optimization in ${i} tries ---`)
+        return prevSpellCast.character.equipment
+      } else {
+        console.log(`[try ${i}] dps increase of ${dps - prevDps}, continuing.`)
+        Equipment.printItemNames(spellCast.character.equipment)
+      }
+
+      prevSpellCast = spellCast
+    }
+
+    console.log(`reach the end condition? not good.`)
+    return new Equipment(options)
   }
 
   static printItemNames(equipment: Equipment) {

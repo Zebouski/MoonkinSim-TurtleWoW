@@ -3,6 +3,7 @@ import Faction from '../enum/Faction'
 import PvPRank from '../enum/PvPRank'
 import MagicSchool from '../enum/MagicSchool'
 import SortOrder from '../enum/SortOrder'
+import ItemSlot from '../enum/ItemSlot'
 
 export default interface ItemSearch {
   phase: number
@@ -34,5 +35,6 @@ export default interface ItemSearch {
   }
   spellHitWeight: number
   spellCritWeight: number
+  slot: ItemSlot
   sortOrder?: SortOrder
 }

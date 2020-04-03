@@ -8,6 +8,7 @@ import ItemSlot from './enum/ItemSlot'
 
 let defaults: Options = {
   debug: false,
+  experimental: false,
   phase: 3,
   raids: true,
   tailoring: true,
