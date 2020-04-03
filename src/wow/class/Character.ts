@@ -82,11 +82,9 @@ export default class Character {
 
   get stamina(): number {
     return (
-      ((this.isNightElf ? 69 : 72) +
-      this.equipment.stamina +
-      this.improvedGiftOfTheWildAttributeBonus) *
-        this.spiritOfZandalarBonus *
-        (this.isAlliance ? this.blessingOfKingsBonus : 1)
+      ((this.isNightElf ? 69 : 72) + this.equipment.stamina + this.improvedGiftOfTheWildAttributeBonus) *
+      this.spiritOfZandalarBonus *
+      (this.isAlliance ? this.blessingOfKingsBonus : 1)
     )
   }
 
