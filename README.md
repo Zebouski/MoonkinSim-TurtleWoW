@@ -1,6 +1,7 @@
 ### [Moonkin Calculator](https://kmmiles.gitlab.io/moonkin-calc/)
 ##### Version 0.2.3
   - Updated UI
+  - Add Spirit of Zandalar buff
 
 ##### Version 0.2.2
   - Smarter gear recommendation
