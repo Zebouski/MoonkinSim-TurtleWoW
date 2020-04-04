@@ -1,5 +1,15 @@
+// Import Bulma's core
+@import "~bulma/sass/utilities/_all";
+
 @import "variables";
-@import "../../node_modules/buefy/dist/buefy.css";
+
+// Import Bulma and Buefy styles
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
+
+// Import overrides TODO: Fix this dumb hacky stuff
 @import "overrides";
+
+// Import other stuff
 @import "itemToolTips";
 @import "spellTooltip";

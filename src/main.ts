@@ -1,9 +1,8 @@
-import Vue from 'vue'
-import App from './App.vue'
-
-import Buefy from 'buefy'
 import './styles/custom.scss'
-// import 'buefy/dist/buefy.css'
+
+import Vue from 'vue'
+import Buefy from 'buefy'
+import App from './App.vue'
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'

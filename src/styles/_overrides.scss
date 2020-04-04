@@ -113,6 +113,10 @@ pre {
     color: white;
 }
 
+.b-table.tr:hover {
+  background: $black-ter
+}
+
 .b-checkbox.checkbox:hover {
     color: white;
 }
@@ -130,3 +134,4 @@ pre {
 .pagination-previous, .pagination-next, .pagination-link {
     color: white;
 }
+

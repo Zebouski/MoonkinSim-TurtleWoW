@@ -76,4 +76,8 @@ $link-hover: lighten($link, 5);
 $link-focus: darken($link, 5);
 $link-active: darken($link, 15);
 $link-focus-border: darken($link, 5);
-$link-active-border: $link-focus-border
+$link-active-border: $link-focus-border;
+
+$table-row-hover-background-color: $grey-dark;
+$table-striped-row-even-background-color: $grey-dark;
+$table-striped-row-even-hover-background-color: $grey-dark;

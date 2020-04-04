@@ -40,6 +40,7 @@
             aria-page-label="Page"
             aria-current-label="Current page"
             default-sort="['score', 'desc']"
+            hoverable
           ></b-table>
         </div>
       </b-modal>
