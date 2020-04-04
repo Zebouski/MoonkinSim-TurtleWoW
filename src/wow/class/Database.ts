@@ -289,14 +289,6 @@ export default class Database {
     return new Item(slot, item, enchant)
   }
 
-  static getBestInSlotTrinkets(itemSearch: ItemSearch) {
-    let result = this.getWeightedEquipmentBySlot(ItemSlot.Trinket, itemSearch)
-    return {
-      trinket: result[0],
-      trinket2: this.isUniqueEquip(result[0]) ? result[1] : result[0]
-    }
-  }
-
   static getBestInSlotChestLegsFeet(itemSearch: ItemSearch) {
     let bloodvine = undefined
     let chest = this.getBestInSlotItem(ItemSlot.Chest, itemSearch)
@@ -326,6 +318,23 @@ export default class Database {
       legsEnchant: this.getBestInSlotEnchant(ItemSlot.Legs, itemSearch),
       feet: feet,
       feetEnchant: this.getBestInSlotEnchant(ItemSlot.Feet, itemSearch)
+    }
+  }
+
+  static getBestInSlotTrinkets(itemSearch: ItemSearch) {
+    let result = this.getWeightedEquipmentBySlot(ItemSlot.Trinket, itemSearch)
+    let result2 = this.getWeightedEquipmentBySlot(ItemSlot.Trinket2, itemSearch)
+
+    let trinket1 = result[0]
+    let trinket2 = result2[0]
+
+    if (this.isUniqueEquip(result[0]) && result[0].name === result2[0].name) {
+      trinket2 = result2[1]
+    }
+
+    return {
+      trinket: trinket1,
+      trinket2: trinket2
     }
   }
 
