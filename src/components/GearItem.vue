@@ -11,8 +11,14 @@
             @mouseleave="mouseLeave"
           >
             <figure class="image is-48x48">
-              <img :src="itemData.iconFullPath" style="zIndex: 1" />
+              <img :src="itemData.iconFullPath" style="zIndex: 3" />
             </figure>
+            <font-awesome-icon
+              v-if="isLocked"
+              class="is-overlay"
+              :icon="['fas', 'lock']"
+              :style="{ padding: '2px', color: 'white' }"
+            />
           </div>
         </div>
         <div class="gear-item-text">
@@ -60,6 +66,12 @@
             <figure class="image is-48x48">
               <img :src="itemData.iconFullPath" style="zIndex: 1" />
             </figure>
+            <font-awesome-icon
+              v-if="isLocked"
+              class="is-overlay"
+              :icon="['fas', 'lock']"
+              :style="{ padding: '2px', color: 'white' }"
+            />
           </div>
         </div>
       </div>
@@ -146,6 +158,47 @@ export default class GearItem extends Props {
     position: 'fixed',
     top: '0px',
     left: '0px'
+  }
+
+  get isLocked() {
+    switch (this.itemSlot) {
+      case wow.ItemSlot.Head:
+        return this.options.character.lockedItems.head ? true : false
+      case wow.ItemSlot.Hands:
+        return this.options.character.lockedItems.hands ? true : false
+      case wow.ItemSlot.Neck:
+        return this.options.character.lockedItems.neck ? true : false
+      case wow.ItemSlot.Waist:
+        return this.options.character.lockedItems.waist ? true : false
+      case wow.ItemSlot.Shoulder:
+        return this.options.character.lockedItems.shoulder ? true : false
+      case wow.ItemSlot.Legs:
+        return this.options.character.lockedItems.legs ? true : false
+      case wow.ItemSlot.Back:
+        return this.options.character.lockedItems.back ? true : false
+      case wow.ItemSlot.Feet:
+        return this.options.character.lockedItems.feet ? true : false
+      case wow.ItemSlot.Chest:
+        return this.options.character.lockedItems.chest ? true : false
+      case wow.ItemSlot.Wrist:
+        return this.options.character.lockedItems.wrist ? true : false
+      case wow.ItemSlot.Finger:
+        return this.options.character.lockedItems.finger ? true : false
+      case wow.ItemSlot.Finger2:
+        return this.options.character.lockedItems.finger2 ? true : false
+      case wow.ItemSlot.Mainhand:
+        return this.options.character.lockedItems.mainhand ? true : false
+      case wow.ItemSlot.Offhand:
+        return this.options.character.lockedItems.offhand ? true : false
+      case wow.ItemSlot.Trinket:
+        return this.options.character.lockedItems.trinket ? true : false
+      case wow.ItemSlot.Trinket2:
+        return this.options.character.lockedItems.trinket2 ? true : false
+      case wow.ItemSlot.Relic:
+        return this.options.character.lockedItems.idol ? true : false
+      default:
+        return false
+    }
   }
 
   get isLeftColumn() {
