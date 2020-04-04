@@ -83,6 +83,10 @@ export default class Database {
     return this.queryGear(`[name=${name}]`)
   }
 
+  static gearByCustomId(customId: string): ItemJSON {
+    return this.queryGear(`[customId=${customId}]`)
+  }
+
   /* multiple item fetch functions */
   static gearBySlot(slot: ItemSlot): any {
     return this.queryGear(`[*slot=${slot}]`)
@@ -111,14 +115,14 @@ export default class Database {
   /****************/
   static getLockedItem(slot: number, itemSearch: ItemSearch) {
     let item = undefined
-    let itemName = this.getLockedItemName(slot, itemSearch)
-    if (itemName) {
-      item = this.gearByName(itemName)
+    let itemCustomId = this.getLockedItemCustomId(slot, itemSearch)
+    if (itemCustomId) {
+      item = this.gearByCustomId(itemCustomId)
     }
     return item
   }
 
-  static getLockedItemName(slot: number, itemSearch: ItemSearch) {
+  static getLockedItemCustomId(slot: number, itemSearch: ItemSearch) {
     switch (slot) {
       case ItemSlot.Head:
         return itemSearch && itemSearch.lockedItems ? itemSearch.lockedItems.head : undefined
@@ -304,17 +308,17 @@ export default class Database {
       itemSearch &&
       itemSearch.lockedItems &&
       itemSearch.lockedItems.chest !== '' &&
-      itemSearch.lockedItems.chest !== 'Bloodvine Vest'
+      itemSearch.lockedItems.chest !== '19682'
     let customLegs =
       itemSearch &&
       itemSearch.lockedItems &&
       itemSearch.lockedItems.legs !== '' &&
-      itemSearch.lockedItems.legs !== 'Bloodvine Leggings'
+      itemSearch.lockedItems.legs !== '19683'
     let customFeet =
       itemSearch &&
       itemSearch.lockedItems &&
       itemSearch.lockedItems.feet !== '' &&
-      itemSearch.lockedItems.feet !== 'Bloodvine Boots'
+      itemSearch.lockedItems.feet !== '19684'
 
     if (!customChest && !customLegs && !customFeet && bloodvine && bloodvine.score > normScore) {
       console.log(`ATTENTION: I favored bloodvine set (${bloodvine.score}) over other items (${normScore})`)
@@ -393,7 +397,7 @@ export default class Database {
     const offhandscore = offhand !== undefined ? offhand.score : 0
     const twohandscore = twohand !== undefined ? twohand.score : 0
 
-    const _offhand = this.getLockedItemName(ItemSlot.Offhand, itemSearch)
+    const _offhand = this.getLockedItemCustomId(ItemSlot.Offhand, itemSearch)
 
     if (!_offhand && twohandscore > onehandscore + offhandscore) {
       return {

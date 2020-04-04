@@ -29,4 +29,8 @@ export default class Encounter {
       new Target(this.options.target)
     )
   }
+
+  get publicLink(): string {
+    return `hello public`
+  }
 }

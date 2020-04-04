@@ -7,7 +7,7 @@ import App from './App.vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faGitlab, faDiscord } from '@fortawesome/free-brands-svg-icons'
-import { faFilePdf, faBook, faBug, faFlask, faLock } from '@fortawesome/free-solid-svg-icons'
+import { faFilePdf, faBook, faBug, faFlask, faLock, faLink, faRedo } from '@fortawesome/free-solid-svg-icons'
 
 Vue.config.productionTip = false
 
@@ -21,6 +21,8 @@ library.add(faFilePdf)
 library.add(faBug)
 library.add(faFlask)
 library.add(faLock)
+library.add(faLink)
+library.add(faRedo)
 
 new Vue({
   render: h => h(App)

@@ -1,5 +1,8 @@
 ### [Moonkin Calculator](https://kmmiles.gitlab.io/moonkin-calc/)
 
+##### Version 0.2.6
+  - Share public link beta
+
 ##### Version 0.2.5
   - Item selection beta
   - Bloodvine legs and boots always overriding custom selections

@@ -1,6 +1,7 @@
 [
  {
   "id": 17113,
+  "customId": "17113",
   "name": "Amberseal Keeper",
   "class": 2,
   "subclass": 10,
@@ -29,6 +30,7 @@
  },
  {
   "id": 20654,
+  "customId": "20654",
   "name": "Amethyst War Staff",
   "class": 2,
   "subclass": 10,
@@ -57,6 +59,7 @@
  },
  {
   "id": 17105,
+  "customId": "17105",
   "name": "Aurastone Hammer",
   "class": 2,
   "subclass": 4,
@@ -86,6 +89,7 @@
  },
  {
   "id": 17780,
+  "customId": "17780",
   "name": "Blade of Eternal Darkness",
   "class": 2,
   "subclass": 15,
@@ -111,6 +115,7 @@
  },
  {
   "id": 21273,
+  "customId": "21273",
   "name": "Blessed Qiraji Acolyte Staff",
   "class": 2,
   "subclass": 10,
@@ -141,6 +146,7 @@
  },
  {
   "id": 15229,
+  "customId": "A15229",
   "name": "Blesswind Hammer of Arcane Wrath",
   "class": 2,
   "subclass": 4,
@@ -166,6 +172,7 @@
  },
  {
   "id": 15229,
+  "customId": "N15229",
   "name": "Blesswind Hammer of Nature's Wrath",
   "class": 2,
   "subclass": 4,
@@ -191,6 +198,7 @@
  },
  {
   "id": 11922,
+  "customId": "11922",
   "name": "Blood-etched Blade",
   "class": 2,
   "subclass": 15,
@@ -218,6 +226,7 @@
  },
  {
   "id": 15247,
+  "customId": "A15247",
   "name": "Bloodstrike Dagger of Arcane Wrath",
   "class": 2,
   "subclass": 15,
@@ -244,6 +253,7 @@
  },
  {
   "id": 15247,
+  "customId": "N15247",
   "name": "Bloodstrike Dagger of Nature's Wrath",
   "class": 2,
   "subclass": 15,
@@ -270,6 +280,7 @@
  },
  {
   "id": 22800,
+  "customId": "22800",
   "name": "Brimstone Staff",
   "class": 2,
   "subclass": 10,
@@ -300,6 +311,7 @@
  },
  {
   "id": 19347,
+  "customId": "19347",
   "name": "Claw of Chromaggus",
   "class": 2,
   "subclass": 15,
@@ -329,6 +341,7 @@
  },
  {
   "id": 20724,
+  "customId": "20724",
   "name": "Corrupted Blackwood Staff",
   "class": 2,
   "subclass": 10,
@@ -355,6 +368,7 @@
  },
  {
   "id": 19102,
+  "customId": "19102",
   "name": "Crackling Staff",
   "class": 2,
   "subclass": 10,
@@ -382,6 +396,7 @@
  },
  {
   "id": 20720,
+  "customId": "20720",
   "name": "Dark Whisper Blade",
   "class": 2,
   "subclass": 15,
@@ -409,6 +424,7 @@
  },
  {
   "id": 15246,
+  "customId": "A15246",
   "name": "Demon Blade of Arcane Wrath",
   "class": 2,
   "subclass": 15,
@@ -435,6 +451,7 @@
  },
  {
   "id": 15246,
+  "customId": "N15246",
   "name": "Demon Blade of Nature's Wrath",
   "class": 2,
   "subclass": 15,
@@ -461,6 +478,7 @@
  },
  {
   "id": 10828,
+  "customId": "A10828",
   "name": "Dire Nail of Arcane Wrath",
   "class": 2,
   "subclass": 15,
@@ -487,6 +505,7 @@
  },
  {
   "id": 10828,
+  "customId": "N10828",
   "name": "Dire Nail of Nature's Wrath",
   "class": 2,
   "subclass": 15,
@@ -513,6 +532,7 @@
  },
  {
   "id": 18321,
+  "customId": "18321",
   "name": "Energetic Rod",
   "class": 2,
   "subclass": 4,
@@ -540,6 +560,7 @@
  },
  {
   "id": 17070,
+  "customId": "17070",
   "name": "Fang of the Mystics",
   "class": 2,
   "subclass": 15,
@@ -569,6 +590,7 @@
  },
  {
   "id": 19903,
+  "customId": "19903",
   "name": "Fang of Venoxis",
   "class": 2,
   "subclass": 15,
@@ -598,6 +620,7 @@
  },
  {
   "id": 21188,
+  "customId": "21188",
   "name": "Fist of Cenarius",
   "class": 2,
   "subclass": 5,
@@ -625,6 +648,7 @@
  },
  {
   "id": 21806,
+  "customId": "21806",
   "name": "Gavel of Qiraji Authority",
   "class": 2,
   "subclass": 5,
@@ -653,6 +677,7 @@
  },
  {
   "id": 23455,
+  "customId": "23455",
   "name": "Grand Marshal's Demolisher",
   "class": 2,
   "subclass": 5,
@@ -681,6 +706,7 @@
  },
  {
   "id": 23451,
+  "customId": "23451",
   "name": "Grand Marshal's Mageblade",
   "class": 2,
   "subclass": 15,
@@ -709,6 +735,7 @@
  },
  {
   "id": 18873,
+  "customId": "18873",
   "name": "Grand Marshal's Stave",
   "class": 2,
   "subclass": 10,
@@ -737,6 +764,7 @@
  },
  {
   "id": 22333,
+  "customId": "22333",
   "name": "Hammer of Divine Might",
   "class": 2,
   "subclass": 5,
@@ -765,6 +793,7 @@
  },
  {
   "id": 21703,
+  "customId": "21703",
   "name": "Hammer of Ji'Zhi",
   "class": 2,
   "subclass": 5,
@@ -793,6 +822,7 @@
  },
  {
   "id": 23465,
+  "customId": "23465",
   "name": "High Warlord's Destroyer",
   "class": 2,
   "subclass": 5,
@@ -821,6 +851,7 @@
  },
  {
   "id": 23466,
+  "customId": "23466",
   "name": "High Warlord's Spellblade",
   "class": 2,
   "subclass": 15,
@@ -849,6 +880,7 @@
  },
  {
   "id": 18874,
+  "customId": "18874",
   "name": "High Warlord's War Staff",
   "class": 2,
   "subclass": 10,
@@ -877,6 +909,7 @@
  },
  {
   "id": 20069,
+  "customId": "20069",
   "name": "Ironbark Staff",
   "class": 2,
   "subclass": 10,
@@ -906,6 +939,7 @@
  },
  {
   "id": 19890,
+  "customId": "19890",
   "name": "Jin'do's Hexxer",
   "class": 2,
   "subclass": 4,
@@ -934,6 +968,7 @@
  },
  {
   "id": 19884,
+  "customId": "19884",
   "name": "Jin'do's Judgement",
   "class": 2,
   "subclass": 10,
@@ -964,6 +999,7 @@
  },
  {
   "id": 22208,
+  "customId": "22208",
   "name": "Lavastone Hammer",
   "class": 2,
   "subclass": 5,
@@ -992,6 +1028,7 @@
  },
  {
   "id": 19360,
+  "customId": "19360",
   "name": "Lok'amir il Romathis",
   "class": 2,
   "subclass": 4,
@@ -1021,6 +1058,7 @@
  },
  {
   "id": 22335,
+  "customId": "22335",
   "name": "Lord Valthalak's Staff of Command",
   "class": 2,
   "subclass": 10,
@@ -1050,6 +1088,7 @@
  },
  {
   "id": 21407,
+  "customId": "21407",
   "name": "Mace of Unending Life",
   "class": 2,
   "subclass": 4,
@@ -1081,6 +1120,7 @@
  },
  {
   "id": 15276,
+  "customId": "A15276",
   "name": "Magus Long Staff of Arcane Wrath",
   "class": 2,
   "subclass": 10,
@@ -1106,6 +1146,7 @@
  },
  {
   "id": 15276,
+  "customId": "N15276",
   "name": "Magus Long Staff of Nature's Wrath",
   "class": 2,
   "subclass": 10,
@@ -1131,6 +1172,7 @@
  },
  {
   "id": 18048,
+  "customId": "18048",
   "name": "Mastersmith's Hammer",
   "class": 2,
   "subclass": 4,
@@ -1158,6 +1200,7 @@
  },
  {
   "id": 22809,
+  "customId": "22809",
   "name": "Maul of the Redeemed Crusader",
   "class": 2,
   "subclass": 5,
@@ -1187,6 +1230,7 @@
  },
  {
   "id": 22803,
+  "customId": "22803",
   "name": "Midnight Haze",
   "class": 2,
   "subclass": 15,
@@ -1215,6 +1259,7 @@
  },
  {
   "id": 20214,
+  "customId": "20214",
   "name": "Mindfang",
   "class": 2,
   "subclass": 15,
@@ -1243,6 +1288,7 @@
  },
  {
   "id": 22458,
+  "customId": "22458",
   "name": "Moonshadow Stave",
   "class": 2,
   "subclass": 10,
@@ -1271,6 +1317,7 @@
  },
  {
   "id": 18534,
+  "customId": "18534",
   "name": "Rod of the Ogre Magi",
   "class": 2,
   "subclass": 10,
@@ -1301,6 +1348,7 @@
  },
  {
   "id": 20070,
+  "customId": "20070",
   "name": "Sageclaw",
   "class": 2,
   "subclass": 15,
@@ -1329,6 +1377,7 @@
  },
  {
   "id": 19355,
+  "customId": "19355",
   "name": "Shadow Wing Focus Staff",
   "class": 2,
   "subclass": 10,
@@ -1358,6 +1407,7 @@
  },
  {
   "id": 22379,
+  "customId": "22379",
   "name": "Shivsprocket's Shiv",
   "class": 2,
   "subclass": 15,
@@ -1385,6 +1435,7 @@
  },
  {
   "id": 15278,
+  "customId": "A15278",
   "name": "Solstice Staff of Arcane Wrath",
   "class": 2,
   "subclass": 10,
@@ -1410,6 +1461,7 @@
  },
  {
   "id": 15278,
+  "customId": "N15278",
   "name": "Solstice Staff of Nature's Wrath",
   "class": 2,
   "subclass": 10,
@@ -1435,6 +1487,7 @@
  },
  {
   "id": 18878,
+  "customId": "18878",
   "name": "Sorcerous Dagger",
   "class": 2,
   "subclass": 15,
@@ -1463,6 +1516,7 @@
  },
  {
   "id": 22799,
+  "customId": "22799",
   "name": "Soulseeker",
   "class": 2,
   "subclass": 10,
@@ -1493,6 +1547,7 @@
  },
  {
   "id": 23124,
+  "customId": "23124",
   "name": "Staff of Balzaphon",
   "class": 2,
   "subclass": 10,
@@ -1523,6 +1578,7 @@
  },
  {
   "id": 18842,
+  "customId": "18842",
   "name": "Staff of Dominance",
   "class": 2,
   "subclass": 10,
@@ -1553,6 +1609,7 @@
  },
  {
   "id": 21128,
+  "customId": "21128",
   "name": "Staff of the Qiraji Prophets",
   "class": 2,
   "subclass": 10,
@@ -1582,6 +1639,7 @@
  },
  {
   "id": 21452,
+  "customId": "21452",
   "name": "Staff of the Ruins",
   "class": 2,
   "subclass": 10,
@@ -1613,6 +1671,7 @@
  },
  {
   "id": 19356,
+  "customId": "19356",
   "name": "Staff of the Shadow Flame",
   "class": 2,
   "subclass": 10,
@@ -1643,6 +1702,7 @@
  },
  {
   "id": 21466,
+  "customId": "21466",
   "name": "Stinger of Ayamiss",
   "class": 2,
   "subclass": 4,
@@ -1672,6 +1732,7 @@
  },
  {
   "id": 18353,
+  "customId": "18353",
   "name": "Stoneflower Staff",
   "class": 2,
   "subclass": 10,
@@ -1699,6 +1760,7 @@
  },
  {
   "id": 22988,
+  "customId": "22988",
   "name": "The End of Dreams",
   "class": 2,
   "subclass": 4,
@@ -1728,6 +1790,7 @@
  },
  {
   "id": 21802,
+  "customId": "21802",
   "name": "The Lost Kris of Zedd",
   "class": 2,
   "subclass": 15,
@@ -1755,6 +1818,7 @@
  },
  {
   "id": 13161,
+  "customId": "13161",
   "name": "Trindlehaven Staff",
   "class": 2,
   "subclass": 10,
@@ -1783,6 +1847,7 @@
  },
  {
   "id": 22688,
+  "customId": "22688",
   "name": "Verimonde's Last Resort",
   "class": 2,
   "subclass": 15,
@@ -1810,6 +1875,7 @@
  },
  {
   "id": 19101,
+  "customId": "19101",
   "name": "Whiteout Staff",
   "class": 2,
   "subclass": 10,
@@ -1837,6 +1903,7 @@
  },
  {
   "id": 13964,
+  "customId": "13964",
   "name": "Witchblade",
   "class": 2,
   "subclass": 15,
@@ -1864,6 +1931,7 @@
  },
  {
   "id": 20258,
+  "customId": "20258",
   "name": "Zulian Ceremonial Staff",
   "class": 2,
   "subclass": 10,
@@ -1891,6 +1959,7 @@
  },
  {
   "id": 23123,
+  "customId": "23123",
   "name": "Blessed Wizard Oil",
   "class": 0,
   "subclass": -3,
@@ -1910,6 +1979,7 @@
  },
  {
   "id": 20749,
+  "customId": "20749",
   "name": "Brilliant Wizard Oil",
   "class": 0,
   "subclass": -3,
@@ -1930,6 +2000,7 @@
  },
  {
   "id": 20750,
+  "customId": "20750",
   "name": "Wizard Oil",
   "class": 0,
   "subclass": -3,
@@ -1949,6 +2020,7 @@
  },
  {
   "id": 20746,
+  "customId": "20746",
   "name": "Lesser Wizard Oil",
   "class": 0,
   "subclass": -3,
@@ -1968,6 +2040,7 @@
  },
  {
   "id": 20744,
+  "customId": "20744",
   "name": "Minor Wizard Oil",
   "class": 0,
   "subclass": -3,
@@ -1987,6 +2060,7 @@
  },
  {
   "id": 15985,
+  "customId": "A15985",
   "name": "Arachnidian Branch of Arcane Wrath",
   "class": 4,
   "subclass": -5,
@@ -2007,6 +2081,7 @@
  },
  {
   "id": 19922,
+  "customId": "19922",
   "name": "Arlokk's Hoodoo Stick",
   "class": 4,
   "subclass": -5,
@@ -2029,6 +2104,7 @@
  },
  {
   "id": 15987,
+  "customId": "A15987",
   "name": "Astral Orb of Arcane Wrath",
   "class": 4,
   "subclass": -5,
@@ -2049,6 +2125,7 @@
  },
  {
   "id": 23156,
+  "customId": "23156",
   "name": "Blackwood's Thigh",
   "class": 4,
   "subclass": -5,
@@ -2072,6 +2149,7 @@
  },
  {
   "id": 15986,
+  "customId": "A15986",
   "name": "Bonecaster's Star of Arcane Wrath",
   "class": 4,
   "subclass": -5,
@@ -2092,6 +2170,7 @@
  },
  {
   "id": 15939,
+  "customId": "A15939",
   "name": "Councillor's Scepter of Arcane Wrath",
   "class": 4,
   "subclass": -5,
@@ -2112,6 +2191,7 @@
  },
  {
   "id": 10796,
+  "customId": "A10796",
   "name": "Drakestone of Arcane Wrath",
   "class": 4,
   "subclass": -5,
@@ -2133,6 +2213,7 @@
  },
  {
   "id": 15936,
+  "customId": "A15936",
   "name": "Duskwoven Branch of Arcane Wrath",
   "class": 4,
   "subclass": -5,
@@ -2153,6 +2234,7 @@
  },
  {
   "id": 15940,
+  "customId": "A15940",
   "name": "Elegant Scepter of Arcane Wrath",
   "class": 4,
   "subclass": -5,
@@ -2173,6 +2255,7 @@
  },
  {
   "id": 15989,
+  "customId": "A15989",
   "name": "Eternal Rod of Arcane Wrath",
   "class": 4,
   "subclass": -5,
@@ -2193,6 +2276,7 @@
  },
  {
   "id": 19142,
+  "customId": "19142",
   "name": "Fire Runed Grimoire",
   "class": 4,
   "subclass": -5,
@@ -2216,6 +2300,7 @@
  },
  {
   "id": 19115,
+  "customId": "19115",
   "name": "Flask of Forest Mojo",
   "class": 4,
   "subclass": -5,
@@ -2238,6 +2323,7 @@
  },
  {
   "id": 22937,
+  "customId": "22937",
   "name": "Gem of Nerubis",
   "class": 4,
   "subclass": -5,
@@ -2262,6 +2348,7 @@
  },
  {
   "id": 20694,
+  "customId": "20694",
   "name": "Glowing Black Orb",
   "class": 4,
   "subclass": -5,
@@ -2284,6 +2371,7 @@
  },
  {
   "id": 23452,
+  "customId": "23452",
   "name": "Grand Marshal's Tome of Power",
   "class": 4,
   "subclass": -5,
@@ -2306,6 +2394,7 @@
  },
  {
   "id": 15941,
+  "customId": "A15941",
   "name": "High Councillor's Scepter of Arcane Wrath",
   "class": 4,
   "subclass": -5,
@@ -2326,6 +2415,7 @@
  },
  {
   "id": 23468,
+  "customId": "23468",
   "name": "High Warlord's Tome of Destruction",
   "class": 4,
   "subclass": -5,
@@ -2348,6 +2438,7 @@
  },
  {
   "id": 19891,
+  "customId": "19891",
   "name": "Jin'do's Bag of Whammies",
   "class": 4,
   "subclass": -5,
@@ -2372,6 +2463,7 @@
  },
  {
   "id": 19366,
+  "customId": "19366",
   "name": "Master Dragonslayer's Orb",
   "class": 4,
   "subclass": -5,
@@ -2395,6 +2487,7 @@
  },
  {
   "id": 15942,
+  "customId": "A15942",
   "name": "Master's Rod of Arcane Wrath",
   "class": 4,
   "subclass": -5,
@@ -2415,6 +2508,7 @@
  },
  {
   "id": 15938,
+  "customId": "A15938",
   "name": "Mystical Orb of Arcane Wrath",
   "class": 4,
   "subclass": -5,
@@ -2435,6 +2529,7 @@
  },
  {
   "id": 7749,
+  "customId": "7749",
   "name": "Omega Orb",
   "class": 4,
   "subclass": -5,
@@ -2456,6 +2551,7 @@
  },
  {
   "id": 15984,
+  "customId": "A15984",
   "name": "Opulent Scepter of Arcane Wrath",
   "class": 4,
   "subclass": -5,
@@ -2476,6 +2572,7 @@
  },
  {
   "id": 15988,
+  "customId": "A15988",
   "name": "Resplendent Orb of Arcane Wrath",
   "class": 4,
   "subclass": -5,
@@ -2496,6 +2593,7 @@
  },
  {
   "id": 21597,
+  "customId": "21597",
   "name": "Royal Scepter of Vek'lor",
   "class": 4,
   "subclass": -5,
@@ -2521,6 +2619,7 @@
  },
  {
   "id": 23049,
+  "customId": "23049",
   "name": "Sapphiron's Left Eye",
   "class": 4,
   "subclass": -5,
@@ -2546,6 +2645,7 @@
  },
  {
   "id": 22329,
+  "customId": "22329",
   "name": "Scepter of Interminable Focus",
   "class": 4,
   "subclass": -5,
@@ -2569,6 +2669,7 @@
  },
  {
   "id": 11904,
+  "customId": "11904",
   "name": "Spirit of Aquementas",
   "class": 4,
   "subclass": -5,
@@ -2590,6 +2691,7 @@
  },
  {
   "id": 21471,
+  "customId": "21471",
   "name": "Talon of Furious Concentration",
   "class": 4,
   "subclass": -5,
@@ -2614,6 +2716,7 @@
  },
  {
   "id": 19315,
+  "customId": "19315",
   "name": "Therazane's Touch",
   "class": 4,
   "subclass": -5,
@@ -2634,6 +2737,7 @@
  },
  {
   "id": 19308,
+  "customId": "19308",
   "name": "Tome of Arcane Domination",
   "class": 4,
   "subclass": -5,
@@ -2655,6 +2759,7 @@
  },
  {
   "id": 22253,
+  "customId": "22253",
   "name": "Tome of the Lost",
   "class": 4,
   "subclass": -5,
@@ -2678,6 +2783,7 @@
  },
  {
   "id": 20582,
+  "customId": "20582",
   "name": "Trance Stone",
   "class": 4,
   "subclass": -5,
@@ -2701,6 +2807,7 @@
  },
  {
   "id": 23197,
+  "customId": "23197",
   "name": "Idol of the Moon",
   "class": 4,
   "subclass": 8,
@@ -2720,6 +2827,7 @@
  },
  {
   "id": 10261,
+  "customId": "A10261",
   "name": "Adventurer's Bandana of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -2742,6 +2850,7 @@
  },
  {
   "id": 10261,
+  "customId": "N10261",
   "name": "Adventurer's Bandana of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -2764,6 +2873,7 @@
  },
  {
   "id": 14293,
+  "customId": "A14293",
   "name": "Arachnidian Circlet of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -2786,6 +2896,7 @@
  },
  {
   "id": 19999,
+  "customId": "19999",
   "name": "Bloodvine Goggles",
   "class": 4,
   "subclass": 1,
@@ -2810,6 +2921,7 @@
  },
  {
   "id": 14307,
+  "customId": "A14307",
   "name": "Bonecaster's Crown of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -2832,6 +2944,7 @@
  },
  {
   "id": 12752,
+  "customId": "12752",
   "name": "Cap of the Scarlet Savant",
   "class": 4,
   "subclass": 1,
@@ -2864,6 +2977,7 @@
  },
  {
   "id": 14312,
+  "customId": "A14312",
   "name": "Celestial Crown of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -2886,6 +3000,7 @@
  },
  {
   "id": 16834,
+  "customId": "16834",
   "name": "Cenarion Helm",
   "class": 4,
   "subclass": 2,
@@ -2915,6 +3030,7 @@
  },
  {
   "id": 23253,
+  "customId": "23253",
   "name": "Champion's Dragonhide Headguard",
   "class": 4,
   "subclass": 2,
@@ -2943,6 +3059,7 @@
  },
  {
   "id": 18727,
+  "customId": "18727",
   "name": "Crimson Felt Hat",
   "class": 4,
   "subclass": 1,
@@ -2969,6 +3086,7 @@
  },
  {
   "id": 18526,
+  "customId": "18526",
   "name": "Crown of the Ogre King",
   "class": 4,
   "subclass": 1,
@@ -2995,6 +3113,7 @@
  },
  {
   "id": 20628,
+  "customId": "20628",
   "name": "Deviate Growth Cap",
   "class": 4,
   "subclass": 2,
@@ -3021,6 +3140,7 @@
  },
  {
   "id": 22225,
+  "customId": "22225",
   "name": "Dragonskin Cowl",
   "class": 4,
   "subclass": 1,
@@ -3046,6 +3166,7 @@
  },
  {
   "id": 10061,
+  "customId": "A10061",
   "name": "Duskwoven Turban of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -3068,6 +3189,7 @@
  },
  {
   "id": 21472,
+  "customId": "21472",
   "name": "Dustwind Turban",
   "class": 4,
   "subclass": 1,
@@ -3094,6 +3216,7 @@
  },
  {
   "id": 10219,
+  "customId": "A10219",
   "name": "Elegant Circlet of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -3116,6 +3239,7 @@
  },
  {
   "id": 14332,
+  "customId": "A14332",
   "name": "Eternal Crown of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -3138,6 +3262,7 @@
  },
  {
   "id": 22109,
+  "customId": "22109",
   "name": "Feralheart Cowl",
   "class": 4,
   "subclass": 2,
@@ -3163,6 +3288,7 @@
  },
  {
   "id": 16451,
+  "customId": "16451",
   "name": "Field Marshal's Dragonhide Helmet",
   "class": 4,
   "subclass": 2,
@@ -3192,6 +3318,7 @@
  },
  {
   "id": 21353,
+  "customId": "21353",
   "name": "Genesis Helm",
   "class": 4,
   "subclass": 2,
@@ -3221,6 +3348,7 @@
  },
  {
   "id": 23032,
+  "customId": "23032",
   "name": "Glacial Headdress",
   "class": 4,
   "subclass": 1,
@@ -3246,6 +3374,7 @@
  },
  {
   "id": 15193,
+  "customId": "A15193",
   "name": "Grand Crown of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -3268,6 +3397,7 @@
  },
  {
   "id": 15193,
+  "customId": "N15193",
   "name": "Grand Crown of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -3290,6 +3420,7 @@
  },
  {
   "id": 22407,
+  "customId": "22407",
   "name": "Helm of the New Moon",
   "class": 4,
   "subclass": 2,
@@ -3316,6 +3447,7 @@
  },
  {
   "id": 10139,
+  "customId": "A10139",
   "name": "High Councillor's Circlet of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -3338,6 +3470,7 @@
  },
  {
   "id": 18490,
+  "customId": "18490",
   "name": "Insightful Hood",
   "class": 4,
   "subclass": 2,
@@ -3364,6 +3497,7 @@
  },
  {
   "id": 15391,
+  "customId": "A15391",
   "name": "Jadefire Cap of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -3386,6 +3520,7 @@
  },
  {
   "id": 15391,
+  "customId": "N15391",
   "name": "Jadefire Cap of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -3408,6 +3543,7 @@
  },
  {
   "id": 23308,
+  "customId": "23308",
   "name": "Lieutenant Commander's Dragonhide Headguard",
   "class": 4,
   "subclass": 2,
@@ -3436,6 +3572,7 @@
  },
  {
   "id": 10250,
+  "customId": "A10250",
   "name": "Master's Hat of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -3458,6 +3595,7 @@
  },
  {
   "id": 10150,
+  "customId": "A10150",
   "name": "Mighty Helmet of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -3480,6 +3618,7 @@
  },
  {
   "id": 10150,
+  "customId": "N10150",
   "name": "Mighty Helmet of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -3502,6 +3641,7 @@
  },
  {
   "id": 19375,
+  "customId": "19375",
   "name": "Mish'undare, Circlet of the Mind Flayer",
   "class": 4,
   "subclass": 1,
@@ -3529,6 +3669,7 @@
  },
  {
   "id": 10175,
+  "customId": "A10175",
   "name": "Mystical Headwrap of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -3551,6 +3692,7 @@
  },
  {
   "id": 10226,
+  "customId": "A10226",
   "name": "Nightshade Helmet of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -3573,6 +3715,7 @@
  },
  {
   "id": 10226,
+  "customId": "N10226",
   "name": "Nightshade Helmet of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -3595,6 +3738,7 @@
  },
  {
   "id": 15430,
+  "customId": "A15430",
   "name": "Peerless Headband of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -3617,6 +3761,7 @@
  },
  {
   "id": 15430,
+  "customId": "N15430",
   "name": "Peerless Headband of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -3639,6 +3784,7 @@
  },
  {
   "id": 15185,
+  "customId": "A15185",
   "name": "Praetorian Coif of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -3661,6 +3807,7 @@
  },
  {
   "id": 15185,
+  "customId": "N15185",
   "name": "Praetorian Coif of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -3683,6 +3830,7 @@
  },
  {
   "id": 23035,
+  "customId": "23035",
   "name": "Preceptor's Hat",
   "class": 4,
   "subclass": 1,
@@ -3708,6 +3856,7 @@
  },
  {
   "id": 14322,
+  "customId": "A14322",
   "name": "Resplendent Circlet of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -3730,6 +3879,7 @@
  },
  {
   "id": 10502,
+  "customId": "10502",
   "name": "Spellpower Goggles Xtreme",
   "class": 4,
   "subclass": 1,
@@ -3751,6 +3901,7 @@
  },
  {
   "id": 15999,
+  "customId": "15999",
   "name": "Spellpower Goggles Xtreme Plus",
   "class": 4,
   "subclass": 1,
@@ -3772,6 +3923,7 @@
  },
  {
   "id": 22267,
+  "customId": "22267",
   "name": "Spellweaver's Turban",
   "class": 4,
   "subclass": 1,
@@ -3797,6 +3949,7 @@
  },
  {
   "id": 16900,
+  "customId": "16900",
   "name": "Stormrage Cover",
   "class": 4,
   "subclass": 2,
@@ -3826,6 +3979,7 @@
  },
  {
   "id": 15439,
+  "customId": "A15439",
   "name": "Supreme Crown of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -3848,6 +4002,7 @@
  },
  {
   "id": 15439,
+  "customId": "N15439",
   "name": "Supreme Crown of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -3870,6 +4025,7 @@
  },
  {
   "id": 10187,
+  "customId": "A10187",
   "name": "Swashbuckler's Eyepatch of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -3892,6 +4048,7 @@
  },
  {
   "id": 10187,
+  "customId": "N10187",
   "name": "Swashbuckler's Eyepatch of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -3914,6 +4071,7 @@
  },
  {
   "id": 22757,
+  "customId": "22757",
   "name": "Sylvan Crown",
   "class": 4,
   "subclass": 1,
@@ -3937,6 +4095,7 @@
  },
  {
   "id": 19886,
+  "customId": "19886",
   "name": "The Hexxer's Cover",
   "class": 4,
   "subclass": 1,
@@ -3962,6 +4121,7 @@
  },
  {
   "id": 10111,
+  "customId": "A10111",
   "name": "Wanderer's Hat of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -3984,6 +4144,7 @@
  },
  {
   "id": 10111,
+  "customId": "N10111",
   "name": "Wanderer's Hat of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -4006,6 +4167,7 @@
  },
  {
   "id": 16550,
+  "customId": "16550",
   "name": "Warlord's Dragonhide Helmet",
   "class": 4,
   "subclass": 2,
@@ -4035,6 +4197,7 @@
  },
  {
   "id": 22657,
+  "customId": "22657",
   "name": "Amulet of the Dawn",
   "class": 4,
   "subclass": -3,
@@ -4057,6 +4220,7 @@
  },
  {
   "id": 21608,
+  "customId": "21608",
   "name": "Amulet of Vek'nilash",
   "class": 4,
   "subclass": -3,
@@ -4081,6 +4245,7 @@
  },
  {
   "id": 18289,
+  "customId": "18289",
   "name": "Barbed Thorn Necklace",
   "class": 4,
   "subclass": -3,
@@ -4104,6 +4269,7 @@
  },
  {
   "id": 22149,
+  "customId": "22149",
   "name": "Beads of Ogre Mojo",
   "class": 4,
   "subclass": -3,
@@ -4126,6 +4292,7 @@
  },
  {
   "id": 23125,
+  "customId": "23125",
   "name": "Chains of the Lich",
   "class": 4,
   "subclass": -3,
@@ -4147,6 +4314,7 @@
  },
  {
   "id": 21504,
+  "customId": "21504",
   "name": "Charm of the Shifting Sands",
   "class": 4,
   "subclass": -3,
@@ -4170,6 +4338,7 @@
  },
  {
   "id": 17109,
+  "customId": "17109",
   "name": "Choker of Enlightenment",
   "class": 4,
   "subclass": -3,
@@ -4194,6 +4363,7 @@
  },
  {
   "id": 18814,
+  "customId": "18814",
   "name": "Choker of the Fire Lord",
   "class": 4,
   "subclass": -3,
@@ -4217,6 +4387,7 @@
  },
  {
   "id": 22403,
+  "customId": "22403",
   "name": "Diana's Pearl Necklace",
   "class": 4,
   "subclass": -3,
@@ -4241,6 +4412,7 @@
  },
  {
   "id": 23057,
+  "customId": "23057",
   "name": "Gem of Trapped Innocents",
   "class": 4,
   "subclass": -3,
@@ -4265,6 +4437,7 @@
  },
  {
   "id": 19923,
+  "customId": "19923",
   "name": "Jeklik's Opaline Talisman",
   "class": 4,
   "subclass": -3,
@@ -4287,6 +4460,7 @@
  },
  {
   "id": 22943,
+  "customId": "22943",
   "name": "Malice Stone Pendant",
   "class": 4,
   "subclass": -3,
@@ -4311,6 +4485,7 @@
  },
  {
   "id": 21678,
+  "customId": "21678",
   "name": "Necklace of Purity",
   "class": 4,
   "subclass": -3,
@@ -4334,6 +4509,7 @@
  },
  {
   "id": 19426,
+  "customId": "19426",
   "name": "Orb of the Darkmoon",
   "class": 4,
   "subclass": -3,
@@ -4357,6 +4533,7 @@
  },
  {
   "id": 19613,
+  "customId": "19613",
   "name": "Pristine Enchanted South Seas Kelp",
   "class": 4,
   "subclass": -3,
@@ -4383,6 +4560,7 @@
  },
  {
   "id": 23169,
+  "customId": "23169",
   "name": "Scorn's Icy Choker",
   "class": 4,
   "subclass": -3,
@@ -4406,6 +4584,7 @@
  },
  {
   "id": 19876,
+  "customId": "19876",
   "name": "Soul Corrupter's Necklace",
   "class": 4,
   "subclass": -3,
@@ -4430,6 +4609,7 @@
  },
  {
   "id": 12103,
+  "customId": "12103",
   "name": "Star of Mystaria",
   "class": 4,
   "subclass": -3,
@@ -4454,6 +4634,7 @@
  },
  {
   "id": 18317,
+  "customId": "18317",
   "name": "Tempest Talisman",
   "class": 4,
   "subclass": -3,
@@ -4477,6 +4658,7 @@
  },
  {
   "id": 20686,
+  "customId": "R20686",
   "name": "Abyssal Cloth Amice of Restoration",
   "class": 4,
   "subclass": 1,
@@ -4503,6 +4685,7 @@
  },
  {
   "id": 20686,
+  "customId": "S20686",
   "name": "Abyssal Cloth Amice of Sorcery",
   "class": 4,
   "subclass": 1,
@@ -4529,6 +4712,7 @@
  },
  {
   "id": 20689,
+  "customId": "S20689",
   "name": "Abyssal Leather Shoulders of Sorcery",
   "class": 4,
   "subclass": 2,
@@ -4554,6 +4738,7 @@
  },
  {
   "id": 10263,
+  "customId": "N10263",
   "name": "Adventurer's Shoulders of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -4576,6 +4761,7 @@
  },
  {
   "id": 14296,
+  "customId": "A14296",
   "name": "Arachnidian Pauldrons of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -4598,6 +4784,7 @@
  },
  {
   "id": 10783,
+  "customId": "N10783",
   "name": "Atal'ai Spaulders of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -4621,6 +4808,7 @@
  },
  {
   "id": 14298,
+  "customId": "A14298",
   "name": "Bonecaster's Spaulders of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -4643,6 +4831,7 @@
  },
  {
   "id": 18681,
+  "customId": "18681",
   "name": "Burial Shawl",
   "class": 4,
   "subclass": 1,
@@ -4666,6 +4855,7 @@
  },
  {
   "id": 14316,
+  "customId": "A14316",
   "name": "Celestial Pauldrons of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -4688,6 +4878,7 @@
  },
  {
   "id": 16836,
+  "customId": "16836",
   "name": "Cenarion Spaulders",
   "class": 4,
   "subclass": 2,
@@ -4717,6 +4908,7 @@
  },
  {
   "id": 23254,
+  "customId": "23254",
   "name": "Champion's Dragonhide Shoulders",
   "class": 4,
   "subclass": 2,
@@ -4745,6 +4937,7 @@
  },
  {
   "id": 10100,
+  "customId": "A10100",
   "name": "Councillor's Shoulders of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -4767,6 +4960,7 @@
  },
  {
   "id": 18528,
+  "customId": "18528",
   "name": "Cyclone Spaulders",
   "class": 4,
   "subclass": 2,
@@ -4793,6 +4987,7 @@
  },
  {
   "id": 10063,
+  "customId": "A10063",
   "name": "Duskwoven Amice of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -4815,6 +5010,7 @@
  },
  {
   "id": 13013,
+  "customId": "13013",
   "name": "Elder Wizard's Mantle",
   "class": 4,
   "subclass": 1,
@@ -4838,6 +5034,7 @@
  },
  {
   "id": 10210,
+  "customId": "A10210",
   "name": "Elegant Mantle of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -4860,6 +5057,7 @@
  },
  {
   "id": 14335,
+  "customId": "A14335",
   "name": "Eternal Spaulders of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -4882,6 +5080,7 @@
  },
  {
   "id": 22112,
+  "customId": "22112",
   "name": "Feralheart Spaulders",
   "class": 4,
   "subclass": 2,
@@ -4908,6 +5107,7 @@
  },
  {
   "id": 16449,
+  "customId": "16449",
   "name": "Field Marshal's Dragonhide Spaulders",
   "class": 4,
   "subclass": 2,
@@ -4936,6 +5136,7 @@
  },
  {
   "id": 21354,
+  "customId": "21354",
   "name": "Genesis Shoulderpads",
   "class": 4,
   "subclass": 2,
@@ -4966,6 +5167,7 @@
  },
  {
   "id": 22968,
+  "customId": "22968",
   "name": "Glacial Mantle",
   "class": 4,
   "subclass": 1,
@@ -4989,6 +5191,7 @@
  },
  {
   "id": 15693,
+  "customId": "N15693",
   "name": "Grand Shoulders of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -5011,6 +5214,7 @@
  },
  {
   "id": 10142,
+  "customId": "A10142",
   "name": "High Councillor's Mantle of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -5033,6 +5237,7 @@
  },
  {
   "id": 15395,
+  "customId": "N15395",
   "name": "Jadefire Epaulets of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -5055,6 +5260,7 @@
  },
  {
   "id": 11624,
+  "customId": "11624",
   "name": "Kentic Amice",
   "class": 4,
   "subclass": 1,
@@ -5081,6 +5287,7 @@
  },
  {
   "id": 23309,
+  "customId": "23309",
   "name": "Lieutenant Commander's Dragonhide Shoulders",
   "class": 4,
   "subclass": 2,
@@ -5109,6 +5316,7 @@
  },
  {
   "id": 21468,
+  "customId": "21468",
   "name": "Mantle of Maz'Nadir",
   "class": 4,
   "subclass": 1,
@@ -5135,6 +5343,7 @@
  },
  {
   "id": 19370,
+  "customId": "19370",
   "name": "Mantle of the Blackwing Cabal",
   "class": 4,
   "subclass": 1,
@@ -5160,6 +5369,7 @@
  },
  {
   "id": 10253,
+  "customId": "A10253",
   "name": "Master's Mantle of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -5182,6 +5392,7 @@
  },
  {
   "id": 10153,
+  "customId": "N10153",
   "name": "Mighty Spaulders of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -5204,6 +5415,7 @@
  },
  {
   "id": 10172,
+  "customId": "A10172",
   "name": "Mystical Mantle of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -5226,6 +5438,7 @@
  },
  {
   "id": 10228,
+  "customId": "N10228",
   "name": "Nightshade Spaulders of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -5248,6 +5461,7 @@
  },
  {
   "id": 15432,
+  "customId": "N15432",
   "name": "Peerless Shoulders of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -5270,6 +5484,7 @@
  },
  {
   "id": 15187,
+  "customId": "N15187",
   "name": "Praetorian Pauldrons of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -5292,6 +5507,7 @@
  },
  {
   "id": 14325,
+  "customId": "A14325",
   "name": "Resplendent Epaulets of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -5314,6 +5530,7 @@
  },
  {
   "id": 22983,
+  "customId": "22983",
   "name": "Rime Covered Mantle",
   "class": 4,
   "subclass": 1,
@@ -5340,6 +5557,7 @@
  },
  {
   "id": 18720,
+  "customId": "18720",
   "name": "Shroud of the Nathrezim",
   "class": 4,
   "subclass": 1,
@@ -5365,6 +5583,7 @@
  },
  {
   "id": 11685,
+  "customId": "11685",
   "name": "Splinthide Shoulders",
   "class": 4,
   "subclass": 2,
@@ -5390,6 +5609,7 @@
  },
  {
   "id": 16902,
+  "customId": "16902",
   "name": "Stormrage Pauldrons",
   "class": 4,
   "subclass": 2,
@@ -5419,6 +5639,7 @@
  },
  {
   "id": 13185,
+  "customId": "13185",
   "name": "Sunderseer Mantle",
   "class": 4,
   "subclass": 1,
@@ -5445,6 +5666,7 @@
  },
  {
   "id": 15441,
+  "customId": "N15441",
   "name": "Supreme Shoulders of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -5467,6 +5689,7 @@
  },
  {
   "id": 10189,
+  "customId": "N10189",
   "name": "Swashbuckler's Shoulderpads of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -5489,6 +5712,7 @@
  },
  {
   "id": 22758,
+  "customId": "22758",
   "name": "Sylvan Shoulders",
   "class": 4,
   "subclass": 1,
@@ -5512,6 +5736,7 @@
  },
  {
   "id": 22412,
+  "customId": "22412",
   "name": "Thuzadin Mantle",
   "class": 4,
   "subclass": 1,
@@ -5537,6 +5762,7 @@
  },
  {
   "id": 10113,
+  "customId": "N10113",
   "name": "Wanderer's Shoulders of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -5559,6 +5785,7 @@
  },
  {
   "id": 16551,
+  "customId": "16551",
   "name": "Warlord's Dragonhide Epaulets",
   "class": 4,
   "subclass": 2,
@@ -5587,6 +5814,7 @@
  },
  {
   "id": 10264,
+  "customId": "N10264",
   "name": "Adventurer's Tunic of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -5609,6 +5837,7 @@
  },
  {
   "id": 13314,
+  "customId": "13314",
   "name": "Alanna's Embrace",
   "class": 4,
   "subclass": 1,
@@ -5635,6 +5864,7 @@
  },
  {
   "id": 14288,
+  "customId": "A14288",
   "name": "Arachnidian Armor of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -5657,6 +5887,7 @@
  },
  {
   "id": 14297,
+  "customId": "A14297",
   "name": "Arachnidian Robes of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -5679,6 +5910,7 @@
  },
  {
   "id": 19682,
+  "customId": "19682",
   "name": "Bloodvine Vest",
   "class": 4,
   "subclass": 1,
@@ -5703,6 +5935,7 @@
  },
  {
   "id": 14303,
+  "customId": "A14303",
   "name": "Bonecaster's Shroud of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -5725,6 +5958,7 @@
  },
  {
   "id": 14306,
+  "customId": "A14306",
   "name": "Bonecaster's Vest of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -5747,6 +5981,7 @@
  },
  {
   "id": 14317,
+  "customId": "A14317",
   "name": "Celestial Silk Robes of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -5769,6 +6004,7 @@
  },
  {
   "id": 14308,
+  "customId": "A14308",
   "name": "Celestial Tunic of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -5791,6 +6027,7 @@
  },
  {
   "id": 16833,
+  "customId": "16833",
   "name": "Cenarion Vestments",
   "class": 4,
   "subclass": 2,
@@ -5820,6 +6057,7 @@
  },
  {
   "id": 18373,
+  "customId": "18373",
   "name": "Chestplate of Tranquility",
   "class": 4,
   "subclass": 2,
@@ -5846,6 +6084,7 @@
  },
  {
   "id": 10102,
+  "customId": "A10102",
   "name": "Councillor's Robes of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -5868,6 +6107,7 @@
  },
  {
   "id": 10104,
+  "customId": "A10104",
   "name": "Councillor's Tunic of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -5890,6 +6130,7 @@
  },
  {
   "id": 23220,
+  "customId": "23220",
   "name": "Crystal Webbed Robe",
   "class": 4,
   "subclass": 1,
@@ -5915,6 +6156,7 @@
  },
  {
   "id": 10065,
+  "customId": "A10065",
   "name": "Duskwoven Robe of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -5937,6 +6179,7 @@
  },
  {
   "id": 10057,
+  "customId": "A10057",
   "name": "Duskwoven Tunic of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -5959,6 +6202,7 @@
  },
  {
   "id": 21183,
+  "customId": "21183",
   "name": "Earthpower Vest",
   "class": 4,
   "subclass": 1,
@@ -5983,6 +6227,7 @@
  },
  {
   "id": 10215,
+  "customId": "A10215",
   "name": "Elegant Robes of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -6005,6 +6250,7 @@
  },
  {
   "id": 10218,
+  "customId": "A10218",
   "name": "Elegant Tunic of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -6027,6 +6273,7 @@
  },
  {
   "id": 14328,
+  "customId": "A14328",
   "name": "Eternal Chestguard of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -6049,6 +6296,7 @@
  },
  {
   "id": 14336,
+  "customId": "A14336",
   "name": "Eternal Wraps of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -6071,6 +6319,7 @@
  },
  {
   "id": 22113,
+  "customId": "22113",
   "name": "Feralheart Vest",
   "class": 4,
   "subclass": 2,
@@ -6097,6 +6346,7 @@
  },
  {
   "id": 16452,
+  "customId": "16452",
   "name": "Field Marshal's Dragonhide Breastplate",
   "class": 4,
   "subclass": 2,
@@ -6125,6 +6375,7 @@
  },
  {
   "id": 19156,
+  "customId": "19156",
   "name": "Flarecore Robe",
   "class": 4,
   "subclass": 1,
@@ -6148,6 +6399,7 @@
  },
  {
   "id": 20032,
+  "customId": "20032",
   "name": "Flowing Ritual Robes",
   "class": 4,
   "subclass": 1,
@@ -6174,6 +6426,7 @@
  },
  {
   "id": 21838,
+  "customId": "21838",
   "name": "Garb of Royal Ascension",
   "class": 4,
   "subclass": 1,
@@ -6199,6 +6452,7 @@
  },
  {
   "id": 21357,
+  "customId": "21357",
   "name": "Genesis Vest",
   "class": 4,
   "subclass": 2,
@@ -6229,6 +6483,7 @@
  },
  {
   "id": 22652,
+  "customId": "22652",
   "name": "Glacial Vest",
   "class": 4,
   "subclass": 1,
@@ -6253,6 +6508,7 @@
  },
  {
   "id": 15195,
+  "customId": "N15195",
   "name": "Grand Breastplate of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -6275,6 +6531,7 @@
  },
  {
   "id": 10143,
+  "customId": "A10143",
   "name": "High Councillor's Robe of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -6297,6 +6554,7 @@
  },
  {
   "id": 10135,
+  "customId": "A10135",
   "name": "High Councillor's Tunic of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -6319,6 +6577,7 @@
  },
  {
   "id": 20635,
+  "customId": "20635",
   "name": "Jade Inlaid Vestments",
   "class": 4,
   "subclass": 1,
@@ -6345,6 +6604,7 @@
  },
  {
   "id": 15390,
+  "customId": "N15390",
   "name": "Jadefire Chestguard of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -6367,6 +6627,7 @@
  },
  {
   "id": 23294,
+  "customId": "23294",
   "name": "Knight-Captain's Dragonhide Chestpiece",
   "class": 4,
   "subclass": 2,
@@ -6394,6 +6655,7 @@
  },
  {
   "id": 22877,
+  "customId": "22877",
   "name": "Legionnaire's Dragonhide Chestpiece",
   "class": 4,
   "subclass": 2,
@@ -6421,6 +6683,7 @@
  },
  {
   "id": 10254,
+  "customId": "A10254",
   "name": "Master's Robe of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -6443,6 +6706,7 @@
  },
  {
   "id": 10246,
+  "customId": "A10246",
   "name": "Master's Vest of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -6465,6 +6729,7 @@
  },
  {
   "id": 10151,
+  "customId": "N10151",
   "name": "Mighty Tunic of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -6487,6 +6752,7 @@
  },
  {
   "id": 10181,
+  "customId": "A10181",
   "name": "Mystical Armor of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -6509,6 +6775,7 @@
  },
  {
   "id": 10178,
+  "customId": "A10178",
   "name": "Mystical Robe of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -6531,6 +6798,7 @@
  },
  {
   "id": 14626,
+  "customId": "14626",
   "name": "Necropile Robe",
   "class": 4,
   "subclass": 1,
@@ -6556,6 +6824,7 @@
  },
  {
   "id": 10220,
+  "customId": "N10220",
   "name": "Nightshade Tunic of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -6578,6 +6847,7 @@
  },
  {
   "id": 15433,
+  "customId": "N15433",
   "name": "Peerless Armor of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -6600,6 +6870,7 @@
  },
  {
   "id": 15179,
+  "customId": "N15179",
   "name": "Praetorian Padded Armor of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -6622,6 +6893,7 @@
  },
  {
   "id": 14326,
+  "customId": "A14326",
   "name": "Resplendent Robes of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -6644,6 +6916,7 @@
  },
  {
   "id": 14318,
+  "customId": "A14318",
   "name": "Resplendent Tunic of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -6666,6 +6939,7 @@
  },
  {
   "id": 18385,
+  "customId": "18385",
   "name": "Robe of Everlasting Night",
   "class": 4,
   "subclass": 1,
@@ -6692,6 +6966,7 @@
  },
  {
   "id": 1716,
+  "customId": "1716",
   "name": "Robe of the Magi",
   "class": 4,
   "subclass": 1,
@@ -6716,6 +6991,7 @@
  },
  {
   "id": 23085,
+  "customId": "23085",
   "name": "Robe of Undead Cleansing",
   "class": 4,
   "subclass": 1,
@@ -6742,6 +7018,7 @@
  },
  {
   "id": 19145,
+  "customId": "19145",
   "name": "Robe of Volatile Power",
   "class": 4,
   "subclass": 1,
@@ -6769,6 +7046,7 @@
  },
  {
   "id": 21671,
+  "customId": "21671",
   "name": "Robes of the Battleguard",
   "class": 4,
   "subclass": 1,
@@ -6796,6 +7074,7 @@
  },
  {
   "id": 11924,
+  "customId": "11924",
   "name": "Robes of the Royal Crown",
   "class": 4,
   "subclass": 1,
@@ -6822,6 +7101,7 @@
  },
  {
   "id": 16897,
+  "customId": "16897",
   "name": "Stormrage Chestguard",
   "class": 4,
   "subclass": 2,
@@ -6851,6 +7131,7 @@
  },
  {
   "id": 15442,
+  "customId": "N15442",
   "name": "Supreme Breastplate of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -6873,6 +7154,7 @@
  },
  {
   "id": 10182,
+  "customId": "N10182",
   "name": "Swashbuckler's Breastplate of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -6895,6 +7177,7 @@
  },
  {
   "id": 22756,
+  "customId": "22756",
   "name": "Sylvan Vest",
   "class": 4,
   "subclass": 1,
@@ -6918,6 +7201,7 @@
  },
  {
   "id": 13388,
+  "customId": "13388",
   "name": "The Postmaster's Tunic",
   "class": 4,
   "subclass": 1,
@@ -6944,6 +7228,7 @@
  },
  {
   "id": 22409,
+  "customId": "22409",
   "name": "Tunic of the Crescent Moon",
   "class": 4,
   "subclass": 2,
@@ -6971,6 +7256,7 @@
  },
  {
   "id": 21499,
+  "customId": "21499",
   "name": "Vestments of the Shifting Sands",
   "class": 4,
   "subclass": 1,
@@ -6998,6 +7284,7 @@
  },
  {
   "id": 10105,
+  "customId": "N10105",
   "name": "Wanderer's Armor of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -7020,6 +7307,7 @@
  },
  {
   "id": 16549,
+  "customId": "16549",
   "name": "Warlord's Dragonhide Hauberk",
   "class": 4,
   "subclass": 2,
@@ -7048,6 +7336,7 @@
  },
  {
   "id": 10258,
+  "customId": "A10258",
   "name": "Adventurer's Cape of Arcane Wrath",
   "class": 4,
   "subclass": -6,
@@ -7069,6 +7358,7 @@
  },
  {
   "id": 10258,
+  "customId": "N10258",
   "name": "Adventurer's Cape of Nature's Wrath",
   "class": 4,
   "subclass": -6,
@@ -7090,6 +7380,7 @@
  },
  {
   "id": 18350,
+  "customId": "18350",
   "name": "Amplifying Cloak",
   "class": 4,
   "subclass": -6,
@@ -7112,6 +7403,7 @@
  },
  {
   "id": 14292,
+  "customId": "A14292",
   "name": "Arachnidian Cape of Arcane Wrath",
   "class": 4,
   "subclass": -6,
@@ -7133,6 +7425,7 @@
  },
  {
   "id": 13386,
+  "customId": "A13386",
   "name": "Archivist Cape of Arcane Wrath",
   "class": 4,
   "subclass": -6,
@@ -7156,6 +7449,7 @@
  },
  {
   "id": 14300,
+  "customId": "A14300",
   "name": "Bonecaster's Cape of Arcane Wrath",
   "class": 4,
   "subclass": -6,
@@ -7177,6 +7471,7 @@
  },
  {
   "id": 21697,
+  "customId": "21697",
   "name": "Cape of the Trinity",
   "class": 4,
   "subclass": -6,
@@ -7201,6 +7496,7 @@
  },
  {
   "id": 14313,
+  "customId": "A14313",
   "name": "Celestial Cape of Arcane Wrath",
   "class": 4,
   "subclass": -6,
@@ -7222,6 +7518,7 @@
  },
  {
   "id": 18509,
+  "customId": "18509",
   "name": "Chromatic Cloak",
   "class": 4,
   "subclass": -6,
@@ -7244,6 +7541,7 @@
  },
  {
   "id": 19857,
+  "customId": "19857",
   "name": "Cloak of Consumption",
   "class": 4,
   "subclass": -6,
@@ -7268,6 +7566,7 @@
  },
  {
   "id": 19378,
+  "customId": "19378",
   "name": "Cloak of the Brood Lord",
   "class": 4,
   "subclass": -6,
@@ -7292,6 +7591,7 @@
  },
  {
   "id": 22731,
+  "customId": "22731",
   "name": "Cloak of the Devoured",
   "class": 4,
   "subclass": -6,
@@ -7317,6 +7617,7 @@
  },
  {
   "id": 22711,
+  "customId": "22711",
   "name": "Cloak of the Hakkari Worshipers",
   "class": 4,
   "subclass": -6,
@@ -7340,6 +7641,7 @@
  },
  {
   "id": 23050,
+  "customId": "23050",
   "name": "Cloak of the Necropolis",
   "class": 4,
   "subclass": -6,
@@ -7366,6 +7668,7 @@
  },
  {
   "id": 21409,
+  "customId": "21409",
   "name": "Cloak of Unending Life",
   "class": 4,
   "subclass": -6,
@@ -7394,6 +7697,7 @@
  },
  {
   "id": 10098,
+  "customId": "A10098",
   "name": "Councillor's Cloak of Arcane Wrath",
   "class": 4,
   "subclass": -6,
@@ -7415,6 +7719,7 @@
  },
  {
   "id": 20697,
+  "customId": "20697",
   "name": "Crystalline Threaded Cape",
   "class": 4,
   "subclass": -6,
@@ -7439,6 +7744,7 @@
  },
  {
   "id": 19121,
+  "customId": "19121",
   "name": "Deep Woodlands Cloak",
   "class": 4,
   "subclass": -6,
@@ -7463,6 +7769,7 @@
  },
  {
   "id": 10060,
+  "customId": "A10060",
   "name": "Duskwoven Cape of Arcane Wrath",
   "class": 4,
   "subclass": -6,
@@ -7484,6 +7791,7 @@
  },
  {
   "id": 10212,
+  "customId": "A10212",
   "name": "Elegant Cloak of Arcane Wrath",
   "class": 4,
   "subclass": -6,
@@ -7505,6 +7813,7 @@
  },
  {
   "id": 10231,
+  "customId": "A10231",
   "name": "Engraved Cape of Arcane Wrath",
   "class": 4,
   "subclass": -6,
@@ -7526,6 +7835,7 @@
  },
  {
   "id": 10231,
+  "customId": "N10231",
   "name": "Engraved Cape of Nature's Wrath",
   "class": 4,
   "subclass": -6,
@@ -7547,6 +7857,7 @@
  },
  {
   "id": 14331,
+  "customId": "A14331",
   "name": "Eternal Cloak of Arcane Wrath",
   "class": 4,
   "subclass": -6,
@@ -7568,6 +7879,7 @@
  },
  {
   "id": 19085,
+  "customId": "19085",
   "name": "Frostwolf Advisor's Cloak",
   "class": 4,
   "subclass": -6,
@@ -7590,6 +7902,7 @@
  },
  {
   "id": 15190,
+  "customId": "A15190",
   "name": "Grand Cloak of Arcane Wrath",
   "class": 4,
   "subclass": -6,
@@ -7611,6 +7924,7 @@
  },
  {
   "id": 15190,
+  "customId": "N15190",
   "name": "Grand Cloak of Nature's Wrath",
   "class": 4,
   "subclass": -6,
@@ -7632,6 +7946,7 @@
  },
  {
   "id": 18496,
+  "customId": "18496",
   "name": "Heliotrope Cloak",
   "class": 4,
   "subclass": -6,
@@ -7655,6 +7970,7 @@
  },
  {
   "id": 10138,
+  "customId": "A10138",
   "name": "High Councillor's Cloak of Arcane Wrath",
   "class": 4,
   "subclass": -6,
@@ -7676,6 +7992,7 @@
  },
  {
   "id": 15392,
+  "customId": "A15392",
   "name": "Jadefire Cloak of Arcane Wrath",
   "class": 4,
   "subclass": -6,
@@ -7697,6 +8014,7 @@
  },
  {
   "id": 15392,
+  "customId": "N15392",
   "name": "Jadefire Cloak of Nature's Wrath",
   "class": 4,
   "subclass": -6,
@@ -7718,6 +8036,7 @@
  },
  {
   "id": 15671,
+  "customId": "A15671",
   "name": "Magnificent Cloak of Arcane Wrath",
   "class": 4,
   "subclass": -6,
@@ -7739,6 +8058,7 @@
  },
  {
   "id": 15671,
+  "customId": "N15671",
   "name": "Magnificent Cloak of Nature's Wrath",
   "class": 4,
   "subclass": -6,
@@ -7760,6 +8080,7 @@
  },
  {
   "id": 10249,
+  "customId": "A10249",
   "name": "Master's Cloak of Arcane Wrath",
   "class": 4,
   "subclass": -6,
@@ -7781,6 +8102,7 @@
  },
  {
   "id": 10267,
+  "customId": "N10267",
   "name": "Masterwork Cape of Nature's Wrath",
   "class": 4,
   "subclass": -6,
@@ -7802,6 +8124,7 @@
  },
  {
   "id": 10159,
+  "customId": "N10159",
   "name": "Mercurial Cloak of Nature's Wrath",
   "class": 4,
   "subclass": -6,
@@ -7823,6 +8146,7 @@
  },
  {
   "id": 10148,
+  "customId": "A10148",
   "name": "Mighty Cloak of Arcane Wrath",
   "class": 4,
   "subclass": -6,
@@ -7844,6 +8168,7 @@
  },
  {
   "id": 10148,
+  "customId": "N10148",
   "name": "Mighty Cloak of Nature's Wrath",
   "class": 4,
   "subclass": -6,
@@ -7865,6 +8190,7 @@
  },
  {
   "id": 10174,
+  "customId": "A10174",
   "name": "Mystical Cape of Arcane Wrath",
   "class": 4,
   "subclass": -6,
@@ -7886,6 +8212,7 @@
  },
  {
   "id": 10224,
+  "customId": "A10224",
   "name": "Nightshade Cloak of Arcane Wrath",
   "class": 4,
   "subclass": -6,
@@ -7907,6 +8234,7 @@
  },
  {
   "id": 10224,
+  "customId": "N10224",
   "name": "Nightshade Cloak of Nature's Wrath",
   "class": 4,
   "subclass": -6,
@@ -7928,6 +8256,7 @@
  },
  {
   "id": 15427,
+  "customId": "A15427",
   "name": "Peerless Cloak of Arcane Wrath",
   "class": 4,
   "subclass": -6,
@@ -7949,6 +8278,7 @@
  },
  {
   "id": 15427,
+  "customId": "N15427",
   "name": "Peerless Cloak of Nature's Wrath",
   "class": 4,
   "subclass": -6,
@@ -7970,6 +8300,7 @@
  },
  {
   "id": 15183,
+  "customId": "A15183",
   "name": "Praetorian Cloak of Arcane Wrath",
   "class": 4,
   "subclass": -6,
@@ -7991,6 +8322,7 @@
  },
  {
   "id": 15183,
+  "customId": "N15183",
   "name": "Praetorian Cloak of Nature's Wrath",
   "class": 4,
   "subclass": -6,
@@ -8012,6 +8344,7 @@
  },
  {
   "id": 14321,
+  "customId": "A14321",
   "name": "Resplendent Cloak of Arcane Wrath",
   "class": 4,
   "subclass": -6,
@@ -8033,6 +8366,7 @@
  },
  {
   "id": 17078,
+  "customId": "17078",
   "name": "Sapphiron Drape",
   "class": 4,
   "subclass": -6,
@@ -8057,6 +8391,7 @@
  },
  {
   "id": 22330,
+  "customId": "22330",
   "name": "Shroud of Arcane Mastery",
   "class": 4,
   "subclass": -6,
@@ -8081,6 +8416,7 @@
  },
  {
   "id": 11623,
+  "customId": "11623",
   "name": "Spritecaster Cape",
   "class": 4,
   "subclass": -6,
@@ -8106,6 +8442,7 @@
  },
  {
   "id": 19086,
+  "customId": "19086",
   "name": "Stormpike Sage's Cloak",
   "class": 4,
   "subclass": -6,
@@ -8128,6 +8465,7 @@
  },
  {
   "id": 15437,
+  "customId": "A15437",
   "name": "Supreme Cape of Arcane Wrath",
   "class": 4,
   "subclass": -6,
@@ -8149,6 +8487,7 @@
  },
  {
   "id": 15437,
+  "customId": "N15437",
   "name": "Supreme Cape of Nature's Wrath",
   "class": 4,
   "subclass": -6,
@@ -8170,6 +8509,7 @@
  },
  {
   "id": 10185,
+  "customId": "A10185",
   "name": "Swashbuckler's Cape of Arcane Wrath",
   "class": 4,
   "subclass": -6,
@@ -8191,6 +8531,7 @@
  },
  {
   "id": 10185,
+  "customId": "N10185",
   "name": "Swashbuckler's Cape of Nature's Wrath",
   "class": 4,
   "subclass": -6,
@@ -8212,6 +8553,7 @@
  },
  {
   "id": 15681,
+  "customId": "N15681",
   "name": "Triumphant Cloak of Nature's Wrath",
   "class": 4,
   "subclass": -6,
@@ -8233,6 +8575,7 @@
  },
  {
   "id": 23017,
+  "customId": "23017",
   "name": "Veil of Eclipse",
   "class": 4,
   "subclass": -6,
@@ -8258,6 +8601,7 @@
  },
  {
   "id": 10108,
+  "customId": "A10108",
   "name": "Wanderer's Cloak of Arcane Wrath",
   "class": 4,
   "subclass": -6,
@@ -8279,6 +8623,7 @@
  },
  {
   "id": 10108,
+  "customId": "N10108",
   "name": "Wanderer's Cloak of Nature's Wrath",
   "class": 4,
   "subclass": -6,
@@ -8300,6 +8645,7 @@
  },
  {
   "id": 20690,
+  "customId": "S20690",
   "name": "Abyssal Cloth Wristbands of Sorcery",
   "class": 4,
   "subclass": 1,
@@ -8325,6 +8671,7 @@
  },
  {
   "id": 20681,
+  "customId": "S20681",
   "name": "Abyssal Leather Bracers of Sorcery",
   "class": 4,
   "subclass": 2,
@@ -8350,6 +8697,7 @@
  },
  {
   "id": 10256,
+  "customId": "A10256",
   "name": "Adventurer's Bracers of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -8372,6 +8720,7 @@
  },
  {
   "id": 10256,
+  "customId": "N10256",
   "name": "Adventurer's Bracers of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -8394,6 +8743,7 @@
  },
  {
   "id": 14291,
+  "customId": "A14291",
   "name": "Arachnidian Bracelets of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -8416,6 +8766,7 @@
  },
  {
   "id": 20626,
+  "customId": "20626",
   "name": "Black Bark Wristbands",
   "class": 4,
   "subclass": 1,
@@ -8441,6 +8792,7 @@
  },
  {
   "id": 19135,
+  "customId": "19135",
   "name": "Blacklight Bracer",
   "class": 4,
   "subclass": 1,
@@ -8467,6 +8819,7 @@
  },
  {
   "id": 14301,
+  "customId": "A14301",
   "name": "Bonecaster's Bindings of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -8489,6 +8842,7 @@
  },
  {
   "id": 19374,
+  "customId": "19374",
   "name": "Bracers of Arcane Accuracy",
   "class": 4,
   "subclass": 1,
@@ -8515,6 +8869,7 @@
  },
  {
   "id": 23091,
+  "customId": "23091",
   "name": "Bracers of Undead Cleansing",
   "class": 4,
   "subclass": 1,
@@ -8540,6 +8895,7 @@
  },
  {
   "id": 21611,
+  "customId": "21611",
   "name": "Burrower Bracers",
   "class": 4,
   "subclass": 1,
@@ -8565,6 +8921,7 @@
  },
  {
   "id": 14311,
+  "customId": "A14311",
   "name": "Celestial Bindings of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -8587,6 +8944,7 @@
  },
  {
   "id": 16830,
+  "customId": "16830",
   "name": "Cenarion Bracers",
   "class": 4,
   "subclass": 2,
@@ -8615,6 +8973,7 @@
  },
  {
   "id": 11764,
+  "customId": "A11764",
   "name": "Cinderhide Armsplints of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -8638,6 +8997,7 @@
  },
  {
   "id": 11764,
+  "customId": "N11764",
   "name": "Cinderhide Armsplints of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -8661,6 +9021,7 @@
  },
  {
   "id": 10096,
+  "customId": "A10096",
   "name": "Councillor's Cuffs of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -8683,6 +9044,7 @@
  },
  {
   "id": 19595,
+  "customId": "19595",
   "name": "Dryad's Wrist Bindings",
   "class": 4,
   "subclass": 1,
@@ -8709,6 +9071,7 @@
  },
  {
   "id": 10059,
+  "customId": "A10059",
   "name": "Duskwoven Bracers of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -8731,6 +9094,7 @@
  },
  {
   "id": 10213,
+  "customId": "A10213",
   "name": "Elegant Bracers of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -8753,6 +9117,7 @@
  },
  {
   "id": 14330,
+  "customId": "A14330",
   "name": "Eternal Bindings of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -8775,6 +9140,7 @@
  },
  {
   "id": 22108,
+  "customId": "22108",
   "name": "Feralheart Bracers",
   "class": 4,
   "subclass": 2,
@@ -8801,6 +9167,7 @@
  },
  {
   "id": 11766,
+  "customId": "A11766",
   "name": "Flameweave Cuffs of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -8824,6 +9191,7 @@
  },
  {
   "id": 22655,
+  "customId": "22655",
   "name": "Glacial Wrists",
   "class": 4,
   "subclass": 1,
@@ -8848,6 +9216,7 @@
  },
  {
   "id": 15188,
+  "customId": "A15188",
   "name": "Grand Armguards of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -8870,6 +9239,7 @@
  },
  {
   "id": 15188,
+  "customId": "N15188",
   "name": "Grand Armguards of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -8892,6 +9262,7 @@
  },
  {
   "id": 10136,
+  "customId": "A10136",
   "name": "High Councillor's Bracers of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -8914,6 +9285,7 @@
  },
  {
   "id": 15387,
+  "customId": "A15387",
   "name": "Jadefire Bracelets of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -8936,6 +9308,7 @@
  },
  {
   "id": 15387,
+  "customId": "N15387",
   "name": "Jadefire Bracelets of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -8958,6 +9331,7 @@
  },
  {
   "id": 13107,
+  "customId": "13107",
   "name": "Magiskull Cuffs",
   "class": 4,
   "subclass": 1,
@@ -8980,6 +9354,7 @@
  },
  {
   "id": 10248,
+  "customId": "A10248",
   "name": "Master's Bracers of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -9002,6 +9377,7 @@
  },
  {
   "id": 10147,
+  "customId": "A10147",
   "name": "Mighty Armsplints of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -9024,6 +9400,7 @@
  },
  {
   "id": 10147,
+  "customId": "N10147",
   "name": "Mighty Armsplints of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -9046,6 +9423,7 @@
  },
  {
   "id": 10173,
+  "customId": "A10173",
   "name": "Mystical Bracers of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -9068,6 +9446,7 @@
  },
  {
   "id": 10223,
+  "customId": "A10223",
   "name": "Nightshade Armguards of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -9090,6 +9469,7 @@
  },
  {
   "id": 10223,
+  "customId": "N10223",
   "name": "Nightshade Armguards of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -9112,6 +9492,7 @@
  },
  {
   "id": 18337,
+  "customId": "18337",
   "name": "Orphic Bracers",
   "class": 4,
   "subclass": 1,
@@ -9136,6 +9517,7 @@
  },
  {
   "id": 15425,
+  "customId": "A15425",
   "name": "Peerless Bracers of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -9158,6 +9540,7 @@
  },
  {
   "id": 15425,
+  "customId": "N15425",
   "name": "Peerless Bracers of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -9180,6 +9563,7 @@
  },
  {
   "id": 15182,
+  "customId": "A15182",
   "name": "Praetorian Wristbands of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -9202,6 +9586,7 @@
  },
  {
   "id": 15182,
+  "customId": "N15182",
   "name": "Praetorian Wristbands of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -9224,6 +9609,7 @@
  },
  {
   "id": 14320,
+  "customId": "A14320",
   "name": "Resplendent Bracelets of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -9246,6 +9632,7 @@
  },
  {
   "id": 21186,
+  "customId": "21186",
   "name": "Rockfury Bracers",
   "class": 4,
   "subclass": 1,
@@ -9270,6 +9657,7 @@
  },
  {
   "id": 21464,
+  "customId": "21464",
   "name": "Shackles of the Unscarred",
   "class": 4,
   "subclass": 1,
@@ -9296,6 +9684,7 @@
  },
  {
   "id": 16904,
+  "customId": "16904",
   "name": "Stormrage Bracers",
   "class": 4,
   "subclass": 2,
@@ -9324,6 +9713,7 @@
  },
  {
   "id": 18497,
+  "customId": "18497",
   "name": "Sublime Wristguards",
   "class": 4,
   "subclass": 1,
@@ -9350,6 +9740,7 @@
  },
  {
   "id": 15436,
+  "customId": "A15436",
   "name": "Supreme Bracers of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -9372,6 +9763,7 @@
  },
  {
   "id": 15436,
+  "customId": "N15436",
   "name": "Supreme Bracers of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -9394,6 +9786,7 @@
  },
  {
   "id": 10184,
+  "customId": "A10184",
   "name": "Swashbuckler's Bracers of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -9416,6 +9809,7 @@
  },
  {
   "id": 10184,
+  "customId": "N10184",
   "name": "Swashbuckler's Bracers of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -9438,6 +9832,7 @@
  },
  {
   "id": 13409,
+  "customId": "A13409",
   "name": "Tearfall Bracers of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -9461,6 +9856,7 @@
  },
  {
   "id": 23021,
+  "customId": "23021",
   "name": "The Soul Harvester's Bindings",
   "class": 4,
   "subclass": 1,
@@ -9487,6 +9883,7 @@
  },
  {
   "id": 10107,
+  "customId": "A10107",
   "name": "Wanderer's Bracers of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -9509,6 +9906,7 @@
  },
  {
   "id": 10107,
+  "customId": "N10107",
   "name": "Wanderer's Bracers of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -9531,6 +9929,7 @@
  },
  {
   "id": 20655,
+  "customId": "S20655",
   "name": "Abyssal Cloth Handwraps of Sorcery",
   "class": 4,
   "subclass": 1,
@@ -9556,6 +9955,7 @@
  },
  {
   "id": 20661,
+  "customId": "S20661",
   "name": "Abyssal Leather Gloves of Sorcery",
   "class": 4,
   "subclass": 2,
@@ -9581,6 +9981,7 @@
  },
  {
   "id": 10260,
+  "customId": "A10260",
   "name": "Adventurer's Gloves of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -9603,6 +10004,7 @@
  },
  {
   "id": 19929,
+  "customId": "19929",
   "name": "Bloodtinged Gloves",
   "class": 4,
   "subclass": 1,
@@ -9630,6 +10032,7 @@
  },
  {
   "id": 18387,
+  "customId": "18387",
   "name": "Brightspark Gloves",
   "class": 4,
   "subclass": 1,
@@ -9655,6 +10058,7 @@
  },
  {
   "id": 16831,
+  "customId": "16831",
   "name": "Cenarion Gloves",
   "class": 4,
   "subclass": 2,
@@ -9683,6 +10087,7 @@
  },
  {
   "id": 21585,
+  "customId": "21585",
   "name": "Dark Storm Gauntlets",
   "class": 4,
   "subclass": 1,
@@ -9709,6 +10114,7 @@
  },
  {
   "id": 21318,
+  "customId": "21318",
   "name": "Earth Warder's Gloves",
   "class": 4,
   "subclass": 1,
@@ -9732,6 +10138,7 @@
  },
  {
   "id": 22110,
+  "customId": "22110",
   "name": "Feralheart Gloves",
   "class": 4,
   "subclass": 2,
@@ -9757,6 +10164,7 @@
  },
  {
   "id": 21469,
+  "customId": "21469",
   "name": "Gauntlets of Southwind",
   "class": 4,
   "subclass": 2,
@@ -9782,6 +10190,7 @@
  },
  {
   "id": 16555,
+  "customId": "16555",
   "name": "General's Dragonhide Gloves",
   "class": 4,
   "subclass": 2,
@@ -9808,6 +10217,7 @@
  },
  {
   "id": 22654,
+  "customId": "22654",
   "name": "Glacial Gloves",
   "class": 4,
   "subclass": 1,
@@ -9832,6 +10242,7 @@
  },
  {
   "id": 20618,
+  "customId": "20618",
   "name": "Gloves of Delusional Power",
   "class": 4,
   "subclass": 1,
@@ -9857,6 +10268,7 @@
  },
  {
   "id": 21178,
+  "customId": "21178",
   "name": "Gloves of Earthen Power",
   "class": 4,
   "subclass": 2,
@@ -9880,6 +10292,7 @@
  },
  {
   "id": 21689,
+  "customId": "21689",
   "name": "Gloves of Ebru",
   "class": 4,
   "subclass": 2,
@@ -9906,6 +10319,7 @@
  },
  {
   "id": 18808,
+  "customId": "18808",
   "name": "Gloves of the Hypnotic Flame",
   "class": 4,
   "subclass": 1,
@@ -9932,6 +10346,7 @@
  },
  {
   "id": 23084,
+  "customId": "23084",
   "name": "Gloves of Undead Cleansing",
   "class": 4,
   "subclass": 1,
@@ -9956,6 +10371,7 @@
  },
  {
   "id": 18368,
+  "customId": "18368",
   "name": "Gordok's Gloves",
   "class": 4,
   "subclass": 2,
@@ -9982,6 +10398,7 @@
  },
  {
   "id": 18369,
+  "customId": "18369",
   "name": "Gordok's Handwraps",
   "class": 4,
   "subclass": 1,
@@ -10008,6 +10425,7 @@
  },
  {
   "id": 15192,
+  "customId": "A15192",
   "name": "Grand Gauntlets of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -10030,6 +10448,7 @@
  },
  {
   "id": 13253,
+  "customId": "13253",
   "name": "Hands of Power",
   "class": 4,
   "subclass": 1,
@@ -10055,6 +10474,7 @@
  },
  {
   "id": 15393,
+  "customId": "A15393",
   "name": "Jadefire Gloves of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -10077,6 +10497,7 @@
  },
  {
   "id": 22256,
+  "customId": "22256",
   "name": "Mana Shaping Handwraps",
   "class": 4,
   "subclass": 1,
@@ -10103,6 +10524,7 @@
  },
  {
   "id": 16448,
+  "customId": "16448",
   "name": "Marshal's Dragonhide Gauntlets",
   "class": 4,
   "subclass": 2,
@@ -10129,6 +10551,7 @@
  },
  {
   "id": 10149,
+  "customId": "A10149",
   "name": "Mighty Gauntlets of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -10151,6 +10574,7 @@
  },
  {
   "id": 10225,
+  "customId": "A10225",
   "name": "Nightshade Gloves of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -10173,6 +10597,7 @@
  },
  {
   "id": 15429,
+  "customId": "A15429",
   "name": "Peerless Gloves of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -10195,6 +10620,7 @@
  },
  {
   "id": 15184,
+  "customId": "A15184",
   "name": "Praetorian Gloves of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -10217,6 +10643,7 @@
  },
  {
   "id": 20716,
+  "customId": "20716",
   "name": "Sandworm Skin Gloves",
   "class": 4,
   "subclass": 1,
@@ -10241,6 +10668,7 @@
  },
  {
   "id": 13258,
+  "customId": "A13258",
   "name": "Slaghide Gauntlets of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -10264,6 +10692,7 @@
  },
  {
   "id": 16899,
+  "customId": "16899",
   "name": "Stormrage Handguards",
   "class": 4,
   "subclass": 2,
@@ -10292,6 +10721,7 @@
  },
  {
   "id": 15438,
+  "customId": "A15438",
   "name": "Supreme Gloves of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -10314,6 +10744,7 @@
  },
  {
   "id": 10186,
+  "customId": "A10186",
   "name": "Swashbuckler's Gloves of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -10336,6 +10767,7 @@
  },
  {
   "id": 19390,
+  "customId": "19390",
   "name": "Taut Dragonhide Gloves",
   "class": 4,
   "subclass": 2,
@@ -10362,6 +10794,7 @@
  },
  {
   "id": 10110,
+  "customId": "A10110",
   "name": "Wanderer's Gloves of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -10384,6 +10817,7 @@
  },
  {
   "id": 20664,
+  "customId": "S20664",
   "name": "Abyssal Cloth Sash of Sorcery",
   "class": 4,
   "subclass": 1,
@@ -10409,6 +10843,7 @@
  },
  {
   "id": 20667,
+  "customId": "S20667",
   "name": "Abyssal Leather Belt of Sorcery",
   "class": 4,
   "subclass": 2,
@@ -10434,6 +10869,7 @@
  },
  {
   "id": 10259,
+  "customId": "A10259",
   "name": "Adventurer's Belt of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -10456,6 +10892,7 @@
  },
  {
   "id": 19388,
+  "customId": "19388",
   "name": "Angelista's Grasp",
   "class": 4,
   "subclass": 1,
@@ -10482,6 +10919,7 @@
  },
  {
   "id": 11662,
+  "customId": "11662",
   "name": "Ban'thok Sash",
   "class": 4,
   "subclass": 1,
@@ -10508,6 +10946,7 @@
  },
  {
   "id": 18405,
+  "customId": "18405",
   "name": "Belt of the Archmage",
   "class": 4,
   "subclass": 1,
@@ -10532,6 +10971,7 @@
  },
  {
   "id": 20625,
+  "customId": "20625",
   "name": "Belt of the Dark Bog",
   "class": 4,
   "subclass": 1,
@@ -10556,6 +10996,7 @@
  },
  {
   "id": 22716,
+  "customId": "22716",
   "name": "Belt of Untapped Power",
   "class": 4,
   "subclass": 1,
@@ -10580,6 +11021,7 @@
  },
  {
   "id": 16828,
+  "customId": "16828",
   "name": "Cenarion Belt",
   "class": 4,
   "subclass": 2,
@@ -10609,6 +11051,7 @@
  },
  {
   "id": 13956,
+  "customId": "13956",
   "name": "Clutch of Andros",
   "class": 4,
   "subclass": 1,
@@ -10634,6 +11077,7 @@
  },
  {
   "id": 12606,
+  "customId": "12606",
   "name": "Crystallized Girdle",
   "class": 4,
   "subclass": 2,
@@ -10660,6 +11104,7 @@
  },
  {
   "id": 20171,
+  "customId": "20171",
   "name": "Defiler's Lizardhide Girdle",
   "class": 4,
   "subclass": 2,
@@ -10689,6 +11134,7 @@
  },
  {
   "id": 12589,
+  "customId": "12589",
   "name": "Dustfeather Sash",
   "class": 4,
   "subclass": 1,
@@ -10714,6 +11160,7 @@
  },
  {
   "id": 22730,
+  "customId": "22730",
   "name": "Eyestalk Waist Cord",
   "class": 4,
   "subclass": 1,
@@ -10740,6 +11187,7 @@
  },
  {
   "id": 22106,
+  "customId": "22106",
   "name": "Feralheart Belt",
   "class": 4,
   "subclass": 2,
@@ -10765,6 +11213,7 @@
  },
  {
   "id": 19400,
+  "customId": "19400",
   "name": "Firemaw's Clutch",
   "class": 4,
   "subclass": 1,
@@ -10791,6 +11240,7 @@
  },
  {
   "id": 19134,
+  "customId": "19134",
   "name": "Flayed Doomguard Belt",
   "class": 4,
   "subclass": 2,
@@ -10817,6 +11267,7 @@
  },
  {
   "id": 19090,
+  "customId": "19090",
   "name": "Frostwolf Cloth Belt",
   "class": 4,
   "subclass": 1,
@@ -10842,6 +11293,7 @@
  },
  {
   "id": 15191,
+  "customId": "A15191",
   "name": "Grand Belt of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -10864,6 +11316,7 @@
  },
  {
   "id": 20046,
+  "customId": "20046",
   "name": "Highlander's Lizardhide Girdle",
   "class": 4,
   "subclass": 2,
@@ -10893,6 +11346,7 @@
  },
  {
   "id": 15388,
+  "customId": "A15388",
   "name": "Jadefire Belt of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -10915,6 +11369,7 @@
  },
  {
   "id": 19136,
+  "customId": "19136",
   "name": "Mana Igniting Cord",
   "class": 4,
   "subclass": 1,
@@ -10941,6 +11396,7 @@
  },
  {
   "id": 10221,
+  "customId": "A10221",
   "name": "Nightshade Girdle of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -10963,6 +11419,7 @@
  },
  {
   "id": 18475,
+  "customId": "18475",
   "name": "Oddly Magical Belt",
   "class": 4,
   "subclass": 1,
@@ -10986,6 +11443,7 @@
  },
  {
   "id": 15428,
+  "customId": "A15428",
   "name": "Peerless Belt of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -11008,6 +11466,7 @@
  },
  {
   "id": 15180,
+  "customId": "A15180",
   "name": "Praetorian Girdle of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -11030,6 +11489,7 @@
  },
  {
   "id": 21494,
+  "customId": "21494",
   "name": "Southwind's Grasp",
   "class": 4,
   "subclass": 2,
@@ -11056,6 +11516,7 @@
  },
  {
   "id": 19094,
+  "customId": "19094",
   "name": "Stormpike Cloth Girdle",
   "class": 4,
   "subclass": 1,
@@ -11081,6 +11542,7 @@
  },
  {
   "id": 16903,
+  "customId": "16903",
   "name": "Stormrage Belt",
   "class": 4,
   "subclass": 2,
@@ -11110,6 +11572,7 @@
  },
  {
   "id": 15434,
+  "customId": "A15434",
   "name": "Supreme Sash of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -11132,6 +11595,7 @@
  },
  {
   "id": 10190,
+  "customId": "A10190",
   "name": "Swashbuckler's Belt of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -11154,6 +11618,7 @@
  },
  {
   "id": 18740,
+  "customId": "18740",
   "name": "Thuzadin Sash",
   "class": 4,
   "subclass": 1,
@@ -11180,6 +11645,7 @@
  },
  {
   "id": 10109,
+  "customId": "A10109",
   "name": "Wanderer's Belt of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -11202,6 +11668,7 @@
  },
  {
   "id": 20674,
+  "customId": "S20674",
   "name": "Abyssal Cloth Pants of Sorcery",
   "class": 4,
   "subclass": 1,
@@ -11228,6 +11695,7 @@
  },
  {
   "id": 10262,
+  "customId": "A10262",
   "name": "Adventurer's Legguards of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -11250,6 +11718,7 @@
  },
  {
   "id": 19895,
+  "customId": "19895",
   "name": "Bloodtinged Kilt",
   "class": 4,
   "subclass": 1,
@@ -11275,6 +11744,7 @@
  },
  {
   "id": 19683,
+  "customId": "19683",
   "name": "Bloodvine Leggings",
   "class": 4,
   "subclass": 1,
@@ -11299,6 +11769,7 @@
  },
  {
   "id": 16835,
+  "customId": "16835",
   "name": "Cenarion Leggings",
   "class": 4,
   "subclass": 2,
@@ -11329,6 +11800,7 @@
  },
  {
   "id": 19385,
+  "customId": "19385",
   "name": "Empowered Leggings",
   "class": 4,
   "subclass": 1,
@@ -11355,6 +11827,7 @@
  },
  {
   "id": 22111,
+  "customId": "22111",
   "name": "Feralheart Kilt",
   "class": 4,
   "subclass": 2,
@@ -11380,6 +11853,7 @@
  },
  {
   "id": 19165,
+  "customId": "19165",
   "name": "Flarecore Leggings",
   "class": 4,
   "subclass": 1,
@@ -11403,6 +11877,7 @@
  },
  {
   "id": 21356,
+  "customId": "21356",
   "name": "Genesis Trousers",
   "class": 4,
   "subclass": 2,
@@ -11432,6 +11907,7 @@
  },
  {
   "id": 22700,
+  "customId": "22700",
   "name": "Glacial Leggings",
   "class": 4,
   "subclass": 1,
@@ -11455,6 +11931,7 @@
  },
  {
   "id": 15194,
+  "customId": "A15194",
   "name": "Grand Legguards of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -11477,6 +11954,7 @@
  },
  {
   "id": 15394,
+  "customId": "A15394",
   "name": "Jadefire Pants of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -11499,6 +11977,7 @@
  },
  {
   "id": 16422,
+  "customId": "16422",
   "name": "Knight-Captain's Dragonhide Leggings",
   "class": 4,
   "subclass": 2,
@@ -11528,6 +12007,7 @@
  },
  {
   "id": 12756,
+  "customId": "12756",
   "name": "Leggings of Arcana",
   "class": 4,
   "subclass": 2,
@@ -11553,6 +12033,7 @@
  },
  {
   "id": 18545,
+  "customId": "18545",
   "name": "Leggings of Arcane Supremacy",
   "class": 4,
   "subclass": 1,
@@ -11579,6 +12060,7 @@
  },
  {
   "id": 22271,
+  "customId": "22271",
   "name": "Leggings of Frenzied Magic",
   "class": 4,
   "subclass": 2,
@@ -11605,6 +12087,7 @@
  },
  {
   "id": 21698,
+  "customId": "21698",
   "name": "Leggings of Immersion",
   "class": 4,
   "subclass": 2,
@@ -11631,6 +12114,7 @@
  },
  {
   "id": 23070,
+  "customId": "23070",
   "name": "Leggings of Polarity",
   "class": 4,
   "subclass": 1,
@@ -11657,6 +12141,7 @@
  },
  {
   "id": 21461,
+  "customId": "21461",
   "name": "Leggings of the Black Blizzard",
   "class": 4,
   "subclass": 1,
@@ -11684,6 +12169,7 @@
  },
  {
   "id": 22878,
+  "customId": "22878",
   "name": "Legionnaire's Dragonhide Leggings",
   "class": 4,
   "subclass": 2,
@@ -11713,6 +12199,7 @@
  },
  {
   "id": 11823,
+  "customId": "11823",
   "name": "Luminary Kilt",
   "class": 4,
   "subclass": 2,
@@ -11739,6 +12226,7 @@
  },
  {
   "id": 10152,
+  "customId": "A10152",
   "name": "Mighty Leggings of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -11761,6 +12249,7 @@
  },
  {
   "id": 10227,
+  "customId": "A10227",
   "name": "Nightshade Leggings of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -11783,6 +12272,7 @@
  },
  {
   "id": 22741,
+  "customId": "22741",
   "name": "Outrider's Lizardhide Pants",
   "class": 4,
   "subclass": 2,
@@ -11809,6 +12299,7 @@
  },
  {
   "id": 22747,
+  "customId": "22747",
   "name": "Outrider's Silk Leggings",
   "class": 4,
   "subclass": 1,
@@ -11835,6 +12326,7 @@
  },
  {
   "id": 15431,
+  "customId": "A15431",
   "name": "Peerless Leggings of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -11857,6 +12349,7 @@
  },
  {
   "id": 15186,
+  "customId": "A15186",
   "name": "Praetorian Leggings of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -11879,6 +12372,7 @@
  },
  {
   "id": 18745,
+  "customId": "18745",
   "name": "Sacred Cloth Leggings",
   "class": 4,
   "subclass": 1,
@@ -11904,6 +12398,7 @@
  },
  {
   "id": 22750,
+  "customId": "22750",
   "name": "Sentinel's Lizardhide Pants",
   "class": 4,
   "subclass": 2,
@@ -11930,6 +12425,7 @@
  },
  {
   "id": 22752,
+  "customId": "22752",
   "name": "Sentinel's Silk Leggings",
   "class": 4,
   "subclass": 1,
@@ -11956,6 +12452,7 @@
  },
  {
   "id": 13170,
+  "customId": "13170",
   "name": "Skyshroud Leggings",
   "class": 4,
   "subclass": 1,
@@ -11981,6 +12478,7 @@
  },
  {
   "id": 12965,
+  "customId": "12965",
   "name": "Spiritshroud Leggings",
   "class": 4,
   "subclass": 1,
@@ -12007,6 +12505,7 @@
  },
  {
   "id": 16901,
+  "customId": "16901",
   "name": "Stormrage Legguards",
   "class": 4,
   "subclass": 2,
@@ -12036,6 +12535,7 @@
  },
  {
   "id": 15440,
+  "customId": "A15440",
   "name": "Supreme Leggings of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -12058,6 +12558,7 @@
  },
  {
   "id": 10188,
+  "customId": "A10188",
   "name": "Swashbuckler's Leggings of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -12080,6 +12581,7 @@
  },
  {
   "id": 18390,
+  "customId": "18390",
   "name": "Tanglemoss Leggings",
   "class": 4,
   "subclass": 2,
@@ -12106,6 +12608,7 @@
  },
  {
   "id": 13169,
+  "customId": "13169",
   "name": "Tressermane Leggings",
   "class": 4,
   "subclass": 2,
@@ -12132,6 +12635,7 @@
  },
  {
   "id": 10112,
+  "customId": "A10112",
   "name": "Wanderer's Leggings of Arcane Wrath",
   "class": 4,
   "subclass": 2,
@@ -12154,6 +12658,7 @@
  },
  {
   "id": 20652,
+  "customId": "S20652",
   "name": "Abyssal Cloth Slippers of Sorcery",
   "class": 4,
   "subclass": 1,
@@ -12179,6 +12684,7 @@
  },
  {
   "id": 20658,
+  "customId": "S20658",
   "name": "Abyssal Leather Boots of Sorcery",
   "class": 4,
   "subclass": 2,
@@ -12204,6 +12710,7 @@
  },
  {
   "id": 10257,
+  "customId": "N10257",
   "name": "Adventurer's Boots of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -12226,6 +12733,7 @@
  },
  {
   "id": 14290,
+  "customId": "A14290",
   "name": "Arachnidian Footpads of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -12248,6 +12756,7 @@
  },
  {
   "id": 19897,
+  "customId": "19897",
   "name": "Betrayer's Boots",
   "class": 4,
   "subclass": 1,
@@ -12274,6 +12783,7 @@
  },
  {
   "id": 22852,
+  "customId": "22852",
   "name": "Blood Guard's Dragonhide Treads",
   "class": 4,
   "subclass": 2,
@@ -12302,6 +12812,7 @@
  },
  {
   "id": 19684,
+  "customId": "19684",
   "name": "Bloodvine Boots",
   "class": 4,
   "subclass": 1,
@@ -12326,6 +12837,7 @@
  },
  {
   "id": 14299,
+  "customId": "A14299",
   "name": "Bonecaster's Boots of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -12348,6 +12860,7 @@
  },
  {
   "id": 21600,
+  "customId": "21600",
   "name": "Boots of Epiphany",
   "class": 4,
   "subclass": 1,
@@ -12373,6 +12886,7 @@
  },
  {
   "id": 20634,
+  "customId": "20634",
   "name": "Boots of Fright",
   "class": 4,
   "subclass": 2,
@@ -12398,6 +12912,7 @@
  },
  {
   "id": 13398,
+  "customId": "13398",
   "name": "Boots of the Shrieker",
   "class": 4,
   "subclass": 2,
@@ -12424,6 +12939,7 @@
  },
  {
   "id": 14310,
+  "customId": "A14310",
   "name": "Celestial Slippers of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -12446,6 +12962,7 @@
  },
  {
   "id": 16829,
+  "customId": "16829",
   "name": "Cenarion Boots",
   "class": 4,
   "subclass": 2,
@@ -12475,6 +12992,7 @@
  },
  {
   "id": 10095,
+  "customId": "A10095",
   "name": "Councillor's Boots of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -12497,6 +13015,7 @@
  },
  {
   "id": 18102,
+  "customId": "18102",
   "name": "Dragonrider Boots",
   "class": 4,
   "subclass": 1,
@@ -12522,6 +13041,7 @@
  },
  {
   "id": 10058,
+  "customId": "A10058",
   "name": "Duskwoven Sandals of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -12544,6 +13064,7 @@
  },
  {
   "id": 10211,
+  "customId": "A10211",
   "name": "Elegant Boots of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -12566,6 +13087,7 @@
  },
  {
   "id": 22107,
+  "customId": "22107",
   "name": "Feralheart Boots",
   "class": 4,
   "subclass": 2,
@@ -12592,6 +13114,7 @@
  },
  {
   "id": 16554,
+  "customId": "16554",
   "name": "General's Dragonhide Boots",
   "class": 4,
   "subclass": 2,
@@ -12620,6 +13143,7 @@
  },
  {
   "id": 21355,
+  "customId": "21355",
   "name": "Genesis Boots",
   "class": 4,
   "subclass": 2,
@@ -12651,6 +13175,7 @@
  },
  {
   "id": 15189,
+  "customId": "N15189",
   "name": "Grand Boots of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -12673,6 +13198,7 @@
  },
  {
   "id": 10137,
+  "customId": "A10137",
   "name": "High Councillor's Boots of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -12695,6 +13221,7 @@
  },
  {
   "id": 22231,
+  "customId": "22231",
   "name": "Kayser's Boots of Precision",
   "class": 4,
   "subclass": 1,
@@ -12720,6 +13247,7 @@
  },
  {
   "id": 23281,
+  "customId": "23281",
   "name": "Knight-Lieutenant's Dragonhide Treads",
   "class": 4,
   "subclass": 2,
@@ -12748,6 +13276,7 @@
  },
  {
   "id": 16459,
+  "customId": "16459",
   "name": "Marshal's Dragonhide Boots",
   "class": 4,
   "subclass": 2,
@@ -12776,6 +13305,7 @@
  },
  {
   "id": 10247,
+  "customId": "A10247",
   "name": "Master's Boots of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -12798,6 +13328,7 @@
  },
  {
   "id": 10146,
+  "customId": "N10146",
   "name": "Mighty Boots of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -12820,6 +13351,7 @@
  },
  {
   "id": 10179,
+  "customId": "A10179",
   "name": "Mystical Boots of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -12842,6 +13374,7 @@
  },
  {
   "id": 14631,
+  "customId": "14631",
   "name": "Necropile Boots",
   "class": 4,
   "subclass": 1,
@@ -12867,6 +13400,7 @@
  },
  {
   "id": 10222,
+  "customId": "N10222",
   "name": "Nightshade Boots of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -12889,6 +13423,7 @@
  },
  {
   "id": 11822,
+  "customId": "11822",
   "name": "Omnicast Boots",
   "class": 4,
   "subclass": 1,
@@ -12914,6 +13449,7 @@
  },
  {
   "id": 15426,
+  "customId": "N15426",
   "name": "Peerless Boots of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -12936,6 +13472,7 @@
  },
  {
   "id": 15181,
+  "customId": "N15181",
   "name": "Praetorian Boots of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -12958,6 +13495,7 @@
  },
  {
   "id": 21489,
+  "customId": "21489",
   "name": "Quicksand Waders",
   "class": 4,
   "subclass": 1,
@@ -12984,6 +13522,7 @@
  },
  {
   "id": 21648,
+  "customId": "21648",
   "name": "Recomposed Boots",
   "class": 4,
   "subclass": 1,
@@ -13009,6 +13548,7 @@
  },
  {
   "id": 14319,
+  "customId": "A14319",
   "name": "Resplendent Boots of Arcane Wrath",
   "class": 4,
   "subclass": 1,
@@ -13031,6 +13571,7 @@
  },
  {
   "id": 19438,
+  "customId": "19438",
   "name": "Ringo's Blizzard Boots",
   "class": 4,
   "subclass": 1,
@@ -13056,6 +13597,7 @@
  },
  {
   "id": 20714,
+  "customId": "20714",
   "name": "Sandstorm Boots",
   "class": 4,
   "subclass": 2,
@@ -13081,6 +13623,7 @@
  },
  {
   "id": 19131,
+  "customId": "19131",
   "name": "Snowblind Shoes",
   "class": 4,
   "subclass": 1,
@@ -13107,6 +13650,7 @@
  },
  {
   "id": 16898,
+  "customId": "16898",
   "name": "Stormrage Boots",
   "class": 4,
   "subclass": 2,
@@ -13136,6 +13680,7 @@
  },
  {
   "id": 15435,
+  "customId": "N15435",
   "name": "Supreme Shoes of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -13158,6 +13703,7 @@
  },
  {
   "id": 10183,
+  "customId": "N10183",
   "name": "Swashbuckler's Boots of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -13180,6 +13726,7 @@
  },
  {
   "id": 13391,
+  "customId": "13391",
   "name": "The Postmaster's Treads",
   "class": 4,
   "subclass": 1,
@@ -13206,6 +13753,7 @@
  },
  {
   "id": 13954,
+  "customId": "13954",
   "name": "Verdant Footpads",
   "class": 4,
   "subclass": 2,
@@ -13229,6 +13777,7 @@
  },
  {
   "id": 10106,
+  "customId": "N10106",
   "name": "Wanderer's Boots of Nature's Wrath",
   "class": 4,
   "subclass": 2,
@@ -13251,6 +13800,7 @@
  },
  {
   "id": 18322,
+  "customId": "18322",
   "name": "Waterspout Boots",
   "class": 4,
   "subclass": 2,
@@ -13276,6 +13826,7 @@
  },
  {
   "id": 13101,
+  "customId": "13101",
   "name": "Wolfrunner Shoes",
   "class": 4,
   "subclass": 1,
@@ -13301,6 +13852,7 @@
  },
  {
   "id": 19518,
+  "customId": "19518",
   "name": "Advisor's Ring",
   "class": 4,
   "subclass": -2,
@@ -13324,6 +13876,7 @@
  },
  {
   "id": 21179,
+  "customId": "21179",
   "name": "Band of Earthen Wrath",
   "class": 4,
   "subclass": -2,
@@ -13346,6 +13899,7 @@
  },
  {
   "id": 19403,
+  "customId": "19403",
   "name": "Band of Forced Concentration",
   "class": 4,
   "subclass": -2,
@@ -13370,6 +13924,7 @@
  },
  {
   "id": 18103,
+  "customId": "18103",
   "name": "Band of Rumination",
   "class": 4,
   "subclass": -2,
@@ -13392,6 +13947,7 @@
  },
  {
   "id": 22721,
+  "customId": "22721",
   "name": "Band of Servitude",
   "class": 4,
   "subclass": -2,
@@ -13414,6 +13970,7 @@
  },
  {
   "id": 23031,
+  "customId": "23031",
   "name": "Band of the Inevitable",
   "class": 4,
   "subclass": -2,
@@ -13436,6 +13993,7 @@
  },
  {
   "id": 7553,
+  "customId": "7553",
   "name": "Band of the Unicorn",
   "class": 4,
   "subclass": -2,
@@ -13456,6 +14014,7 @@
  },
  {
   "id": 11824,
+  "customId": "11824",
   "name": "Cyclopean Band",
   "class": 4,
   "subclass": -2,
@@ -13480,6 +14039,7 @@
  },
  {
   "id": 19109,
+  "customId": "19109",
   "name": "Deep Rooted Ring",
   "class": 4,
   "subclass": -2,
@@ -13503,6 +14063,7 @@
  },
  {
   "id": 22433,
+  "customId": "22433",
   "name": "Don Mauricio's Band of Domination",
   "class": 4,
   "subclass": -2,
@@ -13526,6 +14087,7 @@
  },
  {
   "id": 18403,
+  "customId": "18403",
   "name": "Dragonslayer's Signet",
   "class": 4,
   "subclass": -2,
@@ -13550,6 +14112,7 @@
  },
  {
   "id": 20682,
+  "customId": "20682",
   "name": "Elemental Focus Band",
   "class": 4,
   "subclass": -2,
@@ -13573,6 +14136,7 @@
  },
  {
   "id": 12545,
+  "customId": "12545",
   "name": "Eye of Orgrimmar",
   "class": 4,
   "subclass": -2,
@@ -13596,6 +14160,7 @@
  },
  {
   "id": 19522,
+  "customId": "19522",
   "name": "Lorekeeper's Ring",
   "class": 4,
   "subclass": -2,
@@ -13619,6 +14184,7 @@
  },
  {
   "id": 13001,
+  "customId": "13001",
   "name": "Maiden's Circle",
   "class": 4,
   "subclass": -2,
@@ -13641,6 +14207,7 @@
  },
  {
   "id": 20632,
+  "customId": "20632",
   "name": "Mindtear Band",
   "class": 4,
   "subclass": -2,
@@ -13664,6 +14231,7 @@
  },
  {
   "id": 19397,
+  "customId": "19397",
   "name": "Ring of Blackrock",
   "class": 4,
   "subclass": -2,
@@ -13686,6 +14254,7 @@
  },
  {
   "id": 18543,
+  "customId": "18543",
   "name": "Ring of Entropy",
   "class": 4,
   "subclass": -2,
@@ -13710,6 +14279,7 @@
  },
  {
   "id": 19147,
+  "customId": "19147",
   "name": "Ring of Spell Power",
   "class": 4,
   "subclass": -2,
@@ -13731,6 +14301,7 @@
  },
  {
   "id": 21707,
+  "customId": "21707",
   "name": "Ring of Swarming Thought",
   "class": 4,
   "subclass": -2,
@@ -13753,6 +14324,7 @@
  },
  {
   "id": 21483,
+  "customId": "21483",
   "name": "Ring of the Desert Winds",
   "class": 4,
   "subclass": -2,
@@ -13777,6 +14349,7 @@
  },
  {
   "id": 23237,
+  "customId": "23237",
   "name": "Ring of the Eternal Flame",
   "class": 4,
   "subclass": -2,
@@ -13798,6 +14371,7 @@
  },
  {
   "id": 21709,
+  "customId": "21709",
   "name": "Ring of the Fallen God",
   "class": 4,
   "subclass": -2,
@@ -13822,6 +14396,7 @@
  },
  {
   "id": 21836,
+  "customId": "21836",
   "name": "Ritssyn's Ring of Chaos",
   "class": 4,
   "subclass": -2,
@@ -13844,6 +14419,7 @@
  },
  {
   "id": 22339,
+  "customId": "22339",
   "name": "Rune Band of Wizardry",
   "class": 4,
   "subclass": -2,
@@ -13867,6 +14443,7 @@
  },
  {
   "id": 23025,
+  "customId": "23025",
   "name": "Seal of the Damned",
   "class": 4,
   "subclass": -2,
@@ -13891,6 +14468,7 @@
  },
  {
   "id": 21196,
+  "customId": "21196",
   "name": "Signet Ring of the Bronze Dragonflight",
   "class": 4,
   "subclass": -2,
@@ -13915,6 +14493,7 @@
  },
  {
   "id": 12543,
+  "customId": "12543",
   "name": "Songstone of Ironforge",
   "class": 4,
   "subclass": -2,
@@ -13938,6 +14517,7 @@
  },
  {
   "id": 21190,
+  "customId": "21190",
   "name": "Wrath of Cenarius",
   "class": 4,
   "subclass": -2,
@@ -13958,6 +14538,7 @@
  },
  {
   "id": 19905,
+  "customId": "19905",
   "name": "Zanzil's Band",
   "class": 4,
   "subclass": -2,
@@ -13981,6 +14562,7 @@
  },
  {
   "id": 19893,
+  "customId": "19893",
   "name": "Zanzil's Seal",
   "class": 4,
   "subclass": -2,
@@ -14005,6 +14587,7 @@
  },
  {
   "id": 12930,
+  "customId": "12930",
   "name": "Briarwood Reed",
   "class": 4,
   "subclass": -4,
@@ -14026,6 +14609,7 @@
  },
  {
   "id": 11832,
+  "customId": "11832",
   "name": "Burst of Knowledge",
   "class": 4,
   "subclass": -4,
@@ -14047,6 +14631,7 @@
  },
  {
   "id": 22268,
+  "customId": "22268",
   "name": "Draconic Infused Emblem",
   "class": 4,
   "subclass": -4,
@@ -14067,6 +14652,7 @@
  },
  {
   "id": 23001,
+  "customId": "23001",
   "name": "Eye of Diminution",
   "class": 4,
   "subclass": -4,
@@ -14088,6 +14674,7 @@
  },
  {
   "id": 21473,
+  "customId": "21473",
   "name": "Eye of Moam",
   "class": 4,
   "subclass": -4,
@@ -14108,6 +14695,7 @@
  },
  {
   "id": 13968,
+  "customId": "13968",
   "name": "Eye of the Beast",
   "class": 4,
   "subclass": -4,
@@ -14136,6 +14724,7 @@
  },
  {
   "id": 23206,
+  "customId": "23206",
   "name": "Mark of the Champion",
   "class": 4,
   "subclass": -4,
@@ -14158,6 +14747,7 @@
  },
  {
   "id": 19947,
+  "customId": "19947",
   "name": "Nat Pagle's Broken Reel",
   "class": 4,
   "subclass": -4,
@@ -14178,6 +14768,7 @@
  },
  {
   "id": 19379,
+  "customId": "19379",
   "name": "Neltharion's Tear",
   "class": 4,
   "subclass": -4,
@@ -14200,6 +14791,7 @@
  },
  {
   "id": 21565,
+  "customId": "21565",
   "name": "Rune of Perfection",
   "class": 4,
   "subclass": -4,
@@ -14229,6 +14821,7 @@
  },
  {
   "id": 19812,
+  "customId": "19812",
   "name": "Rune of the Dawn",
   "class": 4,
   "subclass": -4,
@@ -14251,6 +14844,7 @@
  },
  {
   "id": 22678,
+  "customId": "22678",
   "name": "Talisman of Ascendance",
   "class": 4,
   "subclass": -4,
@@ -14270,6 +14864,7 @@
  },
  {
   "id": 18820,
+  "customId": "18820",
   "name": "Talisman of Ephemeral Power",
   "class": 4,
   "subclass": -4,
@@ -14290,6 +14885,7 @@
  },
  {
   "id": 23046,
+  "customId": "23046",
   "name": "The Restrained Essence of Sapphiron",
   "class": 4,
   "subclass": -4,
@@ -14311,6 +14907,7 @@
  },
  {
   "id": 19950,
+  "customId": "19950",
   "name": "Zandalarian Hero Charm",
   "class": 4,
   "subclass": -4,

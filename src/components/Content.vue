@@ -93,6 +93,8 @@ import Target from './Target.vue'
 import Damage from './Damage.vue'
 import Debug from './Debug.vue'
 
+import PublicLink from '../wow/class/PublicLink'
+
 const Props = Vue.extend({
   props: {
     options: Object
@@ -115,6 +117,15 @@ const Props = Vue.extend({
   }
 })
 export default class Content extends Props {
+  mounted() {
+    let publicLink = new PublicLink(this.options)
+
+    let lockedItems = publicLink.lockedItemsFromURL
+    if (lockedItems) {
+      this.options.character.lockedItems = lockedItems
+    }
+  }
+
   get encounter() {
     console.log('HELLO ENCOUNTER IS BEING DONE')
     return new wow.Encounter(this.options)

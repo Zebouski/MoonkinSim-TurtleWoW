@@ -175,6 +175,32 @@ class Item {
     return this._wowHeadItem !== null ? parseInt(this._wowHeadItem['$'].id, 10) : 0
   }
 
+  /* this custom Id is a lazy way of handling the stupid suffixes of random enchant items.
+   * For random enchants it prefixes a single character to the ID indicating it's random
+   * enchant type */
+  get itemCustomId(): string {
+    let randomEnchantType = ''
+    const of = this.itemName.indexOf(' of ')
+    if (of >= 0) {
+      const right = this.itemName.slice(of + 4)
+      switch (right) {
+        case `Arcane Wrath`:
+          randomEnchantType = 'A'
+          break
+        case `Nature's Wrath`:
+          randomEnchantType = 'N'
+          break
+        case `Sorcery`:
+          randomEnchantType = 'S'
+          break
+        case `Restoration`:
+          randomEnchantType = 'R'
+          break
+      }
+    }
+    return `${randomEnchantType}${this.itemId}`
+  }
+
   get itemName(): string {
     return this.itemOld.Name
   }
@@ -522,6 +548,7 @@ class Item {
 
     return {
       id: this.itemId,
+      customId: this.itemCustomId,
       name: this.itemName,
       class: this.itemClass,
       subclass: this.itemSubclass,
