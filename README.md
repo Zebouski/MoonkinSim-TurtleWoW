@@ -3,6 +3,7 @@
 ##### Version 0.2.5
   - Item selection beta
   - Bloodvine legs and boots always overriding custom selections
+  - Not optimizing for set bonus if bloodvine item manually selected
 
 ##### Version 0.2.4
   - Experimental item selection
