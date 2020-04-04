@@ -144,7 +144,9 @@ export default class Database {
         return itemSearch && itemSearch.lockedItems ? itemSearch.lockedItems.finger : undefined
       case ItemSlot.Finger2:
         return itemSearch && itemSearch.lockedItems ? itemSearch.lockedItems.finger2 : undefined
+      case ItemSlot.Twohand:
       case ItemSlot.Mainhand:
+      case ItemSlot.Onehand:
         return itemSearch && itemSearch.lockedItems ? itemSearch.lockedItems.mainhand : undefined
       case ItemSlot.Offhand:
         return itemSearch && itemSearch.lockedItems ? itemSearch.lockedItems.offhand : undefined
@@ -380,16 +382,20 @@ export default class Database {
     const offhandscore = offhand !== undefined ? offhand.score : 0
     const twohandscore = twohand !== undefined ? twohand.score : 0
 
-    if (twohandscore > onehandscore + offhandscore) {
+    const _offhand = this.getLockedItemName(ItemSlot.Offhand, itemSearch)
+
+    if (!_offhand && twohandscore > onehandscore + offhandscore) {
       return {
         mainHand: twohand,
         enchant: enchant
       }
     }
 
+    let mainhand = onehand
+
     return {
-      mainHand: onehand,
-      offHand: offhand,
+      mainHand: mainhand,
+      offHand: mainhand.slot === ItemSlot.Twohand ? undefined : offhand,
       enchant: enchant
     }
   }
