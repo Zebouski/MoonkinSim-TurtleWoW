@@ -241,6 +241,8 @@ export default class Database {
       return undefined
     }
 
+    /* TODO: Should be aborting here custom selections are disallowing the set */
+
     /* Find each item in set, score them and add to array */
     let itemSetItems = []
     let itemSetItemsScore = 0
@@ -292,25 +294,34 @@ export default class Database {
   }
 
   static getBestInSlotChestLegsFeet(itemSearch: ItemSearch) {
-    let bloodvine = undefined
     let chest = this.getBestInSlotItem(ItemSlot.Chest, itemSearch)
     let legs = this.getBestInSlotItem(ItemSlot.Legs, itemSearch)
     let feet = this.getBestInSlotItem(ItemSlot.Feet, itemSearch)
+    let bloodvine = this.getItemSet(`Bloodvine Garb`, itemSearch)
     let normScore = chest.score + legs.score + feet.score
 
-    let customChest = itemSearch.lockedItems !== undefined && itemSearch.lockedItems.chest
-    let customLegs = itemSearch.lockedItems !== undefined && itemSearch.lockedItems.legs
-    let customFeet = itemSearch.lockedItems !== undefined && itemSearch.lockedItems.feet
+    let customChest =
+      itemSearch &&
+      itemSearch.lockedItems &&
+      itemSearch.lockedItems.chest !== '' &&
+      itemSearch.lockedItems.chest !== 'Bloodvine Vest'
+    let customLegs =
+      itemSearch &&
+      itemSearch.lockedItems &&
+      itemSearch.lockedItems.legs !== '' &&
+      itemSearch.lockedItems.legs !== 'Bloodvine Leggings'
+    let customFeet =
+      itemSearch &&
+      itemSearch.lockedItems &&
+      itemSearch.lockedItems.feet !== '' &&
+      itemSearch.lockedItems.feet !== 'Bloodvine Boots'
 
-    if (!customChest && !customLegs && !customFeet) {
-      bloodvine = this.getItemSet(`Bloodvine Garb`, itemSearch)
-      if (bloodvine && bloodvine.score > normScore) {
-        console.log(`ATTENTION: I favored bloodvine set (${bloodvine.score}) over other items (${normScore})`)
-        console.log(itemSearch)
-        chest = bloodvine.items[0]
-        legs = bloodvine.items[1]
-        feet = bloodvine.items[2]
-      }
+    if (!customChest && !customLegs && !customFeet && bloodvine && bloodvine.score > normScore) {
+      console.log(`ATTENTION: I favored bloodvine set (${bloodvine.score}) over other items (${normScore})`)
+      console.log(itemSearch)
+      chest = bloodvine.items[0]
+      legs = bloodvine.items[1]
+      feet = bloodvine.items[2]
     }
 
     return {
