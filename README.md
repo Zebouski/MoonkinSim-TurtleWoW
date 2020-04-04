@@ -1,4 +1,10 @@
 ### [Moonkin Calculator](https://kmmiles.gitlab.io/moonkin-calc/)
+##### Version 0.2.4
+  - Experimental item selection
+    - Fix weapons / offhands 
+    - Fix trinkets
+    - Highlight mouseovered item in item table
+    - Add lock icon to items that are manually selected
 ##### Version 0.2.3
   - Updated UI
   - Add Spirit of Zandalar buff
