@@ -299,8 +299,8 @@ export default class Database {
     let normScore = chest.score + legs.score + feet.score
 
     let customChest = itemSearch.lockedItems !== undefined && itemSearch.lockedItems.chest
-    let customLegs = itemSearch.lockedItems !== undefined && itemSearch.lockedItems.chest
-    let customFeet = itemSearch.lockedItems !== undefined && itemSearch.lockedItems.chest
+    let customLegs = itemSearch.lockedItems !== undefined && itemSearch.lockedItems.legs
+    let customFeet = itemSearch.lockedItems !== undefined && itemSearch.lockedItems.feet
 
     if (!customChest && !customLegs && !customFeet) {
       bloodvine = this.getItemSet(`Bloodvine Garb`, itemSearch)
