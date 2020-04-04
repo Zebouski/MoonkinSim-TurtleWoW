@@ -219,9 +219,7 @@ export default class GearItem extends Props {
   }
 
   mouseClick(): void {
-    if (this.options.experimental) {
-      this.options.itemSearchSlot = this.itemSlot
-    }
+    this.options.itemSearchSlot = this.itemSlot
   }
 
   mouseEnter(slot: number): void {

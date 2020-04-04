@@ -1,4 +1,8 @@
 ### [Moonkin Calculator](https://kmmiles.gitlab.io/moonkin-calc/)
+
+##### Version 0.2.5
+  - Item selection beta
+
 ##### Version 0.2.4
   - Experimental item selection
     - Fix weapons / offhands 
