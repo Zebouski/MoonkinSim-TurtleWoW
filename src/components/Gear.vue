@@ -80,13 +80,11 @@
 .gear-left {
   max-width: calc(50% - 0.625rem);
   overflow: hidden;
-  transition: opacity 0.2s;
 }
 
 .gear-right {
   max-width: calc(50% - 0.625rem);
   overflow: hidden;
-  transition: opacity 0.2s;
 }
 
 .gear-center {
