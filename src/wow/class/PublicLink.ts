@@ -1,5 +1,6 @@
 import Options from '../interface/Options'
 import pako from 'pako'
+import { Base64 } from 'js-base64'
 import wow from '..'
 
 export default class PublicLink {
@@ -39,8 +40,7 @@ export default class PublicLink {
     /* URI decode the string */
     let decodedParam = PublicLink.Base64DecodeUrl(param)
 
-    /* convert base64 to binary string*/
-    let binaryString = atob(decodedParam)
+    let binaryString = Base64.atob(decodedParam)
 
     /* decompress binary string to json */
     let jsonString = pako.inflate(binaryString, { to: 'string' })
