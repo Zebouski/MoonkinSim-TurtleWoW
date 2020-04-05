@@ -2,6 +2,8 @@
 
 ##### Version 0.2.6
   - Share public link beta
+  - Fix issue with shared gearsets sometimes not loading
+  - Stop page from shifting when opening gear select and share link
 
 ##### Version 0.2.5
   - Item selection beta

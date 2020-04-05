@@ -36,7 +36,7 @@
       </div>
     </div>
     <div class="publicLinkModal">
-      <b-modal :active.sync="showPublicLinkModal" scroll="clip">
+      <b-modal :active.sync="showPublicLinkModal" scroll="keep">
         <p>Copy the link below to share this gear set</p>
         <div class="content">
           <b-field>
@@ -46,7 +46,7 @@
       </b-modal>
     </div>
     <div class="gearSelect">
-      <b-modal :active.sync="showItems" scroll="clip">
+      <b-modal :active.sync="showItems" scroll="keep">
         <div class="container is-fluid">
           <b-table
             @select="selectItem"
