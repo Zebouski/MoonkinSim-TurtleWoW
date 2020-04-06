@@ -11,11 +11,9 @@
     - [BiS (optimal)](https://kmmiles.gitlab.io/moonkin-calc/?phase=4&raids=true&worldbosses=true&pvprank=14)
   - phase 5
     - [pre-raid BiS (no worldbosses / rank 14)](https://kmmiles.gitlab.io/moonkin-calc/?phase=5&raids=false&worldbosses=false&pvprank=1)
-    - [BiS (no worldbosses / rank 14)](https://kmmiles.gitlab.io/moonkin-calc/?phase=5&raids=true&worldbosses=false&pvprank=1)
     - [BiS (optimal)](https://kmmiles.gitlab.io/moonkin-calc/?phase=5&raids=true&worldbosses=true&pvprank=14)
   - phase 6
     - [pre-raid BiS (no worldbosses / rank 14)](https://kmmiles.gitlab.io/moonkin-calc/?phase=6&raids=false&worldbosses=false&pvprank=1)
-    - [BiS (no worldbosses / rank 14)](https://kmmiles.gitlab.io/moonkin-calc/?phase=6&raids=true&worldbosses=false&pvprank=1)
     - [BiS (optimal)](https://kmmiles.gitlab.io/moonkin-calc/?phase=6&raids=true&worldbosses=true&pvprank=14)
 
 ### Changelog
