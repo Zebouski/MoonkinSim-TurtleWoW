@@ -32,7 +32,7 @@ Weapon,2H Mace,Hammer of Ji'Zhi,5,Temple of Ahn'Qiraj,The Prophet Skeram,26,22,,
 Weapon,2H Mace,High Warlord's Destroyer,2,Requires High Warlord,,28,27,,27,,,7,,31.36,,No,Yes,Yes,Yes
 Weapon,Dagger,High Warlord's Spellblade,2,Requires High Warlord,,14,8,,72,1,,,,82.97,,No,Yes,Yes,Yes
 Weapon,Staff,High Warlord's War Staff,2,Requires High Warlord,,41,23,17,71,,,,,74.71,,No,Yes,Yes,Yes
-Weapon,Staff,Ironbark Staff,4,Requires The League of Arathor - Exalted,,19,10,,41,2,,,,61.98,,Yes,No,Yes,Yes
+Weapon,Staff,Ironbark Staff,3,Requires The League of Arathor - Exalted,,19,10,,41,2,,,,61.98,,Yes,No,Yes,Yes
 Weapon,1H Mace,Jin'do's Hexxer,4,Zul'Gurub,Jin'do the Hexxer,6,9,,,1,,,,11.14,,Yes,Yes,Yes,Yes
 Weapon,Staff,Jin'do's Judgement,4,Zul'Gurub,Jin'do the Hexxer,10,10,,27,,2,14,,53.02,,Yes,Yes,Yes,Yes
 Weapon,2H Mace,Lavastone Hammer,5,Blackrock Depths,Magmus,14,12,,20,,,,,21.94,,Yes,Yes,Yes,Yes
@@ -44,10 +44,10 @@ Weapon,Staff,Magus Long Staff of Nature's Wrath,1,World Drop,,,,,37,,,,,37.00,,Y
 Weapon,1H Mace,Mastersmith's Hammer,1,Blackrock Spire,Goraluk Anvilcrack,,5,,14,,,,,14.81,,Yes,Yes,Yes,Yes
 Weapon,2H Mace,Maul of the Redeemed Crusader,6,Naxxramas,Four Horsemen,29,24,,35,,,8,,38.87,,Yes,Yes,Yes,Yes
 Weapon,Dagger,Midnight Haze,6,Naxxramas,Grobbulus,20,12,,85,,,,,86.94,,Yes,Yes,Yes,Yes
-Weapon,Dagger,Mindfang,4,Requires The Defilers - Exalted,,8,,,30,1,,,,39.68,,No,Yes,Yes,Yes
+Weapon,Dagger,Mindfang,3,Requires The Defilers - Exalted,,8,,,30,1,,,,39.68,,No,Yes,Yes,Yes
 Weapon,Staff,Moonshadow Stave,5,Un'goro Crater,Quest: A Better Ingredient,,,,18,1,,7,,27.68,,Yes,Yes,Yes,Yes
 Weapon,Staff,Rod of the Ogre Magi,1,Dire Maul: North (Tribute),Gordok Tribute,11,14,7,23,1,,,,34.94,,Yes,Yes,Yes,Yes
-Weapon,Dagger,Sageclaw,4,Requires The League of Arathor - Exalted,,8,,,30,1,,,,39.68,,Yes,No,Yes,Yes
+Weapon,Dagger,Sageclaw,3,Requires The League of Arathor - Exalted,,8,,,30,1,,,,39.68,,Yes,No,Yes,Yes
 Weapon,Staff,Shadow Wing Focus Staff,3,Blackwing Lair,"Ebonroc, Flamegor, Firemaw",22,40,17,56,,,,,62.46,,Yes,Yes,Yes,Yes
 Weapon,Dagger,Shivsprocket's Shiv,5,Silithus,Quest: The Perfect Poison,13,,,13,,,,,13.00,,Yes,Yes,Yes,Yes
 Weapon,Staff,Solstice Staff of Arcane Wrath,1,World Drop,,,,,37,,,,,37.00,,Yes,Yes,Yes,No

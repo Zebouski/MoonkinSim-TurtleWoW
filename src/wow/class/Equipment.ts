@@ -219,7 +219,7 @@ export default class Equipment {
   get hasZanzils() {
     if (
       (this.finger1.name === `Zanzil's Band` || this.finger1.name === `Zanzil's Seal`) &&
-      (this.finger1.name === `Zanzil's Seal` || this.finger1.name === `Zanzil's Band`)
+      (this.finger2.name === `Zanzil's Band` || this.finger2.name === `Zanzil's Seal`)
     ) {
       return true
     }
