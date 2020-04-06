@@ -1,5 +1,25 @@
 ### [Moonkin Calculator](https://kmmiles.gitlab.io/moonkin-calc/)
 
+### BiS Quick Links
+[phase 3 pre-raid BiS (no worldbosses / rank 14)](https://kmmiles.gitlab.io/moonkin-calc/?phase=3&raids=false&worldbosses=false&pvprank=1)
+[phase 3 BiS (no worldbosses / rank 14)](https://kmmiles.gitlab.io/moonkin-calc/?phase=3&raids=true&worldbosses=false&pvprank=1)
+[phase 3 BiS (optimal)](https://kmmiles.gitlab.io/moonkin-calc/?phase=3&raids=true&worldbosses=true&pvprank=14)
+
+[phase 4 pre-raid BiS (no worldbosses / rank 14)](https://kmmiles.gitlab.io/moonkin-calc/?phase=4&raids=false&worldbosses=false&pvprank=1)
+[phase 4 BiS (no worldbosses / rank 14)](https://kmmiles.gitlab.io/moonkin-calc/?phase=4&raids=true&worldbosses=false&pvprank=1)
+[phase 4 BiS (optimal)](https://kmmiles.gitlab.io/moonkin-calc/?phase=4&raids=true&worldbosses=true&pvprank=14)
+
+[phase 5 pre-raid BiS (no worldbosses / rank 14)](https://kmmiles.gitlab.io/moonkin-calc/?phase=5&raids=false&worldbosses=false&pvprank=1)
+[phase 5 BiS (no worldbosses / rank 14)](https://kmmiles.gitlab.io/moonkin-calc/?phase=5&raids=true&worldbosses=false&pvprank=1)
+[phase 5 BiS (optimal)](https://kmmiles.gitlab.io/moonkin-calc/?phase=5&raids=true&worldbosses=true&pvprank=14)
+
+[phase 6 pre-raid BiS (no worldbosses / rank 14)](https://kmmiles.gitlab.io/moonkin-calc/?phase=6&raids=false&worldbosses=false&pvprank=1)
+[phase 6 BiS (no worldbosses / rank 14)](https://kmmiles.gitlab.io/moonkin-calc/?phase=6&raids=true&worldbosses=false&pvprank=1)
+[phase 6 BiS (optimal)](https://kmmiles.gitlab.io/moonkin-calc/?phase=6&raids=true&worldbosses=true&pvprank=14)
+
+
+### Changelog
+
 ##### Version 0.2.6
   - Share public link beta
   - Can pass certain options in by URL (phase, raids, worldbosses, pvprank)
