@@ -118,7 +118,6 @@ const Props = Vue.extend({
 })
 export default class Content extends Props {
   mounted() {
-
     /* set options passed on URL */
     let publicLink = new PublicLink(this.options)
 
