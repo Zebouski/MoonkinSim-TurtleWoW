@@ -118,11 +118,36 @@ const Props = Vue.extend({
 })
 export default class Content extends Props {
   mounted() {
+
+    /* set options passed on URL */
     let publicLink = new PublicLink(this.options)
 
+    /* lockeditems aka gear */
     let lockedItems = publicLink.lockedItemsFromURL
     if (lockedItems) {
       this.options.character.lockedItems = lockedItems
+    }
+
+    /* other options*/
+
+    let phase = PublicLink.optionFromURL('phase')
+    if (phase !== null && phase !== undefined && phase >= 1 && phase <= 6) {
+      this.options.phase = phase
+    }
+
+    let raids = PublicLink.optionFromURL('raids')
+    if (raids !== null && raids !== undefined && (raids === true || raids === false)) {
+      this.options.raids = raids
+    }
+
+    let worldbosses = PublicLink.optionFromURL('worldbosses')
+    if (worldbosses !== null && worldbosses !== undefined && (worldbosses === true || worldbosses === false)) {
+      this.options.worldBosses = worldbosses
+    }
+
+    let pvprank = PublicLink.optionFromURL('pvprank')
+    if (pvprank !== null && pvprank !== undefined && (pvprank >= 1 || pvprank <= 14)) {
+      this.options.character.pvpRank = pvprank
     }
   }
 

@@ -9,16 +9,43 @@ export default class PublicLink {
   constructor(options: Options) {
     this.options = options
   }
-  static Base64EncodeUrl(str: string) {
+  static EncodeURI(str: string) {
     return str
       .replace(/\+/g, '-')
       .replace(/\//g, '_')
       .replace(/=+$/, '')
   }
 
-  static Base64DecodeUrl(str: string) {
+  static DecodeURI(str: string) {
     str = (str + '===').slice(0, str.length + (str.length % 4))
     return str.replace(/-/g, '+').replace(/_/g, '/')
+  }
+
+  static paramFromURL(param: string) {
+    let uri = window.location.search.substring(1)
+    let params = new URLSearchParams(uri)
+    return params.get(param)
+  }
+
+  /* Simple options passed on URL, no crazy compression stuff */
+  static optionFromURL(option: string) {
+    let param = PublicLink.paramFromURL(option)
+    if (param === null) {
+      return null
+    }
+    param = param.toLowerCase()
+    switch (option.toLowerCase()) {
+      case 'phase':
+        return Number(param)
+      case 'raids':
+        return param === 'true' ? true : false
+      case 'worldbosses':
+        return param === 'true' ? true : false
+      case 'spellname':
+        return param
+      case 'pvprank':
+        return Number(param)
+    }
   }
 
   get baseURI() {
@@ -27,28 +54,28 @@ export default class PublicLink {
   }
 
   get url() {
-    return `${this.baseURI}?gear=${this.paramFromGear}`
+    return `${this.baseURI}?gear=${this.generateGearParam}`
   }
 
   get lockedItemsFromURL() {
-    // return this.paramFromURL ? this.paramFromURL : ''
-    let param = this.paramFromURL
+    let param = PublicLink.paramFromURL('gear')
     if (!param) {
       return wow.constants.defaults.character.lockedItems
     }
 
-    /* URI decode the string */
-    let decodedParam = PublicLink.Base64DecodeUrl(param)
+    /* param -> URI decoded param */
+    let decodedParam = PublicLink.DecodeURI(param)
 
+    /* decoded param -> binary string */
     let binaryString = Base64.atob(decodedParam)
 
-    /* decompress binary string to json */
-    let jsonString = pako.inflate(binaryString, { to: 'string' })
+    /* binary string -> ascii string */
+    let asciiString = pako.inflate(binaryString, { to: 'string' })
 
-    /* convert string to JSON */
-    let arr = JSON.parse(JSON.parse(jsonString))
+    /*  asciiString -> JSON string -> array */
+    let arr = JSON.parse(JSON.parse(asciiString))
 
-    /* convert array to lockedItems object */
+    /* array -> lockedItems{} */
     let lockedItems = {
       head: arr[0],
       hands: arr[1],
@@ -72,13 +99,7 @@ export default class PublicLink {
     return lockedItems
   }
 
-  get paramFromURL() {
-    let uri = window.location.search.substring(1)
-    let params = new URLSearchParams(uri)
-    return params.get('gear')
-  }
-
-  get paramFromGear() {
+  get generateGearParam() {
     /* convert it a string array */
     let itemArr = []
     itemArr.push(this.options.character.lockedItems.head)
@@ -109,7 +130,7 @@ export default class PublicLink {
     let base64string = btoa(binaryString)
 
     /* encode base64 string for URL */
-    let encoded = PublicLink.Base64EncodeUrl(base64string)
+    let encoded = PublicLink.EncodeURI(base64string)
 
     return encoded
   }
