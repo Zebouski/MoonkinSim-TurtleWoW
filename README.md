@@ -4,6 +4,11 @@
   - Share public link beta
   - Fix issue with shared gearsets sometimes not loading
   - Stop page from shifting when opening gear select and share link
+  - Item Database Changes:
+    - Added dreamweave set
+    - Changed Arlokks Hoodoo Stick to healing instead of damage
+    - Removed Deep Rooted Ring
+    - Changed Mindfang, Sageclaw, and Ironbark stafff to phase 3
 
 ##### Version 0.2.5
   - Item selection beta
