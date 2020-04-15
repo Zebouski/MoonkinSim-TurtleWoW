@@ -148,7 +148,6 @@ export default class Tools {
   }
 
   static publicUrl(equipment: Equipment) {
-
     let lockedItems: LockedItems = {
       head: equipment.head.customId,
       hands: equipment.hands.customId,
