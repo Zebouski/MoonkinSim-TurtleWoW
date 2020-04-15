@@ -142,6 +142,11 @@ export default class Content extends Props {
       this.options.worldBosses = worldbosses
     }
 
+    let randomenchants = wow.Tools.optionFromURL('randomenchants')
+    if (randomenchants !== null && randomenchants !== undefined) {
+      this.options.randomEnchants = randomenchants
+    }
+
     let pvprank = wow.Tools.optionFromURL('pvprank')
     if (pvprank !== null && pvprank !== undefined) {
       this.options.character.pvpRank = pvprank

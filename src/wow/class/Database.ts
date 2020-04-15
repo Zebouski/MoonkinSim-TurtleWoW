@@ -10,6 +10,8 @@ import MagicSchool from '../enum/MagicSchool'
 import SortOrder from '../enum/SortOrder'
 
 import Item from './Item'
+import Tools from './Tools'
+
 import Faction from '../enum/Faction'
 import TargetType from '../enum/TargetType'
 import PvPRank from '../enum/PvPRank'
@@ -205,6 +207,14 @@ export default class Database {
   }
 
   static getWeightedItemsBySlot(slot: ItemSlot, itemSearch: ItemSearch) {
+    let noRandomEnchants = (itemJSON: ItemJSON) => {
+      if (!itemJSON || !itemJSON.customId) {
+        return true
+      }
+
+      return Tools.isLetter(itemJSON.customId.charAt(0)) ? false : true
+    }
+
     let slot2query = (slot: ItemSlot) => {
       switch (slot) {
         case ItemSlot.Finger2:
@@ -244,6 +254,12 @@ export default class Database {
     result = jsonQuery(`[* pvpRank <= ${itemSearch.pvpRank}]`, { data: result }).value
     result = jsonQuery(`[* worldBoss = false | worldBoss = ${itemSearch.worldBosses}]`, { data: result }).value
     result = jsonQuery(`[* raid = false | raid = ${itemSearch.raids}]`, { data: result }).value
+
+    /* filter random enchants */
+
+    if (!itemSearch.randomEnchants) {
+      result = result.filter(noRandomEnchants)
+    }
 
     /* score items */
     for (let i in result) {

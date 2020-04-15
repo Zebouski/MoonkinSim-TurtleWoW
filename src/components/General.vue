@@ -27,8 +27,8 @@
           </b-checkbox>
         </div>
         <div class="field">
-          <b-checkbox class="is-size-7-mobile" v-model="options.tailoring">
-            300 Tailoring
+          <b-checkbox class="is-size-7-mobile" v-model="options.randomEnchants">
+            Include random enchants
           </b-checkbox>
         </div>
       </div>
@@ -49,6 +49,11 @@
         <div class="field">
           <b-checkbox class="is-size-7-mobile" v-model="options.worldBosses">
             Include World Bosses
+          </b-checkbox>
+        </div>
+        <div class="field">
+          <b-checkbox class="is-size-7-mobile" v-model="options.tailoring">
+            300 Tailoring
           </b-checkbox>
         </div>
         <!--

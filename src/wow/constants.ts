@@ -13,6 +13,7 @@ let defaults: Options = {
   raids: true,
   tailoring: true,
   worldBosses: false,
+  randomEnchants: true,
   combatLength: 30,
   spellName: 'Starfire Rank 6',
   itemSearchSlot: ItemSlot.None,

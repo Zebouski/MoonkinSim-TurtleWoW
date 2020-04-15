@@ -10,6 +10,10 @@ interface ParaminOptions {
 }
 
 export default class Tools {
+  static isLetter(char: string) {
+    return char.length === 1 && char.match(/[a-z]/i) ? true : false
+  }
+
   static baseURL() {
     return `https://kmmiles.gitlab.io/moonkin-calc/`
   }
@@ -203,6 +207,7 @@ export default class Tools {
       case 'phase':
       case 'pvprank':
         return Number(value)
+      case 'randomenchants':
       case 'worldbosses':
       case 'raids':
         return value === 'true' ? true : false

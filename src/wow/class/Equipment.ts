@@ -72,6 +72,7 @@ export default class Equipment {
       pvpRank: options.character.pvpRank,
       raids: options.raids,
       worldBosses: options.worldBosses,
+      randomEnchants: options.randomEnchants,
       tailoring: options.tailoring,
       magicSchool: spell.magicSchool,
       targetType: options.target.type,

@@ -9,6 +9,7 @@ export default interface Options {
   raids: boolean
   tailoring: boolean
   worldBosses: boolean
+  randomEnchants: boolean
   combatLength: number
   spellName: string
   itemSearchSlot: ItemSlot

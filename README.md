@@ -20,6 +20,7 @@
 
 ##### Version 0.2.7
   - Phase 4 now default
+  - Allow filtering by random enchant gear
   - Enchantments are customizable
   - Custom enchantments are shared in public links
   - Gear now automatically locked when creating public link
