@@ -12,6 +12,7 @@ export default interface Options {
   combatLength: number
   spellName: string
   itemSearchSlot: ItemSlot
+  enchantSearchSlot: ItemSlot
   character: OptionsCharacter
   target: OptionsTarget
 }

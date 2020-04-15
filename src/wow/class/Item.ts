@@ -126,8 +126,16 @@ export default class Item {
     return Number(totalScore.toFixed(3))
   }
 
+  get customId(): string {
+    return this.itemJSON && this.itemJSON.customId ? this.itemJSON.customId : ``
+  }
+
   get id(): number {
     return this.itemJSON && this.itemJSON.id ? this.itemJSON.id : 0
+  }
+
+  get enchantId(): number {
+    return this.enchantJSON && this.enchantJSON.id ? this.enchantJSON.id : 0
   }
 
   get name(): string {
@@ -445,11 +453,43 @@ export default class Item {
   }
 
   get enchantText(): string {
-    return this.enchantJSON ? this.enchantJSON.text : 'No Enchant'
+    let slot = this.itemJSON ? this.itemJSON.slot : ItemSlot.Any
+    let text = this.enchantJSON ? this.enchantJSON.text : 'No Enchant'
+
+    switch (slot) {
+      case ItemSlot.Head:
+      case ItemSlot.Hands:
+      case ItemSlot.Shoulder:
+      case ItemSlot.Legs:
+      case ItemSlot.Back:
+      case ItemSlot.Feet:
+      case ItemSlot.Chest:
+      case ItemSlot.Wrist:
+      case ItemSlot.Mainhand:
+        return text
+      default:
+        return ``
+    }
   }
 
   get enchantClass(): string {
-    return this.enchantJSON ? 'uncommon' : 'poor'
+    let slot = this.enchantJSON ? this.enchantJSON.slot : ItemSlot.Any
+
+    switch (slot) {
+      case ItemSlot.Head:
+      case ItemSlot.Hands:
+      case ItemSlot.Shoulder:
+      case ItemSlot.Legs:
+      case ItemSlot.Back:
+      case ItemSlot.Feet:
+      case ItemSlot.Chest:
+      case ItemSlot.Wrist:
+      case ItemSlot.Mainhand:
+        return `uncommon`
+      case ItemSlot.Any:
+      default:
+        return `poor`
+    }
   }
 
   get bonusesList(): string[] {

@@ -4,10 +4,10 @@
       <div class="gear-left">
         <GearItem :options="options" :itemSlot="wow.ItemSlot.Head" :itemData="equipment.head" />
         <GearItem :options="options" :itemSlot="wow.ItemSlot.Neck" :itemData="equipment.neck" />
-        <GearItem :options="options" :itemSlot="wow.ItemSlot.Shoulder" :itemData="equipment.shoulders" />
+        <GearItem :options="options" :itemSlot="wow.ItemSlot.Shoulder" :itemData="equipment.shoulder" />
         <GearItem :options="options" :itemSlot="wow.ItemSlot.Back" :itemData="equipment.back" />
         <GearItem :options="options" :itemSlot="wow.ItemSlot.Chest" :itemData="equipment.chest" />
-        <GearItem :options="options" :itemSlot="wow.ItemSlot.Wrist" :itemData="equipment.wrists" />
+        <GearItem :options="options" :itemSlot="wow.ItemSlot.Wrist" :itemData="equipment.wrist" />
         <GearItem :options="options" :itemSlot="wow.ItemSlot.Mainhand" :itemData="equipment.mainhand" />
         <GearItem :options="options" :itemSlot="wow.ItemSlot.Offhand" :itemData="equipment.offhand" />
       </div>
@@ -17,9 +17,9 @@
         <GearItem :options="options" :itemSlot="wow.ItemSlot.Waist" :itemData="equipment.waist" />
         <GearItem :options="options" :itemSlot="wow.ItemSlot.Legs" :itemData="equipment.legs" />
         <GearItem :options="options" :itemSlot="wow.ItemSlot.Feet" :itemData="equipment.feet" />
-        <GearItem :options="options" :itemSlot="wow.ItemSlot.Finger" :itemData="equipment.finger1" />
+        <GearItem :options="options" :itemSlot="wow.ItemSlot.Finger" :itemData="equipment.finger" />
         <GearItem :options="options" :itemSlot="wow.ItemSlot.Finger2" :itemData="equipment.finger2" />
-        <GearItem :options="options" :itemSlot="wow.ItemSlot.Trinket" :itemData="equipment.trinket1" />
+        <GearItem :options="options" :itemSlot="wow.ItemSlot.Trinket" :itemData="equipment.trinket" />
         <GearItem :options="options" :itemSlot="wow.ItemSlot.Trinket2" :itemData="equipment.trinket2" />
       </div>
     </div>
@@ -50,8 +50,30 @@
         <div class="container is-fluid">
           <b-table
             @select="selectItem"
-            :data="table_data"
-            :columns="table_columns"
+            :data="item_data"
+            :columns="item_columns"
+            :paginated="paginated"
+            :pagination-simple="true"
+            per-page="5"
+            sort-icon="arrow-up"
+            sort-icon-size="is-small"
+            aria-next-label="Next page"
+            aria-previous-label="Previous page"
+            aria-page-label="Page"
+            aria-current-label="Current page"
+            default-sort="['score', 'desc']"
+            hoverable
+          ></b-table>
+        </div>
+      </b-modal>
+    </div>
+    <div class="enchantSelect">
+      <b-modal :active.sync="showEnchants" scroll="keep">
+        <div class="container is-fluid">
+          <b-table
+            @select="selectEnchant"
+            :data="enchant_data"
+            :columns="enchant_columns"
             :paginated="paginated"
             :pagination-simple="true"
             per-page="5"
@@ -98,8 +120,6 @@ import { default as wow } from '../wow'
 import GearItem from './GearItem.vue'
 import ItemSlot from '../wow/enum/ItemSlot'
 
-import PublicLink from '../wow/class/PublicLink'
-
 const GearProps = Vue.extend({
   props: {
     options: Object,
@@ -117,9 +137,13 @@ export default class Gear extends GearProps {
 
   showPublicLinkModal = false
 
+  get equipment() {
+    return this.encounter.equipment
+  }
+
   get publicLink() {
-    let publicLink = new PublicLink(this.options)
-    return publicLink.url
+    let url = wow.Tools.publicUrl(this.equipment)
+    return url
   }
 
   shareLink() {
@@ -144,6 +168,16 @@ export default class Gear extends GearProps {
     this.options.character.lockedItems.trinket = ''
     this.options.character.lockedItems.trinket2 = ''
     this.options.character.lockedItems.idol = ''
+
+    this.options.character.lockedEnchants.head = 0
+    this.options.character.lockedEnchants.hands = 0
+    this.options.character.lockedEnchants.shoulder = 0
+    this.options.character.lockedEnchants.legs = 0
+    this.options.character.lockedEnchants.back = 0
+    this.options.character.lockedEnchants.feet = 0
+    this.options.character.lockedEnchants.chest = 0
+    this.options.character.lockedEnchants.wrist = 0
+    this.options.character.lockedEnchants.mainhand = 0
   }
 
   selectItem(obj1: any, obj2: any) {
@@ -209,6 +243,45 @@ export default class Gear extends GearProps {
     }
   }
 
+  selectEnchant(obj1: any, obj2: any) {
+    console.log('hello, an enchant was selectd')
+    console.log(obj1)
+    console.log(obj2)
+    let slot = this.options.enchantSearchSlot
+    this.options.enchantSearchSlot = ItemSlot.None
+    switch (slot) {
+      case ItemSlot.Head:
+        this.options.character.lockedEnchants.head = obj1.id
+        break
+      case ItemSlot.Hands:
+        this.options.character.lockedEnchants.hands = obj1.id
+        break
+      case ItemSlot.Shoulder:
+        this.options.character.lockedEnchants.shoulder = obj1.id
+        break
+      case ItemSlot.Legs:
+        this.options.character.lockedEnchants.legs = obj1.id
+        break
+      case ItemSlot.Back:
+        this.options.character.lockedEnchants.back = obj1.id
+        break
+      case ItemSlot.Feet:
+        this.options.character.lockedEnchants.feet = obj1.id
+        break
+      case ItemSlot.Chest:
+        this.options.character.lockedEnchants.chest = obj1.id
+        break
+      case ItemSlot.Wrist:
+        this.options.character.lockedEnchants.wrist = obj1.id
+        break
+      case ItemSlot.Mainhand:
+        this.options.character.lockedEnchants.mainhand = obj1.id
+        break
+      default:
+        break
+    }
+  }
+
   get showItems() {
     if (this.options.itemSearchSlot !== ItemSlot.None) {
       return true
@@ -220,15 +293,87 @@ export default class Gear extends GearProps {
     this.options.itemSearchSlot = ItemSlot.None
   }
 
-  get equipment() {
-    return this.encounter.equipment
+  get showEnchants() {
+    if (this.options.enchantSearchSlot !== ItemSlot.None) {
+      return true
+    }
+    return false
   }
 
-  get table_data() {
+  set showEnchants(slot) {
+    this.options.enchantSearchSlot = ItemSlot.None
+  }
+
+  get item_data() {
     return this.encounter.items
   }
 
-  get table_columns() {
+  get enchant_data() {
+    return this.encounter.enchants
+  }
+
+  get item_columns() {
+    return [
+      {
+        field: 'name',
+        label: 'name',
+        width: '300',
+        numeric: false,
+        sortable: true,
+        searchable: true
+      },
+      {
+        field: 'spellDamage',
+        label: 'Spell Dmg',
+        width: '20',
+        numeric: true,
+        sortable: true,
+        searchable: false
+      },
+      {
+        field: 'arcaneDamage',
+        label: 'Arcane Dmg',
+        width: '20',
+        numeric: true,
+        sortable: true,
+        searchable: false
+      },
+      {
+        field: 'natureDamage',
+        label: 'Nature Dmg',
+        width: '20',
+        numeric: true,
+        sortable: true,
+        searchable: false
+      },
+      {
+        field: 'spellCrit',
+        label: 'Spell Crit',
+        width: '20',
+        numeric: true,
+        sortable: true,
+        searchable: false
+      },
+      {
+        field: 'spellHit',
+        label: 'Spell Hit',
+        width: '20',
+        numeric: true,
+        sortable: true,
+        searchable: false
+      },
+      {
+        field: 'score',
+        label: 'score',
+        width: '20',
+        numeric: true,
+        sortable: true,
+        searchable: false
+      }
+    ]
+  }
+
+  get enchant_columns() {
     return [
       {
         field: 'name',

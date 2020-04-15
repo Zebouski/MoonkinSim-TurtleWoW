@@ -2,6 +2,7 @@
  * the in-game slot id */
 
 enum ItemSlot {
+  Any = -2,
   None = -1,
   Ammo = 0,
   Head = 1,

@@ -17,20 +17,18 @@ export default class Encounter {
   spellCast: Cast
   equipment: Equipment
   items: JSON
+  enchants: JSON
 
   constructor(options: Options) {
     this.options = options
     this.equipment = Equipment.optimalEquipment(this.options)
-    this.items = Equipment.optimalItems(this.options)
+    this.items = Equipment.optimalItemsForSlot(this.options)
+    this.enchants = Equipment.optimalEnchantsForSlot(this.options)
 
     this.spellCast = new Cast(
       new Character(this.options.character, this.equipment),
       new Spell(this.options.spellName),
       new Target(this.options.target)
     )
-  }
-
-  get publicLink(): string {
-    return `hello public`
   }
 }

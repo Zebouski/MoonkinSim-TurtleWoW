@@ -9,13 +9,14 @@ import ItemSlot from './enum/ItemSlot'
 let defaults: Options = {
   debug: false,
   experimental: false,
-  phase: 3,
+  phase: 4,
   raids: true,
   tailoring: true,
   worldBosses: false,
   combatLength: 30,
   spellName: 'Starfire Rank 6',
   itemSearchSlot: ItemSlot.None,
+  enchantSearchSlot: ItemSlot.None,
   character: {
     level: 60,
     gender: Gender.Male,
@@ -61,6 +62,17 @@ let defaults: Options = {
       trinket: '',
       trinket2: '',
       idol: ''
+    },
+    lockedEnchants: {
+      head: 0,
+      hands: 0,
+      shoulder: 0,
+      legs: 0,
+      back: 0,
+      feet: 0,
+      chest: 0,
+      wrist: 0,
+      mainhand: 0
     }
   },
   target: {

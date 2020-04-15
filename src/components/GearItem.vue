@@ -32,6 +32,7 @@
             v-if="!itemData.isEmpty()"
             :class="itemData.enchantClass"
             class="gear-item-text-enchant left-text has-text-left is-size-7"
+            @click="enchantClick"
           >
             {{ itemData.enchantText }}
           </p>
@@ -51,6 +52,7 @@
             v-if="!itemData.isEmpty()"
             :class="itemData.enchantClass"
             class="gear-item-text-enchant right-text has-text-right is-size-7"
+            @click="enchantClick"
           >
             {{ itemData.enchantText }}
           </p>
@@ -220,6 +222,10 @@ export default class GearItem extends Props {
 
   mouseClick(): void {
     this.options.itemSearchSlot = this.itemSlot
+  }
+
+  enchantClick(): void {
+    this.options.enchantSearchSlot = this.itemSlot
   }
 
   mouseEnter(slot: number): void {

@@ -16,7 +16,7 @@ import PvPRank from '../enum/PvPRank'
 
 import spells from '../db/spells.json'
 import targets from '../db/targets.json'
-import gear from '../db/gear.json'
+import items from '../db/items.json'
 import enchants from '../db/enchants.json'
 import itemSets from '../db/itemSets.json'
 
@@ -30,16 +30,16 @@ export default class Database {
     return jsonQuery(query, { data: targets }).value
   }
 
-  static queryGear(query: string): any {
-    return jsonQuery(query, { data: gear }).value
-  }
-
-  static queryEnchants(query: string): any {
-    return jsonQuery(query, { data: enchants }).value
+  static queryItems(query: string): any {
+    return jsonQuery(query, { data: items }).value
   }
 
   static queryItemSets(query: string): any {
     return jsonQuery(query, { data: itemSets }).value
+  }
+
+  static queryEnchants(query: string): any {
+    return jsonQuery(query, { data: enchants }).value
   }
 
   /* list functions */
@@ -74,22 +74,25 @@ export default class Database {
   static enchant(name: string): EnchantJSON {
     return this.queryEnchants(`[name=${name}]`)
   }
-
-  static gearById(id: number): ItemJSON {
-    return this.queryGear(`[id=${id}]`)
+  static enchantById(id: number): EnchantJSON {
+    return this.queryEnchants(`[id=${id}]`)
   }
 
-  static gearByName(name: string): ItemJSON {
-    return this.queryGear(`[name=${name}]`)
+  static itemById(id: number): ItemJSON {
+    return this.queryItems(`[id=${id}]`)
   }
 
-  static gearByCustomId(customId: string): ItemJSON {
-    return this.queryGear(`[customId=${customId}]`)
+  static itemByName(name: string): ItemJSON {
+    return this.queryItems(`[name=${name}]`)
+  }
+
+  static itemByCustomId(customId: string): ItemJSON {
+    return this.queryItems(`[customId=${customId}]`)
   }
 
   /* multiple item fetch functions */
-  static gearBySlot(slot: ItemSlot): any {
-    return this.queryGear(`[*slot=${slot}]`)
+  static itemBySlot(slot: ItemSlot): any {
+    return this.queryItems(`[*slot=${slot}]`)
   }
 
   static enchantsBySlot(slot: ItemSlot): any {
@@ -113,11 +116,47 @@ export default class Database {
   }
 
   /****************/
+  static getLockedEnchant(slot: number, itemSearch: ItemSearch) {
+    let enchant = undefined
+    let enchantId = this.getLockedEnchantId(slot, itemSearch)
+    if (enchantId) {
+      enchant = this.enchantById(enchantId)
+    }
+    return enchant
+  }
+
+  static getLockedEnchantId(slot: number, itemSearch: ItemSearch) {
+    switch (slot) {
+      case ItemSlot.Head:
+        return itemSearch && itemSearch.lockedEnchants ? itemSearch.lockedEnchants.head : undefined
+      case ItemSlot.Hands:
+        return itemSearch && itemSearch.lockedEnchants ? itemSearch.lockedEnchants.hands : undefined
+      case ItemSlot.Shoulder:
+        return itemSearch && itemSearch.lockedEnchants ? itemSearch.lockedEnchants.shoulder : undefined
+      case ItemSlot.Legs:
+        return itemSearch && itemSearch.lockedEnchants ? itemSearch.lockedEnchants.legs : undefined
+      case ItemSlot.Back:
+        return itemSearch && itemSearch.lockedEnchants ? itemSearch.lockedEnchants.back : undefined
+      case ItemSlot.Feet:
+        return itemSearch && itemSearch.lockedEnchants ? itemSearch.lockedEnchants.feet : undefined
+      case ItemSlot.Chest:
+        return itemSearch && itemSearch.lockedEnchants ? itemSearch.lockedEnchants.chest : undefined
+      case ItemSlot.Wrist:
+        return itemSearch && itemSearch.lockedEnchants ? itemSearch.lockedEnchants.wrist : undefined
+      case ItemSlot.Twohand:
+      case ItemSlot.Mainhand:
+      case ItemSlot.Onehand:
+        return itemSearch && itemSearch.lockedEnchants ? itemSearch.lockedEnchants.mainhand : undefined
+      default:
+        return undefined
+    }
+  }
+
   static getLockedItem(slot: number, itemSearch: ItemSearch) {
     let item = undefined
     let itemCustomId = this.getLockedItemCustomId(slot, itemSearch)
     if (itemCustomId) {
-      item = this.gearByCustomId(itemCustomId)
+      item = this.itemByCustomId(itemCustomId)
     }
     return item
   }
@@ -165,7 +204,7 @@ export default class Database {
     }
   }
 
-  static getWeightedEquipmentBySlot(slot: ItemSlot, itemSearch: ItemSearch) {
+  static getWeightedItemsBySlot(slot: ItemSlot, itemSearch: ItemSearch) {
     let slot2query = (slot: ItemSlot) => {
       switch (slot) {
         case ItemSlot.Finger2:
@@ -197,7 +236,7 @@ export default class Database {
       return x
     }
 
-    let result = jsonQuery(slot2query(slot), { data: gear }).value
+    let result = jsonQuery(slot2query(slot), { data: items }).value
     result = jsonQuery(`[* faction = ${itemSearch.faction} | faction = ${Faction.Horde | Faction.Alliance}]`, {
       data: result
     }).value
@@ -220,8 +259,23 @@ export default class Database {
     return result
   }
 
-  static getWeightedEnchantBySlot(slot: ItemSlot, itemSearch: ItemSearch) {
-    let result = jsonQuery(`[* slot = ${slot} & phase <= ${itemSearch.phase}]`, { data: enchants }).value
+  static getWeightedEnchantsBySlot(slot: ItemSlot, itemSearch: ItemSearch) {
+    /* Handle locked enchants. This is a piece of gear the user manually selected. The name of the
+     * enchant is stored in itemSearch and retrieved by getLockedEnchant */
+    let lockedEnchant = this.getLockedEnchant(slot, itemSearch)
+    if (lockedEnchant) {
+      let x = []
+      lockedEnchant.score = Item.scoreEnchant(
+        lockedEnchant,
+        itemSearch.magicSchool,
+        itemSearch.spellHitWeight,
+        itemSearch.spellCritWeight
+      )
+      x.push(lockedEnchant)
+      return x
+    }
+
+    let result = jsonQuery(`[* slot = ${slot} | slot = -2 & phase <= ${itemSearch.phase}]`, { data: enchants }).value
     for (let i in result) {
       result[i].score = Item.scoreEnchant(
         result[i],
@@ -251,7 +305,7 @@ export default class Database {
     let itemSetItems = []
     let itemSetItemsScore = 0
     for (let itemName of itemSet.itemNames) {
-      let item = this.gearByName(itemName)
+      let item = this.itemByName(itemName)
       item.score = Item.scoreItem(
         item,
         itemSearch.magicSchool,
@@ -282,12 +336,12 @@ export default class Database {
   }
 
   static getBestInSlotItem(slot: ItemSlot, itemSearch: ItemSearch) {
-    let result = this.getWeightedEquipmentBySlot(slot, itemSearch)
+    let result = this.getWeightedItemsBySlot(slot, itemSearch)
     return result[0]
   }
 
   static getBestInSlotEnchant(slot: ItemSlot, itemSearch: ItemSearch) {
-    let result = this.getWeightedEnchantBySlot(slot, itemSearch)
+    let result = this.getWeightedEnchantsBySlot(slot, itemSearch)
     return result[0]
   }
 
@@ -339,8 +393,8 @@ export default class Database {
   }
 
   static getBestInSlotTrinkets(itemSearch: ItemSearch) {
-    let result = this.getWeightedEquipmentBySlot(ItemSlot.Trinket, itemSearch)
-    let result2 = this.getWeightedEquipmentBySlot(ItemSlot.Trinket2, itemSearch)
+    let result = this.getWeightedItemsBySlot(ItemSlot.Trinket, itemSearch)
+    let result2 = this.getWeightedItemsBySlot(ItemSlot.Trinket2, itemSearch)
 
     let trinket1 = result[0]
     let trinket2 = result2[0]
@@ -357,8 +411,8 @@ export default class Database {
 
   static getBestInSlotRings(itemSearch: ItemSearch) {
     let zanzils = undefined
-    let result = this.getWeightedEquipmentBySlot(ItemSlot.Finger, itemSearch)
-    let result2 = this.getWeightedEquipmentBySlot(ItemSlot.Finger2, itemSearch)
+    let result = this.getWeightedItemsBySlot(ItemSlot.Finger, itemSearch)
+    let result2 = this.getWeightedItemsBySlot(ItemSlot.Finger2, itemSearch)
 
     let ring1 = result[0]
     let ring2 = result2[0]

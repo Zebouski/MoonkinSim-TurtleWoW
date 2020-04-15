@@ -18,6 +18,13 @@
 
 ### Changelog
 
+##### Version 0.2.7
+  - Phase 4 now default
+  - Enchantments are customizable
+  - Custom enchantments are shared in public links
+  - Gear now automatically locked when creating public link
+  - Added backwards compatability for old public links
+
 ##### Version 0.2.6
   - Share public link beta
   - Can pass certain options in by URL (phase, raids, worldbosses, pvprank)

@@ -93,8 +93,6 @@ import Target from './Target.vue'
 import Damage from './Damage.vue'
 import Debug from './Debug.vue'
 
-import PublicLink from '../wow/class/PublicLink'
-
 const Props = Vue.extend({
   props: {
     options: Object
@@ -118,40 +116,39 @@ const Props = Vue.extend({
 })
 export default class Content extends Props {
   mounted() {
-    /* set options passed on URL */
-    let publicLink = new PublicLink(this.options)
+    let gearv1 = wow.Tools.optionFromURL('gear')
+    let gearv2 = wow.Tools.optionFromURL('gearv2')
 
-    /* lockeditems aka gear */
-    let lockedItems = publicLink.lockedItemsFromURL
-    if (lockedItems) {
-      this.options.character.lockedItems = lockedItems
+    if (gearv2) {
+      this.options.character.lockedItems = gearv2.items
+      this.options.character.lockedEnchants = gearv2.enchants
+    } else if (gearv1) {
+      this.options.character.lockedItems = gearv1.items
     }
 
     /* other options*/
-
-    let phase = PublicLink.optionFromURL('phase')
-    if (phase !== null && phase !== undefined && phase >= 1 && phase <= 6) {
+    let phase = wow.Tools.optionFromURL('phase')
+    if (phase !== null && phase !== undefined) {
       this.options.phase = phase
     }
 
-    let raids = PublicLink.optionFromURL('raids')
-    if (raids !== null && raids !== undefined && (raids === true || raids === false)) {
+    let raids = wow.Tools.optionFromURL('raids')
+    if (raids !== null && raids !== undefined) {
       this.options.raids = raids
     }
 
-    let worldbosses = PublicLink.optionFromURL('worldbosses')
-    if (worldbosses !== null && worldbosses !== undefined && (worldbosses === true || worldbosses === false)) {
+    let worldbosses = wow.Tools.optionFromURL('worldbosses')
+    if (worldbosses !== null && worldbosses !== undefined) {
       this.options.worldBosses = worldbosses
     }
 
-    let pvprank = PublicLink.optionFromURL('pvprank')
-    if (pvprank !== null && pvprank !== undefined && (pvprank >= 1 || pvprank <= 14)) {
+    let pvprank = wow.Tools.optionFromURL('pvprank')
+    if (pvprank !== null && pvprank !== undefined) {
       this.options.character.pvpRank = pvprank
     }
   }
 
   get encounter() {
-    console.log('HELLO ENCOUNTER IS BEING DONE')
     return new wow.Encounter(this.options)
   }
 

@@ -243,20 +243,26 @@ export default class Cast {
     return this.character.spellCrit + this.improvedMoonfireSpellCritBonus
   }
 
+  get effectiveTargetResistance(): number {
+    const resistance = Math.min(this.target.spellResistance, 5 * this.character.level - this.targetResistanceFromLevel)
+    return resistance - Math.min(this.spellPenetration, resistance) + this.targetResistanceFromLevel
+  }
+
+  /* For non-binary spells only: Each difference in level gives a 2% resistance chance that cannot
+   * be negated (by spell penetration or otherwise). */
+  get targetResistanceFromLevel(): number {
+    if (this.spell.isBinary) {
+      return 0
+    }
+    return (
+      (this.target.level > this.character.level ? this.target.level - this.character.level : 0) *
+      parseFloat((0.1333 * this.character.level).toFixed(2))
+    )
+  }
+
   /* https://dwarfpriest.wordpress.com/2008/01/07/spell-hit-spell-penetration-and-resistances/#more-176 */
   get partialResistPenalty(): number {
-    let effectiveTargetResistance = () => {
-      const resistance = Math.min(this.target.spellResistance, 5 * this.character.level - targetResistanceFromLevel())
-      return resistance - Math.min(this.spellPenetration, resistance) + targetResistanceFromLevel()
-    }
-
-    let targetResistanceFromLevel = () => {
-      const levelDiff = this.target.level > this.character.level ? this.target.level - this.character.level : 0
-      const bonusPerLevel = parseFloat((0.1333 * this.character.level).toFixed(2))
-      return this.spell.isBinary ? 0 : levelDiff * bonusPerLevel
-    }
-
-    return this.spell.canPartialResist ? (0.75 * effectiveTargetResistance()) / (5 * this.character.level) : 0
+    return this.spell.canPartialResist ? (0.75 * this.effectiveTargetResistance) / (5 * this.character.level) : 0
   }
 
   get baseDmgMultiplier(): number {

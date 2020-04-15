@@ -17,17 +17,17 @@ export default class Equipment {
   hands: Item
   neck: Item
   waist: Item
-  shoulders: Item
+  shoulder: Item
   legs: Item
   back: Item
   feet: Item
   chest: Item
-  finger1: Item
-  wrists: Item
+  finger: Item
+  wrist: Item
   finger2: Item
   mainhand: Item
-  trinket1: Item
   offhand: Item
+  trinket: Item
   trinket2: Item
   idol: Item
 
@@ -46,19 +46,19 @@ export default class Equipment {
     this.hands = _bis(ItemSlot.Hands)
     this.neck = _bis(ItemSlot.Neck)
     this.waist = _bis(ItemSlot.Waist)
-    this.shoulders = _bis(ItemSlot.Shoulder)
+    this.shoulder = _bis(ItemSlot.Shoulder)
     this.legs = new Item(ItemSlot.Legs, bisChestLegsFeet.legs, bisChestLegsFeet.legsEnchant)
     this.back = _bis(ItemSlot.Back)
     this.feet = new Item(ItemSlot.Feet, bisChestLegsFeet.feet, bisChestLegsFeet.feetEnchant)
     this.chest = new Item(ItemSlot.Chest, bisChestLegsFeet.chest, bisChestLegsFeet.chestEnchant)
-    this.finger1 = new Item(ItemSlot.Finger, bisRings.finger)
-    this.wrists = _bis(ItemSlot.Wrist)
+    this.finger = new Item(ItemSlot.Finger, bisRings.finger)
+    this.wrist = _bis(ItemSlot.Wrist)
     this.finger2 = new Item(ItemSlot.Finger2, bisRings.finger2)
     this.mainhand = new Item(ItemSlot.Mainhand, bisWeaponCombo.mainHand, bisWeaponCombo.enchant)
-    this.trinket1 = new Item(ItemSlot.Trinket, bisTrinkets.trinket)
     this.offhand = bisWeaponCombo.offHand
       ? new Item(ItemSlot.Offhand, bisWeaponCombo.offHand)
       : new Item(ItemSlot.Offhand)
+    this.trinket = new Item(ItemSlot.Trinket, bisTrinkets.trinket)
     this.trinket2 = new Item(ItemSlot.Trinket2, bisTrinkets.trinket2)
     this.idol = _bis(ItemSlot.Relic)
   }
@@ -78,14 +78,56 @@ export default class Equipment {
       spellHitWeight: spellHitWeight !== undefined ? spellHitWeight : 15,
       spellCritWeight: spellCritWeight !== undefined ? spellCritWeight : 10,
       lockedItems: options.character.lockedItems,
+      lockedEnchants: options.character.lockedEnchants,
       slot: options.itemSearchSlot,
       sortOrder: SortOrder.Descending
     }
   }
 
-  static optimalItems(options: Options) {
+  static optimalEnchantsForSlot(options: Options) {
     let myOptions = options
 
+    /* Unequip the slot in question so we get a list of properly weighted enchants */
+    switch (myOptions.enchantSearchSlot) {
+      case ItemSlot.Head:
+        myOptions.character.lockedEnchants.head = 0
+        break
+      case ItemSlot.Hands:
+        myOptions.character.lockedEnchants.hands = 0
+        break
+      case ItemSlot.Shoulder:
+        myOptions.character.lockedEnchants.shoulder = 0
+        break
+      case ItemSlot.Legs:
+        myOptions.character.lockedEnchants.legs = 0
+        break
+      case ItemSlot.Back:
+        myOptions.character.lockedEnchants.back = 0
+        break
+      case ItemSlot.Feet:
+        myOptions.character.lockedEnchants.feet = 0
+        break
+      case ItemSlot.Chest:
+        myOptions.character.lockedEnchants.chest = 0
+        break
+      case ItemSlot.Wrist:
+        myOptions.character.lockedEnchants.wrist = 0
+        break
+      case ItemSlot.Mainhand:
+        myOptions.character.lockedEnchants.mainhand = 0
+        break
+      default:
+        break
+    }
+
+    let equipment = Equipment.optimalEquipment(myOptions)
+    return Database.getWeightedEnchantsBySlot(myOptions.enchantSearchSlot, equipment.itemSearch)
+  }
+
+  static optimalItemsForSlot(options: Options) {
+    let myOptions = options
+
+    /* Unequip the slot in question so we get a list of properly weighted items */
     switch (myOptions.itemSearchSlot) {
       case ItemSlot.Head:
         myOptions.character.lockedItems.head = ''
@@ -143,7 +185,7 @@ export default class Equipment {
     }
 
     let equipment = Equipment.optimalEquipment(myOptions)
-    return Database.getWeightedEquipmentBySlot(myOptions.itemSearchSlot, equipment.itemSearch)
+    return Database.getWeightedItemsBySlot(myOptions.itemSearchSlot, equipment.itemSearch)
   }
 
   /* TODO: If itemSearchSlot isn't none, need to ignore that slot when weighting */
@@ -197,10 +239,10 @@ export default class Equipment {
   static printItemNames(equipment: Equipment) {
     console.log(`
       ${equipment.head.name}, ${equipment.hands.name}, ${equipment.neck.name},
-      ${equipment.waist.name}, ${equipment.shoulders.name}, ${equipment.legs.name},
+      ${equipment.waist.name}, ${equipment.shoulder.name}, ${equipment.legs.name},
       ${equipment.back.name}, ${equipment.feet.name}, ${equipment.chest.name},
-      ${equipment.finger1.name}, ${equipment.wrists.name}, ${equipment.finger2.name},
-      ${equipment.mainhand.name}, ${equipment.trinket1.name}, ${equipment.offhand.name},
+      ${equipment.finger.name}, ${equipment.wrist.name}, ${equipment.finger2.name},
+      ${equipment.mainhand.name}, ${equipment.trinket.name}, ${equipment.offhand.name},
       ${equipment.trinket2.name}, ${equipment.idol.spellDamage}`)
   }
 
@@ -218,7 +260,7 @@ export default class Equipment {
 
   get hasZanzils() {
     if (
-      (this.finger1.name === `Zanzil's Band` || this.finger1.name === `Zanzil's Seal`) &&
+      (this.finger.name === `Zanzil's Band` || this.finger.name === `Zanzil's Seal`) &&
       (this.finger2.name === `Zanzil's Band` || this.finger2.name === `Zanzil's Seal`)
     ) {
       return true
@@ -233,17 +275,17 @@ export default class Equipment {
       this.hands.spellDamage +
       this.neck.spellDamage +
       this.waist.spellDamage +
-      this.shoulders.spellDamage +
+      this.shoulder.spellDamage +
       this.legs.spellDamage +
       this.back.spellDamage +
       this.feet.spellDamage +
       this.chest.spellDamage +
-      this.finger1.spellDamage +
-      this.wrists.spellDamage +
+      this.finger.spellDamage +
+      this.wrist.spellDamage +
       this.finger2.spellDamage +
       this.mainhand.spellDamage +
-      this.trinket1.spellDamage +
       this.offhand.spellDamage +
+      this.trinket.spellDamage +
       this.trinket2.spellDamage +
       this.idol.spellDamage
     )
@@ -255,17 +297,17 @@ export default class Equipment {
       this.hands.arcaneDamage +
       this.neck.arcaneDamage +
       this.waist.arcaneDamage +
-      this.shoulders.arcaneDamage +
+      this.shoulder.arcaneDamage +
       this.legs.arcaneDamage +
       this.back.arcaneDamage +
       this.feet.arcaneDamage +
       this.chest.arcaneDamage +
-      this.finger1.arcaneDamage +
-      this.wrists.arcaneDamage +
+      this.finger.arcaneDamage +
+      this.wrist.arcaneDamage +
       this.finger2.arcaneDamage +
       this.mainhand.arcaneDamage +
-      this.trinket1.arcaneDamage +
       this.offhand.arcaneDamage +
+      this.trinket.arcaneDamage +
       this.trinket2.arcaneDamage +
       this.idol.arcaneDamage
     )
@@ -277,17 +319,17 @@ export default class Equipment {
       this.hands.natureDamage +
       this.neck.natureDamage +
       this.waist.natureDamage +
-      this.shoulders.natureDamage +
+      this.shoulder.natureDamage +
       this.legs.natureDamage +
       this.back.natureDamage +
       this.feet.natureDamage +
       this.chest.natureDamage +
-      this.finger1.natureDamage +
-      this.wrists.natureDamage +
+      this.finger.natureDamage +
+      this.wrist.natureDamage +
       this.finger2.natureDamage +
       this.mainhand.natureDamage +
-      this.trinket1.natureDamage +
       this.offhand.natureDamage +
+      this.trinket.natureDamage +
       this.trinket2.natureDamage +
       this.idol.natureDamage
     )
@@ -300,17 +342,17 @@ export default class Equipment {
       this.hands.spellHit +
       this.neck.spellHit +
       this.waist.spellHit +
-      this.shoulders.spellHit +
+      this.shoulder.spellHit +
       this.legs.spellHit +
       this.back.spellHit +
       this.feet.spellHit +
       this.chest.spellHit +
-      this.finger1.spellHit +
-      this.wrists.spellHit +
+      this.finger.spellHit +
+      this.wrist.spellHit +
       this.finger2.spellHit +
       this.mainhand.spellHit +
-      this.trinket1.spellHit +
       this.offhand.spellHit +
+      this.trinket.spellHit +
       this.trinket2.spellHit +
       this.idol.spellHit
     )
@@ -323,17 +365,17 @@ export default class Equipment {
       this.hands.spellCrit +
       this.neck.spellCrit +
       this.waist.spellCrit +
-      this.shoulders.spellCrit +
+      this.shoulder.spellCrit +
       this.legs.spellCrit +
       this.back.spellCrit +
       this.feet.spellCrit +
       this.chest.spellCrit +
-      this.finger1.spellCrit +
-      this.wrists.spellCrit +
+      this.finger.spellCrit +
+      this.wrist.spellCrit +
       this.finger2.spellCrit +
       this.mainhand.spellCrit +
-      this.trinket1.spellCrit +
       this.offhand.spellCrit +
+      this.trinket.spellCrit +
       this.trinket2.spellCrit +
       this.idol.spellDamage
     )
@@ -345,17 +387,17 @@ export default class Equipment {
       this.hands.intellect +
       this.neck.intellect +
       this.waist.intellect +
-      this.shoulders.intellect +
+      this.shoulder.intellect +
       this.legs.intellect +
       this.back.intellect +
       this.feet.intellect +
       this.chest.intellect +
-      this.finger1.intellect +
-      this.wrists.intellect +
+      this.finger.intellect +
+      this.wrist.intellect +
       this.finger2.intellect +
       this.mainhand.intellect +
-      this.trinket1.intellect +
       this.offhand.intellect +
+      this.trinket.intellect +
       this.trinket2.intellect +
       this.idol.intellect
     )
@@ -367,17 +409,17 @@ export default class Equipment {
       this.hands.stamina +
       this.neck.stamina +
       this.waist.stamina +
-      this.shoulders.stamina +
+      this.shoulder.stamina +
       this.legs.stamina +
       this.back.stamina +
       this.feet.stamina +
       this.chest.stamina +
-      this.finger1.stamina +
-      this.wrists.stamina +
+      this.finger.stamina +
+      this.wrist.stamina +
       this.finger2.stamina +
       this.mainhand.stamina +
-      this.trinket1.stamina +
       this.offhand.stamina +
+      this.trinket.stamina +
       this.trinket2.stamina +
       this.idol.stamina
     )
@@ -389,17 +431,17 @@ export default class Equipment {
       this.hands.spirit +
       this.neck.spirit +
       this.waist.spirit +
-      this.shoulders.spirit +
+      this.shoulder.spirit +
       this.legs.spirit +
       this.back.spirit +
       this.feet.spirit +
       this.chest.spirit +
-      this.finger1.spirit +
-      this.wrists.spirit +
+      this.finger.spirit +
+      this.wrist.spirit +
       this.finger2.spirit +
       this.mainhand.spirit +
-      this.trinket1.spirit +
       this.offhand.spirit +
+      this.trinket.spirit +
       this.trinket2.spirit +
       this.idol.spirit
     )
@@ -411,17 +453,17 @@ export default class Equipment {
       this.hands.mp5 +
       this.neck.mp5 +
       this.waist.mp5 +
-      this.shoulders.mp5 +
+      this.shoulder.mp5 +
       this.legs.mp5 +
       this.back.mp5 +
       this.feet.mp5 +
       this.chest.mp5 +
-      this.finger1.mp5 +
-      this.wrists.mp5 +
+      this.finger.mp5 +
+      this.wrist.mp5 +
       this.finger2.mp5 +
       this.mainhand.mp5 +
-      this.trinket1.mp5 +
       this.offhand.mp5 +
+      this.trinket.mp5 +
       this.trinket2.mp5 +
       this.idol.mp5
     )

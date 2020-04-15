@@ -5,6 +5,9 @@ import MagicSchool from '../enum/MagicSchool'
 import SortOrder from '../enum/SortOrder'
 import ItemSlot from '../enum/ItemSlot'
 
+import LockedItems from './LockedItems'
+import LockedEnchants from './LockedEnchants'
+
 export default interface ItemSearch {
   phase: number
   faction: Faction
@@ -14,25 +17,8 @@ export default interface ItemSearch {
   worldBosses: boolean
   magicSchool: MagicSchool
   targetType: TargetType
-  lockedItems?: {
-    head?: string
-    hands?: string
-    neck?: string
-    waist?: string
-    shoulder?: string
-    legs?: string
-    back?: string
-    feet?: string
-    chest?: string
-    wrist?: string
-    finger?: string
-    finger2?: string
-    trinket?: string
-    trinket2?: string
-    mainhand?: string
-    offhand?: string
-    idol?: string
-  }
+  lockedItems?: LockedItems
+  lockedEnchants?: LockedEnchants
   spellHitWeight: number
   spellCritWeight: number
   slot: ItemSlot
