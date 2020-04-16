@@ -262,15 +262,17 @@ export default class Database {
     }
 
     /* score items */
-    for (let i in result) {
-      result[i].score = Item.scoreItem(
+    for (let i = 0; i < result.length; i++) {
+      let score = Item.scoreItem(
         result[i],
         itemSearch.magicSchool,
         itemSearch.targetType,
         itemSearch.spellHitWeight,
         itemSearch.spellCritWeight
       )
+      result[i].score = score
     }
+
     result.sort(itemSearch.sortOrder === SortOrder.Descending ? Item.sortScoreDes : Item.sortScoreAsc)
     return result
   }
@@ -293,12 +295,13 @@ export default class Database {
 
     let result = jsonQuery(`[* slot = ${slot} | slot = -2 & phase <= ${itemSearch.phase}]`, { data: enchants }).value
     for (let i in result) {
-      result[i].score = Item.scoreEnchant(
+      let score = Item.scoreEnchant(
         result[i],
         itemSearch.magicSchool,
         itemSearch.spellHitWeight,
         itemSearch.spellCritWeight
       )
+      result[i].score = score
     }
     result.sort(itemSearch.sortOrder === SortOrder.Descending ? Item.sortScoreDes : Item.sortScoreAsc)
     return result

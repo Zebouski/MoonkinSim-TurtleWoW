@@ -18,6 +18,10 @@
 
 ### Changelog
 
+##### Version 0.2.8
+  - Fix sorting error in item selection
+  - Enchantments not showing on two handed / one handed weapons
+
 ##### Version 0.2.7
   - Phase 4 now default
   - Allow filtering by random enchant gear

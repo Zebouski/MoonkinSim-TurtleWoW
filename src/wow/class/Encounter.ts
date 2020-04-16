@@ -16,7 +16,7 @@ export default class Encounter {
   options: Options
   spellCast: Cast
   equipment: Equipment
-  items: JSON
+  items: Item[]
   enchants: JSON
 
   constructor(options: Options) {

@@ -123,7 +123,7 @@ export default class Item {
       spellCrit * spellCritWeight +
       (intellect / SpellCritFromIntellectDivisor.Druid) * spellCritWeight
 
-    return Number(totalScore.toFixed(3))
+    return parseFloat(totalScore.toFixed(3))
   }
 
   get customId(): string {
@@ -591,17 +591,11 @@ export default class Item {
   }
 
   static sortScoreAsc(a: ItemJSON | EnchantJSON, b: ItemJSON | EnchantJSON) {
-    if (a.score === undefined || b.score === undefined) {
-      return 0
-    }
-    return a.score - b.score
+    return (a.score ? a.score : 0) - (b.score ? b.score : 0)
   }
 
   static sortScoreDes(a: ItemJSON | EnchantJSON, b: ItemJSON | EnchantJSON) {
-    if (a.score === undefined || b.score === undefined) {
-      return 0
-    }
-    return b.score - a.score
+    return (b.score ? b.score : 0) - (a.score ? a.score : 0)
   }
 
   toJSON() {
