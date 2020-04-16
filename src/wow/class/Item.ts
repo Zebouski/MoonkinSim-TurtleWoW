@@ -466,6 +466,7 @@ export default class Item {
       case ItemSlot.Chest:
       case ItemSlot.Wrist:
       case ItemSlot.Twohand:
+      case ItemSlot.Onehand:
       case ItemSlot.Mainhand:
         return text
       default:
