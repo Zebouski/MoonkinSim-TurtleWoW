@@ -147,6 +147,11 @@ export default class Content extends Props {
       this.options.randomEnchants = randomenchants
     }
 
+    let tailoring = wow.Tools.optionFromURL('tailoring')
+    if (tailoring !== null && tailoring !== undefined) {
+      this.options.tailoring = tailoring
+    }
+
     let pvprank = wow.Tools.optionFromURL('pvprank')
     if (pvprank !== null && pvprank !== undefined) {
       this.options.character.pvpRank = pvprank
