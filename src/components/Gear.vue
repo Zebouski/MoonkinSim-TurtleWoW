@@ -54,7 +54,7 @@
             :columns="item_columns"
             :paginated="paginated"
             :pagination-simple="true"
-            per-page="10"
+            per-page="5"
             sort-icon="arrow-up"
             sort-icon-size="is-small"
             aria-next-label="Next page"
@@ -321,7 +321,7 @@ export default class Gear extends GearProps {
     return [
       {
         field: 'name',
-        label: 'name',
+        label: '',
         width: '300',
         numeric: false,
         sortable: true,
@@ -330,7 +330,7 @@ export default class Gear extends GearProps {
       {
         field: 'spellDamage',
         label: 'Spell Dmg',
-        width: '20',
+        width: '10',
         numeric: true,
         sortable: true,
         searchable: false
@@ -338,7 +338,7 @@ export default class Gear extends GearProps {
       {
         field: 'arcaneDamage',
         label: 'Arcane Dmg',
-        width: '20',
+        width: '10',
         numeric: true,
         sortable: true,
         searchable: false
@@ -346,15 +346,7 @@ export default class Gear extends GearProps {
       {
         field: 'natureDamage',
         label: 'Nature Dmg',
-        width: '20',
-        numeric: true,
-        sortable: true,
-        searchable: false
-      },
-      {
-        field: 'spellCrit',
-        label: 'Spell Crit',
-        width: '20',
+        width: '10',
         numeric: true,
         sortable: true,
         searchable: false
@@ -362,15 +354,31 @@ export default class Gear extends GearProps {
       {
         field: 'spellHit',
         label: 'Spell Hit',
-        width: '20',
+        width: '10',
+        numeric: true,
+        sortable: true,
+        searchable: false
+      },
+      {
+        field: 'spellCrit',
+        label: 'Spell Crit',
+        width: '10',
+        numeric: true,
+        sortable: true,
+        searchable: false
+      },
+      {
+        field: 'intellect',
+        label: 'Intellect',
+        width: '10',
         numeric: true,
         sortable: true,
         searchable: false
       },
       {
         field: 'score',
-        label: 'score',
-        width: '20',
+        label: 'Score',
+        width: '10',
         numeric: true,
         sortable: true,
         searchable: false

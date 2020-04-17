@@ -20,6 +20,7 @@
 ##### Version 0.2.9
   - Change abyssal items and Glowing Black Orb to phase 4
   - Abyssal Cloth Amice of Restoration is healing not spell damage
+  - Show intellect in item list
 
 ##### Version 0.2.8
   - Fix sorting error in item selection
