@@ -34,7 +34,8 @@ import ItemOnUseJSON from './interface/ItemOnUseJSON'
 
 // let csvFilePath = 'vendor/Classic_Balance_Druidv1.3.csv'
 // let csvFilePath = 'vendor/Classic_Balance_Druidv1.4.csv'
-let csvFilePath = 'vendor/Classic_Balance_Druidv1.5.csv'
+// let csvFilePath = 'vendor/Classic_Balance_Druidv1.5.csv'
+let csvFilePath = 'vendor/Classic_Balance_Druidv1.5.1.2.csv'
 if (process.env.TEST && process.env.TEST === '1') {
   csvFilePath = 'vendor/testItems.csv'
 }
