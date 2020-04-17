@@ -22,6 +22,7 @@
   - Abyssal Cloth Amice of Restoration is healing not spell damage
   - Show intellect in item list
   - Allow passing 'tailoring' option on url
+  - Fix cast time reduction from natures grace in cases where it dips below GCD
 
 ##### Version 0.2.8
   - Fix sorting error in item selection

@@ -315,14 +315,17 @@ export default class Cast {
 
   /**
    * The amount of cast time reduced when a crit procs a bonus to it i.e. natures grace
-   * This factors in the spells existing cast time, ensuring the returned reduction amount
-   * would not reduce the cast time below the GCD
    */
   get castTimeReductionOnCrit(): number {
     if (this.character.naturesGraceBonus === 0) return 0
-    return this.castTime - this.character.naturesGraceBonus <= constants.globalCoolDown
-      ? constants.globalCoolDown - this.castTime
-      : this.character.naturesGraceBonus
+
+    /* if natures grace would reduce the cast time below the global cooldown then
+     * only reduce it by the difference of the cast time and global cooldown */
+    if (this.castTime - this.character.naturesGraceBonus < constants.globalCoolDown) {
+      return this.castTime - constants.globalCoolDown
+    }
+
+    return this.character.naturesGraceBonus
   }
 
   /**
