@@ -4701,7 +4701,7 @@
   "raid": false,
   "worldBoss": false,
   "faction": 3,
-  "spellDamage": 15,
+  "spellHealing": 15,
   "spellHit": 1,
   "stamina": 13,
   "mp5": 5,
