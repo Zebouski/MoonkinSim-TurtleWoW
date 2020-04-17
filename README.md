@@ -20,6 +20,7 @@
 ##### Version 0.2.9
   - Change abyssal items and Glowing Black Orb to phase 4
   - Abyssal Cloth Amice of Restoration is healing not spell damage
+  - Change Moonshadow Stave to phase 3
   - Show intellect in item list
   - Allow passing 'tailoring' option on url
   - Fix cast time reduction from natures grace in cases where it dips below GCD
