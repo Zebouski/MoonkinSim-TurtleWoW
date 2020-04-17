@@ -17,6 +17,8 @@
     - [BiS (optimal)](https://kmmiles.gitlab.io/moonkin-calc/?phase=6&raids=true&worldbosses=true&pvprank=14)
 
 ### Changelog
+##### Version 0.2.9
+  - Change abyssal items and Glowing Black Orb to phase 4
 
 ##### Version 0.2.8
   - Fix sorting error in item selection
