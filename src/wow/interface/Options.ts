@@ -10,6 +10,7 @@ export default interface Options {
   tailoring: boolean
   worldBosses: boolean
   randomEnchants: boolean
+  enchantExploit: boolean
   combatLength: number
   spellName: string
   itemSearchSlot: ItemSlot

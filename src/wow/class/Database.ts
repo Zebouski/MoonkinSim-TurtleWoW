@@ -278,6 +278,14 @@ export default class Database {
   }
 
   static getWeightedEnchantsBySlot(slot: ItemSlot, itemSearch: ItemSearch) {
+    let noExploit = (enchantJSON: EnchantJSON) => {
+      console.log('hello noexploit')
+      if (!enchantJSON || !enchantJSON.exploit) {
+        return true
+      }
+
+      return false
+    }
     /* Handle locked enchants. This is a piece of gear the user manually selected. The name of the
      * enchant is stored in itemSearch and retrieved by getLockedEnchant */
     let lockedEnchant = this.getLockedEnchant(slot, itemSearch)
@@ -294,6 +302,10 @@ export default class Database {
     }
 
     let result = jsonQuery(`[* slot = ${slot} | slot = -2 & phase <= ${itemSearch.phase}]`, { data: enchants }).value
+    if (!itemSearch.enchantExploit) {
+      result = result.filter(noExploit)
+    }
+
     for (let i in result) {
       let score = Item.scoreEnchant(
         result[i],
@@ -366,7 +378,16 @@ export default class Database {
 
   static getBestInSlotItemWithEnchant(slot: ItemSlot, itemSearch: ItemSearch) {
     const item = this.getBestInSlotItem(slot, itemSearch)
-    const enchant = this.getBestInSlotEnchant(slot, itemSearch)
+    let enchant
+
+    if (item && item.bop) {
+      let is = itemSearch
+      is.enchantExploit = false
+      enchant = this.getBestInSlotEnchant(slot, is)
+    } else {
+      enchant = this.getBestInSlotEnchant(slot, itemSearch)
+    }
+
     return new Item(slot, item, enchant)
   }
 

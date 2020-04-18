@@ -74,6 +74,7 @@ export default class Equipment {
       worldBosses: options.worldBosses,
       randomEnchants: options.randomEnchants,
       tailoring: options.tailoring,
+      enchantExploit: options.enchantExploit,
       magicSchool: spell.magicSchool,
       targetType: options.target.type,
       spellHitWeight: spellHitWeight !== undefined ? spellHitWeight : 15,

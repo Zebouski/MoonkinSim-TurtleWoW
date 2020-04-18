@@ -16,6 +16,7 @@ export default interface ItemSearch {
   tailoring: boolean
   worldBosses: boolean
   randomEnchants: boolean
+  enchantExploit: boolean
   magicSchool: MagicSchool
   targetType: TargetType
   lockedItems?: LockedItems

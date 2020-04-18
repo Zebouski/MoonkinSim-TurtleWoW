@@ -17,12 +17,10 @@
     - [BiS (optimal)](https://kmmiles.gitlab.io/moonkin-calc/?phase=6&raids=true&worldbosses=true&pvprank=14)
 
 ### Changelog
+##### Version 0.3.1
 ##### Version 0.3.0
-  - Sync item database back to spreadsheet. Fixes discrepencies with:
-    - Amethyst War Staff
-    - Arlokks Hoodoo Stick
-    - Elemental Focus Band
-    - Slaghide Gauntlets of Arcane Wrath
+  - Add enchant exploit
+  
 ##### Version 0.2.9
   - Change abyssal items and Glowing Black Orb to phase 4
   - Abyssal Cloth Amice of Restoration is healing not spell damage
