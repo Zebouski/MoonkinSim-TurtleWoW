@@ -378,15 +378,7 @@ export default class Database {
 
   static getBestInSlotItemWithEnchant(slot: ItemSlot, itemSearch: ItemSearch) {
     const item = this.getBestInSlotItem(slot, itemSearch)
-    let enchant
-
-    if (item && item.bop) {
-      let is = itemSearch
-      is.enchantExploit = false
-      enchant = this.getBestInSlotEnchant(slot, is)
-    } else {
-      enchant = this.getBestInSlotEnchant(slot, itemSearch)
-    }
+    let enchant = this.getBestInSlotEnchant(slot, itemSearch)
 
     return new Item(slot, item, enchant)
   }

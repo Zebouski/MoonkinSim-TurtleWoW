@@ -18,8 +18,11 @@
 
 ### Changelog
 ##### Version 0.3.1
-##### Version 0.3.0
   - Add enchant exploit
+  - Remove boe limitation
+
+##### Version 0.3.0
+  - Sync item database with spreadsheet
   
 ##### Version 0.2.9
   - Change abyssal items and Glowing Black Orb to phase 4
