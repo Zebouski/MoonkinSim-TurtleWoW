@@ -20,6 +20,7 @@
 ##### Version 0.3.1
   - Add enchant exploit
   - Remove boe limitation
+  - Add Ironbark Staff to horde
 
 ##### Version 0.3.0
   - Sync item database with spreadsheet
