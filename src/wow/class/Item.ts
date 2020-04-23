@@ -149,7 +149,7 @@ export default class Item {
   }
 
   get name(): string {
-    return this.itemJSON && this.itemJSON.name ? this.itemJSON.name : ''
+    return this.itemJSON && this.itemJSON.name ? this.itemJSON.name : this.slotDisplayName
   }
 
   get class(): ItemClass {
@@ -234,6 +234,43 @@ export default class Item {
       case ItemSlot.Twohand:
       case ItemSlot.Tabard:
       case ItemSlot.Offhand:
+      case ItemSlot.Projectile:
+      case ItemSlot.Relic:
+      default:
+        return ItemSlot[this.slot]
+    }
+  }
+
+  get slotDisplayName(): string {
+    switch (this.slot) {
+      case ItemSlot.Onehand:
+      case ItemSlot.Twohand:
+      case ItemSlot.Mainhand:
+        return 'Main Hand'
+      case ItemSlot.Finger:
+        return 'Finger 1'
+      case ItemSlot.Finger2:
+        return 'Finger 2'
+      case ItemSlot.Offhand:
+        return 'Off Hand'
+      case ItemSlot.Trinket:
+        return 'Trinket 1'
+      case ItemSlot.Trinket2:
+        return 'Trinket 2'
+      case ItemSlot.Ammo:
+      case ItemSlot.Head:
+      case ItemSlot.Neck:
+      case ItemSlot.Shoulder:
+      case ItemSlot.Shirt:
+      case ItemSlot.Chest:
+      case ItemSlot.Waist:
+      case ItemSlot.Legs:
+      case ItemSlot.Feet:
+      case ItemSlot.Wrist:
+      case ItemSlot.Hands:
+      case ItemSlot.Ranged:
+      case ItemSlot.Back:
+      case ItemSlot.Tabard:
       case ItemSlot.Projectile:
       case ItemSlot.Relic:
       default:
