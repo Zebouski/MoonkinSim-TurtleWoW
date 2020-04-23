@@ -1,15 +1,18 @@
 import Item from './Item'
 import Character from './Character'
 import Spell from './Spell'
-import Database from './Database'
 import Target from './Target'
 import Cast from './Cast'
+import Tools from './Tools'
+import Locked from './Locked'
+import Query from './Query'
 
 import ItemSlot from '../enum/ItemSlot'
 import SortOrder from '../enum/SortOrder'
 
 import Options from '../interface/Options'
 import ItemSearch from '../interface/ItemSearch'
+import ItemJSON from '../interface/ItemJSON'
 
 export default class Equipment {
   itemSearch: ItemSearch
@@ -33,15 +36,15 @@ export default class Equipment {
 
   constructor(options: Options, spellHitWeight?: number, spellCritWeight?: number) {
     let _bis = (slot: number) => {
-      return Database.getBestInSlotItemWithEnchant(slot, this.itemSearch)
+      return Equipment.getBestInSlotItemWithEnchant(slot, this.itemSearch)
     }
 
     this.itemSearch = Equipment.itemSearchFromOptions(options, spellHitWeight, spellCritWeight)
 
-    let bisTrinkets = Database.getBestInSlotTrinkets(this.itemSearch)
-    let bisRings = Database.getBestInSlotRings(this.itemSearch)
-    let bisWeaponCombo = Database.getBestInSlotWeaponCombo(this.itemSearch)
-    let bisChestLegsFeet = Database.getBestInSlotChestLegsFeet(this.itemSearch)
+    let bisTrinkets = Equipment.getBestInSlotTrinkets(this.itemSearch)
+    let bisRings = Equipment.getBestInSlotRings(this.itemSearch)
+    let bisWeaponCombo = Equipment.getBestInSlotWeaponCombo(this.itemSearch)
+    let bisChestLegsFeet = Equipment.getBestInSlotChestLegsFeet(this.itemSearch)
     this.head = _bis(ItemSlot.Head)
     this.hands = _bis(ItemSlot.Hands)
     this.neck = _bis(ItemSlot.Neck)
@@ -64,30 +67,31 @@ export default class Equipment {
   }
 
   static itemSearchFromOptions(options: Options, spellHitWeight?: number, spellCritWeight?: number) {
-    let spell = new Spell(options.spellName)
+    let myOptions = Tools.CloneObject(options)
+    let spell = new Spell(myOptions.spellName)
 
     return {
-      phase: options.phase,
-      faction: Character.factionFromRace(options.character.race),
-      pvpRank: options.character.pvpRank,
-      raids: options.raids,
-      worldBosses: options.worldBosses,
-      randomEnchants: options.randomEnchants,
-      tailoring: options.tailoring,
-      enchantExploit: options.enchantExploit,
+      phase: myOptions.phase,
+      faction: Character.factionFromRace(myOptions.character.race),
+      pvpRank: myOptions.character.pvpRank,
+      raids: myOptions.raids,
+      worldBosses: myOptions.worldBosses,
+      randomEnchants: myOptions.randomEnchants,
+      tailoring: myOptions.tailoring,
+      enchantExploit: myOptions.enchantExploit,
       magicSchool: spell.magicSchool,
-      targetType: options.target.type,
+      targetType: myOptions.target.type,
       spellHitWeight: spellHitWeight !== undefined ? spellHitWeight : 15,
       spellCritWeight: spellCritWeight !== undefined ? spellCritWeight : 10,
-      lockedItems: options.character.lockedItems,
-      lockedEnchants: options.character.lockedEnchants,
-      slot: options.itemSearchSlot,
+      lockedItems: myOptions.character.lockedItems,
+      lockedEnchants: myOptions.character.lockedEnchants,
+      slot: myOptions.itemSearchSlot,
       sortOrder: SortOrder.Descending
     }
   }
 
   static optimalEnchantsForSlot(options: Options) {
-    let myOptions = options
+    let myOptions = Tools.CloneObject(options)
 
     /* Unequip the slot in question so we get a list of properly weighted enchants */
     switch (myOptions.enchantSearchSlot) {
@@ -123,11 +127,11 @@ export default class Equipment {
     }
 
     let equipment = Equipment.optimalEquipment(myOptions)
-    return Database.getWeightedEnchantsBySlot(myOptions.enchantSearchSlot, equipment.itemSearch)
+    return Equipment.getWeightedEnchantsBySlot(myOptions.enchantSearchSlot, equipment.itemSearch)
   }
 
   static optimalItemsForSlot(options: Options) {
-    let myOptions = options
+    let myOptions = Tools.CloneObject(options)
 
     /* Unequip the slot in question so we get a list of properly weighted items */
     switch (myOptions.itemSearchSlot) {
@@ -187,7 +191,7 @@ export default class Equipment {
     }
 
     let equipment = Equipment.optimalEquipment(myOptions)
-    return Database.getWeightedItemsBySlot(myOptions.itemSearchSlot, equipment.itemSearch)
+    return Equipment.getWeightedItemsBySlot(myOptions.itemSearchSlot, equipment.itemSearch)
   }
 
   /* TODO: If itemSearchSlot isn't none, need to ignore that slot when weighting */
@@ -247,6 +251,280 @@ export default class Equipment {
       ${equipment.mainhand.name}, ${equipment.trinket.name}, ${equipment.offhand.name},
       ${equipment.trinket2.name}, ${equipment.idol.spellDamage}`)
   }
+
+  /*************************** TODO **********************************/
+  /*************************** UGLY **********************************/
+  /*************************** STUFF **********************************/
+  static isUniqueEquip(itemJSON: ItemJSON) {
+    return itemJSON.unique || (itemJSON.boss && itemJSON.boss.includes('Quest:')) ? true : false
+  }
+
+  static getWeightedItemsBySlot(slot: ItemSlot, itemSearch: ItemSearch) {
+    let lockedItem = Locked.GetItem(itemSearch.lockedItems, slot)
+    if (lockedItem) {
+      let x = []
+      lockedItem.score = Item.scoreItem(
+        lockedItem,
+        itemSearch.magicSchool,
+        itemSearch.targetType,
+        itemSearch.spellHitWeight,
+        itemSearch.spellCritWeight
+      )
+      x.push(lockedItem)
+      return x
+    }
+
+    let result = Query.Items({
+      cloneResults: true,
+      slot: slot,
+      phase: itemSearch.phase,
+      faction: itemSearch.faction,
+      pvpRank: itemSearch.pvpRank,
+      worldBosses: itemSearch.worldBosses,
+      raids: itemSearch.raids,
+      randomEnchants: itemSearch.randomEnchants
+    })
+
+    /* score items */
+    for (let i = 0; i < result.length; i++) {
+      let score = Item.scoreItem(
+        result[i],
+        itemSearch.magicSchool,
+        itemSearch.targetType,
+        itemSearch.spellHitWeight,
+        itemSearch.spellCritWeight
+      )
+      result[i].score = score
+    }
+
+    result.sort(itemSearch.sortOrder === SortOrder.Descending ? Item.sortScoreDes : Item.sortScoreAsc)
+    return result
+  }
+
+  static getWeightedEnchantsBySlot(slot: ItemSlot, itemSearch: ItemSearch) {
+    let lockedEnchant = Locked.GetEnchant(itemSearch.lockedEnchants, slot)
+    if (lockedEnchant) {
+      let x = []
+      lockedEnchant.score = Item.scoreEnchant(
+        lockedEnchant,
+        itemSearch.magicSchool,
+        itemSearch.spellHitWeight,
+        itemSearch.spellCritWeight
+      )
+      x.push(lockedEnchant)
+      return x
+    }
+
+    let result = Query.Enchants({
+      cloneResults: true,
+      slot: slot,
+      phase: itemSearch.phase,
+      enchantExploit: itemSearch.enchantExploit
+    })
+
+    for (let i in result) {
+      let score = Item.scoreEnchant(
+        result[i],
+        itemSearch.magicSchool,
+        itemSearch.spellHitWeight,
+        itemSearch.spellCritWeight
+      )
+      result[i].score = score
+    }
+    result.sort(itemSearch.sortOrder === SortOrder.Descending ? Item.sortScoreDes : Item.sortScoreAsc)
+    return result
+  }
+
+  static getItemSet(name: string, itemSearch: ItemSearch) {
+    /* Find the set and filter */
+    let itemSets = Query.ItemSets({ cloneResults: true, name: name, raids: itemSearch.raids, phase: itemSearch.phase })
+    if (!itemSets || !itemSets[0]) {
+      return undefined
+    }
+    let itemSet = itemSets[0]
+
+    /* TODO: Should be aborting here custom selections are disallowing the set */
+
+    /* Find each item in set, score them and add to array */
+    let itemSetItems = []
+    let itemSetItemsScore = 0
+    for (let itemName of itemSet.itemNames) {
+      let items = Query.Items({
+        cloneResults: true,
+        name: itemName
+      })
+      // let item = this.itemByName(itemName)
+      let item = items[0]
+      item.score = Item.scoreItem(
+        item,
+        itemSearch.magicSchool,
+        itemSearch.targetType,
+        itemSearch.spellHitWeight,
+        itemSearch.spellCritWeight
+      )
+      itemSetItemsScore += item.score
+      itemSetItems.push(item)
+    }
+
+    /* Combine score of items plus set bonus */
+    itemSet.score = itemSetItemsScore
+    if (itemSearch.tailoring) {
+      let isb = Item.scoreItemSetBonus(
+        itemSet,
+        itemSearch.magicSchool,
+        itemSearch.targetType,
+        itemSearch.spellHitWeight,
+        itemSearch.spellCritWeight
+      )
+      itemSet.score += isb
+    }
+
+    /* Slap items array onto itemset and return*/
+    itemSet.items = itemSetItems
+    return itemSet
+  }
+
+  static getBestInSlotItem(slot: ItemSlot, itemSearch: ItemSearch) {
+    let result = this.getWeightedItemsBySlot(slot, itemSearch)
+    return result[0]
+  }
+
+  static getBestInSlotEnchant(slot: ItemSlot, itemSearch: ItemSearch) {
+    let result = this.getWeightedEnchantsBySlot(slot, itemSearch)
+    return result[0]
+  }
+
+  static getBestInSlotItemWithEnchant(slot: ItemSlot, itemSearch: ItemSearch) {
+    const item = this.getBestInSlotItem(slot, itemSearch)
+    let enchant = this.getBestInSlotEnchant(slot, itemSearch)
+
+    return new Item(slot, item, enchant)
+  }
+
+  static getBestInSlotChestLegsFeet(itemSearch: ItemSearch) {
+    let chest: ItemJSON | undefined = this.getBestInSlotItem(ItemSlot.Chest, itemSearch)
+    let legs: ItemJSON | undefined = this.getBestInSlotItem(ItemSlot.Legs, itemSearch)
+    let feet: ItemJSON | undefined = this.getBestInSlotItem(ItemSlot.Feet, itemSearch)
+    let bloodvine = this.getItemSet(`Bloodvine Garb`, itemSearch)
+    let bloodvineScore = bloodvine && bloodvine.score ? bloodvine.score : 0
+
+    let normScore =
+      (chest && chest.score ? chest.score : 0) +
+      (legs && legs.score ? legs.score : 0) +
+      (feet && feet.score ? feet.score : 0)
+
+    let customChest =
+      itemSearch &&
+      itemSearch.lockedItems &&
+      itemSearch.lockedItems.chest !== '' &&
+      itemSearch.lockedItems.chest !== '19682'
+    let customLegs =
+      itemSearch &&
+      itemSearch.lockedItems &&
+      itemSearch.lockedItems.legs !== '' &&
+      itemSearch.lockedItems.legs !== '19683'
+    let customFeet =
+      itemSearch &&
+      itemSearch.lockedItems &&
+      itemSearch.lockedItems.feet !== '' &&
+      itemSearch.lockedItems.feet !== '19684'
+
+    if (!customChest && !customLegs && !customFeet && bloodvine && bloodvineScore > normScore) {
+      console.log(`ATTENTION: I favored bloodvine set (${bloodvineScore}) over other items (${normScore})`)
+      console.log(itemSearch)
+      chest = bloodvine.items ? bloodvine.items[0] : undefined
+      legs = bloodvine.items ? bloodvine.items[1] : undefined
+      feet = bloodvine.items ? bloodvine.items[2] : undefined
+    }
+
+    return {
+      chest: chest,
+      chestEnchant: this.getBestInSlotEnchant(ItemSlot.Chest, itemSearch),
+      legs: legs,
+      legsEnchant: this.getBestInSlotEnchant(ItemSlot.Legs, itemSearch),
+      feet: feet,
+      feetEnchant: this.getBestInSlotEnchant(ItemSlot.Feet, itemSearch)
+    }
+  }
+
+  static getBestInSlotTrinkets(itemSearch: ItemSearch) {
+    let result = this.getWeightedItemsBySlot(ItemSlot.Trinket, itemSearch)
+    let result2 = this.getWeightedItemsBySlot(ItemSlot.Trinket2, itemSearch)
+
+    let trinket1 = result[0]
+    let trinket2 = result2[0]
+
+    if (this.isUniqueEquip(result[0]) && result[0].name === result2[0].name) {
+      trinket2 = result2[1]
+    }
+
+    return {
+      trinket: trinket1,
+      trinket2: trinket2
+    }
+  }
+
+  static getBestInSlotRings(itemSearch: ItemSearch) {
+    let zanzils = undefined
+    let result = this.getWeightedItemsBySlot(ItemSlot.Finger, itemSearch)
+    let result2 = this.getWeightedItemsBySlot(ItemSlot.Finger2, itemSearch)
+
+    let ring1: ItemJSON | undefined = result[0]
+    let ring2: ItemJSON | undefined = result2[0]
+    if (this.isUniqueEquip(result[0]) && result[0].name === result2[0].name) {
+      ring2 = result2[1]
+    }
+
+    let basicScore = (ring1 && ring1.score ? ring1.score : 0) + (ring2 && ring2.score ? ring2.score : 0)
+    let customFinger = itemSearch.lockedItems !== undefined && itemSearch.lockedItems.finger
+    let customFinger2 = itemSearch.lockedItems !== undefined && itemSearch.lockedItems.finger2
+
+    if (!customFinger && !customFinger2) {
+      zanzils = this.getItemSet(`Zanzil's Concentration`, itemSearch)
+      if (zanzils && (zanzils.score ? zanzils.score : 0) > basicScore) {
+        ring1 = zanzils.items ? zanzils.items[0] : undefined
+        ring2 = zanzils.items ? zanzils.items[1] : undefined
+      }
+    }
+
+    console.log(ring1)
+    console.log(ring2)
+
+    return {
+      finger: ring1,
+      finger2: ring2
+    }
+  }
+
+  static getBestInSlotWeaponCombo(itemSearch: ItemSearch) {
+    const twohand = this.getBestInSlotItem(ItemSlot.Twohand, itemSearch)
+    const onehand = this.getBestInSlotItem(ItemSlot.Onehand, itemSearch)
+    const offhand = this.getBestInSlotItem(ItemSlot.Offhand, itemSearch)
+    const enchant = this.getBestInSlotEnchant(ItemSlot.Mainhand, itemSearch)
+
+    const onehandscore = onehand && onehand.score ? onehand.score : 0
+    const offhandscore = offhand && offhand.score ? offhand.score : 0
+    const twohandscore = twohand && twohand.score ? twohand.score : 0
+
+    const _offhand = Locked.GetItemId(itemSearch.lockedItems, ItemSlot.Offhand)
+
+    if (!_offhand && twohandscore > onehandscore + offhandscore) {
+      return {
+        mainHand: twohand,
+        enchant: enchant
+      }
+    }
+
+    let mainhand = onehand
+
+    return {
+      mainHand: mainhand,
+      offHand: mainhand.slot === ItemSlot.Twohand ? undefined : offhand,
+      enchant: enchant
+    }
+  }
+
+  /*************************** /UGLY **********************************/
 
   get hasBloodvine() {
     if (

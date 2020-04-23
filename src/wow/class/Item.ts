@@ -1,7 +1,9 @@
-import Database from './Database'
+import Query from './Query'
+
 import ItemJSON from '../interface/ItemJSON'
 import ItemSetJSON from '../interface/ItemSetJSON'
 import EnchantJSON from '../interface/EnchantJSON'
+
 import MagicSchool from '../enum/MagicSchool'
 import ItemQuality from '../enum/ItemQuality'
 import ItemSlot from '../enum/ItemSlot'
@@ -23,6 +25,14 @@ export default class Item {
     this._slot = slot
     this.itemJSON = itemJSON ? itemJSON : undefined
     this.enchantJSON = enchantJSON ? enchantJSON : undefined
+  }
+
+  static sortScoreAsc(a: ItemJSON | EnchantJSON, b: ItemJSON | EnchantJSON) {
+    return (a.score ? a.score : 0) - (b.score ? b.score : 0)
+  }
+
+  static sortScoreDes(a: ItemJSON | EnchantJSON, b: ItemJSON | EnchantJSON) {
+    return (b.score ? b.score : 0) - (a.score ? a.score : 0)
   }
 
   /* Handle items that only damage certain types of mobs */
@@ -126,12 +136,12 @@ export default class Item {
     return parseFloat(totalScore.toFixed(3))
   }
 
-  get customId(): string {
-    return this.itemJSON && this.itemJSON.customId ? this.itemJSON.customId : ``
-  }
-
   get id(): number {
     return this.itemJSON && this.itemJSON.id ? this.itemJSON.id : 0
+  }
+
+  get customId(): string {
+    return this.itemJSON && this.itemJSON.customId ? this.itemJSON.customId : ``
   }
 
   get enchantId(): number {
@@ -231,8 +241,16 @@ export default class Item {
     }
   }
 
-  isEmpty(): boolean {
-    return this.itemJSON ? false : true
+  get isEmpty(): boolean {
+    if (!this.itemJSON) {
+      return true
+    }
+
+    if (this.itemJSON.customId === '1') {
+      return true
+    }
+
+    return false
   }
 
   get quality(): ItemQuality {
@@ -293,7 +311,11 @@ export default class Item {
     if (emptySlot === 'Offhand') {
       emptySlot = 'OffHand'
     }
-    return this.itemJSON ? `${this.itemJSON.icon}.jpg` : `${emptySlot}.jpg`
+    if (emptySlot === 'Onehand') {
+      emptySlot = 'MainHand'
+    }
+
+    return this.isEmpty || !this.itemJSON ? `${emptySlot}.jpg` : `${this.itemJSON.icon}.jpg`
   }
 
   get iconFullPath(): string {
@@ -477,6 +499,10 @@ export default class Item {
   get enchantClass(): string {
     let slot = this.enchantJSON ? this.enchantJSON.slot : ItemSlot.Any
 
+    if (this.enchantJSON && this.enchantJSON.id === 1) {
+      return `poor`
+    }
+
     switch (slot) {
       case ItemSlot.Head:
       case ItemSlot.Hands:
@@ -588,14 +614,6 @@ export default class Item {
     let arr: string[] = []
 
     return arr
-  }
-
-  static sortScoreAsc(a: ItemJSON | EnchantJSON, b: ItemJSON | EnchantJSON) {
-    return (a.score ? a.score : 0) - (b.score ? b.score : 0)
-  }
-
-  static sortScoreDes(a: ItemJSON | EnchantJSON, b: ItemJSON | EnchantJSON) {
-    return (b.score ? b.score : 0) - (a.score ? a.score : 0)
   }
 
   toJSON() {

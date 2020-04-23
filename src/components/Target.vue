@@ -83,9 +83,5 @@ const Props = Vue.extend({
 @Component
 export default class Target extends Props {
   wow = wow
-
-  get targetList() {
-    return wow.Database.targetList()
-  }
 }
 </script>

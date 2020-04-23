@@ -4,12 +4,23 @@ import LockedEnchants from '../interface/LockedEnchants'
 import Equipment from './Equipment'
 import pako from 'pako'
 import { Base64 } from 'js-base64'
+import clonedeep from 'lodash/cloneDeep'
 
 interface ParaminOptions {
   version?: number
 }
 
 export default class Tools {
+  /*
+  static CloneObject(o: object) {
+    return JSON.parse(JSON.stringify(o))
+  }
+  */
+
+  static CloneObject(o: any) {
+    return clonedeep(o)
+  }
+
   static isLetter(char: string) {
     return char.length === 1 && char.match(/[a-z]/i) ? true : false
   }

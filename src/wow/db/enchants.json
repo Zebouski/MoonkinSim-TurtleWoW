@@ -1,25 +1,5 @@
 [
     {
-        "id": 1, 
-        "name": "No enchant",
-        "slot": -2,
-        "phase": 1,
-        "icon": null,
-        "faction": "BOTH",
-        "score": 0,
-        "text": "No enchant",
-        "spellDamage": 0,
-        "arcaneDamage": 0,
-        "natureDamage": 0,
-        "spellHit": 0,
-        "spellCrit": 0,
-        "spellPenetration": 0,
-        "stamina": 0,
-        "intellect": 0,
-        "spirit": 0,
-        "mp5": 0
-    },
-    {
         "id": 24164,
         "name": "Presence of Sight",
         "slot": 1,

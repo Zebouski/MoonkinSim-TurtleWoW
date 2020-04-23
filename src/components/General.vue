@@ -78,6 +78,8 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { default as wow } from '../wow'
 
+import Query from '../wow/class/Query'
+
 const Props = Vue.extend({
   props: {
     options: Object
@@ -89,7 +91,14 @@ export default class General extends Props {
   wow = wow
 
   get spellList() {
-    return wow.Database.spellListByPhase(this.options.phase)
+    let spellNames: string[] = []
+
+    let spells = Query.Spells({ phase: this.options.phase })
+    for (let spell of spells) {
+      spellNames.push(spell.name)
+    }
+
+    return spellNames
   }
 
   get phaseList() {

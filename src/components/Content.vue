@@ -163,6 +163,23 @@ export default class Content extends Props {
   }
 
   get debugObj() {
+    /*
+    return {
+      enchants: wow.Query.Enchants({
+        slot: wow.ItemSlot.Head,
+        phase: this.options.phase
+      }),
+      items: wow.Query.Items({
+        slot: wow.ItemSlot.Head,
+        phase: this.options.phase,
+        faction: this.options.faction,
+        pvpRank: this.options.pvpRank,
+        worldBosses: false,
+        raids: this.options.raids,
+        randomEnchants: this.options.randomEnchants
+      })
+    }
+    */
     return {
       options: this.options,
       spellCast: this.encounter.spellCast

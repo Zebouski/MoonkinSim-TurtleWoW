@@ -20,9 +20,10 @@ import PvPRank from './enum/PvPRank'
 import Buffs from './enum/Buffs'
 import TargetType from './enum/TargetType'
 
-import Database from './class/Database'
+import Query from './class/Query'
 import Character from './class/Character'
 import Item from './class/Item'
+import Locked from './class/Locked'
 import Equipment from './class/Equipment'
 import Target from './class/Target'
 import Spell from './class/Spell'
@@ -44,9 +45,10 @@ export default {
   PvPRank,
   Buffs,
   TargetType,
-  Database,
+  Query,
   Character,
   Item,
+  Locked,
   Equipment,
   Target,
   Spell,

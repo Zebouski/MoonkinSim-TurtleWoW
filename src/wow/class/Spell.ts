@@ -1,4 +1,4 @@
-import Database from './Database'
+import Query from './Query'
 import constants from '../constants'
 import SpellCoefficient from '../interface/SpellCoefficient'
 import SpellJSON from '../interface/SpellJSON'
@@ -9,17 +9,20 @@ import MagicSchool from '../enum/MagicSchool'
  */
 export default class Spell {
   name: string
-  spellJSON: SpellJSON
+  spellJSON: SpellJSON | undefined
 
   constructor(name: string) {
     this.name = name
-    this.spellJSON = Database.spell(name)
+    this.spellJSON = Query.Spell({ name: name })
   }
 
   /**
    * Return base (short) name, parsed from name.
    */
   get baseName(): string {
+    if (!this.spellJSON) {
+      return 'None'
+    }
     let splitStr = this.spellJSON.name.split(' ')
     splitStr.length = splitStr.length - 2
     return splitStr.join(' ')
@@ -29,6 +32,9 @@ export default class Spell {
    * Return spell rank, parsed from name.
    */
   get rank(): string {
+    if (!this.spellJSON) {
+      return '0'
+    }
     let splitStr = this.spellJSON.name.split(' ')
     return splitStr[splitStr.length - 1]
   }
@@ -81,6 +87,9 @@ export default class Spell {
   }
 
   get icon(): string {
+    if (!this.spellJSON) {
+      return 'classic_temp.jpg'
+    }
     return `${this.spellJSON.icon}.jpg`
   }
 
@@ -92,6 +101,9 @@ export default class Spell {
    * Return spell type (direct, periodic or hybrid)
    */
   get type(): string {
+    if (!this.spellJSON) {
+      return 'direct'
+    }
     return this.spellJSON.type.toUpperCase()
   }
 
@@ -99,6 +111,9 @@ export default class Spell {
    * Return spell reqLvl, unmodified.
    */
   get reqLvl(): number {
+    if (!this.spellJSON) {
+      return 0
+    }
     return this.spellJSON.reqLvl
   }
 
@@ -106,6 +121,9 @@ export default class Spell {
    * Return cast time, limited to globalCoolDown FIXME: dont limit to gcd here
    */
   get castTime(): number {
+    if (!this.spellJSON) {
+      return constants.globalCoolDown
+    }
     return Math.max(constants.globalCoolDown, this.spellJSON.castTime)
   }
 
@@ -113,11 +131,14 @@ export default class Spell {
    * Return spell magicSchool, unmodified.
    */
   get magicSchool(): MagicSchool {
+    if (!this.spellJSON) {
+      return MagicSchool.Holy
+    }
     return this.spellJSON.magicSchool
   }
 
   get magicSchoolText(): string {
-    return MagicSchool[this.spellJSON.magicSchool]
+    return MagicSchool[this.magicSchool]
   }
 
   /**
@@ -138,6 +159,9 @@ export default class Spell {
    * Return spell range, unmodified.
    */
   get range(): number {
+    if (!this.spellJSON) {
+      return 30
+    }
     return this.spellJSON.range
   }
 
@@ -145,6 +169,9 @@ export default class Spell {
    * Return mana cost, unmodified.
    */
   get manaCost(): number {
+    if (!this.spellJSON) {
+      return 0
+    }
     return this.spellJSON.manaCost
   }
 
@@ -152,6 +179,9 @@ export default class Spell {
    * Return spell minimum damage, unmodified.
    */
   get minDmg(): number {
+    if (!this.spellJSON) {
+      return 0
+    }
     return this.spellJSON.minDmg ? this.spellJSON.minDmg : 0
   }
 
@@ -159,6 +189,9 @@ export default class Spell {
    * Return spell max damage, unmodified.
    */
   get maxDmg(): number {
+    if (!this.spellJSON) {
+      return 0
+    }
     return this.spellJSON.maxDmg ? this.spellJSON.maxDmg : 0
   }
 
@@ -170,10 +203,16 @@ export default class Spell {
   }
 
   get tickDmg(): number {
+    if (!this.spellJSON) {
+      return 0
+    }
     return this.spellJSON.tickDmg ? this.spellJSON.tickDmg : 0
   }
 
   get tickRate(): number {
+    if (!this.spellJSON) {
+      return 0
+    }
     return this.spellJSON.tickRate ? this.spellJSON.tickRate : 0
   }
 
@@ -182,6 +221,9 @@ export default class Spell {
   }
 
   get duration(): number {
+    if (!this.spellJSON) {
+      return 0
+    }
     return this.spellJSON.duration ? this.spellJSON.duration : 0
   }
 
@@ -190,6 +232,9 @@ export default class Spell {
   }
 
   get secondaryEffect(): string | undefined {
+    if (!this.spellJSON) {
+      return ''
+    }
     return this.spellJSON.secondary
   }
 

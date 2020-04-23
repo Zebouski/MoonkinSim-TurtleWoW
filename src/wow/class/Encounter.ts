@@ -9,15 +9,17 @@ import Target from './Target'
 import Cast from './Cast'
 import Character from './Character'
 import Equipment from './Equipment'
-import Database from './Database'
 import Item from './Item'
+
+import ItemJSON from '../interface/ItemJSON'
+import EnchantJSON from '../interface/EnchantJSON'
 
 export default class Encounter {
   options: Options
   spellCast: Cast
   equipment: Equipment
-  items: Item[]
-  enchants: JSON
+  items: ItemJSON[]
+  enchants: EnchantJSON[]
 
   constructor(options: Options) {
     this.options = options
