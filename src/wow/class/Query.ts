@@ -204,6 +204,8 @@ export default class Query {
     /* id and name are unique. if one is passed just lookup and return */
     if (opts.id) {
       return singleEnchantQuery(`[id=${opts.id}]`)
+    } else if (opts.customId) {
+      return singleEnchantQuery(`[customId=${opts.customId}]`)
     } else if (opts.name) {
       return singleEnchantQuery(`[name=${opts.name}]`)
     }

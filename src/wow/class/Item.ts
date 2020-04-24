@@ -148,6 +148,10 @@ export default class Item {
     return this.enchantJSON && this.enchantJSON.id ? this.enchantJSON.id : 0
   }
 
+  get enchantCustomId(): string {
+    return this.enchantJSON && this.enchantJSON.customId ? this.enchantJSON.customId : ``
+  }
+
   get name(): string {
     return this.itemJSON && this.itemJSON.name ? this.itemJSON.name : this.slotDisplayName
   }

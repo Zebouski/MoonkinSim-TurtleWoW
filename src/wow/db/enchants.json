@@ -1,6 +1,7 @@
 [
     {
         "id": 24164,
+        "customId": "24164",
         "name": "Presence of Sight",
         "slot": 1,
         "phase": 4,
@@ -22,6 +23,7 @@
     },
     {
         "id": 24164,
+        "customId": "24164",
         "name": "Presence of Sight",
         "slot": 7,
         "phase": 4,
@@ -43,6 +45,7 @@
     },
     {
         "id": 22749,
+        "customId": "22749",
         "name": "Enchant Weapon - Spell Power",
         "slot": 21,
         "phase": 1,
@@ -63,6 +66,7 @@
     },
     {
         "id": 19449,
+        "customId": "19449",
         "name": "Enchant Weapon - Mighty Intellect",
         "slot": 21,
         "phase": 1,
@@ -83,6 +87,7 @@
     },
     {
         "id": 22844,
+        "customId": "22844",
         "name": "Arcanum of Focus",
         "slot": 1,
         "phase": 1,
@@ -103,6 +108,7 @@
     },
     {
         "id": 24168,
+        "customId": "24168",
         "name": "Animist's Caress",
         "slot": 1,
         "phase": 4,
@@ -124,6 +130,7 @@
     },
     {
         "id": 24168,
+        "customId": "24168",
         "name": "Animist's Caress",
         "slot": 7,
         "phase": 4,
@@ -145,6 +152,7 @@
     },
     {
         "id": 15404,
+        "customId": "15404",
         "name": "Lesser Arcanum of Voracity",
         "slot": 1,
         "phase": 1,
@@ -165,6 +173,7 @@
     },
     {
         "id": 15404,
+        "customId": "15404",
         "name": "Lesser Arcanum of Voracity",
         "slot": 7,
         "phase": 1,
@@ -185,6 +194,7 @@
     },
     {
         "id": 29467,
+        "customId": "29467",
         "name": "Power of the Scourge",
         "slot": 3,
         "phase": 6,
@@ -205,6 +215,7 @@
     },
     {
         "id": 24421,
+        "customId": "24421",
         "name": "Zandalar Signet of Mojo",
         "slot": 3,
         "phase": 4,
@@ -225,6 +236,7 @@
     },
     {
         "id": 29475,
+        "customId": "29475",
         "name": "Resilience of the Scourge",
         "slot": 3,
         "phase": 6,
@@ -246,6 +258,7 @@
     },
     {
         "id": 20025,
+        "customId": "20025",
         "name": "Enchant Chest - Greater Stats",
         "slot": 5,
         "phase": 1,
@@ -266,6 +279,7 @@
     },
     {
         "id": 13941,
+        "customId": "13941",
         "name": "Enchant Chest - Stats",
         "slot": 5,
         "phase": 1,
@@ -286,6 +300,7 @@
     },
     {
         "id": 13700,
+        "customId": "13700",
         "name": "Enchant Chest - Lesser Stats",
         "slot": 5,
         "phase": 1,
@@ -306,6 +321,7 @@
     },
     {
         "id": 13626,
+        "customId": "13626",
         "name": "Enchant Chest - Minor Stats",
         "slot": 5,
         "phase": 1,
@@ -326,6 +342,7 @@
     },
     {
         "id": 25096,
+        "customId": "25096",
         "name": "Enchant Cloak - Subtlety",
         "slot": 15,
         "phase": 5,
@@ -346,6 +363,7 @@
     },
     {
         "id": 20008,
+        "customId": "20008",
         "name": "Enchant Bracer - Greater Intellect",
         "slot": 9,
         "phase": 1,
@@ -366,6 +384,7 @@
     },
     {
         "id": 13822,
+        "customId": "13822",
         "name": "Enchant Bracer - Intellect",
         "slot": 9,
         "phase": 1,
@@ -386,6 +405,7 @@
     },
     {
         "id": 13622,
+        "customId": "13622",
         "name": "Enchant Bracer - Lesser Intellect",
         "slot": 9,
         "phase": 1,
@@ -406,6 +426,7 @@
     },
     {
         "id": 23807,
+        "customId": "23807",
         "name": "Enchant Bracer - Mana Regeneration",
         "slot": 9,
         "phase": 1,
@@ -426,6 +447,7 @@
     },
     {
         "id": 25091,
+        "customId": "25091",
         "name": "Enchant Gloves - Healing Power",
         "slot": 10,
         "phase": 5,
@@ -446,6 +468,7 @@
     },
     {
         "id": 22844,
+        "customId": "22844",
         "name": "Arcanum of Focus",
         "slot": 7,
         "phase": 1,
@@ -466,6 +489,7 @@
     },
     {
         "id": 13890,
+        "customId": "13890",
         "name": "Enchant Boots - Minor Speed",
         "slot": 8,
         "phase": 1,
@@ -486,6 +510,7 @@
     },
     {
         "id": 20024,
+        "customId": "20024",
         "name": "Enchant Boots - Spirit",
         "slot": 8,
         "phase": 1,

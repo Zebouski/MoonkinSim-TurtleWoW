@@ -34,6 +34,7 @@ export default class Equipment {
   trinket2: Item
   idol: Item
 
+  /* TODO: can I make it so the constructor could take list of item ids or something instead? */
   constructor(options: Options, spellHitWeight?: number, spellCritWeight?: number) {
     let _bis = (slot: number) => {
       return Equipment.getBestInSlotItemWithEnchant(slot, this.itemSearch)
@@ -64,6 +65,9 @@ export default class Equipment {
     this.trinket = new Item(ItemSlot.Trinket, bisTrinkets.trinket)
     this.trinket2 = new Item(ItemSlot.Trinket2, bisTrinkets.trinket2)
     this.idol = _bis(ItemSlot.Relic)
+
+    /* TODO: think need to re-evaluate stat weights, update the itemsearch, and rescore
+     * all the items. pita the way this is structured. */
   }
 
   static itemSearchFromOptions(options: Options, spellHitWeight?: number, spellCritWeight?: number) {
@@ -196,6 +200,7 @@ export default class Equipment {
 
   /* TODO: If itemSearchSlot isn't none, need to ignore that slot when weighting */
   static optimalEquipment(options: Options) {
+    let myOptions = Tools.CloneObject(options)
     let maxTries = 5
     let dps = 0
     let prevDps = 0
@@ -206,15 +211,15 @@ export default class Equipment {
     for (let i = 0; i <= maxTries; i++) {
       spellCast = new Cast(
         new Character(
-          options.character,
+          myOptions.character,
           new Equipment(
-            options,
+            myOptions,
             spellCast ? spellCast.spellHitWeight : undefined,
             spellCast ? spellCast.spellCritWeight : undefined
           )
         ),
-        new Spell(options.spellName),
-        new Target(options.target)
+        new Spell(myOptions.spellName),
+        new Target(myOptions.target)
       )
 
       console.log(`spellHitWeight=${spellCast.spellHitWeight}, spellCritWeight=${spellCast.spellCritWeight}`)
@@ -224,11 +229,15 @@ export default class Equipment {
         console.log(`[try ${i}] no change in dps (${dps}), using previous set.`)
         // Equipment.printItemNames(prevSpellCast.character.equipment)
         console.log(`--- finished gear optimization in ${i} tries ---`)
+        prevSpellCast.character.equipment.itemSearch.spellHitWeight = prevSpellCast.spellHitWeight
+        prevSpellCast.character.equipment.itemSearch.spellCritWeight = prevSpellCast.spellCritWeight
         return prevSpellCast.character.equipment
       } else if (prevSpellCast && prevDps > dps) {
         console.log(`[try ${i}] dps loss of ${prevDps - dps}, using previous set.`)
         // Equipment.printItemNames(prevSpellCast.character.equipment)
         console.log(`--- finished gear optimization in ${i} tries ---`)
+        prevSpellCast.character.equipment.itemSearch.spellHitWeight = prevSpellCast.spellHitWeight
+        prevSpellCast.character.equipment.itemSearch.spellCritWeight = prevSpellCast.spellCritWeight
         return prevSpellCast.character.equipment
       } else {
         console.log(`[try ${i}] dps increase of ${dps - prevDps}, continuing.`)

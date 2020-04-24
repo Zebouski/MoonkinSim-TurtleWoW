@@ -183,16 +183,16 @@ export default class Tools {
       idol: equipment.idol.customId
     }
 
-    let lockedEnchants = {
-      head: equipment.head.enchantId,
-      hands: equipment.hands.enchantId,
-      shoulder: equipment.shoulder.enchantId,
-      legs: equipment.legs.enchantId,
-      back: equipment.back.enchantId,
-      feet: equipment.feet.enchantId,
-      chest: equipment.chest.enchantId,
-      wrist: equipment.wrist.enchantId,
-      mainhand: equipment.mainhand.enchantId
+    let lockedEnchants: LockedEnchants = {
+      head: equipment.head.enchantCustomId,
+      hands: equipment.hands.enchantCustomId,
+      shoulder: equipment.shoulder.enchantCustomId,
+      legs: equipment.legs.enchantCustomId,
+      back: equipment.back.enchantCustomId,
+      feet: equipment.feet.enchantCustomId,
+      chest: equipment.chest.enchantCustomId,
+      wrist: equipment.wrist.enchantCustomId,
+      mainhand: equipment.mainhand.enchantCustomId
     }
 
     return Tools.gearUrl(lockedItems, lockedEnchants, { version: 2 })

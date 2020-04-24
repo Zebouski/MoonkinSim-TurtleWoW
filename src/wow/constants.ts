@@ -66,15 +66,15 @@ let defaults: Options = {
       idol: ''
     },
     lockedEnchants: {
-      head: 0,
-      hands: 0,
-      shoulder: 0,
-      legs: 0,
-      back: 0,
-      feet: 0,
-      chest: 0,
-      wrist: 0,
-      mainhand: 0
+      head: '',
+      hands: '',
+      shoulder: '',
+      legs: '',
+      back: '',
+      feet: '',
+      chest: '',
+      wrist: '',
+      mainhand: ''
     }
   },
   target: {

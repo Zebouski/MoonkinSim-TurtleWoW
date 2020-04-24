@@ -57,9 +57,9 @@ export default class Locked {
     }
   }
 
-  static GetEnchantId(lockedEnchants: LockedEnchants | undefined, slot: ItemSlot): number {
+  static GetEnchantId(lockedEnchants: LockedEnchants | undefined, slot: ItemSlot): string {
     if (!lockedEnchants) {
-      return 0
+      return ''
     }
 
     switch (slot) {
@@ -84,7 +84,7 @@ export default class Locked {
       case ItemSlot.Onehand:
         return lockedEnchants.mainhand
       default:
-        return 0
+        return ''
     }
   }
 
@@ -115,6 +115,7 @@ export default class Locked {
     let emptyEnchant = () => {
       return {
         id: 1,
+        customId: '1',
         slot: slot,
         name: 'No enchant',
         phase: 1,
@@ -135,13 +136,14 @@ export default class Locked {
     }
 
     let id = this.GetEnchantId(lockedEnchants, slot)
-    if (!id) {
+
+    if (!id || id === '') {
       return undefined
-    } else if (id === 1) {
+    } else if (id === '1') {
       return emptyEnchant()
     }
 
-    let enchants = Query.Enchants({ id: id, cloneResults: true })
+    let enchants = Query.Enchants({ customId: id, cloneResults: true })
     return enchants && enchants[0] ? enchants[0] : undefined
   }
 
@@ -205,7 +207,7 @@ export default class Locked {
     }
   }
 
-  static SetEnchant(lockedEnchants: LockedEnchants | undefined, slot: ItemSlot, value: number) {
+  static SetEnchant(lockedEnchants: LockedEnchants | undefined, slot: ItemSlot, value: string) {
     if (lockedEnchants) {
       switch (slot) {
         case ItemSlot.Head:
@@ -245,7 +247,7 @@ export default class Locked {
     return this.SetItem(lockedItems, slot, value)
   }
 
-  static LockEnchant(lockedEnchants: LockedEnchants | undefined, slot: ItemSlot, value: number) {
+  static LockEnchant(lockedEnchants: LockedEnchants | undefined, slot: ItemSlot, value: string) {
     return this.SetEnchant(lockedEnchants, slot, value)
   }
 
@@ -254,7 +256,7 @@ export default class Locked {
   }
 
   static UnequipEnchant(lockedEnchants: LockedEnchants | undefined, slot: ItemSlot) {
-    return this.SetEnchant(lockedEnchants, slot, 1)
+    return this.SetEnchant(lockedEnchants, slot, '1')
   }
 
   static UnlockItem(lockedItems: LockedItems | undefined, slot: ItemSlot) {
@@ -262,7 +264,7 @@ export default class Locked {
   }
 
   static UnlockEnchant(lockedEnchants: LockedEnchants | undefined, slot: ItemSlot) {
-    return this.SetEnchant(lockedEnchants, slot, 0)
+    return this.SetEnchant(lockedEnchants, slot, '')
   }
 
   static UnequipItems(lockedItems: LockedItems | undefined) {
@@ -289,15 +291,15 @@ export default class Locked {
 
   static UnequipEnchants(lockedEnchants: LockedEnchants | undefined) {
     if (lockedEnchants) {
-      lockedEnchants.head = 1
-      lockedEnchants.hands = 1
-      lockedEnchants.shoulder = 1
-      lockedEnchants.legs = 1
-      lockedEnchants.back = 1
-      lockedEnchants.feet = 1
-      lockedEnchants.chest = 1
-      lockedEnchants.wrist = 1
-      lockedEnchants.mainhand = 1
+      lockedEnchants.head = '1'
+      lockedEnchants.hands = '1'
+      lockedEnchants.shoulder = '1'
+      lockedEnchants.legs = '1'
+      lockedEnchants.back = '1'
+      lockedEnchants.feet = '1'
+      lockedEnchants.chest = '1'
+      lockedEnchants.wrist = '1'
+      lockedEnchants.mainhand = '1'
     }
   }
 
@@ -325,15 +327,15 @@ export default class Locked {
 
   static UnlockEnchants(lockedEnchants: LockedEnchants) {
     if (lockedEnchants) {
-      lockedEnchants.head = 0
-      lockedEnchants.hands = 0
-      lockedEnchants.shoulder = 0
-      lockedEnchants.legs = 0
-      lockedEnchants.back = 0
-      lockedEnchants.feet = 0
-      lockedEnchants.chest = 0
-      lockedEnchants.wrist = 0
-      lockedEnchants.mainhand = 0
+      lockedEnchants.head = ''
+      lockedEnchants.hands = ''
+      lockedEnchants.shoulder = ''
+      lockedEnchants.legs = ''
+      lockedEnchants.back = ''
+      lockedEnchants.feet = ''
+      lockedEnchants.chest = ''
+      lockedEnchants.wrist = ''
+      lockedEnchants.mainhand = ''
     }
   }
 
@@ -348,7 +350,7 @@ export default class Locked {
 
   static EnchantLocked(lockedEnchants: LockedEnchants | undefined, slot: ItemSlot): boolean {
     let id = this.GetEnchantId(lockedEnchants, slot)
-    if (id === 0) {
+    if (id === '') {
       return false
     }
 
@@ -366,7 +368,7 @@ export default class Locked {
 
   static EnchantEquipped(lockedEnchants: LockedEnchants | undefined, slot: ItemSlot): boolean {
     let id = this.GetEnchantId(lockedEnchants, slot)
-    if (id !== 1) {
+    if (id !== '1') {
       return true
     }
 

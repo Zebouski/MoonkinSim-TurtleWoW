@@ -83,7 +83,7 @@ export default class GearEnchantSelect extends GearEnchantSelectProps {
   }
 
   selectEnchant(obj1: any, obj2: any) {
-    wow.Locked.SetEnchant(this.options.character.lockedEnchants, this.options.enchantSearchSlot, obj1.id)
+    wow.Locked.SetEnchant(this.options.character.lockedEnchants, this.options.enchantSearchSlot, obj1.customId)
     this.options.enchantSearchSlot = ItemSlot.None
   }
 

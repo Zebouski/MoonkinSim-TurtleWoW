@@ -1,11 +1,11 @@
 export default interface LockedEnchants {
-  head: number
-  hands: number
-  shoulder: number
-  legs: number
-  back: number
-  feet: number
-  chest: number
-  wrist: number
-  mainhand: number
+  head: string
+  hands: string
+  shoulder: string
+  legs: string
+  back: string
+  feet: string
+  chest: string
+  wrist: string
+  mainhand: string
 }

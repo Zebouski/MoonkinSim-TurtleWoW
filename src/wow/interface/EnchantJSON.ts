@@ -2,6 +2,7 @@ import ItemSlot from '../enum/ItemSlot'
 
 export default interface EnchantJSON {
   id: number
+  customId: string
   name: string
   slot: ItemSlot
   phase: number
