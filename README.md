@@ -17,6 +17,12 @@
     - [BiS (optimal)](https://kmmiles.gitlab.io/moonkin-calc/?phase=6&raids=true&worldbosses=true&pvprank=14)
 
 ### Changelog
+##### Version 0.3.2
+  - First phase of equipment reworking
+    - Items can now be unequipped
+    - Items no longer unlocked when clicking them
+    - New icons for unequipping, unlocking and sharing gear
+    
 ##### Version 0.3.1
   - Add enchant exploit
   - Remove boe limitation

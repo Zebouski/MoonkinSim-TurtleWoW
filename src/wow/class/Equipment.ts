@@ -284,7 +284,7 @@ export default class Equipment {
     }
 
     let result = Query.Items({
-      cloneResults: true,
+      cloneResults: false,
       slot: slot,
       phase: itemSearch.phase,
       faction: itemSearch.faction,
@@ -325,7 +325,7 @@ export default class Equipment {
     }
 
     let result = Query.Enchants({
-      cloneResults: true,
+      cloneResults: false,
       slot: slot,
       phase: itemSearch.phase,
       enchantExploit: itemSearch.enchantExploit
@@ -346,7 +346,7 @@ export default class Equipment {
 
   static getItemSet(name: string, itemSearch: ItemSearch) {
     /* Find the set and filter */
-    let itemSets = Query.ItemSets({ cloneResults: true, name: name, raids: itemSearch.raids, phase: itemSearch.phase })
+    let itemSets = Query.ItemSets({ cloneResults: false, name: name, raids: itemSearch.raids, phase: itemSearch.phase })
     if (!itemSets || !itemSets[0]) {
       return undefined
     }
@@ -359,7 +359,7 @@ export default class Equipment {
     let itemSetItemsScore = 0
     for (let itemName of itemSet.itemNames) {
       let items = Query.Items({
-        cloneResults: true,
+        cloneResults: false,
         name: itemName
       })
       // let item = this.itemByName(itemName)

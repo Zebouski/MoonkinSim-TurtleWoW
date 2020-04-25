@@ -107,7 +107,7 @@ export default class Locked {
       return emptyItem()
     }
 
-    let items = Query.Items({ customId: id, cloneResults: true })
+    let items = Query.Items({ customId: id, cloneResults: false })
     return items && items[0] ? items[0] : undefined
   }
 
@@ -143,7 +143,7 @@ export default class Locked {
       return emptyEnchant()
     }
 
-    let enchants = Query.Enchants({ customId: id, cloneResults: true })
+    let enchants = Query.Enchants({ customId: id, cloneResults: false })
     return enchants && enchants[0] ? enchants[0] : undefined
   }
 
