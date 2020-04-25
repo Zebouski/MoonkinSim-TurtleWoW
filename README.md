@@ -17,6 +17,9 @@
     - [BiS (optimal)](https://kmmiles.gitlab.io/moonkin-calc/?phase=6&raids=true&worldbosses=true&pvprank=14)
 
 ### Changelog
+##### Version 0.3.3
+  - Fix bug where itemsets (e.g. bloodvine) did not honor options (e.g. phase)
+
 ##### Version 0.3.2
   - First phase of equipment reworking
     - Items can now be unequipped

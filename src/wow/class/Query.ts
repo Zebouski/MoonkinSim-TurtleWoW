@@ -156,20 +156,20 @@ export default class Query {
       return this._result(result, opts.cloneResults ? opts.cloneResults : false)
     }
 
-    if (opts.name) {
-      return singleItemSetQuery(`[name=${opts.name}]`)
-    }
-
     let result: ItemSetJSON[] = []
 
-    result = jsonQuery(``, { data: itemSets }).value
-
-    if (opts.raids !== undefined && opts.raids === false) {
-      result = jsonQuery(`[* raid = false ]`, { data: result }).value
+    if (opts.name) {
+      result = singleItemSetQuery(`[name=${opts.name}]`)
+    } else {
+      result = jsonQuery(``, { data: itemSets }).value
     }
 
     if (opts.phase !== undefined) {
       result = jsonQuery(`[* phase <= ${opts.phase}]`, { data: result }).value
+    }
+
+    if (opts.raids !== undefined && opts.raids === false) {
+      result = jsonQuery(`[* raid = false ]`, { data: result }).value
     }
 
     return this._result(result, opts.cloneResults ? opts.cloneResults : false)

@@ -359,6 +359,8 @@ export default class Equipment {
     let itemSetItemsScore = 0
     for (let itemName of itemSet.itemNames) {
       let items = Query.Items({
+        phase: itemSearch.phase,
+        raids: itemSearch.raids,
         cloneResults: false,
         name: itemName
       })
