@@ -65,6 +65,10 @@
         </div>
       </div>
     </div>
+    <b-message v-if="showTargetWarning" type="is-warning" has-icon>
+      This app is currently not smart enough to optimize gear around the spell hit cap. You may need to manually select
+      pieces with spell hit and take note of what results in the highest DPS.
+    </b-message>
   </div>
 </template>
 
@@ -83,5 +87,12 @@ const Props = Vue.extend({
 @Component
 export default class Target extends Props {
   wow = wow
+
+  get showTargetWarning(): boolean {
+    if (this.options.target.level < 63) {
+      return true
+    }
+    return false
+  }
 }
 </script>

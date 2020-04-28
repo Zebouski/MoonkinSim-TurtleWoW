@@ -13,6 +13,30 @@ import SortOrder from '../enum/SortOrder'
 import Options from '../interface/Options'
 import ItemSearch from '../interface/ItemSearch'
 import ItemJSON from '../interface/ItemJSON'
+import EnchantJSON from '../interface/EnchantJSON'
+
+/* Object containing:
+ *
+ * - The BiS equipment shown on main gear selection box
+ * - The BiS items shown in table modal when selecting an item slot (if applicable)
+ * - The BiS enchants shown in table modal when selected an enchant slot (if applicable)
+ *
+ * Each of these sets of data required running the same optimization function, so this
+ * is an attempt to refactor and handle them all at the same time.
+ *
+ */
+interface OptimalEquipment {
+  equipment: Equipment
+  items: ItemJSON[]
+  enchants: EnchantJSON[]
+}
+
+/* Object used in optimization routine to store/sort/return the equipment
+ * with the highest resulting DPS */
+interface EquipmentArray {
+  dps: number
+  equipment: Equipment
+}
 
 export default class Equipment {
   itemSearch: ItemSearch
@@ -198,17 +222,24 @@ export default class Equipment {
     return Equipment.getWeightedItemsBySlot(myOptions.itemSearchSlot, equipment.itemSearch)
   }
 
+  static sortByDps(a: EquipmentArray, b: EquipmentArray) {
+    return (b.dps ? b.dps : 0) - (a.dps ? a.dps : 0)
+  }
+
   /* TODO: If itemSearchSlot isn't none, need to ignore that slot when weighting */
   static optimalEquipment(options: Options) {
     let myOptions = Tools.CloneObject(options)
     let maxTries = 5
-    let dps = 0
-    let prevDps = 0
     let spellCast = undefined
-    let prevSpellCast = undefined
+    let equipmentArray = new Array<EquipmentArray>()
 
     console.log(`--- starting gear optimization with maximum of ${maxTries} tries ---`)
-    for (let i = 0; i <= maxTries; i++) {
+    for (let i = 0; i <= maxTries - 1; i++) {
+      console.log(
+        `Attempt ${i + 1}: spellHitWeight=${spellCast ? spellCast.spellHitWeight : 15}, spellCritWeight=${
+          spellCast ? spellCast.spellCritWeight : 10
+        }`
+      )
       spellCast = new Cast(
         new Character(
           myOptions.character,
@@ -222,33 +253,15 @@ export default class Equipment {
         new Target(myOptions.target)
       )
 
-      console.log(`spellHitWeight=${spellCast.spellHitWeight}, spellCritWeight=${spellCast.spellCritWeight}`)
-      dps = spellCast.dps.effective.avg
-      prevDps = prevSpellCast ? prevSpellCast.dps.effective.avg : 0
-      if (prevSpellCast && prevDps === dps) {
-        console.log(`[try ${i}] no change in dps (${dps}), using previous set.`)
-        // Equipment.printItemNames(prevSpellCast.character.equipment)
-        console.log(`--- finished gear optimization in ${i} tries ---`)
-        prevSpellCast.character.equipment.itemSearch.spellHitWeight = prevSpellCast.spellHitWeight
-        prevSpellCast.character.equipment.itemSearch.spellCritWeight = prevSpellCast.spellCritWeight
-        return prevSpellCast.character.equipment
-      } else if (prevSpellCast && prevDps > dps) {
-        console.log(`[try ${i}] dps loss of ${prevDps - dps}, using previous set.`)
-        // Equipment.printItemNames(prevSpellCast.character.equipment)
-        console.log(`--- finished gear optimization in ${i} tries ---`)
-        prevSpellCast.character.equipment.itemSearch.spellHitWeight = prevSpellCast.spellHitWeight
-        prevSpellCast.character.equipment.itemSearch.spellCritWeight = prevSpellCast.spellCritWeight
-        return prevSpellCast.character.equipment
-      } else {
-        console.log(`[try ${i}] dps increase of ${dps - prevDps}, continuing.`)
-        Equipment.printItemNames(spellCast.character.equipment)
-      }
-
-      prevSpellCast = spellCast
+      equipmentArray.push({
+        dps: spellCast.dps.effective.avg,
+        equipment: spellCast.character.equipment
+      })
     }
 
-    console.log(`reach the end condition? not good.`)
-    return new Equipment(options)
+    console.log(`--- finished gear optimization ---`)
+    equipmentArray.sort(Equipment.sortByDps)
+    return equipmentArray[0].equipment
   }
 
   static printItemNames(equipment: Equipment) {
@@ -441,8 +454,6 @@ export default class Equipment {
       itemSearch.lockedItems.feet !== '19684'
 
     if (!customChest && !customLegs && !customFeet && bloodvine && bloodvineScore > normScore) {
-      console.log(`ATTENTION: I favored bloodvine set (${bloodvineScore}) over other items (${normScore})`)
-      console.log(itemSearch)
       chest = bloodvine.items ? bloodvine.items[0] : undefined
       legs = bloodvine.items ? bloodvine.items[1] : undefined
       feet = bloodvine.items ? bloodvine.items[2] : undefined
@@ -497,9 +508,6 @@ export default class Equipment {
         ring2 = zanzils.items ? zanzils.items[1] : undefined
       }
     }
-
-    console.log(ring1)
-    console.log(ring2)
 
     return {
       finger: ring1,
