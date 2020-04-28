@@ -925,7 +925,7 @@
   "location": "Requires The League of Arathor - Exalted",
   "raid": false,
   "worldBoss": false,
-  "faction": 1,
+  "faction": 3,
   "spellDamage": 41,
   "spellCrit": 2,
   "stamina": 19,
@@ -1975,7 +1975,11 @@
   "raid": false,
   "worldBoss": false,
   "faction": 3,
-  "spellDamage": 60
+  "spellDamage": 60,
+  "onUse": {
+   "effect": "While applied to target weapon it increases spell damage against undead by up to 60. Lasts for 1 hour.",
+   "cooldown": ""
+  }
  },
  {
   "id": 20749,
@@ -1996,7 +2000,11 @@
   "worldBoss": false,
   "faction": 3,
   "spellDamage": 36,
-  "spellCrit": 1
+  "spellCrit": 1,
+  "onUse": {
+   "effect": "While applied to target weapon it increases spell damage by up to 36 and increases Spell Critical chance by 1% . &#xA0;Lasts for 30 minutes.",
+   "cooldown": ""
+  }
  },
  {
   "id": 20750,
@@ -2016,7 +2024,11 @@
   "raid": false,
   "worldBoss": false,
   "faction": 3,
-  "spellDamage": 24
+  "spellDamage": 24,
+  "onUse": {
+   "effect": "While applied to target weapon it increases spell damage by up to 24. &#xA0;Lasts for 30 minutes.",
+   "cooldown": ""
+  }
  },
  {
   "id": 20746,
@@ -2036,7 +2048,11 @@
   "raid": false,
   "worldBoss": false,
   "faction": 3,
-  "spellDamage": 16
+  "spellDamage": 16,
+  "onUse": {
+   "effect": "While applied to target weapon it increases spell damage by up to 16. &#xA0;Lasts for 30 minutes.",
+   "cooldown": ""
+  }
  },
  {
   "id": 20744,
@@ -2056,7 +2072,11 @@
   "raid": false,
   "worldBoss": false,
   "faction": 3,
-  "spellDamage": 8
+  "spellDamage": 8,
+  "onUse": {
+   "effect": "While applied to target weapon it increases spell damage by up to 8. &#xA0;Lasts for 30 minutes.",
+   "cooldown": ""
+  }
  },
  {
   "id": 15985,
@@ -2798,7 +2818,7 @@
   "icon": "inv_misc_orb_01",
   "boss": "Emeriss, Taerar, Lethon, Ysondre",
   "raid": false,
-  "worldBoss": false,
+  "worldBoss": true,
   "faction": 3,
   "spellDamage": 25,
   "stamina": 9,
@@ -10328,7 +10348,7 @@
   "icon": "inv_gauntlets_17",
   "boss": "Emeriss, Taerar, Lethon, Ysondre",
   "raid": false,
-  "worldBoss": false,
+  "worldBoss": true,
   "faction": 3,
   "spellDamage": 27,
   "stamina": 14,
@@ -14674,7 +14694,11 @@
   "raid": false,
   "worldBoss": false,
   "faction": 3,
-  "spellDamage": 12
+  "spellDamage": 12,
+  "onUse": {
+   "effect": "Reduces mana cost of all spells by 100 for 10 sec.",
+   "cooldown": "15 Min Cooldown"
+  }
  },
  {
   "id": 22268,
@@ -14695,7 +14719,11 @@
   "boss": "General Drakkisath",
   "raid": false,
   "worldBoss": false,
-  "faction": 3
+  "faction": 3,
+  "onUse": {
+   "effect": "Increases your spell damage by up to 100 and your healing by up to 190 for 15 sec.",
+   "cooldown": "1 Min, 15 Sec Cooldown"
+  }
  },
  {
   "id": 23001,
@@ -14717,7 +14745,11 @@
   "raid": true,
   "worldBoss": false,
   "faction": 3,
-  "spellCrit": 2
+  "spellCrit": 2,
+  "onUse": {
+   "effect": "Improves your chance to get a critical strike with spells by 2%.",
+   "cooldown": ""
+  }
  },
  {
   "id": 21473,
@@ -14738,7 +14770,11 @@
   "boss": "Moam",
   "raid": true,
   "worldBoss": false,
-  "faction": 3
+  "faction": 3,
+  "onUse": {
+   "effect": "Increases damage done by magical spells and effects by up to 50, and decreases the magical resistances of your spell targets by 100 for 30 sec.",
+   "cooldown": "3 Min Cooldown"
+  }
  },
  {
   "id": 13968,
@@ -14811,7 +14847,11 @@
   "boss": "Gahz'ranka",
   "raid": true,
   "worldBoss": false,
-  "faction": 3
+  "faction": 3,
+  "onUse": {
+   "effect": "Increases the chance to hit with spells by 10% for 15 sec.",
+   "cooldown": "1 Min, 15 Sec Cooldown"
+  }
  },
  {
   "id": 19379,
@@ -14907,7 +14947,11 @@
   "boss": "Quest: Armaments of Battle",
   "raid": false,
   "worldBoss": false,
-  "faction": 3
+  "faction": 3,
+  "onUse": {
+   "effect": "Your next 5 damage or healing spells cast within 20 seconds will grant a bonus of up to 40 damage and up to 75 healing, stacking up to 5 times. Expires after 6 damage or healing spells or 20 seconds, whichever occurs first.",
+   "cooldown": "1 Min Cooldown"
+  }
  },
  {
   "id": 18820,
@@ -14928,7 +14972,11 @@
   "boss": "Golemagg the Incinerator, Magmadar, Garr, Baron Geddon",
   "raid": true,
   "worldBoss": false,
-  "faction": 3
+  "faction": 3,
+  "onUse": {
+   "effect": "Increases damage and healing done by magical spells and effects by up to 175 for 15 sec.",
+   "cooldown": "1 Min, 30 Sec Cooldown"
+  }
  },
  {
   "id": 23046,
@@ -14950,7 +14998,11 @@
   "raid": true,
   "worldBoss": false,
   "faction": 3,
-  "spellDamage": 40
+  "spellDamage": 40,
+  "onUse": {
+   "effect": "Increases damage and healing done by magical spells and effects by up to 40.",
+   "cooldown": ""
+  }
  },
  {
   "id": 19950,
@@ -14971,6 +15023,10 @@
   "boss": "Quest: The Heart of Hakkar",
   "raid": true,
   "worldBoss": false,
-  "faction": 3
+  "faction": 3,
+  "onUse": {
+   "effect": "Increases your spell damage by up to 204 and your healing by up to 408 for 20 sec. Every time you cast a spell, the bonus is reduced by 17 spell damage and 34 healing.",
+   "cooldown": "2 Min Cooldown"
+  }
  }
 ]

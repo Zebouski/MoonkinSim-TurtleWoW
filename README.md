@@ -21,6 +21,7 @@
   - Fix bug where itemsets (e.g. bloodvine) did not honor options (e.g. phase)
   - Show warning when setting target below 63
   - More cleanup/refactoring of equipment
+  - Gloves of Delusional Power and Trance Stone not obeying World Boss option
 
 ##### Version 0.3.2
   - First phase of equipment reworking

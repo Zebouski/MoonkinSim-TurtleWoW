@@ -279,6 +279,7 @@ class Item {
     }
 
     switch (this.itemBoss.toUpperCase()) {
+      case 'EMERISS, TAERAR, LETHON, YSONDRE':
       case 'EMERISS':
       case 'YSONDRE':
       case 'LETHON':
@@ -530,8 +531,14 @@ class Item {
     let tooltip = this._wowHeadItem['htmlTooltip'][0]
     if (tooltip.includes('Use:')) {
       let $ = cheerio.load(tooltip)
-      console.warn('heyo we got activated trinkets bitch')
-      console.warn($('span .q2').html())
+      let onUseText = $('span .q2').html()
+      $('a[class=q2]').remove()
+      let tmpstr = $('span[class=q2]').html()
+      let onUseCooldown = tmpstr.substring(tmpstr.lastIndexOf('(') + 1, tmpstr.lastIndexOf(')'))
+      return {
+        effect: onUseText,
+        cooldown: onUseCooldown
+      }
     }
     return undefined
   }
