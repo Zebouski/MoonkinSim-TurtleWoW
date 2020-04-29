@@ -347,7 +347,7 @@ export default class Cast {
    *
    */
   get chanceToHit(): number {
-    return Math.min(99, this.target.hitChance + this.character.spellHit)
+    return Math.min(99, this.target.hitChance + this.character.effectiveSpellHit)
   }
 
   /**

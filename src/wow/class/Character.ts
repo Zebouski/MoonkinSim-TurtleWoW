@@ -151,8 +151,12 @@ export default class Character {
   /**
    * TODO: Return total spell hit rating (equipment + talents + buffs)
    */
+  get effectiveSpellHit(): number {
+    return Math.min(this.spellHit, constants.spellHitCap)
+  }
+
   get spellHit(): number {
-    return Math.min(this.equipment.spellHit, constants.spellHitCap)
+    return this.equipment.spellHit
   }
 
   get moonkinAuraBonus(): number {

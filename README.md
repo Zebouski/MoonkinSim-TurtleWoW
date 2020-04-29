@@ -22,6 +22,7 @@
   - Show warning when setting target below 63
   - More cleanup/refactoring of equipment
   - Gloves of Delusional Power and Trance Stone not obeying World Boss option
+  - Show total spell hit in attributes box (not just to cap)
 
 ##### Version 0.3.2
   - First phase of equipment reworking
