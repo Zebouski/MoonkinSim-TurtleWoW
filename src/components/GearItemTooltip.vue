@@ -51,6 +51,7 @@
 
     <section class="wow-item__bonuses">
       <p v-for="bonus in itemData.bonusesList" :key="bonus" class="bonuses__bonus">{{ bonus }}</p>
+      <p v-if="itemData.hasOnUse" class="bonuses__bonus">{{ itemData.onUseText }}</p>
     </section>
 
     <section class="wow-item__info">

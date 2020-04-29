@@ -21,21 +21,11 @@
             </option>
           </b-select>
         </b-field>
-        <div class="field">
-          <b-checkbox class="is-size-7-mobile" v-model="options.raids">
-            Include Raids
-          </b-checkbox>
-        </div>
-        <div class="field">
-          <b-checkbox class="is-size-7-mobile" v-model="options.randomEnchants">
-            Include random enchants
-          </b-checkbox>
-        </div>
-        <div class="field">
-          <b-checkbox class="is-size-7-mobile" v-model="options.enchantExploit">
-            Enchanting exploit
-          </b-checkbox>
-        </div>
+        <!--
+        <b-field label="Fight Length" label-position="on-border">
+          <input class="input is-size-7-mobile" type="number" v-model.number="options.encounterLength" />
+        </b-field>
+        -->
       </div>
       <div class="column">
         <b-field label="Race" label-position="on-border">
@@ -51,6 +41,30 @@
             </option>
           </b-select>
         </b-field>
+      </div>
+      <div class="column is-narrow"></div>
+    </div>
+    <div class="columns is-mobile">
+      <div class="column">
+        <div class="field">
+          <b-checkbox class="is-size-7-mobile" v-model="options.raids">
+            Include Raids
+          </b-checkbox>
+        </div>
+        <div class="field">
+          <b-checkbox class="is-size-7-mobile" v-model="options.randomEnchants">
+            Include random enchants
+          </b-checkbox>
+        </div>
+        <!--
+        <div class="field">
+          <b-checkbox class="is-size-7-mobile" v-model="options.onUseItems">
+            Optimize for On Use items
+          </b-checkbox>
+        </div>
+        -->
+      </div>
+      <div class="column">
         <div class="field">
           <b-checkbox class="is-size-7-mobile" v-model="options.worldBosses">
             Include World Bosses
@@ -61,13 +75,7 @@
             300 Tailoring
           </b-checkbox>
         </div>
-        <!--
-      <div class="column is-narrow">
-        <b-field label="Fight Length" label-position="on-border">
-          <input class="input is-size-7-mobile" type="number" v-model.number="options.combatLength" />
-        </b-field>
       </div>
-      --></div>
     </div>
   </div>
 </template>
@@ -109,9 +117,9 @@ export default class General extends Props {
     return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
   }
   get sliderType() {
-    if (this.options.combatLength < 120) {
+    if (this.options.encounterLength < 120) {
       return 'is-success'
-    } else if (this.options.combatLength >= 120 && this.options.combatLength < 300) {
+    } else if (this.options.encounterLength >= 120 && this.options.encounterLength < 300) {
       return 'is-warning'
     }
     return 'is-danger'

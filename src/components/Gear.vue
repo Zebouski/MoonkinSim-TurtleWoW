@@ -25,10 +25,11 @@
     </div>
 
     <GearButtonBar
-      :options="{ showShare: true, showUnlock: true, showUnequip: true }"
+      :options="{ showExport: true, showShare: true, showUnlock: true, showUnequip: true }"
       @share-gear="shareGear"
       @unlock-gear="unlockGear"
       @unequip-gear="unequipGear"
+      @export-gear="exportGear"
     />
     <div class="publicLinkModal">
       <b-modal :active.sync="showPublicLinkModal" scroll="keep">
@@ -37,6 +38,28 @@
           <b-field>
             <input class="input is-size-7-mobile" size="50" v-model="publicLink" />
           </b-field>
+        </div>
+      </b-modal>
+    </div>
+    <div class="exportModal">
+      <b-modal :active.sync="showExportModal" scroll="keep">
+        <div class="container">
+          <b-message type="is-info">
+            <h1 class="title">Export to ClassicSim</h1>
+
+            <ol type="1">
+              <li>
+                Download and extract the latest <a href="https://classicsim.org/?C=M;O=D" target="_blank">ClassicSim</a>
+              </li>
+              <li><a href="#" @click="downloadExport">Download the exported settings zipfile</a></li>
+              <li>Extract zipfile in the root directory of classicsim (Backup 'Saves' first)</li>
+              <li>Launch ClassicSim, Select 'Starfire' in 'Rotations' and click 'Run Full Sim'</li>
+            </ol>
+          </b-message>
+          <b-message type="is-warning" has-icon>
+            <p>This is an experimental feature. Not all gear and options are supported yet.</p>
+            <p>NOTE: Due to a bug in classicsim you'll need to select the rotation each time you open it.</p>
+          </b-message>
         </div>
       </b-modal>
     </div>
@@ -89,10 +112,19 @@ const GearProps = Vue.extend({
 export default class Gear extends GearProps {
   wow = wow
   showPublicLinkModal = false
+  showExportModal = false
   paginated = true
 
   shareGear() {
     this.showPublicLinkModal = true
+  }
+
+  downloadExport() {
+    wow.Tools.ExportGear(this.options, this.encounter.equipment)
+  }
+
+  exportGear() {
+    this.showExportModal = true
   }
 
   unlockGear() {

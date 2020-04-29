@@ -2,9 +2,13 @@ import Options from '../interface/Options'
 import LockedItems from '../interface/LockedItems'
 import LockedEnchants from '../interface/LockedEnchants'
 import Equipment from './Equipment'
+import Faction from '../enum/Faction'
+import PlayableRace from '../enum/PlayableRace'
 import pako from 'pako'
 import { Base64 } from 'js-base64'
 import clonedeep from 'lodash/cloneDeep'
+import jszip from 'jszip'
+import filesaver from 'file-saver'
 
 interface ParaminOptions {
   version?: number
@@ -229,5 +233,49 @@ export default class Tools {
       default:
         return value
     }
+  }
+
+  static GenerateDruidSetupXML(options: Options, equipment: Equipment): string {
+    let open = `<?xml version="1.0" encoding="UTF-8"?>\n<setups>\n<setup_string>`
+    let close = `</setup_string>\n</setups>`
+    let phase = `PHASE=${options.phase}`
+    let race = `Race=${options.character.race === PlayableRace.Tauren ? 'Tauren' : 'Night-elf'}`
+    let target = `TARGET_LVL=63|TARGET_TYPE=Dragonkin|TARGET_BASE_ARMOR=3750`
+    let party = `PARTY=0|PARTY_MEMBER=0`
+    let items = equipment.classicSimSave
+    let talents = `LEFT[1LL=5:2ML=5:2RR=3:3LL=3:3RR=2:4ML=5:4MR=5:5ML=1:5MR=3:6ML=5:7ML=1]|RIGHT[1ML=5:2LL=5:3ML=3]`
+    let buffs = `BUFFS[Mark of the Wild=N/A:Runn Tum Tuber Surprise=N/A:Greater Arcane Elixir=N/A:Flask of Supreme Power=N/A:Slip'kik's Savvy=N/A:Fengus' Ferocity=N/A:Rallying Cry of the Dragonslayer=N/A:Songflower Serenade=N/A]`
+    let debuffs = `DEBUFFS[Curse of Shadow=N/A]`
+    let basic = `${phase}|${race}|Class=Druid|${party}|${target}|${talents}|${buffs}|${debuffs}|${items}`
+
+    return `${open}${basic}${close}`
+  }
+
+  static GenerateGUISetupXML(options: Options): string {
+    let race = `${options.character.race === PlayableRace.Tauren ? 'Tauren' : 'Night-elf'}`
+
+    return `<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+    <class>Druid</class>
+    <race>${race}</race>
+    <window>SETTINGS</window>
+    <num_iterations_quick_sim>1000</num_iterations_quick_sim>
+    <num_iterations_full_sim>10000</num_iterations_full_sim>
+    <combat_length>${options.encounterLength}</combat_length>
+    <phase>${options.phase}</phase>
+    <ruleset>0</ruleset>
+    <target_creature_type>Dragonkin</target_creature_type>
+    <threads>8</threads>
+</settings`
+  }
+
+  static ExportGear(options: Options, equipment: Equipment) {
+    let zip = new jszip()
+
+    zip.file('Saves/Druid-setup.xml', Tools.GenerateDruidSetupXML(options, equipment))
+    zip.file('Saves/GUI-setup.xml', Tools.GenerateGUISetupXML(options))
+    void zip.generateAsync({ type: 'blob' }).then(function(blob) {
+      filesaver.saveAs(blob, 'moonkin-classicsim-saves.zip')
+    })
   }
 }

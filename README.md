@@ -17,6 +17,10 @@
     - [BiS (optimal)](https://kmmiles.gitlab.io/moonkin-calc/?phase=6&raids=true&worldbosses=true&pvprank=14)
 
 ### Changelog
+##### Version 0.3.4
+  - Experimental feature: Export to ClassicSim
+  - Remove enchant exploit option
+  
 ##### Version 0.3.3
   - Fix bug where itemsets (e.g. bloodvine) did not honor options (e.g. phase)
   - Show warning when setting target below 63

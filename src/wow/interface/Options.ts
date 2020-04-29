@@ -11,7 +11,8 @@ export default interface Options {
   worldBosses: boolean
   randomEnchants: boolean
   enchantExploit: boolean
-  combatLength: number
+  onUseItems: boolean
+  encounterLength: number
   spellName: string
   itemSearchSlot: ItemSlot
   enchantSearchSlot: ItemSlot

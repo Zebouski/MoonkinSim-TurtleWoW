@@ -17,12 +17,15 @@ export default interface ItemSearch {
   worldBosses: boolean
   randomEnchants: boolean
   enchantExploit: boolean
+  encounterLength: number
+  onUseItems: boolean
   magicSchool: MagicSchool
   targetType: TargetType
   lockedItems?: LockedItems
   lockedEnchants?: LockedEnchants
   spellHitWeight: number
   spellCritWeight: number
+  spellCastTime: number
   slot: ItemSlot
   sortOrder?: SortOrder
 }

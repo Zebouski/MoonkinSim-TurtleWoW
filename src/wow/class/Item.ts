@@ -152,6 +152,25 @@ export default class Item {
     return this.enchantJSON && this.enchantJSON.customId ? this.enchantJSON.customId : ``
   }
 
+  get enchantClassicSimId(): number {
+    switch (this.enchantId) {
+      case 22844 /* Arcanum of Focus */:
+        return 25
+      case 22749 /* Enchant Weapon - Spell Power */:
+        return 5
+      case 24421 /* Zandalar Signet of Mojo */:
+        return 36
+      case 20025 /* Enchant Chest - Greater Stats */:
+        return 39
+      case 20008 /* Enchant Bracer - Greater Intellect */:
+        return 14
+      case 13890 /* Slight movement speed increase */:
+        return 40
+      default:
+        return -1
+    }
+  }
+
   get name(): string {
     return this.itemJSON && this.itemJSON.name ? this.itemJSON.name : this.slotDisplayName
   }
@@ -282,6 +301,55 @@ export default class Item {
     }
   }
 
+  get classicSimSave(): string {
+    let tempEnchant = -1
+    let affix = ''
+
+    switch (this._slot) {
+      case ItemSlot.Head:
+        return `HEAD=${this.customId}|HEAD_TEMPORARY_ENCHANT=${tempEnchant}|HEAD_ENCHANT=${this.enchantClassicSimId}|HEAD_AFFIX=${affix}`
+      case ItemSlot.Hands:
+        return `GLOVES=${this.customId}|GLOVES_TEMPORARY_ENCHANT=${tempEnchant}|GLOVES_ENCHANT=${this.enchantClassicSimId}|GLOVES_AFFIX=${affix}`
+      case ItemSlot.Neck:
+        return `NECK=${this.customId}|NECK_TEMPORARY_ENCHANT=${tempEnchant}|NECK_ENCHANT=${this.enchantClassicSimId}|NECK_AFFIX=${affix}`
+      case ItemSlot.Onehand:
+      case ItemSlot.Twohand:
+      case ItemSlot.Mainhand:
+        return `MAINHAND=${this.customId}|MH_TEMPORARY_ENCHANT=${tempEnchant}|MH_ENCHANT=${this.enchantClassicSimId}|MH_AFFIX=${affix}`
+      case ItemSlot.Offhand:
+        return `OFFHAND=${this.customId}|OH_TEMPORARY_ENCHANT=${tempEnchant}|OH_ENCHANT=${this.enchantClassicSimId}|OH_AFFIX=${affix}`
+      case ItemSlot.Finger:
+        return `RING1=${this.customId}|RING1_TEMPORARY_ENCHANT=${tempEnchant}|RING1_ENCHANT=${this.enchantClassicSimId}|RING1_AFFIX=${affix}`
+      case ItemSlot.Finger2:
+        return `RING2=${this.customId}|RING2_TEMPORARY_ENCHANT=${tempEnchant}|RING2_ENCHANT=${this.enchantClassicSimId}|RING2_AFFIX=${affix}`
+      case ItemSlot.Trinket:
+        return `TRINKET1=${this.customId}|TRINKET1_TEMPORARY_ENCHANT=${tempEnchant}|TRINKET1_ENCHANT=${this.enchantClassicSimId}|TRINKET1_AFFIX=${affix}`
+      case ItemSlot.Trinket2:
+        return `TRINKET2=${this.customId}|TRINKET2_TEMPORARY_ENCHANT=${tempEnchant}|TRINKET2_ENCHANT=${this.enchantClassicSimId}|TRINKET2_AFFIX=${affix}`
+      case ItemSlot.Shoulder:
+        return `SHOULDERS=${this.customId}|SHOULDER_TEMPORARY_ENCHANT=${tempEnchant}|SHOULDER_ENCHANT=${this.enchantClassicSimId}|SHOULDERS_AFFIX=${affix}`
+      case ItemSlot.Chest:
+        return `CHEST=${this.customId}|CHEST_TEMPORARY_ENCHANT=${tempEnchant}|CHEST_ENCHANT=${this.enchantClassicSimId}|CHEST_AFFIX=${affix}`
+      case ItemSlot.Waist:
+        return `BELT=${this.customId}|BELT_TEMPORARY_ENCHANT=${tempEnchant}|BELT_ENCHANT=${this.enchantClassicSimId}|BELT_AFFIX=${affix}`
+      case ItemSlot.Legs:
+        return `LEGS=${this.customId}|LEGS_TEMPORARY_ENCHANT=${tempEnchant}|LEGS_ENCHANT=${this.enchantClassicSimId}|LEGS_AFFIX=${affix}`
+      case ItemSlot.Feet:
+        return `BOOTS=${this.customId}|BOOTS_TEMPORARY_ENCHANT=${tempEnchant}|BOOTS_ENCHANT=${this.enchantClassicSimId}|BOOTS_AFFIX=${affix}`
+      case ItemSlot.Wrist:
+        return `WRIST=${this.customId}|WRIST_TEMPORARY_ENCHANT=${tempEnchant}|WRIST_ENCHANT=${this.enchantClassicSimId}|WRIST_AFFIX=${affix}`
+      case ItemSlot.Relic:
+      case ItemSlot.Ranged:
+      case ItemSlot.Back:
+      case ItemSlot.Shirt:
+      case ItemSlot.Tabard:
+      case ItemSlot.Projectile:
+      case ItemSlot.Ammo:
+      default:
+        return ItemSlot[this.slot]
+    }
+  }
+
   get isEmpty(): boolean {
     if (!this.itemJSON) {
       return true
@@ -381,6 +449,21 @@ export default class Item {
 
   get score(): number {
     return this.itemJSON && this.itemJSON.score ? this.itemJSON.score : 0
+  }
+
+  get onUseText(): string {
+    if (!this.itemJSON || !this.itemJSON.onUse || !this.itemJSON.onUse.effect) {
+      return ``
+    }
+
+    let effect = this.itemJSON.onUse.effect
+    let cooldown = this.itemJSON.onUse.cooldown ? `(${this.itemJSON.onUse.cooldown})` : ``
+
+    return `${effect} ${cooldown}`
+  }
+
+  get hasOnUse(): boolean {
+    return this.itemJSON && this.itemJSON.onUse ? true : false
   }
 
   get bindText(): string {

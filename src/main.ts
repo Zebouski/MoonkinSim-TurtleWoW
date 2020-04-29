@@ -9,6 +9,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faGitlab, faDiscord } from '@fortawesome/free-brands-svg-icons'
 import {
   faFilePdf,
+  faFileExport,
   faBook,
   faBug,
   faFlask,
@@ -33,6 +34,7 @@ library.add(faGitlab)
 library.add(faDiscord)
 library.add(faBook)
 library.add(faFilePdf)
+library.add(faFileExport)
 library.add(faBug)
 library.add(faFlask)
 library.add(faLock)

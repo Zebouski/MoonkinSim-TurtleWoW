@@ -14,6 +14,7 @@ import Options from '../interface/Options'
 import ItemSearch from '../interface/ItemSearch'
 import ItemJSON from '../interface/ItemJSON'
 import EnchantJSON from '../interface/EnchantJSON'
+import constants from '../constants'
 
 /* Object containing:
  *
@@ -39,6 +40,7 @@ interface EquipmentArray {
 }
 
 export default class Equipment {
+  options: Options
   itemSearch: ItemSearch
   head: Item
   hands: Item
@@ -59,11 +61,12 @@ export default class Equipment {
   idol: Item
 
   /* TODO: can I make it so the constructor could take list of item ids or something instead? */
-  constructor(options: Options, spellHitWeight?: number, spellCritWeight?: number) {
+  constructor(options: Options, spellHitWeight?: number, spellCritWeight?: number, spellCastTime?: number) {
     let _bis = (slot: number) => {
       return Equipment.getBestInSlotItemWithEnchant(slot, this.itemSearch)
     }
 
+    this.options = options
     this.itemSearch = Equipment.itemSearchFromOptions(options, spellHitWeight, spellCritWeight)
 
     let bisTrinkets = Equipment.getBestInSlotTrinkets(this.itemSearch)
@@ -94,7 +97,12 @@ export default class Equipment {
      * all the items. pita the way this is structured. */
   }
 
-  static itemSearchFromOptions(options: Options, spellHitWeight?: number, spellCritWeight?: number) {
+  static itemSearchFromOptions(
+    options: Options,
+    spellHitWeight?: number,
+    spellCritWeight?: number,
+    spellCastTime?: number
+  ) {
     let myOptions = Tools.CloneObject(options)
     let spell = new Spell(myOptions.spellName)
 
@@ -107,10 +115,13 @@ export default class Equipment {
       randomEnchants: myOptions.randomEnchants,
       tailoring: myOptions.tailoring,
       enchantExploit: myOptions.enchantExploit,
+      encounterLength: myOptions.encounterLength,
+      onUseItems: myOptions.onUseItems,
       magicSchool: spell.magicSchool,
       targetType: myOptions.target.type,
       spellHitWeight: spellHitWeight !== undefined ? spellHitWeight : 15,
       spellCritWeight: spellCritWeight !== undefined ? spellCritWeight : 10,
+      spellCastTime: spellCastTime !== undefined ? spellCastTime : constants.globalCoolDown,
       lockedItems: myOptions.character.lockedItems,
       lockedEnchants: myOptions.character.lockedEnchants,
       slot: myOptions.itemSearchSlot,
@@ -246,7 +257,8 @@ export default class Equipment {
           new Equipment(
             myOptions,
             spellCast ? spellCast.spellHitWeight : undefined,
-            spellCast ? spellCast.spellCritWeight : undefined
+            spellCast ? spellCast.spellCritWeight : undefined,
+            spellCast ? spellCast.effectiveCastTime : undefined
           )
         ),
         new Spell(myOptions.spellName),
@@ -261,6 +273,7 @@ export default class Equipment {
 
     console.log(`--- finished gear optimization ---`)
     equipmentArray.sort(Equipment.sortByDps)
+
     return equipmentArray[0].equipment
   }
 
@@ -282,6 +295,17 @@ export default class Equipment {
   }
 
   static getWeightedItemsBySlot(slot: ItemSlot, itemSearch: ItemSearch) {
+    let _scoreOnUseTrinket = (itemJSON: ItemJSON): number => {
+      /* Add additional score from onUse effect */
+      if (itemSearch.onUseItems && (slot === ItemSlot.Trinket || slot === ItemSlot.Trinket2) && itemJSON.onUse) {
+        console.log(`Hello trinkets: encounterLength=${itemSearch.encounterLength}`)
+        if (itemJSON.name && itemJSON.name === 'Talisman of Ephemeral Power') {
+          return 200
+        }
+      }
+      return 0
+    }
+
     let lockedItem = Locked.GetItem(itemSearch.lockedItems, slot)
     if (lockedItem) {
       let x = []
@@ -316,6 +340,7 @@ export default class Equipment {
         itemSearch.spellHitWeight,
         itemSearch.spellCritWeight
       )
+      score += _scoreOnUseTrinket(result[i])
       result[i].score = score
     }
 
@@ -544,6 +569,10 @@ export default class Equipment {
   }
 
   /*************************** /UGLY **********************************/
+
+  get classicSimSave(): string {
+    return `${this.head.classicSimSave}|${this.neck.classicSimSave}|${this.waist.classicSimSave}|${this.shoulder.classicSimSave}|${this.hands.classicSimSave}|${this.legs.classicSimSave}|${this.back.classicSimSave}|${this.feet.classicSimSave}|${this.chest.classicSimSave}|${this.wrist.classicSimSave}|${this.finger.classicSimSave}|${this.finger2.classicSimSave}|${this.trinket.classicSimSave}|${this.trinket2.classicSimSave}|${this.idol.classicSimSave}|${this.mainhand.classicSimSave}|${this.offhand.classicSimSave}`
+  }
 
   get hasBloodvine() {
     if (
