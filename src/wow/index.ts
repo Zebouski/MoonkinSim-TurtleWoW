@@ -30,6 +30,7 @@ import Spell from './class/Spell'
 import Cast from './class/Cast'
 import Encounter from './class/Encounter'
 import Tools from './class/Tools'
+import ClassicSim from './class/ClassicSim'
 
 export default {
   constants,
@@ -54,5 +55,6 @@ export default {
   Spell,
   Cast,
   Encounter,
+  ClassicSim,
   Tools
 }

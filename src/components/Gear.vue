@@ -120,7 +120,7 @@ export default class Gear extends GearProps {
   }
 
   downloadExport() {
-    wow.Tools.ExportGear(this.options, this.encounter.equipment)
+    wow.ClassicSim.ExportGear(this.options, this.encounter.equipment)
   }
 
   exportGear() {

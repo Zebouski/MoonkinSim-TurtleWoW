@@ -20,6 +20,9 @@
   link: [ 'https://classic.wowhead.com/item=10261' ]
 }
 */
+
+import Item from './class/Item'
+import ClassicSim from './class/ClassicSim'
 import ItemJSON from './interface/ItemJSON'
 import Faction from './enum/Faction'
 import ItemQuality from './enum/ItemQuality'
@@ -38,6 +41,11 @@ import ItemOnUseJSON from './interface/ItemOnUseJSON'
 let csvFilePath = 'vendor/Classic_Balance_Druidv1.5.1.2.csv'
 if (process.env.TEST && process.env.TEST === '1') {
   csvFilePath = 'vendor/testItems.csv'
+}
+
+let csim = false
+if (process.env.CSIM && process.env.CSIM === '1') {
+  csim = true
 }
 
 const csv = require('csvtojson')
@@ -138,7 +146,7 @@ async function downloadFile(url: string, outputPath: string) {
   }
 }
 
-class Item {
+class ConvertItem {
   itemOld: ItemOld
   private _wowHeadItem: any
   constructor(itemOld: ItemOld) {
@@ -607,7 +615,7 @@ const start = async function() {
     if (ogObj.Name === '') {
       continue
     }
-    let gearItem = new Item(ogObj)
+    let gearItem = new ConvertItem(ogObj)
     // enchants stored elsewhere
     if (gearItem.isEnchant) {
       continue
@@ -627,7 +635,18 @@ const start = async function() {
     // console.warn(wowHeadItem['class'][0].$.id)
     // console.warn('subclass: ' + wowHeadItem['subclass'][0]._)
   }
-  console.log(JSON.stringify(myArray, null, 1))
+
+  if (csim) {
+    console.warn(`Hello, i'm doing csim`)
+    for (let i = 0; i <= myArray.length; i++) {
+      if (myArray[i]) {
+        let myItem = new Item(myArray[i].slot, myArray[i])
+        console.log(ClassicSim.GenerateItemXML(myItem))
+      }
+    }
+  } else {
+    console.log(JSON.stringify(myArray, null, 1))
+  }
   console.warn('Complete.')
 }
 

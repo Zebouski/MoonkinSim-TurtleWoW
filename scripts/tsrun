@@ -3,7 +3,7 @@
 # quick and dirty wrapper script to run typescript programs on the commandline. 
 # seems like a simple thing to do, but somehow it isn't.
 
-TSCOPTS="--target ES5 --sourceMap false"
+TSCOPTS="--target ES5 --sourceMap false --resolveJsonModule --esModuleInterop"
 
 function warn() {
   >&2 echo "${1:-}" 
@@ -64,7 +64,7 @@ fi
 
 warn "Compiling ${TSFILE}..."
 TSCMD="${TSC} ${TSCOPTS} --outDir ${TEMPDIR} --baseUrl ${__root} ${TSFILE}"
-eval "${TSCMD}"
+>&2 eval "${TSCMD}"
 RC="$?"
 if [ "${RC}" != "0" ]; then
     warn "tsc failed with ${RC}: ${TSCMD}"

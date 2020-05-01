@@ -569,11 +569,6 @@ export default class Equipment {
   }
 
   /*************************** /UGLY **********************************/
-
-  get classicSimSave(): string {
-    return `${this.head.classicSimSave}|${this.neck.classicSimSave}|${this.waist.classicSimSave}|${this.shoulder.classicSimSave}|${this.hands.classicSimSave}|${this.legs.classicSimSave}|${this.back.classicSimSave}|${this.feet.classicSimSave}|${this.chest.classicSimSave}|${this.wrist.classicSimSave}|${this.finger.classicSimSave}|${this.finger2.classicSimSave}|${this.trinket.classicSimSave}|${this.trinket2.classicSimSave}|${this.idol.classicSimSave}|${this.mainhand.classicSimSave}|${this.offhand.classicSimSave}`
-  }
-
   get hasBloodvine() {
     if (
       this.itemSearch.tailoring &&

@@ -7,7 +7,8 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "docs": "typedoc --out dist/docs src",
-    "db": "cross-env scripts/tsrun src/wow/convert-items.ts > src/wow/db/items.json"
+    "db": "cross-env scripts/tsrun src/wow/convert-items.ts > src/wow/db/items.json",
+    "db-csim": "cross-env CSIM=1 scripts/tsrun src/wow/convert-items.ts > vendor/classic-sim-items.xml"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.12.0",

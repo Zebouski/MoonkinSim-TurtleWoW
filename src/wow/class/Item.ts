@@ -15,6 +15,7 @@ import PlayableClass from '../enum/PlayableClass'
 import PvPRank from '../enum/PvPRank'
 import Faction from '../enum/Faction'
 import TargetType from '../enum/TargetType'
+import Tools from './Tools'
 
 export default class Item {
   _slot: ItemSlot
@@ -301,6 +302,76 @@ export default class Item {
     }
   }
 
+  get classicSimClassRestrictions(): string {
+    let ac = this.allowableClasses
+    let text = ''
+
+    for (let _i = 0; _i < ac.length; _i++) {
+      text += `\t<class_restriction class="${PlayableClass[ac[_i]].toUpperCase()}"/>\n`
+      /*
+      if (_i < ac.length - 1) {
+        text += '\n'
+      }
+      */
+    }
+    return text
+  }
+
+  get classicSimIcon(): string {
+    if (!this.itemJSON) {
+      return ``
+    }
+
+    return Tools.capitalize(`${this.itemJSON.icon}.png`)
+  }
+
+  get classicSimSlotName(): string {
+    switch (this.slot) {
+      case ItemSlot.Mainhand:
+        return 'MH'
+      case ItemSlot.Onehand:
+        return '1H'
+      case ItemSlot.Twohand:
+        return '2H'
+      case ItemSlot.Offhand:
+        return 'OH'
+      case ItemSlot.Trinket:
+      case ItemSlot.Trinket2:
+        return 'TRINKET'
+      case ItemSlot.Finger:
+      case ItemSlot.Finger2:
+        return 'FINGER'
+      case ItemSlot.Feet:
+        return 'BOOTS'
+      case ItemSlot.Waist:
+        return 'BELT'
+      case ItemSlot.Head:
+        return 'HEAD'
+      case ItemSlot.Neck:
+        return 'NECK'
+      case ItemSlot.Shoulder:
+        return 'SHOULDERS'
+      case ItemSlot.Chest:
+        return 'CHEST'
+      case ItemSlot.Legs:
+        return 'LEGS'
+      case ItemSlot.Wrist:
+        return 'WRIST'
+      case ItemSlot.Hands:
+        return 'GLOVES'
+      case ItemSlot.Back:
+        return 'BACK'
+      case ItemSlot.Ranged:
+      case ItemSlot.Tabard:
+      case ItemSlot.Shirt:
+      case ItemSlot.Projectile:
+      case ItemSlot.Ammo:
+      case ItemSlot.Relic:
+      default:
+        return ItemSlot[this.slot].toUpperCase()
+    }
+  }
+
   get classicSimSave(): string {
     let tempEnchant = -1
     let affix = ''
@@ -500,6 +571,10 @@ export default class Item {
 
   get spellDamage(): number {
     return this._spellDamage + (this.enchantJSON ? this.enchantJSON.spellDamage : 0)
+  }
+
+  get spellPenetration(): number {
+    return this.itemJSON && this.itemJSON.spellPenetration ? this.itemJSON.spellPenetration : 0
   }
 
   get _arcaneDamage(): number {
