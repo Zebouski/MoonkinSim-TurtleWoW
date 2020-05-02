@@ -181,7 +181,6 @@ export default class Content extends Props {
     }
     */
     return {
-      //options: this.options
       spellCast: this.encounter.spellCast
     }
   }
