@@ -2,25 +2,25 @@
   <div>
     <div class="gear">
       <div class="gear-left">
-        <GearItem :options="options" :itemSlot="wow.ItemSlot.Head" :itemData="encounter.equipment.head" />
-        <GearItem :options="options" :itemSlot="wow.ItemSlot.Neck" :itemData="encounter.equipment.neck" />
-        <GearItem :options="options" :itemSlot="wow.ItemSlot.Shoulder" :itemData="encounter.equipment.shoulder" />
-        <GearItem :options="options" :itemSlot="wow.ItemSlot.Back" :itemData="encounter.equipment.back" />
-        <GearItem :options="options" :itemSlot="wow.ItemSlot.Chest" :itemData="encounter.equipment.chest" />
-        <GearItem :options="options" :itemSlot="wow.ItemSlot.Wrist" :itemData="encounter.equipment.wrist" />
-        <GearItem :options="options" :itemSlot="wow.ItemSlot.Mainhand" :itemData="encounter.equipment.mainhand" />
-        <GearItem :options="options" :itemSlot="wow.ItemSlot.Offhand" :itemData="encounter.equipment.offhand" />
+        <GearItem :options="options" :itemSlot="wow.ItemSlot.Head" :itemData="equipment.head" />
+        <GearItem :options="options" :itemSlot="wow.ItemSlot.Neck" :itemData="equipment.neck" />
+        <GearItem :options="options" :itemSlot="wow.ItemSlot.Shoulder" :itemData="equipment.shoulder" />
+        <GearItem :options="options" :itemSlot="wow.ItemSlot.Back" :itemData="equipment.back" />
+        <GearItem :options="options" :itemSlot="wow.ItemSlot.Chest" :itemData="equipment.chest" />
+        <GearItem :options="options" :itemSlot="wow.ItemSlot.Wrist" :itemData="equipment.wrist" />
+        <GearItem :options="options" :itemSlot="wow.ItemSlot.Mainhand" :itemData="equipment.mainhand" />
+        <GearItem :options="options" :itemSlot="wow.ItemSlot.Offhand" :itemData="equipment.offhand" />
       </div>
       <div class="gear-center"></div>
       <div class="gear-right">
-        <GearItem :options="options" :itemSlot="wow.ItemSlot.Hands" :itemData="encounter.equipment.hands" />
-        <GearItem :options="options" :itemSlot="wow.ItemSlot.Waist" :itemData="encounter.equipment.waist" />
-        <GearItem :options="options" :itemSlot="wow.ItemSlot.Legs" :itemData="encounter.equipment.legs" />
-        <GearItem :options="options" :itemSlot="wow.ItemSlot.Feet" :itemData="encounter.equipment.feet" />
-        <GearItem :options="options" :itemSlot="wow.ItemSlot.Finger" :itemData="encounter.equipment.finger" />
-        <GearItem :options="options" :itemSlot="wow.ItemSlot.Finger2" :itemData="encounter.equipment.finger2" />
-        <GearItem :options="options" :itemSlot="wow.ItemSlot.Trinket" :itemData="encounter.equipment.trinket" />
-        <GearItem :options="options" :itemSlot="wow.ItemSlot.Trinket2" :itemData="encounter.equipment.trinket2" />
+        <GearItem :options="options" :itemSlot="wow.ItemSlot.Hands" :itemData="equipment.hands" />
+        <GearItem :options="options" :itemSlot="wow.ItemSlot.Waist" :itemData="equipment.waist" />
+        <GearItem :options="options" :itemSlot="wow.ItemSlot.Legs" :itemData="equipment.legs" />
+        <GearItem :options="options" :itemSlot="wow.ItemSlot.Feet" :itemData="equipment.feet" />
+        <GearItem :options="options" :itemSlot="wow.ItemSlot.Finger" :itemData="equipment.finger" />
+        <GearItem :options="options" :itemSlot="wow.ItemSlot.Finger2" :itemData="equipment.finger2" />
+        <GearItem :options="options" :itemSlot="wow.ItemSlot.Trinket" :itemData="equipment.trinket" />
+        <GearItem :options="options" :itemSlot="wow.ItemSlot.Trinket2" :itemData="equipment.trinket2" />
       </div>
     </div>
 
@@ -120,7 +120,7 @@ export default class Gear extends GearProps {
   }
 
   downloadExport() {
-    wow.ClassicSim.ExportGear(this.options, this.encounter.equipment)
+    wow.ClassicSim.ExportGear(this.options, this.equipment)
   }
 
   exportGear() {
@@ -137,8 +137,12 @@ export default class Gear extends GearProps {
     wow.Locked.UnequipEnchants(this.options.character.lockedEnchants)
   }
 
+  get equipment() {
+    return this.encounter.spellCast.character.equipment
+  }
+
   get publicLink() {
-    return wow.Tools.publicUrl(this.encounter.equipment)
+    return wow.Tools.publicUrl(this.equipment)
   }
 }
 </script>

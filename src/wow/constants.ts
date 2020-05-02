@@ -20,6 +20,7 @@ let defaults: Options = {
   spellName: 'Starfire Rank 6',
   itemSearchSlot: ItemSlot.None,
   enchantSearchSlot: ItemSlot.None,
+  castTimePenalty: 0.05, // This is an artifact from Ayz's spell damage calculator. No one knows what it is. Human factor? Latency factor?
   character: {
     level: 60,
     gender: Gender.Male,
@@ -45,7 +46,8 @@ let defaults: Options = {
       'ArcaneBrilliance',
       'SongflowerSerenade',
       'BlessingOfKings',
-      'ImprovedGiftOfTheWild'
+      'ImprovedGiftOfTheWild',
+      'SpiritOfZandalar'
     ],
     lockedItems: {
       head: '',
@@ -108,7 +110,6 @@ export default {
 
   baseSpellCrit: 1.8,
   baseSpellCritMultiplier: 1.5,
-  castTimePenalty: 0.05, // This is an artifact from Ayz's spell damage calculator. No one knows what it is. Human factor? Latency factor?
 
   defaults: defaults
 }

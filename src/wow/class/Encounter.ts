@@ -1,36 +1,29 @@
 import Options from '../interface/Options'
-import ItemSearch from '../interface/ItemSearch'
-
-import TargetType from '../enum/TargetType'
-import ItemSlot from '../enum/ItemSlot'
-
-import Spell from './Spell'
-import Target from './Target'
 import Cast from './Cast'
-import Character from './Character'
 import Equipment from './Equipment'
-import Item from './Item'
-
 import ItemJSON from '../interface/ItemJSON'
 import EnchantJSON from '../interface/EnchantJSON'
 
+/* Encounter is the big top level object for all wow calculations. We want it run exactly once
+   whenever a value in Options is changed.
+
+   - Creates the Cast() object where most work is done
+   - Generates the item and enchant list when clicking an item/enchant
+   - Does the expensive gear optimization
+*/
 export default class Encounter {
   options: Options
   spellCast: Cast
-  equipment: Equipment
   items: ItemJSON[]
   enchants: EnchantJSON[]
 
   constructor(options: Options) {
+    console.log('Encounter() called')
     this.options = options
-    this.equipment = Equipment.optimalEquipment(this.options)
     this.items = Equipment.optimalItemsForSlot(this.options)
     this.enchants = Equipment.optimalEnchantsForSlot(this.options)
 
-    this.spellCast = new Cast(
-      new Character(this.options.character, this.equipment),
-      new Spell(this.options.spellName),
-      new Target(this.options.target)
-    )
+    let equipment = Equipment.optimalEquipment(this.options)
+    this.spellCast = new Cast(options, { equipment: equipment })
   }
 }

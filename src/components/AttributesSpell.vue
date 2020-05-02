@@ -11,7 +11,9 @@
       </div>
       <div class="column">
         <p class="is-size-7-mobile has-text-right">{{ data.character.spellHit }}</p>
-        <p class="is-size-7-mobile has-text-right">{{ data.character.spellCrit.toFixed(2) }}</p>
+        <p class="is-size-7-mobile has-text-right">
+          <b-tooltip v-bind:label="spellCritTooltip" multilined>{{ data.character.spellCrit.toFixed(2) }}</b-tooltip>
+        </p>
         <p class="is-size-7-mobile has-text-right">{{ data.spellPenetration }}</p>
 
         <p class="is-size-7-mobile has-text-right">
@@ -49,6 +51,13 @@ const Props = Vue.extend({
 @Component
 export default class AttributesGeneral extends Props {
   wow = wow
+
+  get spellCritTooltip() {
+    return (
+      `${this.data.character.spellCrit.toFixed(2)} (${this.data.character.spellCritFromEquipment.toFixed(2)} ` +
+      `+ ${(this.data.character.spellCrit - this.data.character.spellCritFromEquipment).toFixed(2)})`
+    )
+  }
 
   get spellDamageTooltip() {
     return `${this.data.effectiveSpellDamage} (${this.data.actualSpellDamage} + ${this.data.spellDamageBonus})`

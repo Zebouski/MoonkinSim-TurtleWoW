@@ -16,6 +16,7 @@ export default interface Options {
   spellName: string
   itemSearchSlot: ItemSlot
   enchantSearchSlot: ItemSlot
+  castTimePenalty: number
   character: OptionsCharacter
   target: OptionsTarget
 }
