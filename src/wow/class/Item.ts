@@ -340,7 +340,7 @@ export default class Item {
         return 'TRINKET'
       case ItemSlot.Finger:
       case ItemSlot.Finger2:
-        return 'FINGER'
+        return 'RING'
       case ItemSlot.Feet:
         return 'BOOTS'
       case ItemSlot.Waist:
