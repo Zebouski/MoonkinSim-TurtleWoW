@@ -1,24 +1,50 @@
 import constants from '../constants'
 import Character from './Character'
+import Options from '../interface/Options'
 import Spell from './Spell'
 import Target from './Target'
+import Equipment from './Equipment'
 import CastDmgValues from '../interface/CastDmgValues'
 import CastDmgObject from '../interface/CastDmgObject'
 import MagicSchool from '../enum/MagicSchool'
 import Buff from '../enum/Buffs'
 
+interface EquipmentOverride {
+  equipment?: Equipment
+  spellHitWeight?: number
+  spellCritWeight?: number
+}
+
 /**
  * A Spell cast by Character at Target.
  */
 export default class Cast {
-  character: Character
+  options: Options
   spell: Spell
   target: Target
+  character: Character
+  // equipmentOverride: EquipmentOverride | undefined
 
-  constructor(character: Character, spell: Spell, target: Target) {
-    this.character = character
-    this.spell = spell
-    this.target = target
+  constructor(options: Options, equipmentOverride?: EquipmentOverride) {
+    this.options = options
+
+    /* By default gear is determined by Equipment(). We can override it by passing our own in.
+     * If we don't pass our own equipment in, we can also override the stat weights used
+     * by Equipment() to select the gear */
+    let equipment: Equipment
+    if (equipmentOverride && equipmentOverride.equipment) {
+      equipment = equipmentOverride.equipment
+    } else {
+      equipment = new Equipment(
+        options,
+        equipmentOverride && equipmentOverride.spellHitWeight ? equipmentOverride.spellHitWeight : undefined,
+        equipmentOverride && equipmentOverride.spellCritWeight ? equipmentOverride.spellCritWeight : undefined
+      )
+    }
+
+    this.character = new Character(this.options.character, equipment)
+    this.spell = new Spell(this.options.spellName)
+    this.target = new Target(this.options.target)
   }
 
   get normalDmg(): CastDmgObject {
@@ -240,7 +266,7 @@ export default class Cast {
   }
 
   get effectiveSpellCrit(): number {
-    return this.character.spellCrit + this.improvedMoonfireSpellCritBonus
+    return constants.baseSpellCrit + this.character.spellCrit + this.improvedMoonfireSpellCritBonus
   }
 
   get effectiveTargetResistance(): number {
@@ -333,12 +359,12 @@ export default class Cast {
    */
   get effectiveCastTime(): number {
     if ((this.character.buffFlags & Buff.BurningAdrenaline) === Buff.BurningAdrenaline) {
-      return constants.globalCoolDown + constants.castTimePenalty
+      return constants.globalCoolDown + this.options.castTimePenalty
     }
 
     return (
       Math.max(constants.globalCoolDown, this.castTime - this.castTimeReductionOnCrit * (this.chanceToCrit / 100)) +
-      constants.castTimePenalty
+      this.options.castTimePenalty
     )
   }
 

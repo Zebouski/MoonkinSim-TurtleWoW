@@ -132,15 +132,21 @@ export default class Character {
     return this.intellect / 60
   }
 
+  get spellCritFromEquipment(): number {
+    return this.equipment.spellCrit
+  }
+
+  get spellCritUnbuffed(): number {
+    return this.spellCritFromIntellect + this.spellCritFromEquipment
+  }
+
   /**
    * TODO: Return total spell crit rating (base + gear + (int / 60) + talents + buffs)
    */
   get spellCrit(): number {
     return Math.min(
       constants.spellCritCap,
-      constants.baseSpellCrit +
-        this.spellCritFromIntellect +
-        this.equipment.spellCrit +
+      this.spellCritUnbuffed +
         this.rallyingCryOfTheDragonSlayerSpellCritBonus +
         this.moonkinAuraBonus +
         this.slipkiksSavvyBonus +
@@ -255,17 +261,17 @@ export default class Character {
   get improvedMoonfireBonus(): number {
     switch (this.options.talents.improvedMoonfireRank) {
       case 1:
-        return 1.02 // rank 1: 2% bonus
+        return 2 // rank 1: 2% bonus
       case 2:
-        return 1.04 // rank 2: 4% bonus
+        return 4 // rank 2: 4% bonus
       case 3:
-        return 1.06 // rank 3: 6% bonus
+        return 6 // rank 3: 6% bonus
       case 4:
-        return 1.08 // rank 4: 8% bonus
+        return 8 // rank 4: 8% bonus
       case 5:
-        return 1.1 // rank 5: 10% bonus
+        return 10 // rank 5: 10% bonus
       default:
-        return 1.0 // rank 0: 0% bonus
+        return 0 // rank 0: 0% bonus
     }
   }
 

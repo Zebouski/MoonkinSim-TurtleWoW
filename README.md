@@ -20,6 +20,9 @@
 ##### Version 0.3.4
   - Experimental feature: Export to ClassicSim
   - Remove enchant exploit option
+  - Fix bug that erronously added 1 crit to all casts
+  - Improvements to display of spell crit in attributes box
+  - Groundwork for future support of activated trinkets
   
 ##### Version 0.3.3
   - Fix bug where itemsets (e.g. bloodvine) did not honor options (e.g. phase)

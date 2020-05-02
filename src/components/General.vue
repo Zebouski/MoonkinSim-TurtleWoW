@@ -21,11 +21,9 @@
             </option>
           </b-select>
         </b-field>
-        <!--
-        <b-field label="Fight Length" label-position="on-border">
+        <b-field label="Encounter Length" label-position="on-border">
           <input class="input is-size-7-mobile" type="number" v-model.number="options.encounterLength" />
         </b-field>
-        -->
       </div>
       <div class="column">
         <b-field label="Race" label-position="on-border">
@@ -41,8 +39,10 @@
             </option>
           </b-select>
         </b-field>
+        <b-field label="Cast Time Penalty" label-position="on-border">
+          <input class="input is-size-7-mobile" type="number" v-model.number="options.castTimePenalty" />
+        </b-field>
       </div>
-      <div class="column is-narrow"></div>
     </div>
     <div class="columns is-mobile">
       <div class="column">

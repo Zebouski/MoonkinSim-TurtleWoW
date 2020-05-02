@@ -61,7 +61,7 @@ export default class Equipment {
   idol: Item
 
   /* TODO: can I make it so the constructor could take list of item ids or something instead? */
-  constructor(options: Options, spellHitWeight?: number, spellCritWeight?: number, spellCastTime?: number) {
+  constructor(options: Options, spellHitWeight?: number, spellCritWeight?: number) {
     let _bis = (slot: number) => {
       return Equipment.getBestInSlotItemWithEnchant(slot, this.itemSearch)
     }
@@ -251,19 +251,10 @@ export default class Equipment {
           spellCast ? spellCast.spellCritWeight : 10
         }`
       )
-      spellCast = new Cast(
-        new Character(
-          myOptions.character,
-          new Equipment(
-            myOptions,
-            spellCast ? spellCast.spellHitWeight : undefined,
-            spellCast ? spellCast.spellCritWeight : undefined,
-            spellCast ? spellCast.effectiveCastTime : undefined
-          )
-        ),
-        new Spell(myOptions.spellName),
-        new Target(myOptions.target)
-      )
+      spellCast = new Cast(myOptions, {
+        spellHitWeight: spellCast ? spellCast.spellHitWeight : undefined,
+        spellCritWeight: spellCast ? spellCast.spellCritWeight : undefined
+      })
 
       equipmentArray.push({
         dps: spellCast.dps.effective.avg,
