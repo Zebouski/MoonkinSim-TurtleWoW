@@ -37,8 +37,12 @@ export default class Cast {
     } else {
       equipment = new Equipment(
         options,
-        equipmentOverride && equipmentOverride.spellHitWeight ? equipmentOverride.spellHitWeight : undefined,
-        equipmentOverride && equipmentOverride.spellCritWeight ? equipmentOverride.spellCritWeight : undefined
+        equipmentOverride && equipmentOverride.spellHitWeight !== undefined
+          ? equipmentOverride.spellHitWeight
+          : undefined,
+        equipmentOverride && equipmentOverride.spellCritWeight !== undefined
+          ? equipmentOverride.spellCritWeight
+          : undefined
       )
     }
 
