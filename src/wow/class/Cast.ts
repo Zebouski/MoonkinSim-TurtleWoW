@@ -207,11 +207,13 @@ export default class Cast {
   }
 
   get improvedMoonfireBonus(): number {
-    return this.spell.isMoonfire ? this.character.improvedMoonfireBonus : 1.0
+    return this.spell.isMoonfire && this.character.improvedMoonfireBonus
+      ? 1 + this.character.improvedMoonfireBonus / 100
+      : 1.0
   }
 
   get improvedMoonfireSpellCritBonus(): number {
-    return this.spell.isMoonfire ? (this.improvedMoonfireBonus - 1) * 100 : 0
+    return this.spell.isMoonfire ? this.improvedMoonfireBonus : 0
   }
 
   get curseOfShadowDamageBonus(): number {
