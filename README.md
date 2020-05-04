@@ -21,6 +21,8 @@
   - Experimental feature: Export to ClassicSim
   - Remove enchant exploit option
   - Fix bug that erronously added 1 crit to all casts
+  - Fix bug where item/enchant select lists have improper scores
+  - Update DPS and weight display in header
   - Improvements to display of spell crit in attributes box
   - Groundwork for future support of activated trinkets
   
