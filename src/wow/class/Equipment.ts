@@ -11,6 +11,7 @@ import ItemSlot from '../enum/ItemSlot'
 import SortOrder from '../enum/SortOrder'
 
 import Options from '../interface/Options'
+import LockedItems from '../interface/LockedItems'
 import ItemSearch from '../interface/ItemSearch'
 import ItemJSON from '../interface/ItemJSON'
 import EnchantJSON from '../interface/EnchantJSON'
@@ -129,108 +130,45 @@ export default class Equipment {
     }
   }
 
-  static optimalEnchantsForSlot(options: Options) {
-    let myOptions = Tools.CloneObject(options)
-
-    /* Unequip the slot in question so we get a list of properly weighted enchants */
-    switch (myOptions.enchantSearchSlot) {
-      case ItemSlot.Head:
-        myOptions.character.lockedEnchants.head = 0
-        break
-      case ItemSlot.Hands:
-        myOptions.character.lockedEnchants.hands = 0
-        break
-      case ItemSlot.Shoulder:
-        myOptions.character.lockedEnchants.shoulder = 0
-        break
-      case ItemSlot.Legs:
-        myOptions.character.lockedEnchants.legs = 0
-        break
-      case ItemSlot.Back:
-        myOptions.character.lockedEnchants.back = 0
-        break
-      case ItemSlot.Feet:
-        myOptions.character.lockedEnchants.feet = 0
-        break
-      case ItemSlot.Chest:
-        myOptions.character.lockedEnchants.chest = 0
-        break
-      case ItemSlot.Wrist:
-        myOptions.character.lockedEnchants.wrist = 0
-        break
-      case ItemSlot.Mainhand:
-        myOptions.character.lockedEnchants.mainhand = 0
-        break
-      default:
-        break
+  static optimalItemsForSlot(options: Options) {
+    /* itemSearchSlot is only set when a user clicks a slot to equip an item. If that's not
+     * the case then we don't need to do anything */
+    let slot = options.itemSearchSlot
+    if (slot === ItemSlot.None) {
+      return undefined
     }
 
-    let equipment = Equipment.optimalEquipment(myOptions)
-    return Equipment.getWeightedEnchantsBySlot(myOptions.enchantSearchSlot, equipment.itemSearch)
+    /* We need the stat weights MINUS the slot we're getting items for. So make a private
+     * copy of options, unequip the slot, and run the equipment optimization function.
+     * Our stat weights will be contained in the itemSearch. */
+    let tmpOptions: Options = Tools.CloneObject(options)
+    Locked.UnequipItem(tmpOptions.character.lockedItems, slot)
+    let tmpEquipment: Equipment = Equipment.optimalEquipment(tmpOptions)
+    let tmpItemSearch: ItemSearch = tmpEquipment.itemSearch
+
+    /* and finally retrieve the items for this slot, using the weights
+     * we just got. Copy the original version of what we overwrote above
+     * and unlock the slot so it doesn't return a user locked item */
+    tmpItemSearch.lockedItems = Tools.CloneObject(options.character.lockedItems)
+    Locked.UnlockItem(tmpItemSearch.lockedItems, tmpOptions.itemSearchSlot)
+    return Equipment.getWeightedItemsBySlot(slot, tmpItemSearch)
   }
 
-  static optimalItemsForSlot(options: Options) {
-    let myOptions = Tools.CloneObject(options)
-
-    /* Unequip the slot in question so we get a list of properly weighted items */
-    switch (myOptions.itemSearchSlot) {
-      case ItemSlot.Head:
-        myOptions.character.lockedItems.head = ''
-        break
-      case ItemSlot.Hands:
-        myOptions.character.lockedItems.hands = ''
-        break
-      case ItemSlot.Neck:
-        myOptions.character.lockedItems.neck = ''
-        break
-      case ItemSlot.Waist:
-        myOptions.character.lockedItems.waist = ''
-        break
-      case ItemSlot.Shoulder:
-        myOptions.character.lockedItems.shoulder = ''
-        break
-      case ItemSlot.Legs:
-        myOptions.character.lockedItems.legs = ''
-        break
-      case ItemSlot.Back:
-        myOptions.character.lockedItems.back = ''
-        break
-      case ItemSlot.Feet:
-        myOptions.character.lockedItems.feet = ''
-        break
-      case ItemSlot.Chest:
-        myOptions.character.lockedItems.chest = ''
-        break
-      case ItemSlot.Wrist:
-        myOptions.character.lockedItems.wrist = ''
-        break
-      case ItemSlot.Finger:
-        myOptions.character.lockedItems.finger = ''
-        break
-      case ItemSlot.Finger2:
-        myOptions.character.lockedItems.finger2 = ''
-        break
-      case ItemSlot.Mainhand:
-        myOptions.character.lockedItems.mainhand = ''
-        break
-      case ItemSlot.Offhand:
-        myOptions.character.lockedItems.offhand = ''
-        break
-      case ItemSlot.Trinket:
-        myOptions.character.lockedItems.trinket = ''
-        break
-      case ItemSlot.Trinket2:
-        myOptions.character.lockedItems.trinket2 = ''
-        break
-      case ItemSlot.Relic:
-        myOptions.character.lockedItems.idol = ''
-        break
-      default:
-        break
+  static optimalEnchantsForSlot(options: Options) {
+    /* Same process as above, but for enchants */
+    let slot = options.enchantSearchSlot
+    if (slot === ItemSlot.None) {
+      return undefined
     }
 
-    let equipment = Equipment.optimalEquipment(myOptions)
-    return Equipment.getWeightedItemsBySlot(myOptions.itemSearchSlot, equipment.itemSearch)
+    let tmpOptions: Options = Tools.CloneObject(options)
+    Locked.UnequipEnchant(tmpOptions.character.lockedEnchants, slot)
+    let tmpEquipment: Equipment = Equipment.optimalEquipment(tmpOptions)
+    let tmpItemSearch: ItemSearch = tmpEquipment.itemSearch
+
+    tmpItemSearch.lockedEnchants = Tools.CloneObject(options.character.lockedEnchants)
+    Locked.UnlockEnchant(tmpItemSearch.lockedEnchants, tmpOptions.enchantSearchSlot)
+    return Equipment.getWeightedEnchantsBySlot(slot, tmpItemSearch)
   }
 
   static sortByDps(a: EquipmentArray, b: EquipmentArray) {
