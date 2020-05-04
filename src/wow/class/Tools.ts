@@ -11,11 +11,12 @@ interface ParaminOptions {
 }
 
 export default class Tools {
-  /*
-  static CloneObject(o: object) {
-    return JSON.parse(JSON.stringify(o))
+  static RoundedString(num: number, decimals: number): string {
+    return num.toLocaleString('en-US', {
+      minimumFractionDigits: decimals,
+      maximumFractionDigits: decimals
+    })
   }
-  */
 
   static CloneObject(o: any) {
     return clonedeep(o)
