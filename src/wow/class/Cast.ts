@@ -49,6 +49,12 @@ export default class Cast {
     this.character = new Character(this.options.character, equipment)
     this.spell = new Spell(this.options.spellName)
     this.target = new Target(this.options.target)
+
+    /* XXX: Kinda hacky, but update the weights in itemSearch on the equipment to keep
+       a record we can reference elsewhere without needing to reprocess it */
+    // equipment.itemSearch.
+    equipment.itemSearch.spellHitWeight = this.spellHitWeight
+    equipment.itemSearch.spellCritWeight = this.spellCritWeight
   }
 
   get normalDmg(): CastDmgObject {

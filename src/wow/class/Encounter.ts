@@ -14,8 +14,8 @@ import EnchantJSON from '../interface/EnchantJSON'
 export default class Encounter {
   options: Options
   spellCast: Cast
-  items: ItemJSON[]
-  enchants: EnchantJSON[]
+  items: ItemJSON[] | undefined
+  enchants: EnchantJSON[] | undefined
 
   constructor(options: Options) {
     console.log('Encounter() called')

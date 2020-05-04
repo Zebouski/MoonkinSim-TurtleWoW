@@ -99,9 +99,7 @@ export default class GearEnchantSelect extends GearEnchantSelectProps {
   }
 
   get enchant_data() {
-    let myEnchants = this.encounter.enchants
-    myEnchants.sort(wow.Item.sortScoreDes)
-    return myEnchants
+    return this.encounter.enchants
   }
 
   get enchant_columns() {

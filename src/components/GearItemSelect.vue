@@ -107,9 +107,7 @@ export default class GearItemSelect extends GearItemSelectProps {
   }
 
   get item_data() {
-    let myItems = this.encounter.items
-    myItems.sort(wow.Item.sortScoreDes)
-    return myItems
+    return this.encounter.items
   }
 
   get item_columns() {
