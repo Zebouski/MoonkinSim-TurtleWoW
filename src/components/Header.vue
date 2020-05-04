@@ -60,36 +60,33 @@ export default class Header extends Props {
   wow = wow
 
   get dps() {
-    let main: number = Number(this.data.dps.effective.avg.toFixed(0))
+    let val = this.data.dps.effective.avg
     if (this.data.spell.isInsectSwarm || this.data.spell.isHurricane) {
-      main = Number(this.data.periodicDPS.effective.dps.toFixed(2))
+      val = this.data.periodicDPS.effective.dps
     }
-    return `${main}`
+    return `${wow.Tools.RoundedString(val, 2)}`
   }
 
   get spellHitWeight() {
-    let main: number = Number(this.data.spellHitWeight.toFixed(1))
     if (this.data.spell.isInsectSwarm || this.data.spell.isHurricane) {
       return `N/A`
     }
-    return `${main}`
+    return `${wow.Tools.RoundedString(this.data.spellHitWeight, 2)}`
   }
 
   get spellCritWeight() {
-    let main: number = Number(this.data.spellCritWeight.toFixed(1))
     if (this.data.spell.isInsectSwarm || this.data.spell.isHurricane) {
       return `N/A`
     }
-    return `${main}`
+    return `${wow.Tools.RoundedString(this.data.spellCritWeight, 2)}`
   }
 
   get intWeight() {
-    let main: number = Number(Number(this.data.intWeight).toFixed(3))
-    let rev: number = Number((1 / main).toFixed(0))
     if (this.data.spell.isInsectSwarm || this.data.spell.isHurricane) {
       return `N/A`
     }
-    return `${main} (${rev})`
+
+    return `${wow.Tools.RoundedString(this.data.intWeight, 3)} (${wow.Tools.RoundedString(1 / this.data.intWeight, 2)})`
   }
 }
 </script>
