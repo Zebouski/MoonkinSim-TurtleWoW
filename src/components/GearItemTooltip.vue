@@ -3,7 +3,7 @@
     <header class="wow-item__header">
       <p class="header__title">{{ itemData.name }}</p>
       <p class="header__item-level">
-        Item Level {{ itemData.level }} (Score {{ parseFloat(itemData.score.toFixed(2)) }})
+        Item Level {{ itemData.level }}
       </p>
       <p class="header__binds">{{ itemData.bindText }}</p>
       <p v-if="itemData.isUnique" class="header__unique">Unique</p>

@@ -250,7 +250,7 @@ export default class Equipment {
     }
 
     let result = Query.Items({
-      cloneResults: false,
+      cloneResults: true,
       slot: slot,
       phase: itemSearch.phase,
       faction: itemSearch.faction,
@@ -292,7 +292,7 @@ export default class Equipment {
     }
 
     let result = Query.Enchants({
-      cloneResults: false,
+      cloneResults: true,
       slot: slot,
       phase: itemSearch.phase,
       enchantExploit: itemSearch.enchantExploit
