@@ -20,6 +20,7 @@
 ##### Version 0.3.4
   - Experimental feature: Export to ClassicSim
   - Remove enchant exploit option
+  - Fix shimmer bonus slightly undershooting due to wowhead's weird verbiage
   - Fix bug that erronously added 1 crit to all casts
   - Fix bug where item/enchant select lists have improper scores
   - Update DPS and weight display in header
