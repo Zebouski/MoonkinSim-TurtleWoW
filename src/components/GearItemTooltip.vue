@@ -2,9 +2,7 @@
   <aside class="wow-item" :data-quality="itemData.qualityName">
     <header class="wow-item__header">
       <p class="header__title">{{ itemData.name }}</p>
-      <p class="header__item-level">
-        Item Level {{ itemData.level }}
-      </p>
+      <p class="header__item-level">Item Level {{ itemData.level }}</p>
       <p class="header__binds">{{ itemData.bindText }}</p>
       <p v-if="itemData.isUnique" class="header__unique">Unique</p>
     </header>
