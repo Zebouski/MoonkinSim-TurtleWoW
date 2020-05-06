@@ -232,16 +232,14 @@ export default class Cast {
 
   /**
    * Effect #1	Apply Aura: Mod % Damage Taken (All)
-   * Value: -76%
+   * Value: -75%
    * Effect #2	Apply Aura: Mod % Damage Taken (Vulnerable)
-   * Value: 1099%
+   * Value: 1100%
    *
-   * i.e. 2.6376 damage multiplier to vulnerable school
-   * 0.24 to non-vulnerable schools
    */
   get shimmerBonus(): number {
-    let modifier = this.target.shimmer ? 1 - 0.76 : 1
-    return this.target.shimmer === this.spell.magicSchool ? modifier * 10.99 : modifier
+    let modifier = this.target.shimmer ? 1 - 0.75 : 1
+    return this.target.shimmer === this.spell.magicSchool ? modifier * (1 + 11) : modifier
   }
 
   get stormStrikeBonus(): number {
