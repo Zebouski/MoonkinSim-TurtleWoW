@@ -8,6 +8,9 @@
             <option value="62">62</option>
             <option value="61">61</option>
             <option value="60">60</option>
+            <option value="59">59</option>
+            <option value="58">58</option>
+            <option value="57">57</option>
           </b-select>
         </b-field>
         <b-field label="Type" label-position="on-border">
