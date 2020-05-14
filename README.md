@@ -19,6 +19,7 @@
 ### Changelog
 ##### Version 0.3.5
   - Display regeneration information when hovering over mana
+  - Add lower level targets
 
 ##### Version 0.3.4
   - Experimental feature: Export to ClassicSim

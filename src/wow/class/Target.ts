@@ -38,15 +38,20 @@ export default class Target {
   /* assumes character level 60 */
   get hitChance(): number {
     switch (this.level) {
-      case 60:
-        return 96
-      case 61:
-        return 95
+      case 63:
+        return 83
       case 62:
         return 94
-      case 63:
+      case 61:
+        return 95
+      case 60:
+        return 96
+      case 59:
+        return 97
+      case 58:
+        return 98
       default:
-        return 83
+        return 99
     }
   }
 
