@@ -33,7 +33,8 @@ let defaults: Options = {
       vengeanceRank: 5,
       improvedWrathRank: 5,
       improvedStarfireRank: 5,
-      improvedMoonfireRank: 5
+      improvedMoonfireRank: 5,
+      reflectionRank: 3
     },
     buffs: [
       'MoonkinAura',
