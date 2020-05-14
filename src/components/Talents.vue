@@ -21,6 +21,13 @@
             v-model.number="options.character.talents.improvedWrathRank"
           />
         </b-field>
+        <b-field label="Reflection" label-position="on-border">
+          <input
+            class="input is-size-7-mobile"
+            type="number"
+            v-model.number="options.character.talents.reflectionRank"
+          />
+        </b-field>
       </div>
       <div class="column">
         <b-field label="Imp. Starfire" label-position="on-border">

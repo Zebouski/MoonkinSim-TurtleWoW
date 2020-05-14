@@ -17,6 +17,9 @@
     - [BiS (optimal)](https://kmmiles.gitlab.io/moonkin-calc/?phase=6&raids=true&worldbosses=true&pvprank=14)
 
 ### Changelog
+##### Version 0.3.5
+  - Display regeneration information when hovering over mana
+
 ##### Version 0.3.4
   - Experimental feature: Export to ClassicSim
   - Remove enchant exploit option

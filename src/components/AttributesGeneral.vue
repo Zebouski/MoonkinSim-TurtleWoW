@@ -11,7 +11,9 @@
       </div>
       <div class="column">
         <p class="is-size-7-mobile has-text-right">{{ data.character.health.toFixed(0) }}</p>
-        <p class="is-size-7-mobile has-text-right">{{ data.character.mana.toFixed(0) }}</p>
+        <p class="is-size-7-mobile has-text-right">
+          <b-tooltip v-bind:label="manaTooltip" multilined>{{ data.character.mana.toFixed(0) }}</b-tooltip>
+        </p>
         <p class="is-size-7-mobile has-text-right">{{ data.character.stamina.toFixed(0) }}</p>
         <p class="is-size-7-mobile has-text-right">{{ data.character.intellect.toFixed(0) }}</p>
         <p class="is-size-7-mobile has-text-right">{{ data.character.spirit.toFixed(0) }}</p>
@@ -36,5 +38,13 @@ const Props = Vue.extend({
 @Component
 export default class AttributesGeneral extends Props {
   wow = wow
+
+  get manaTooltip() {
+    return (
+      `mana while casting = ${this.data.character.manaPerTickCasting} every 2s, ` +
+      `mana not casting = ${this.data.character.manaPerTickNotCasting} every 2s, ` +
+      `mana from innervate: ${this.data.character.manaPerTickInnervate} every 2s\n`
+    )
+  }
 }
 </script>

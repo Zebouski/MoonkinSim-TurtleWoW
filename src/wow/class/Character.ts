@@ -116,6 +116,30 @@ export default class Character {
     return this.equipment.mp5
   }
 
+  get manaPerTickNotCasting(): number {
+    let fromBase = (15 * this.level) / 60
+    let fromSpirit = this.spirit / 5
+    let fromMp5 = this.mp5 ? (this.mp5 / 5) * 2 : 0
+
+    return fromBase + fromSpirit + fromMp5
+  }
+
+  get manaPerTickCasting(): number {
+    let fromBase = ((15 * this.level) / 60) * this.reflectionBonus
+    let fromSpirit = (this.spirit / 5) * this.reflectionBonus
+    let fromMp5 = this.mp5 ? (this.mp5 / 5) * 2 : 0
+
+    return fromBase + fromSpirit + fromMp5
+  }
+
+  get manaPerTickInnervate(): number {
+    return this.manaPerTickNotCasting * 4
+  }
+
+  get manaPerInnervate(): number {
+    return this.manaPerTickInnervate * 10
+  }
+
   get spellDamage(): number {
     return this.equipment.spellDamage
   }
@@ -352,6 +376,22 @@ export default class Character {
         return 0.5 // rank 5: Increases the critical strike damage bonus by 100%
       default:
         return 0.0
+    }
+  }
+
+  /**
+   * Allows x% of your Mana regeneration to continue while casting.
+   */
+  get reflectionBonus(): number {
+    switch (this.options.talents.reflectionRank) {
+      case 1:
+        return 0.05
+      case 2:
+        return 0.1
+      case 3:
+        return 0.15
+      default:
+        return 0
     }
   }
 

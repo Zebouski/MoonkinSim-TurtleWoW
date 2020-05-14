@@ -21,5 +21,6 @@ export default interface OptionsCharacter {
     improvedWrathRank: number
     improvedStarfireRank: number
     improvedMoonfireRank: number
+    reflectionRank: number
   }
 }
