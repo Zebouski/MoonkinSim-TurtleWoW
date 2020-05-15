@@ -70,7 +70,7 @@ export default class Cast {
     }
 
     let _actualDmg = (dmg: number) => {
-      return dmg + this.spell.coefficient.direct * this.effectiveSpellDamage
+      return dmg + this.spell.coefficient.direct * (this.effectiveSpellDamage + this.onUseSpellDamageBonus)
     }
 
     let _effectiveDmg = (dmg: number) => {
@@ -145,7 +145,9 @@ export default class Cast {
 
     myObj.actual.tick =
       this.spell.tickDmg > 0
-        ? myObj.base.tick + (this.spell.coefficient.periodic / this.spell.ticks) * this.effectiveSpellDamage
+        ? myObj.base.tick +
+          (this.spell.coefficient.periodic / this.spell.ticks) *
+            (this.effectiveSpellDamage + this.onUseSpellDamageBonus)
         : 0
     myObj.actual.total = this.spell.tickDmg > 0 ? myObj.actual.tick * (this.spell.duration / this.spell.tickRate) : 0
     myObj.actual.tickText = `${myObj.actual.tick.toFixed(0)} every ${this.spell.tickRate} sec`
@@ -249,12 +251,7 @@ export default class Cast {
   }
 
   get spellDamageBonus(): number {
-    return (
-      this.character.flaskOfSupremePowerBonus +
-      this.character.greaterArcaneElixirBonus +
-      this.onUseSpellDamageBonus +
-      this.character.ephemeralPowerBonus
-    )
+    return this.character.flaskOfSupremePowerBonus + this.character.greaterArcaneElixirBonus
   }
 
   get onUseSpellDamageBonus(): number {
