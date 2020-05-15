@@ -11,6 +11,10 @@ interface ParaminOptions {
 }
 
 export default class Tools {
+  static triangularNumber(n: number) {
+    return (n * (n + 1)) / 2
+  }
+
   static RoundedString(num: number, decimals: number): string {
     return num.toLocaleString('en-US', {
       minimumFractionDigits: decimals,
