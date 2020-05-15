@@ -252,8 +252,27 @@ export default class Cast {
     return (
       this.character.flaskOfSupremePowerBonus +
       this.character.greaterArcaneElixirBonus +
+      this.onUseSpellDamageBonus +
       this.character.ephemeralPowerBonus
     )
+  }
+
+  get onUseSpellDamageBonus(): number {
+    let trinket = undefined
+    let trinket1 = this.character.equipment.trinket
+    let trinket2 = this.character.equipment.trinket2
+
+    if (trinket1 && Equipment.isOnUseEquip(trinket1.itemJSON)) {
+      trinket = trinket1
+    } else if (trinket2 && Equipment.isOnUseEquip(trinket2.itemJSON)) {
+      trinket = trinket2
+    }
+
+    if (!trinket) {
+      return 0
+    }
+
+    return Equipment.trinketEffectiveSpellDamage(trinket.itemJSON, this.options.encounterLength, this.effectiveCastTime)
   }
 
   get actualSpellDamage(): number {

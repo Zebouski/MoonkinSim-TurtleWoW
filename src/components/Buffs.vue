@@ -48,18 +48,8 @@
             Sayge's Dark Fortune
           </b-checkbox>
         </div>
-        <div class="field">
-          <b-checkbox class="is-size-7-mobile" native-value="SpiritOfZandalar" v-model="options.character.buffs">
-            Spirit of Zandalar
-          </b-checkbox>
-        </div>
       </div>
       <div class="column">
-        <div class="field">
-          <b-checkbox class="is-size-7-mobile" native-value="EphemeralPower" v-model="options.character.buffs">
-            Ephemeral Power
-          </b-checkbox>
-        </div>
         <div class="field">
           <b-checkbox class="is-size-7-mobile" native-value="GreaterArcaneElixir" v-model="options.character.buffs">
             Greater Arcane Elixir
@@ -102,6 +92,11 @@
         <div class="field">
           <b-checkbox class="is-size-7-mobile" native-value="BurningAdrenaline" v-model="options.character.buffs">
             Burning Adrenaline
+          </b-checkbox>
+        </div>
+        <div class="field">
+          <b-checkbox class="is-size-7-mobile" native-value="SpiritOfZandalar" v-model="options.character.buffs">
+            Spirit of Zandalar
           </b-checkbox>
         </div>
       </div>
