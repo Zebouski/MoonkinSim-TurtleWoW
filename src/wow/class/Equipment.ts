@@ -232,7 +232,30 @@ export default class Equipment {
     return itemJSON && itemJSON.onUse ? true : false
   }
 
-  static trinketEffectiveSpellDamage(
+  static trinketEffectiveSpellDamage(itemJSON: ItemJSON | undefined, encounterLength: number, castTime: number) {
+    if (!itemJSON) {
+      return 0
+    }
+
+    if (itemJSON.name && itemJSON.name === 'Talisman of Ephemeral Power') {
+      // console.log('toep')
+      return this._trinketEffectiveSpellDamage(172, 15, 90, 0, encounterLength, castTime)
+    }
+
+    if (itemJSON.name && itemJSON.name === 'Zandalarian Hero Charm') {
+      // console.log('zhc')
+      return this._trinketEffectiveSpellDamage(204, 20, 120, 17, encounterLength, castTime)
+    }
+
+    if (itemJSON.name && itemJSON.name === 'The Restrained Essence of Sapphiron') {
+      // console.log('res')
+      return this._trinketEffectiveSpellDamage(130, 20, 120, 0, encounterLength, castTime)
+    }
+
+    return 0
+  }
+
+  static _trinketEffectiveSpellDamage(
     trinketBonus: number,
     trinketDuration: number,
     trinketCooldown: number,
@@ -254,13 +277,23 @@ export default class Equipment {
     let totalCasts = Math.floor(encounterLength / castTime)
     let totalSpellDamage = trinketBonus * buffedCasts
     if (trinketReductionPerCast) {
-      totalSpellDamage -= Tools.triangularNumber(buffedCasts - 1) * trinketReductionPerCast
+      let cooldowns = Math.floor(encounterLength / trinketCooldown)
+      let buffedCastsThisCooldown = Math.floor(cooldowns / buffedCasts)
+      let triangular = Tools.triangularNumber(buffedCasts - 1)
+      /*
+      console.log(
+        `cooldowns=${cooldowns},buffedCasts=${buffedCasts},buffedCastsThisCooldown=${buffedCastsThisCooldown},triangular=${triangular}`
+      )
+      */
+      totalSpellDamage -= triangular * trinketReductionPerCast
     }
     let effectiveSpellDamage = totalSpellDamage / buffedCasts / (totalCasts / buffedCasts)
 
+    /*
     console.log(
       `buffedCasts=${buffedCasts}, totalCasts=${totalCasts},totalSpellDamage=${totalSpellDamage},effectiveActiveTime=${effectiveActiveTime}, effectiveSpellDamage=${effectiveSpellDamage}`
     )
+    */
     return effectiveSpellDamage
   }
 
@@ -268,27 +301,7 @@ export default class Equipment {
     let _scoreOnUseTrinket = (itemJSON: ItemJSON): number => {
       /* Add additional score from onUse effect */
       if (itemSearch.onUseItems && (slot === ItemSlot.Trinket || slot === ItemSlot.Trinket2) && itemJSON.onUse) {
-        if (itemJSON.name && itemJSON.name === 'Talisman of Ephemeral Power') {
-          console.log('toep')
-          return this.trinketEffectiveSpellDamage(172, 15, 90, 0, itemSearch.encounterLength, itemSearch.spellCastTime)
-        }
-
-        if (itemJSON.name && itemJSON.name === 'Zandalarian Hero Charm') {
-          console.log('zhc')
-          return this.trinketEffectiveSpellDamage(
-            204,
-            20,
-            120,
-            17,
-            itemSearch.encounterLength,
-            itemSearch.spellCastTime
-          )
-        }
-
-        if (itemJSON.name && itemJSON.name === 'The Restrained Essence of Sapphiron') {
-          console.log('res')
-          return this.trinketEffectiveSpellDamage(130, 20, 120, 0, itemSearch.encounterLength, itemSearch.spellCastTime)
-        }
+        return this.trinketEffectiveSpellDamage(itemJSON, itemSearch.encounterLength, itemSearch.spellCastTime)
       }
       return 0
     }
