@@ -18,6 +18,7 @@
 
 ### Changelog
 ##### Version 0.3.5
+  - Beta version of activated trinkets (TOEP, ZHC, TRES)
   - Display regeneration information when hovering over mana
   - Add lower level targets
 

@@ -56,13 +56,11 @@
             Include random enchants
           </b-checkbox>
         </div>
-        <!--
         <div class="field">
           <b-checkbox class="is-size-7-mobile" v-model="options.onUseItems">
             Optimize for On Use items
           </b-checkbox>
         </div>
-        -->
       </div>
       <div class="column">
         <div class="field">
