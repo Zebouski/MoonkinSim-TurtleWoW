@@ -39,9 +39,7 @@ import ItemOnUseJSON from './interface/ItemOnUseJSON'
 // let csvFilePath = 'vendor/Classic_Balance_Druidv1.4.csv'
 // let csvFilePath = 'vendor/Classic_Balance_Druidv1.5.csv'
 let csvFilePath = 'vendor/Classic_Balance_Druidv1.5.1.2.csv'
-if (process.env.TEST && process.env.TEST === '1') {
-  csvFilePath = 'vendor/testItems.csv'
-}
+let supplementalFilePath = 'vendor/supplemental-items.csv'
 
 let csim = false
 if (process.env.CSIM && process.env.CSIM === '1') {
@@ -608,7 +606,9 @@ class ConvertItem {
 
 const start = async function() {
   console.warn('Parsing CSV: ' + csvFilePath)
-  const jsonArray = await csv().fromFile(csvFilePath)
+  const csvArray = await csv().fromFile(csvFilePath)
+  const csvExtraArray = await csv().fromFile(supplementalFilePath)
+  const jsonArray = csvArray.concat(csvExtraArray)
   let myArray = []
 
   for (let ogObj of jsonArray) {
@@ -616,14 +616,12 @@ const start = async function() {
       continue
     }
     let gearItem = new ConvertItem(ogObj)
-    // enchants stored elsewhere
     if (gearItem.isEnchant) {
       continue
     }
     console.warn('Processing: ' + gearItem.itemName)
     await downloadWowheadXML(gearItem.itemBaseName)
     let wowHeadItem = await parseWowheadXML(gearItem.itemBaseName)
-    // let wowHeadItem = await gearItem.getWowHeadItem()
     if (wowHeadItem === null) {
       console.error('Item not found: ' + ogObj.Name)
     } else {
@@ -631,9 +629,6 @@ const start = async function() {
       await downloadWowheadIcon(gearItem.itemIconName)
       myArray.push(gearItem.newItem)
     }
-    // return parseInt(this._wowHeadItem['level'][0].$.id, 10)
-    // console.warn(wowHeadItem['class'][0].$.id)
-    // console.warn('subclass: ' + wowHeadItem['subclass'][0]._)
   }
 
   if (csim) {
