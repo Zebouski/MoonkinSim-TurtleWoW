@@ -43,7 +43,8 @@ export default class AttributesGeneral extends Props {
     return (
       `mana while casting = ${this.data.character.manaPerTickCasting} every 2s, ` +
       `mana not casting = ${this.data.character.manaPerTickNotCasting} every 2s, ` +
-      `mana from innervate: ${this.data.character.manaPerTickInnervate} every 2s\n`
+      `mana from innervate: ${this.data.character.manaPerTickInnervate} every 2s, ` +
+      `total mana from innervate: ${this.data.character.manaPerInnervate}\n`
     )
   }
 }

@@ -15028,5 +15028,34 @@
    "effect": "Increases your spell damage by up to 204 and your healing by up to 408 for 20 sec. Every time you cast a spell, the bonus is reduced by 17 spell damage and 34 healing.",
    "cooldown": "2 Min Cooldown"
   }
+ },
+ {
+  "id": 19909,
+  "customId": "19909",
+  "name": "Will of Arlokk",
+  "class": 2,
+  "subclass": 10,
+  "slot": 17,
+  "quality": 4,
+  "level": 65,
+  "reqLevel": 60,
+  "bop": true,
+  "unique": true,
+  "phase": 4,
+  "pvpRank": 1,
+  "icon": "inv_staff_35",
+  "location": "Zul'Gurub",
+  "boss": "High Priestess Arlokk",
+  "raid": true,
+  "worldBoss": false,
+  "faction": 3,
+  "stamina": 15,
+  "intellect": 19,
+  "spirit": 35,
+  "durability": 120,
+  "minDmg": 129,
+  "maxDmg": 204,
+  "speed": 3,
+  "dps": 55
  }
 ]
