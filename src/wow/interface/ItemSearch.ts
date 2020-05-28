@@ -26,6 +26,8 @@ export default interface ItemSearch {
   spellHitWeight: number
   spellCritWeight: number
   spellCastTime: number
+  spellCrit: number
+  naturesGrace: boolean
   slot: ItemSlot
   sortOrder?: SortOrder
 }

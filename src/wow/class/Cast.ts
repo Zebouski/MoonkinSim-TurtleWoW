@@ -14,6 +14,7 @@ interface EquipmentOverride {
   spellHitWeight?: number
   spellCritWeight?: number
   spellCastTime?: number
+  spellCrit?: number
 }
 
 /**
@@ -44,7 +45,10 @@ export default class Cast {
         equipmentOverride && equipmentOverride.spellCritWeight !== undefined
           ? equipmentOverride.spellCritWeight
           : undefined,
-        equipmentOverride && equipmentOverride.spellCastTime !== undefined ? equipmentOverride.spellCastTime : undefined
+        equipmentOverride && equipmentOverride.spellCastTime !== undefined
+          ? equipmentOverride.spellCastTime
+          : undefined,
+        equipmentOverride && equipmentOverride.spellCrit !== undefined ? equipmentOverride.spellCrit : undefined
       )
     }
 
@@ -57,6 +61,7 @@ export default class Cast {
     equipment.itemSearch.spellHitWeight = this.spellHitWeight
     equipment.itemSearch.spellCritWeight = this.spellCritWeight
     equipment.itemSearch.spellCastTime = this.effectiveCastTime
+    equipment.itemSearch.spellCrit = this.effectiveSpellCrit
   }
 
   get normalDmg(): CastDmgObject {
@@ -269,7 +274,13 @@ export default class Cast {
       return 0
     }
 
-    return Equipment.trinketEffectiveSpellDamage(trinket.itemJSON, this.options.encounterLength, this.effectiveCastTime)
+    return Equipment.trinketEffectiveSpellDamage(
+      trinket.itemJSON,
+      this.options.encounterLength,
+      this.effectiveCastTime,
+      this.effectiveSpellCrit,
+      this.options.character.talents.naturesGraceRank === 1 ? true : false
+    )
   }
 
   get actualSpellDamage(): number {

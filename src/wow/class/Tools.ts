@@ -1,16 +1,37 @@
 import LockedItems from '../interface/LockedItems'
 import LockedEnchants from '../interface/LockedEnchants'
 import Equipment from './Equipment'
-import Faction from '../enum/Faction'
 import pako from 'pako'
 import { Base64 } from 'js-base64'
 import clonedeep from 'lodash/cloneDeep'
+// import math from 'mathjs'
+const math = require('mathjs')
+const stats = require('statsjs')
 
 interface ParaminOptions {
   version?: number
 }
 
 export default class Tools {
+  static cumulativeChance(trials: number, chance: number, x: number): number {
+    return 1 - stats.binomcdf(trials, chance, x)
+  }
+
+  static consecutiveChance(trials: number, chance: number, x: number): number {
+    let sStart = math.zeros([x + 1, x + 1])
+    sStart[0][0] = 1
+
+    let T = math.zeros([x + 1, x + 1])
+    for (let i = 0; i < x; i++) {
+      T[0][i] = 1 - chance
+      T[i + 1][i] = chance
+    }
+
+    T[x][x] = 1
+    let sEnd = math.multiply(math.pow(T, trials), sStart)
+    return sEnd.slice(-1)[0][0]
+  }
+
   static triangularNumber(n: number) {
     return (n * (n + 1)) / 2
   }

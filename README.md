@@ -17,6 +17,9 @@
     - [BiS (optimal)](https://kmmiles.gitlab.io/moonkin-calc/?phase=6&raids=true&worldbosses=true&pvprank=14)
 
 ### Changelog
+##### Version 0.3.6
+  - Added additional trinket damage based on probability of getting extra cast from natures grace
+  
 ##### Version 0.3.5
   - Beta version of activated trinkets (TOEP, ZHC, TRES)
   - Display regeneration information when hovering over mana

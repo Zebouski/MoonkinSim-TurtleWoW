@@ -62,13 +62,25 @@ export default class Equipment {
   idol: Item
 
   /* TODO: can I make it so the constructor could take list of item ids or something instead? */
-  constructor(options: Options, spellHitWeight?: number, spellCritWeight?: number, spellCastTime?: number) {
+  constructor(
+    options: Options,
+    spellHitWeight?: number,
+    spellCritWeight?: number,
+    spellCastTime?: number,
+    spellCrit?: number
+  ) {
     let _bis = (slot: number) => {
       return Equipment.getBestInSlotItemWithEnchant(slot, this.itemSearch)
     }
 
     this.options = options
-    this.itemSearch = Equipment.itemSearchFromOptions(options, spellHitWeight, spellCritWeight, spellCastTime)
+    this.itemSearch = Equipment.itemSearchFromOptions(
+      options,
+      spellHitWeight,
+      spellCritWeight,
+      spellCastTime,
+      spellCrit
+    )
 
     let bisTrinkets = Equipment.getBestInSlotTrinkets(this.itemSearch)
     let bisRings = Equipment.getBestInSlotRings(this.itemSearch)
@@ -102,14 +114,16 @@ export default class Equipment {
     options: Options,
     spellHitWeight?: number,
     spellCritWeight?: number,
-    spellCastTime?: number
+    spellCastTime?: number,
+    spellCrit?: number
   ) {
-    let myOptions = Tools.CloneObject(options)
+    let myOptions: Options = Tools.CloneObject(options)
     let spell = new Spell(myOptions.spellName)
 
     let mySpellHitWeight = spellHitWeight !== undefined ? spellHitWeight : 15
     let mySpellCritWeight = spellCritWeight !== undefined ? spellCritWeight : 10
     let mySpellCastTime = spellCastTime !== undefined ? spellCastTime : spell.castTime
+    let mySpellCrit = spellCrit !== undefined ? spellCrit : 30
 
     return {
       phase: myOptions.phase,
@@ -127,6 +141,8 @@ export default class Equipment {
       spellHitWeight: mySpellHitWeight,
       spellCritWeight: mySpellCritWeight,
       spellCastTime: mySpellCastTime,
+      spellCrit: mySpellCrit,
+      naturesGrace: myOptions.character.talents.naturesGraceRank === 1 ? true : false,
       lockedItems: myOptions.character.lockedItems,
       lockedEnchants: myOptions.character.lockedEnchants,
       slot: myOptions.itemSearchSlot,
@@ -196,7 +212,8 @@ export default class Equipment {
       spellCast = new Cast(myOptions, {
         spellHitWeight: spellCast ? spellCast.spellHitWeight : undefined,
         spellCritWeight: spellCast ? spellCast.spellCritWeight : undefined,
-        spellCastTime: spellCast ? spellCast.effectiveCastTime : undefined
+        spellCastTime: spellCast ? spellCast.effectiveCastTime : undefined,
+        spellCrit: spellCast ? spellCast.effectiveSpellCrit : undefined
       })
 
       equipmentArray.push({
@@ -232,24 +249,30 @@ export default class Equipment {
     return itemJSON && itemJSON.onUse ? true : false
   }
 
-  static trinketEffectiveSpellDamage(itemJSON: ItemJSON | undefined, encounterLength: number, castTime: number) {
+  static trinketEffectiveSpellDamage(
+    itemJSON: ItemJSON | undefined,
+    encounterLength: number,
+    castTime: number,
+    spellCrit: number,
+    naturesGrace: boolean
+  ) {
     if (!itemJSON) {
       return 0
     }
 
     if (itemJSON.name && itemJSON.name === 'Talisman of Ephemeral Power') {
       // console.log('toep')
-      return this._trinketEffectiveSpellDamage(172, 15, 90, 0, encounterLength, castTime)
+      return this._trinketEffectiveSpellDamage(172, 15, 90, 0, encounterLength, castTime, spellCrit, naturesGrace)
     }
 
     if (itemJSON.name && itemJSON.name === 'Zandalarian Hero Charm') {
       // console.log('zhc')
-      return this._trinketEffectiveSpellDamage(204, 20, 120, 17, encounterLength, castTime)
+      return this._trinketEffectiveSpellDamage(204, 20, 120, 17, encounterLength, castTime, spellCrit, naturesGrace)
     }
 
     if (itemJSON.name && itemJSON.name === 'The Restrained Essence of Sapphiron') {
       // console.log('res')
-      return this._trinketEffectiveSpellDamage(130, 20, 120, 0, encounterLength, castTime)
+      return this._trinketEffectiveSpellDamage(130, 20, 120, 0, encounterLength, castTime, spellCrit, naturesGrace)
     }
 
     return 0
@@ -261,7 +284,9 @@ export default class Equipment {
     trinketCooldown: number,
     trinketReductionPerCast: number,
     encounterLength: number,
-    castTime: number
+    castTime: number,
+    spellCrit: number,
+    naturesGrace: boolean
   ) {
     let effectiveActiveTime = 0
     if (trinketDuration >= encounterLength) {
@@ -275,7 +300,9 @@ export default class Equipment {
 
     let buffedCasts = Math.floor(effectiveActiveTime / castTime)
     let totalCasts = Math.floor(encounterLength / castTime)
-    let totalSpellDamage = trinketBonus * buffedCasts
+    let naturesGraceBonus = naturesGrace ? trinketBonus * Tools.cumulativeChance(4, spellCrit / 100, 2) : 0
+    let totalSpellDamage = trinketBonus * buffedCasts + naturesGraceBonus
+    // console.log(Tools.cumulativeChance(4, spellCrit / 100, 2) * trinketBonus)
     if (trinketReductionPerCast) {
       let cooldowns = Math.floor(encounterLength / trinketCooldown)
       let buffedCastsThisCooldown = Math.floor(cooldowns / buffedCasts)
@@ -301,7 +328,13 @@ export default class Equipment {
     let _scoreOnUseTrinket = (itemJSON: ItemJSON): number => {
       /* Add additional score from onUse effect */
       if (itemSearch.onUseItems && (slot === ItemSlot.Trinket || slot === ItemSlot.Trinket2) && itemJSON.onUse) {
-        return this.trinketEffectiveSpellDamage(itemJSON, itemSearch.encounterLength, itemSearch.spellCastTime)
+        return this.trinketEffectiveSpellDamage(
+          itemJSON,
+          itemSearch.encounterLength,
+          itemSearch.spellCastTime,
+          itemSearch.spellCrit,
+          itemSearch.naturesGrace
+        )
       }
       return 0
     }
