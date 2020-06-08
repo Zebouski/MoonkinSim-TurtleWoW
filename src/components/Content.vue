@@ -24,48 +24,50 @@
           </div>
           <div class="tile is-parent">
             <article class="tile is-child box has-background-black-ter has-text-white">
-              <Gear :options="options" :encounter="encounter" />
+              <b-tabs class="block">
+                <b-tab-item label="Gear">
+                  <Gear :options="options" :encounter="encounter" />
+                </b-tab-item>
+                <b-tab-item label="Damage">
+                  <div class="tile">
+                    <article
+                      class="tile is-child box has-background-black-ter has-text-white"
+                      style="border-width: 0px; align-items: center;"
+                    >
+                      <SpellTooltip :data="encounter.spellCast" />
+                    </article>
+                  </div>
+                  <hr style="height: 1px; background-color: #4a4a4a;" />
+                  <Damage :data="encounter.spellCast" />
+                </b-tab-item>
+                <b-tab-item label="Stats">
+                  <div class="tile is-vertical">
+                    <div class="tile">
+                      <div class="tile is-5">
+                        <article
+                          style="border-width: 0px;"
+                          class="tile is-child box has-background-black-ter has-text-white"
+                        >
+                          <AttributesGeneral :data="encounter.spellCast" />
+                        </article>
+                      </div>
+                      <div class="tile">
+                        <article
+                          style="border-width: 0px;"
+                          class="tile is-child box has-background-black-ter has-text-white"
+                        >
+                          <AttributesSpell :data="encounter.spellCast" />
+                        </article>
+                      </div>
+                    </div>
+                  </div>
+                </b-tab-item>
+              </b-tabs>
             </article>
           </div>
         </div>
       </div>
     </section>
-    <section class="section info has-background-black-bis">
-      <div class="container is-fluid">
-        <div class="tile is-ancestor">
-          <!-- stats box -->
-          <div class="tile is-parent is-5">
-            <div class="tile is-vertical">
-              <div class="tile">
-                <article class="tile is-child box has-background-black-ter has-text-white">
-                  <SpellTooltip :data="encounter.spellCast" />
-                </article>
-              </div>
-              <div class="tile">
-                <div class="tile is-5">
-                  <article class="tile is-child box has-background-black-ter has-text-white">
-                    <AttributesGeneral :data="encounter.spellCast" />
-                  </article>
-                </div>
-                <div class="tile">
-                  <article class="tile is-child box has-background-black-ter has-text-white">
-                    <AttributesSpell :data="encounter.spellCast" />
-                  </article>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- damage box -->
-          <div class="tile is-parent">
-            <article class="tile is-child box has-background-black-ter has-text-white">
-              <Damage :data="encounter.spellCast" />
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <Debug v-bind:class="{ 'is-hidden': !options.debug }" :data="debugObj" />
   </div>
 </template>
