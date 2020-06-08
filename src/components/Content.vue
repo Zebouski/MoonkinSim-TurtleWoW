@@ -161,9 +161,10 @@ export default class Content extends Props {
   }
 
   changePhase() {
-    this.options.spellName = this.options.phase >= 5 ? 'Starfire Rank 7' : 'Starfire Rank 6'
+    if (this.options.spellName.includes(`Starfire`)) {
+      this.options.spellName = this.options.phase >= 5 ? 'Starfire Rank 7' : 'Starfire Rank 6'
+    }
   }
-
 
   get encounter() {
     return new wow.Encounter(this.options)
