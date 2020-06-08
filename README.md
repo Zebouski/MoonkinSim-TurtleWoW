@@ -18,6 +18,9 @@
 
 ### Changelog
 ##### Version 0.3.6
+  - Mobile fixes:
+    - Remove horizontal scrolling.
+    - Don't show tooltip on mobile when clicking item.
   - Added additional trinket damage based on probability of getting extra cast from natures grace
   
 ##### Version 0.3.5

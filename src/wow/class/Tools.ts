@@ -43,6 +43,15 @@ export default class Tools {
     })
   }
 
+  static isMobile() {
+    let mql = window.matchMedia('(max-width: 768px)')
+    if (!mql.matches) {
+      return true
+    }
+
+    return false
+  }
+
   static CloneObject(o: any) {
     return clonedeep(o)
   }
