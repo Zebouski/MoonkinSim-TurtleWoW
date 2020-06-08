@@ -27,13 +27,13 @@
             </b-tooltip>
           </td>
           <td>
-            <span class="is-size-7 is-italic">{{ data.normalDmg.base.text }}</span>
+            <span class="is-size-7">{{ data.normalDmg.base.text }}</span>
           </td>
           <td>
-            <span class="is-size-7 is-italic">{{ data.critDmg.base.text }}</span>
+            <span class="is-size-7">{{ data.critDmg.base.text }}</span>
           </td>
           <td>
-            <span class="is-size-7 is-italic">{{ data.dps.base.text }}</span>
+            <span class="is-size-7">{{ data.dps.base.text }}</span>
           </td>
         </tr>
         <tr>
@@ -43,13 +43,13 @@
             </b-tooltip>
           </td>
           <td>
-            <span class="is-size-7 is-italic">{{ data.normalDmg.actual.text }}</span>
+            <span class="is-size-7">{{ data.normalDmg.actual.text }}</span>
           </td>
           <td>
-            <span class="is-size-7 is-italic">{{ data.critDmg.actual.text }}</span>
+            <span class="is-size-7">{{ data.critDmg.actual.text }}</span>
           </td>
           <td>
-            <span class="is-size-7 is-italic">{{ data.dps.actual.text }}</span>
+            <span class="is-size-7">{{ data.dps.actual.text }}</span>
           </td>
         </tr>
         <tr>
@@ -59,13 +59,13 @@
             </b-tooltip>
           </td>
           <td>
-            <span class="is-size-7 is-italic">{{ data.normalDmg.effective.text }}</span>
+            <span class="is-size-7">{{ data.normalDmg.effective.text }}</span>
           </td>
           <td>
-            <span class="is-size-7 is-italic">{{ data.critDmg.effective.text }}</span>
+            <span class="is-size-7">{{ data.critDmg.effective.text }}</span>
           </td>
           <td>
-            <span class="is-size-7 is-italic has-text-success has-text-weight-bold">{{ data.dps.effective.text }}</span>
+            <span class="is-size-7 has-text-success has-text-weight-bold">{{ data.dps.effective.text }}</span>
           </td>
         </tr>
         <tr>
@@ -100,17 +100,17 @@
             </b-tooltip>
           </td>
           <td>
-            <span class="is-size-7 is-italic">
+            <span class="is-size-7">
               {{ data.periodicDmg.base.tickText }}
             </span>
           </td>
           <td>
-            <span class="is-size-7 is-italic">
+            <span class="is-size-7">
               {{ data.periodicDmg.base.totalText }}
             </span>
           </td>
           <td>
-            <span class="is-size-7 is-italic">
+            <span class="is-size-7">
               {{ data.periodicDPS.base.text }}
             </span>
           </td>
@@ -122,17 +122,17 @@
             </b-tooltip>
           </td>
           <td>
-            <span class="is-size-7 is-italic">
+            <span class="is-size-7">
               {{ data.periodicDmg.actual.tickText }}
             </span>
           </td>
           <td>
-            <span class="is-size-7 is-italic">
+            <span class="is-size-7">
               {{ data.periodicDmg.actual.totalText }}
             </span>
           </td>
           <td>
-            <span class="is-size-7 is-italic">
+            <span class="is-size-7">
               {{ data.periodicDPS.actual.text }}
             </span>
           </td>
@@ -144,17 +144,17 @@
             </b-tooltip>
           </td>
           <td>
-            <span class="is-size-7 is-italic">
+            <span class="is-size-7">
               {{ data.periodicDmg.effective.tickText }}
             </span>
           </td>
           <td>
-            <span class="is-size-7 is-italic">
+            <span class="is-size-7">
               {{ data.periodicDmg.effective.totalText }}
             </span>
           </td>
           <td>
-            <span class="is-size-7 is-italic has-text-success has-text-weight-bold">
+            <span class="is-size-7 has-text-success has-text-weight-bold">
               {{ data.periodicDPS.effective.text }}
             </span>
           </td>
@@ -165,7 +165,13 @@
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.table,
+th,
+td {
+  border: 0px;
+}
+</style>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
