@@ -229,7 +229,7 @@ export default class GearItem extends Props {
   }
 
   mouseEnter(slot: number): void {
-    if (!this.itemData.isEmpty) {
+    if (!this.itemData.isEmpty && wow.Tools.isMobile()) {
       this.showToolTip = true
     }
   }
