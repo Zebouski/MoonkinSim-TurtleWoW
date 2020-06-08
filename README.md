@@ -18,10 +18,8 @@
 
 ### Changelog
 ##### Version 0.3.6
-  - Update UI
-    - Consolidate to two boxes
-    - Mobile: Remove horizontal scrolling.
-    - Mobile: Don't show tooltip on mobile when clicking item.
+  - Mobile UI improvements
+  - Autoselect best rank of Starfire when changing phases
   - Added additional trinket damage based on probability of getting extra cast from natures grace
   
 ##### Version 0.3.5
