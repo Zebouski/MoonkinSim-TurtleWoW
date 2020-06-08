@@ -8,7 +8,7 @@
             <article class="tile is-child box has-background-black-ter has-text-white">
               <b-tabs class="block">
                 <b-tab-item label="General">
-                  <General :options="options" />
+                  <General v-on:change-phase="changePhase" :options="options" />
                 </b-tab-item>
                 <b-tab-item label="Buffs">
                   <Buffs :options="options" />
@@ -159,6 +159,11 @@ export default class Content extends Props {
       this.options.character.pvpRank = pvprank
     }
   }
+
+  changePhase() {
+    this.options.spellName = this.options.phase >= 5 ? 'Starfire Rank 7' : 'Starfire Rank 6'
+  }
+
 
   get encounter() {
     return new wow.Encounter(this.options)
