@@ -22,7 +22,7 @@
 */
 
 import Item from './class/Item'
-import ClassicSim from './class/ClassicSim'
+import ClassicSim from './module/ClassicSim'
 import ItemJSON from './interface/ItemJSON'
 import Faction from './enum/Faction'
 import ItemQuality from './enum/ItemQuality'

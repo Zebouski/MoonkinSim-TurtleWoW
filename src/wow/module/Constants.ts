@@ -1,10 +1,10 @@
 /* constants */
-import TargetType from './enum/TargetType'
-import PlayableRace from './enum/PlayableRace'
-import PlayableClass from './enum/PlayableClass'
-import Gender from './enum/Gender'
-import Options from './interface/Options'
-import ItemSlot from './enum/ItemSlot'
+import TargetType from '../enum/TargetType'
+import PlayableRace from '../enum/PlayableRace'
+import PlayableClass from '../enum/PlayableClass'
+import Gender from '../enum/Gender'
+import Options from '../interface/Options'
+import ItemSlot from '../enum/ItemSlot'
 
 let defaults: Options = {
   debug: false,

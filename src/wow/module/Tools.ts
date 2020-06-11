@@ -1,6 +1,6 @@
 import LockedItems from '../interface/LockedItems'
 import LockedEnchants from '../interface/LockedEnchants'
-import Equipment from './Equipment'
+import Equipment from '../class/Equipment'
 import pako from 'pako'
 import { Base64 } from 'js-base64'
 import clonedeep from 'lodash/cloneDeep'

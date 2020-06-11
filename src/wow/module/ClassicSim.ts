@@ -1,6 +1,6 @@
 import Tools from './Tools'
-import Equipment from './Equipment'
-import Item from './Item'
+import Equipment from '../class/Equipment'
+import Item from '../class/Item'
 import Options from '../interface/Options'
 import PlayableRace from '../enum/PlayableRace'
 

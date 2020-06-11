@@ -1,4 +1,4 @@
-import Query from './Query'
+import Query from '../module/Query'
 
 import ItemJSON from '../interface/ItemJSON'
 import ItemSetJSON from '../interface/ItemSetJSON'
@@ -15,7 +15,7 @@ import PlayableClass from '../enum/PlayableClass'
 import PvPRank from '../enum/PvPRank'
 import Faction from '../enum/Faction'
 import TargetType from '../enum/TargetType'
-import Tools from './Tools'
+import Tools from '../module/Tools'
 
 export default class Item {
   _slot: ItemSlot

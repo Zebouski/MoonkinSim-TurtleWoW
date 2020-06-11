@@ -84,8 +84,6 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { default as wow } from '../wow'
 
-import Query from '../wow/class/Query'
-
 const Props = Vue.extend({
   props: {
     options: Object
@@ -99,7 +97,7 @@ export default class General extends Props {
   get spellList() {
     let spellNames: string[] = []
 
-    let spells = Query.Spells({ phase: this.options.phase })
+    let spells = wow.Query.Spells({ phase: this.options.phase })
     for (let spell of spells) {
       spellNames.push(spell.name)
     }

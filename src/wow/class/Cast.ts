@@ -1,4 +1,4 @@
-import constants from '../constants'
+import constants from '../module/Constants'
 import Character from './Character'
 import Options from '../interface/Options'
 import Spell from './Spell'
