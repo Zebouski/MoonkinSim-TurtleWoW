@@ -368,14 +368,21 @@ export default class Cast {
    * Doesn't account for procs like natures grace
    */
   get castTime(): number {
+    let x
+
     switch (this.spell.baseName.toUpperCase()) {
       case 'WRATH':
-        return this.spell.castTime - this.character.improvedWrathBonus
+        x = this.spell.castTime - this.character.improvedWrathBonus
+        break
       case 'STARFIRE':
-        return this.spell.castTime - this.character.improvedStarfireBonus
+        x = this.spell.castTime - this.character.improvedStarfireBonus
+        break
       default:
-        return this.spell.castTime <= constants.globalCoolDown ? constants.globalCoolDown : this.spell.castTime
+        x = this.spell.castTime <= constants.globalCoolDown ? constants.globalCoolDown : this.spell.castTime
+        break
     }
+
+    return x + this.options.castTimePenalty
   }
 
   /**
@@ -402,8 +409,7 @@ export default class Cast {
     }
 
     return (
-      Math.max(constants.globalCoolDown, this.castTime - this.castTimeReductionOnCrit * (this.chanceToCrit / 100)) +
-      this.options.castTimePenalty
+      Math.max(constants.globalCoolDown, this.castTime - this.castTimeReductionOnCrit * (this.chanceToCrit / 100))
     )
   }
 
