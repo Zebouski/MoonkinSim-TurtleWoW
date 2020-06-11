@@ -1,4 +1,4 @@
-import constants from '../constants'
+import constants from '../module/Constants'
 import Equipment from './Equipment'
 
 import PlayableRace from '../enum/PlayableRace'

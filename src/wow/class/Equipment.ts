@@ -3,9 +3,9 @@ import Character from './Character'
 import Spell from './Spell'
 import Target from './Target'
 import Cast from './Cast'
-import Tools from './Tools'
-import Locked from './Locked'
-import Query from './Query'
+import Tools from '../module/Tools'
+import Locked from '../module/Locked'
+import Query from '../module/Query'
 
 import ItemSlot from '../enum/ItemSlot'
 import SortOrder from '../enum/SortOrder'
@@ -15,7 +15,7 @@ import LockedItems from '../interface/LockedItems'
 import ItemSearch from '../interface/ItemSearch'
 import ItemJSON from '../interface/ItemJSON'
 import EnchantJSON from '../interface/EnchantJSON'
-import constants from '../constants'
+import constants from '../module/Constants'
 
 /* Object containing:
  *
