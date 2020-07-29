@@ -9,7 +9,7 @@ import ItemSlot from '../enum/ItemSlot'
 let defaults: Options = {
   debug: false,
   experimental: false,
-  phase: 4,
+  phase: 5,
   raids: true,
   tailoring: true,
   worldBosses: false,
