@@ -260,6 +260,11 @@ export default class Equipment {
       return 0
     }
 
+    if (itemJSON.name && itemJSON.name === 'Draconic Infused Emblem') {
+      // console.log('toep')
+      return this._trinketEffectiveSpellDamage(100, 15, 75, 0, encounterLength, castTime, spellCrit, naturesGrace)
+    }
+
     if (itemJSON.name && itemJSON.name === 'Talisman of Ephemeral Power') {
       // console.log('toep')
       return this._trinketEffectiveSpellDamage(172, 15, 90, 0, encounterLength, castTime, spellCrit, naturesGrace)
@@ -300,7 +305,8 @@ export default class Equipment {
 
     let buffedCasts = Math.floor(effectiveActiveTime / castTime)
     let totalCasts = Math.floor(encounterLength / castTime)
-    let naturesGraceBonus = naturesGrace ? trinketBonus * Tools.cumulativeChance(4, spellCrit / 100, 2) : 0
+    // let naturesGraceBonus = naturesGrace ? trinketBonus * Tools.cumulativeChance(4, spellCrit / 100, 2) : 0
+    let naturesGraceBonus = 0
     let totalSpellDamage = trinketBonus * buffedCasts + naturesGraceBonus
     // console.log(Tools.cumulativeChance(4, spellCrit / 100, 2) * trinketBonus)
     if (trinketReductionPerCast) {
