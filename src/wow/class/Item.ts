@@ -146,8 +146,8 @@ export default class Item {
       spellPenetration * spellPenetrationWeight +
       (intellect / SpellCritFromIntellectDivisor.Druid) * spellCritWeight
 
-    //console.log(`spellPenetration: ${spellPenetration}`)
-    //console.log(`spellPenetrationWeight: ${spellPenetrationWeight}`)
+    // console.log(`spellPenetration: ${spellPenetration}`)
+    // console.log(`spellPenetrationWeight: ${spellPenetrationWeight}`)
     return parseFloat(totalScore.toFixed(3))
   }
 

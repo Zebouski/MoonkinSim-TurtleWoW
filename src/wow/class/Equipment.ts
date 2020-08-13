@@ -128,7 +128,7 @@ export default class Equipment {
 
     // TODO: recommending spell pen gear is disabled. it suffers the same problem as spell hit cap
     let mySpellPenetrationWeight = 0
-    //let mySpellPenetrationWeight = spellPenetrationWeight !== undefined ? spellPenetrationWeight : 0
+    // let mySpellPenetrationWeight = spellPenetrationWeight !== undefined ? spellPenetrationWeight : 0
     let mySpellCastTime = spellCastTime !== undefined ? spellCastTime : spell.castTime
     let mySpellCrit = spellCrit !== undefined ? spellCrit : 30
 
