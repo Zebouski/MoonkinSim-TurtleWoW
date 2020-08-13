@@ -790,7 +790,7 @@ export default class Item {
     }
 
     if (this._spellPenetration > 0) {
-      bonuses.push(`Decreases the magical resistances of your spell targets by ${this._spellPenetration}.`)
+      bonuses.push(`Equip: Decreases the magical resistances of your spell targets by ${this._spellPenetration}.`)
     }
 
     if (this._mp5 > 0) {
