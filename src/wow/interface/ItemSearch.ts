@@ -25,6 +25,7 @@ export default interface ItemSearch {
   lockedEnchants?: LockedEnchants
   spellHitWeight: number
   spellCritWeight: number
+  spellPenetrationWeight: number
   spellCastTime: number
   spellCrit: number
   naturesGrace: boolean

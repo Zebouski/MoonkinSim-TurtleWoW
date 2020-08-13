@@ -13,6 +13,7 @@ interface EquipmentOverride {
   equipment?: Equipment
   spellHitWeight?: number
   spellCritWeight?: number
+  spellPenetrationWeight?: number
   spellCastTime?: number
   spellCrit?: number
 }
@@ -45,6 +46,9 @@ export default class Cast {
         equipmentOverride && equipmentOverride.spellCritWeight !== undefined
           ? equipmentOverride.spellCritWeight
           : undefined,
+        equipmentOverride && equipmentOverride.spellPenetrationWeight !== undefined
+          ? equipmentOverride.spellPenetrationWeight
+          : undefined,
         equipmentOverride && equipmentOverride.spellCastTime !== undefined
           ? equipmentOverride.spellCastTime
           : undefined,
@@ -60,6 +64,7 @@ export default class Cast {
        a record we can reference elsewhere without needing to reprocess it */
     equipment.itemSearch.spellHitWeight = this.spellHitWeight
     equipment.itemSearch.spellCritWeight = this.spellCritWeight
+    equipment.itemSearch.spellPenetrationWeight = this.spellPenetrationWeight
     equipment.itemSearch.spellCastTime = this.effectiveCastTime
     equipment.itemSearch.spellCrit = this.effectiveSpellCrit
   }
@@ -408,9 +413,7 @@ export default class Cast {
       return constants.globalCoolDown + this.options.castTimePenalty
     }
 
-    return (
-      Math.max(constants.globalCoolDown, this.castTime - this.castTimeReductionOnCrit * (this.chanceToCrit / 100))
-    )
+    return Math.max(constants.globalCoolDown, this.castTime - this.castTimeReductionOnCrit * (this.chanceToCrit / 100))
   }
 
   /**
@@ -481,6 +484,41 @@ export default class Cast {
    */
   get intWeight(): number {
     return this.spellCritWeight > 0 ? this.spellCritWeight / 60 : 0
+  }
+
+  /**
+   * spell pen weight i.e the amount of spell power 1 point of spell penetration is worth
+   */
+
+  get spellPenetrationWeight(): number {
+    // if the boss only has unmitigatable level based resistances left after spell pen, then it's value is 0
+    if (this.effectiveTargetResistance <= this.targetResistanceFromLevel) {
+      return 0
+    }
+
+    // B == Spell Base damage
+    // m == base damage modifier (moonfury)
+    // c == spell coefficient
+    // P == Spellpower
+    const m = this.moonFuryBonus
+    const B = this.normalDmg.base.avg
+    const c = this.spell.coefficient.direct
+    const P = this.actualSpellDamage
+    const BossResist = this.target.spellResistance
+    const SpellPen = this.spellPenetration
+    const result = (m * B + c * P) / (c * (400 - (BossResist - SpellPen)))
+
+    /*
+    console.log(`m = ${m}`)
+    console.log(`B = ${B}`)
+    console.log(`c = ${c}`)
+    console.log(`P = ${P}`)
+    console.log(`BossResist = ${BossResist}`)
+    console.log(`SpellPen = ${SpellPen}`)
+    console.log(`result = ${result}`)
+    */
+
+    return result
   }
 
   /**

@@ -66,6 +66,7 @@ export default class Equipment {
     options: Options,
     spellHitWeight?: number,
     spellCritWeight?: number,
+    spellPenetrationWeight?: number,
     spellCastTime?: number,
     spellCrit?: number
   ) {
@@ -78,6 +79,7 @@ export default class Equipment {
       options,
       spellHitWeight,
       spellCritWeight,
+      spellPenetrationWeight,
       spellCastTime,
       spellCrit
     )
@@ -114,6 +116,7 @@ export default class Equipment {
     options: Options,
     spellHitWeight?: number,
     spellCritWeight?: number,
+    spellPenetrationWeight?: number,
     spellCastTime?: number,
     spellCrit?: number
   ) {
@@ -122,6 +125,10 @@ export default class Equipment {
 
     let mySpellHitWeight = spellHitWeight !== undefined ? spellHitWeight : 15
     let mySpellCritWeight = spellCritWeight !== undefined ? spellCritWeight : 10
+
+    // TODO: recommending spell pen gear is disabled. it suffers the same problem as spell hit cap
+    let mySpellPenetrationWeight = 0
+    //let mySpellPenetrationWeight = spellPenetrationWeight !== undefined ? spellPenetrationWeight : 0
     let mySpellCastTime = spellCastTime !== undefined ? spellCastTime : spell.castTime
     let mySpellCrit = spellCrit !== undefined ? spellCrit : 30
 
@@ -140,6 +147,7 @@ export default class Equipment {
       targetType: myOptions.target.type,
       spellHitWeight: mySpellHitWeight,
       spellCritWeight: mySpellCritWeight,
+      spellPenetrationWeight: mySpellPenetrationWeight,
       spellCastTime: mySpellCastTime,
       spellCrit: mySpellCrit,
       naturesGrace: myOptions.character.talents.naturesGraceRank === 1 ? true : false,
@@ -207,11 +215,12 @@ export default class Equipment {
       console.log(
         `Attempt ${i + 1}: spellHitWeight=${spellCast ? spellCast.spellHitWeight : 15}, spellCritWeight=${
           spellCast ? spellCast.spellCritWeight : 10
-        }`
+        }, spellPenetrationWeight=${spellCast ? spellCast.spellPenetrationWeight : 0}`
       )
       spellCast = new Cast(myOptions, {
         spellHitWeight: spellCast ? spellCast.spellHitWeight : undefined,
         spellCritWeight: spellCast ? spellCast.spellCritWeight : undefined,
+        spellPenetrationWeight: spellCast ? spellCast.spellPenetrationWeight : undefined,
         spellCastTime: spellCast ? spellCast.effectiveCastTime : undefined,
         spellCrit: spellCast ? spellCast.effectiveSpellCrit : undefined
       })
@@ -353,7 +362,8 @@ export default class Equipment {
         itemSearch.magicSchool,
         itemSearch.targetType,
         itemSearch.spellHitWeight,
-        itemSearch.spellCritWeight
+        itemSearch.spellCritWeight,
+        itemSearch.spellPenetrationWeight
       )
       x.push(lockedItem)
       return x
@@ -377,7 +387,8 @@ export default class Equipment {
         itemSearch.magicSchool,
         itemSearch.targetType,
         itemSearch.spellHitWeight,
-        itemSearch.spellCritWeight
+        itemSearch.spellCritWeight,
+        itemSearch.spellPenetrationWeight
       )
       score += _scoreOnUseTrinket(result[i])
       result[i].score = score
@@ -395,7 +406,8 @@ export default class Equipment {
         lockedEnchant,
         itemSearch.magicSchool,
         itemSearch.spellHitWeight,
-        itemSearch.spellCritWeight
+        itemSearch.spellCritWeight,
+        itemSearch.spellPenetrationWeight
       )
       x.push(lockedEnchant)
       return x
@@ -413,7 +425,8 @@ export default class Equipment {
         result[i],
         itemSearch.magicSchool,
         itemSearch.spellHitWeight,
-        itemSearch.spellCritWeight
+        itemSearch.spellCritWeight,
+        itemSearch.spellPenetrationWeight
       )
       result[i].score = score
     }
@@ -448,7 +461,8 @@ export default class Equipment {
         itemSearch.magicSchool,
         itemSearch.targetType,
         itemSearch.spellHitWeight,
-        itemSearch.spellCritWeight
+        itemSearch.spellCritWeight,
+        itemSearch.spellPenetrationWeight
       )
       itemSetItemsScore += item.score
       itemSetItems.push(item)
@@ -462,7 +476,8 @@ export default class Equipment {
         itemSearch.magicSchool,
         itemSearch.targetType,
         itemSearch.spellHitWeight,
-        itemSearch.spellCritWeight
+        itemSearch.spellCritWeight,
+        itemSearch.spellPenetrationWeight
       )
       itemSet.score += isb
     }
@@ -840,6 +855,24 @@ export default class Equipment {
 
   /* TODO: There's isn't any spell pen gear yet */
   get spellPenetration(): number {
-    return 0
+    return (
+      this.head.spellPenetration +
+      this.hands.spellPenetration +
+      this.neck.spellPenetration +
+      this.waist.spellPenetration +
+      this.shoulder.spellPenetration +
+      this.legs.spellPenetration +
+      this.back.spellPenetration +
+      this.feet.spellPenetration +
+      this.chest.spellPenetration +
+      this.finger.spellPenetration +
+      this.wrist.spellPenetration +
+      this.finger2.spellPenetration +
+      this.mainhand.spellPenetration +
+      this.offhand.spellPenetration +
+      this.trinket.spellPenetration +
+      this.trinket2.spellPenetration +
+      this.idol.spellPenetration
+    )
   }
 }

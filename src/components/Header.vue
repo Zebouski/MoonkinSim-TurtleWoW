@@ -25,6 +25,12 @@
           <p class="title">{{ intWeight }}</p>
         </div>
       </div>
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">Spell Pen Weight</p>
+          <p class="title">{{ spellPenetrationWeight }}</p>
+        </div>
+      </div>
     </nav>
   </section>
 </template>
@@ -87,6 +93,13 @@ export default class Header extends Props {
     }
 
     return `${wow.Tools.RoundedString(this.data.intWeight, 3)} (${wow.Tools.RoundedString(1 / this.data.intWeight, 2)})`
+  }
+
+  get spellPenetrationWeight() {
+    if (this.data.spellPenetrationWeight === Infinity) {
+      return `N/A`
+    }
+    return `${wow.Tools.RoundedString(this.data.spellPenetrationWeight, 2)}`
   }
 }
 </script>

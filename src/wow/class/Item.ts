@@ -57,7 +57,8 @@ export default class Item {
     magicSchool: MagicSchool,
     targetType: TargetType,
     spellHitWeight: number,
-    spellCritWeight: number
+    spellCritWeight: number,
+    spellPenetrationWeight: number
   ): number {
     return this.score(
       magicSchool,
@@ -70,9 +71,11 @@ export default class Item {
       item.natureDamage ? item.natureDamage : 0,
       item.spellHit ? item.spellHit : 0,
       item.spellCrit ? item.spellCrit : 0,
+      item.spellPenetration ? item.spellPenetration : 0,
       item.intellect ? item.intellect : 0,
       spellHitWeight,
-      spellCritWeight
+      spellCritWeight,
+      spellPenetrationWeight
     )
   }
 
@@ -81,7 +84,8 @@ export default class Item {
     magicSchool: MagicSchool,
     targetType: TargetType,
     spellHitWeight: number,
-    spellCritWeight: number
+    spellCritWeight: number,
+    spellPenetrationWeight: number
   ): number {
     return this.score(
       magicSchool,
@@ -91,8 +95,10 @@ export default class Item {
       itemSet.spellHit ? itemSet.spellHit : 0,
       itemSet.spellCrit ? itemSet.spellCrit : 0,
       0,
+      0,
       spellHitWeight,
-      spellCritWeight
+      spellCritWeight,
+      spellPenetrationWeight
     )
   }
 
@@ -100,7 +106,8 @@ export default class Item {
     enchant: EnchantJSON,
     magicSchool: MagicSchool,
     spellHitWeight: number,
-    spellCritWeight: number
+    spellCritWeight: number,
+    spellPenetrationWeight: number
   ): number {
     return this.score(
       magicSchool,
@@ -109,9 +116,11 @@ export default class Item {
       enchant.natureDamage,
       enchant.spellHit,
       enchant.spellCrit,
+      enchant.spellPenetration,
       enchant.intellect,
       spellHitWeight,
-      spellCritWeight
+      spellCritWeight,
+      spellPenetrationWeight
     )
   }
 
@@ -122,9 +131,11 @@ export default class Item {
     natureDamage: number,
     spellHit: number,
     spellCrit: number,
+    spellPenetration: number,
     intellect: number,
     spellHitWeight: number,
-    spellCritWeight: number
+    spellCritWeight: number,
+    spellPenetrationWeight: number
   ): number {
     const totalScore =
       spellDamage +
@@ -132,8 +143,11 @@ export default class Item {
       (magicSchool && magicSchool === MagicSchool.Nature ? natureDamage : 0) +
       spellHit * spellHitWeight +
       spellCrit * spellCritWeight +
+      spellPenetration * spellPenetrationWeight +
       (intellect / SpellCritFromIntellectDivisor.Druid) * spellCritWeight
 
+    //console.log(`spellPenetration: ${spellPenetration}`)
+    //console.log(`spellPenetrationWeight: ${spellPenetrationWeight}`)
     return parseFloat(totalScore.toFixed(3))
   }
 
@@ -573,6 +587,10 @@ export default class Item {
     return this._spellDamage + (this.enchantJSON ? this.enchantJSON.spellDamage : 0)
   }
 
+  get _spellPenetration(): number {
+    return this.itemJSON && this.itemJSON.spellPenetration ? this.itemJSON.spellPenetration : 0
+  }
+
   get spellPenetration(): number {
     return this.itemJSON && this.itemJSON.spellPenetration ? this.itemJSON.spellPenetration : 0
   }
@@ -771,6 +789,10 @@ export default class Item {
       bonuses.push(`Equip: Increases damage done by Nature spells and effects by up to ${this._natureDamage}.`)
     }
 
+    if (this._spellPenetration > 0) {
+      bonuses.push(`Decreases the magical resistances of your spell targets by ${this._spellPenetration}.`)
+    }
+
     if (this._mp5 > 0) {
       bonuses.push(`Equip: Restores ${this._mp5} mana per 5 sec.`)
     }
@@ -801,6 +823,9 @@ export default class Item {
         stats.push({ stat: 'Stamina', value: this._stamina, type: 'primary' })
       }
 
+      if (this._spirit > 0) {
+        stats.push({ stat: 'Spirit', value: this._spirit, type: 'primary' })
+      }
       if (this._spirit > 0) {
         stats.push({ stat: 'Spirit', value: this._spirit, type: 'primary' })
       }
