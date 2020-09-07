@@ -17,6 +17,12 @@
     - [BiS (optimal)](https://kmmiles.gitlab.io/moonkin-calc/?phase=6&raids=true&worldbosses=true&pvprank=14)
 
 ### Changelog
+##### Version 0.3.9
+  - Spell Penetration weighting added
+  - Change default Target Resistance to 0
+  - Change default spell to Starfire Rank 7
+  - Add Brilliant Wizard Oil buff
+
 ##### Version 0.3.6
   - Mobile UI improvements
   - Autoselect best rank of Starfire when changing phases
