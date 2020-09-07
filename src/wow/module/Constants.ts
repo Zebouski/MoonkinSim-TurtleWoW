@@ -17,7 +17,7 @@ let defaults: Options = {
   enchantExploit: false,
   onUseItems: true,
   encounterLength: 100,
-  spellName: 'Starfire Rank 6',
+  spellName: 'Starfire Rank 7',
   itemSearchSlot: ItemSlot.None,
   enchantSearchSlot: ItemSlot.None,
   castTimePenalty: 0.05, // This is an artifact from Ayz's spell damage calculator. No one knows what it is. Human factor? Latency factor?
