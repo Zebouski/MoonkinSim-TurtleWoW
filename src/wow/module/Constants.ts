@@ -85,7 +85,7 @@ let defaults: Options = {
   target: {
     level: 63,
     type: TargetType.Elemental,
-    spellResistance: 75,
+    spellResistance: 0,
     shimmer: 0,
     thunderfury: 0,
     debuffs: ['CurseOfShadow']
