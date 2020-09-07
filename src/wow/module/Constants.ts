@@ -48,7 +48,8 @@ let defaults: Options = {
       'SongflowerSerenade',
       'BlessingOfKings',
       'ImprovedGiftOfTheWild',
-      'SpiritOfZandalar'
+      'SpiritOfZandalar',
+      'BrilliantWizardOil'
     ],
     lockedItems: {
       head: '',

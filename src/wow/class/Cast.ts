@@ -261,7 +261,11 @@ export default class Cast {
   }
 
   get spellDamageBonus(): number {
-    return this.character.flaskOfSupremePowerBonus + this.character.greaterArcaneElixirBonus
+    return (
+      this.character.flaskOfSupremePowerBonus +
+      this.character.greaterArcaneElixirBonus +
+      this.character.brilliantWizardOilSpellDamageBonus
+    )
   }
 
   get onUseSpellDamageBonus(): number {

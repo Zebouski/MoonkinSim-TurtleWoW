@@ -48,6 +48,11 @@
             Sayge's Dark Fortune
           </b-checkbox>
         </div>
+        <div class="field">
+          <b-checkbox class="is-size-7-mobile" native-value="BrilliantWizardOil" v-model="options.character.buffs">
+            Brilliant Wizard Oil
+          </b-checkbox>
+        </div>
       </div>
       <div class="column">
         <div class="field">

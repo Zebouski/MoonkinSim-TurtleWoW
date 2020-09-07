@@ -174,7 +174,8 @@ export default class Character {
         this.rallyingCryOfTheDragonSlayerSpellCritBonus +
         this.moonkinAuraBonus +
         this.slipkiksSavvyBonus +
-        this.songflowerSerenadeSpellCritBonus
+        this.songflowerSerenadeSpellCritBonus +
+        this.brilliantWizardOilSpellCritBonus
     )
   }
 
@@ -233,6 +234,14 @@ export default class Character {
 
   get songflowerSerenadeSpellCritBonus(): number {
     return (this.buffFlags & Buffs.SongflowerSerenade) === Buffs.SongflowerSerenade ? 5 : 0
+  }
+
+  get brilliantWizardOilSpellCritBonus(): number {
+    return (this.buffFlags & Buffs.BrilliantWizardOil) === Buffs.BrilliantWizardOil ? 1 : 0
+  }
+
+  get brilliantWizardOilSpellDamageBonus(): number {
+    return (this.buffFlags & Buffs.BrilliantWizardOil) === Buffs.BrilliantWizardOil ? 36 : 0
   }
 
   get songflowerSerenadeAttributeBonus(): number {

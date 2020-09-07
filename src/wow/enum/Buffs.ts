@@ -20,7 +20,8 @@ export enum Buffs {
   CurseOfShadow = 1 << 17,
   StormStrike = 1 << 18,
   SpiritOfZandalar = 1 << 19,
-  All = ~(~0 << 18)
+  BrilliantWizardOil = 1 << 20,
+  All = ~(~0 << 20)
 }
 
 export default Buffs

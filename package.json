@@ -6,6 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
+    "test:trinkets": "ts-node -sT tests/trinkets.ts",
     "docs": "typedoc --out dist/docs src",
     "db": "cross-env scripts/tsrun src/wow/convert-items.ts > src/wow/db/items.json",
     "db-csim": "cross-env CSIM=1 scripts/tsrun src/wow/convert-items.ts > vendor/classic-sim-items.xml"
@@ -58,6 +59,7 @@
     "node-sass": "^4.12.0",
     "prettier": "^1.19.1",
     "sass-loader": "^8.0.0",
+    "ts-node": "^9.0.0",
     "tslint-config-standard": "^9.0.0",
     "typedoc": "^0.15.8",
     "typescript": "~3.5.3",
