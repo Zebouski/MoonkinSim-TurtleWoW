@@ -314,7 +314,7 @@ export default class Cast {
   }
 
   get effectiveSpellCrit(): number {
-    return constants.baseSpellCrit + this.character.spellCrit + this.improvedMoonfireSpellCritBonus
+    return this.character.spellCrit + this.improvedMoonfireSpellCritBonus
   }
 
   get effectiveTargetResistance(): number {

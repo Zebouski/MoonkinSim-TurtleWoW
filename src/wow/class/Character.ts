@@ -161,7 +161,7 @@ export default class Character {
   }
 
   get spellCritUnbuffed(): number {
-    return this.spellCritFromIntellect + this.spellCritFromEquipment
+    return constants.baseSpellCrit + this.spellCritFromIntellect + this.spellCritFromEquipment
   }
 
   /**
